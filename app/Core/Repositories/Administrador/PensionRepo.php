@@ -10,7 +10,7 @@ class PensionRepo {
     public function getAllPensiones($idperiodomatricula, $sede)
     {
         return Pension::            
-         select('idpension','tipopension.name as nametipopension','pension.idsede','monto','users.name as nameuser','nivel_nombre')
+         select('idpension','tipopension.nombre as nametipopension','pension.idsede','monto','users.nombre as nameuser','nivel.nombre')
          ->leftJoin('users', 'pension.usercreate', '=', 'users.id')
          ->leftJoin('nivel', 'pension.idnivel', '=', 'nivel.idnivel')
          ->leftJoin('tipopension', 'pension.idtipopension', '=', 'tipopension.idtipopension')
@@ -32,19 +32,19 @@ class PensionRepo {
     public function getAllTipoPension()
     {
         return TipoPension::            
-         select('idtipopension','name')
+         select('idtipopension','nombre')
          ->get();
     }
     public function getAllSedes()
     {
         return Sede::            
-         select('idsede','sede_nombre')
+         select('idsede','nombre')
          ->get();
     }
     public function getAllNiveles()
     {
         return Nivel::            
-         select('idnivel','nivel_nombre')
+         select('idnivel','nombre')
          ->get();
     }
     public function getAllPeriodos()

@@ -22,8 +22,6 @@
 ?>
 @extends("$variable")
 @section('css')
-	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
-
 	<!-- Vendor CSS -->
 	<link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/css/bootstrap.css') }}" />
 	<link rel="stylesheet" href="{{ asset('assets/vendor/font-awesome/css/font-awesome.css') }}" />
@@ -43,11 +41,6 @@
 <div class="col-lg-12">
 	<section class="panel">
 		<header class="panel-heading">
-			<div class="panel-actions">
-				<a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
-				<a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss=""></a>
-			</div>
-
 			<h2 class="panel-title">Buscar Alumno</h2>
 		</header>
 		<div class="panel-body">

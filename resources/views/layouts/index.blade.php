@@ -12,12 +12,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
 @section('css')
-	<!-- Web Fonts  -->
-	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
 	<!-- Vendor CSS -->
 	<link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/css/bootstrap.css') }}" />
 	<link rel="stylesheet" href="{{ asset('assets/vendor/font-awesome/css/font-awesome.css') }}" />
 	<link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-datepicker/css/datepicker3.css') }}" />
+	<link rel="stylesheet" href="{{ asset('assets/vendor/magnific-popup/magnific-popup.css') }}" />
 	<!-- Specific Page Vendor CSS -->		
 	<link rel="stylesheet" href="{{ asset('assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css') }}" />	
 	<!-- Theme CSS -->
@@ -63,8 +62,7 @@
 							<img src="{{ asset('assets/images/%21logged-user.jpg') }}" alt="Joseph Doe" class="img-circle" data-lock-picture="{{ asset('assets/images/%21logged-user.jpg') }}" />
 						</figure>
 						<div class="profile-info" data-lock-name="Juan Carlos" data-lock-email="juan@gmail.com">
-							<span class="name">{!! Auth::user()->name !!}</span>
-							<span class="role">administrator</span>
+							<span class="name">{!! Auth::user()->nombre !!}</span>
 						</div>
 						
 						<i class="fa custom-caret"></i>
@@ -146,15 +144,17 @@
 									</a>
 									<ul class="nav nav-children">
 										<li>
-											<a href="#">
+											<a href="{!! route('periodo') !!}">
 												Periodo Matricula
 											</a>
 										</li>
+
 										<li>
-											<a href="#">
+											<a href="{!! route('fechanotas') !!}">
 												Periodo Ingreso Notas
 											</a>
 										</li>
+
 										<li class="nav-parent">
 											<a>
 												Reportes
@@ -174,23 +174,33 @@
 											</a>
 											<ul class="nav nav-children">
 												<li>
-													<a href="#">
+													<a href="{!! route('sede') !!}">
 														Sede
 													</a>
 												</li>
 												<li>
-													<a href="#">
+													<a href="{!! route('nivel') !!}">
 														Nivel
 													</a>
 												</li>
 												<li>
-													<a href="#">
+													<a href="{!! route('grado') !!}">
 														Grado
 													</a>
 												</li>
 												<li>
-													<a href="#">
+													<a href="{!! route('seccion') !!}">
 														Sección
+													</a>
+												</li>
+												<li>
+													<a href="{!! route('pension') !!}">
+														Pensiones
+													</a>
+												</li>
+												<li>
+													<a href="{!! route('vacante') !!}">
+														Vacantes
 													</a>
 												</li>
 											</ul>
@@ -202,35 +212,35 @@
 											</a>
 											<ul class="nav nav-children">
 												<li>
-													<a href="#">
+													<a href="{!! route('asignaturas') !!}">
 														Asignaturas
 													</a>
 												</li>
+												
 												<li>
-													<a href="#">
-														Profesores
+													<a href="{!! route('profesorasignatura') !!}">
+														Profesor Asignatura
 													</a>
 												</li>
-											</ul>
-										</li>
-										<li>
-											<a href="{!! route('pension') !!}">
-												Pensiones
-											</a>
-										</li>
-									</ul>
-								</li>
 
-								<li class="nav-parent">
-									<a>
-										<i class="fa fa-copy" aria-hidden="true"></i>
-										<span>Docente</span>
-									</a>
-									<ul class="nav nav-children">
-										<li>
-											<a href="#">
-												Subir notas
-											</a>
+												<li class="nav-parent">
+													<a>
+														Tarjetas
+													</a>
+													<ul class="nav nav-children">
+														<li>
+															<a href="{!! route('tarjetas') !!}">
+																Tipos de Tarjetas
+															</a>
+														</li>
+														<li>
+															<a href="{!! route('bloque') !!}">
+																Bloques y criterios
+															</a>
+														</li>
+													</ul>
+												</li>		
+											</ul>
 										</li>
 									</ul>
 								</li>
@@ -242,7 +252,7 @@
 									</a>
 									<ul class="nav nav-children">
 										<li>
-											<a href="#">
+											<a href="{!! route('usuarios') !!}">
 												Usuarios
 											</a>
 										</li>
@@ -374,7 +384,7 @@
 	@section('scripts')
 	
 	<!-- Vendor -->
-	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>		
+	<script src="{{ asset('assets/vendor/jquery/jquery.js') }}"></script>		
 	<script src="{{ asset('assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js') }}"></script>		
 	<script src="{{ asset('assets/vendor/jquery-cookie/jquery.cookie.js') }}"></script>		
 	<script src="{{ asset('assets/vendor/style-switcher/style-switcher.js') }}"></script>		
@@ -383,7 +393,6 @@
 	<script src="{{ asset('assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>		
 	<script src="{{ asset('assets/vendor/magnific-popup/magnific-popup.js') }}"></script>		
 	<script src="{{ asset('assets/vendor/jquery-placeholder/jquery.placeholder.js') }}"></script>
-	
 	<!-- Specific Page Vendor -->		
 	<script src="{{ asset('assets/vendor/jquery-ui/js/jquery-ui-1.10.4.custom.js') }}"></script>		
 	<script src="{{ asset('assets/vendor/jquery-ui-touch-punch/jquery.ui.touch-punch.js') }}"></script>		
@@ -410,6 +419,7 @@
 	<script src="{{ asset('assets/javascripts/theme.init.js') }}"></script>	
 	<!-- Examples -->
 	<script src="{{ asset('assets/javascripts/dashboard/examples.dashboard.js') }}"></script>
+	<script src="{{ asset('assets/javascripts/ui-elements/examples.modals.js') }}"></script>
 	@show		
 </body>
 </html>

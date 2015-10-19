@@ -1,24 +1,24 @@
 <?php 
-if(Auth::user()->idrol==1)
-{
-	$variable = "layouts.index";
-} 
-elseif(Auth::user()->idrol==2)
-{
-	$variable = "layouts.responsable";	
-}
-elseif(Auth::user()->idrol==3)
-{
-	$variable = "layouts.secretaria";	
-}
-elseif(Auth::user()->idrol==4)
-{
-	$variable = "layouts.profesor";	
-}
-elseif(Auth::user()->idrol==5)
-{
-	$variable = "layouts.legal";	
-}
+	if(Auth::user()->idrol==1)
+	{
+		$variable = "layouts.index";
+	} 
+	elseif(Auth::user()->idrol==2)
+	{
+		$variable = "layouts.responsable";	
+	}
+	elseif(Auth::user()->idrol==3)
+	{
+		$variable = "layouts.secretaria";	
+	}
+	elseif(Auth::user()->idrol==4)
+	{
+		$variable = "layouts.profesor";	
+	}
+	elseif(Auth::user()->idrol==5)
+	{
+		$variable = "layouts.legal";	
+	}
 ?>
 @extends("$variable")
 @section('cuerpo')
@@ -51,32 +51,22 @@ elseif(Auth::user()->idrol==5)
 		</div>
 			<fieldset>
 				<div class="form-group">
-					<select name="periodo" id="cboPeriodo" class="form-control mb-md" data-bind="options: periodos, optionsText: 'nombre', optionsValue: 'idperiodomatricula', value: pediodoSeleccionado"></select>
+					<select name="sede"  id="cboSede" class="form-control mb-md" data-bind="options: sedes, optionsText: 'nombre', optionsValue: 'idsede',  optionsCaption: 'Seleccione una Sede', value: sedeSeleccionada"></select>
 				</div>
 			</fieldset>
 			<fieldset>
 				<div class="form-group">
-					<select name="sede"  id="cboSede" class="form-control mb-md" data-bind="options: sedes, optionsText: 'sede_nombre', optionsValue: 'idsede',  optionsCaption: 'Seleccione una Sede', value: sedeSeleccionada"></select>
+					<select name="nivel"  id="cboNivel" class="form-control mb-md" data-bind="options: niveles, optionsText: 'nombre', optionsValue: 'idnivel',  optionsCaption: 'Seleccione un Nivel', value: nivelSeleccionado"></select>
 				</div>
 			</fieldset>
 			<fieldset>
 				<div class="form-group">
-					<select name="nivel"  id="cboNivel" class="form-control mb-md" data-bind="options: niveles, optionsText: 'nivel_nombre', optionsValue: 'idnivel',  optionsCaption: 'Seleccione un Nivel', value: nivelSeleccionado"></select>
+					<select name="grado"  id="cboGrado" class="form-control mb-md" data-bind="options: grados, optionsText: 'nombre', optionsValue: 'idgrado',  optionsCaption: 'Seleccione un Grado', value: gradoSeleccionado"></select>
 				</div>
 			</fieldset>
 			<fieldset>
 				<div class="form-group">
-					<select name="grado"  id="cboGrado" class="form-control mb-md" data-bind="options: grados, optionsText: 'name', optionsValue: 'idgrado',  optionsCaption: 'Seleccione un Grado', value: gradoSeleccionado"></select>
-				</div>
-			</fieldset>
-			<fieldset>
-				<div class="form-group">
-					<select name="seccion"  id="cboSeccion" class="form-control mb-md" data-bind="options: secciones, optionsText: 'name', optionsValue: 'idseccion',  optionsCaption: 'Seleccione una Seccion', value: seccionSeleccionada"></select>
-				</div>
-			</fieldset>
-			<fieldset>
-				<div class="form-group">
-					<select name="aula"  id="cboAula" class="form-control mb-md" data-bind="options: aulas, optionsText: 'name', optionsValue: 'idaula',  optionsCaption: 'Seleccione un Aula', value: aulaSeleccionada"></select>
+					<select name="seccion"  id="cboSeccion" class="form-control mb-md" data-bind="options: secciones, optionsText: 'nombre', optionsValue: 'idseccion',  optionsCaption: 'Seleccione una Seccion', value: seccionSeleccionado"></select>
 				</div>
 			</fieldset>
 		{!! Form::close() !!}
@@ -91,15 +81,15 @@ elseif(Auth::user()->idrol==5)
 @section('scripts')
 @parent
 <!--knockout-->
-{!! Html::script('http://knockoutjs.com/downloads/knockout-3.3.0.js') !!}
+{!! Html::script('assets/javascripts/knockout-3.3.0.js') !!}
 
 <!-- KnockoutJS Mapping http://knockoutjs.com/documentation/plugins-mapping.html -->
-{!! Html::script('http://cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.min.js') !!}
+{!! Html::script('assets/javascripts/knockout.mapping.min.js') !!}
 
 <!-- jQuery Cookie -->
 {!! Html::script('assets/javascripts/jquery.cookie.js') !!}
 <script>
-	var baseURL = "http://localhost/hufull/public/alumno";
+	var baseURL = "http://localhost:8080/hufull/public/alumno";
 	function VacantesFormViewModel () {
 		var fo = this;
 
@@ -112,9 +102,7 @@ elseif(Auth::user()->idrol==5)
 		fo.grados   = ko.observableArray([]);
 		fo.gradoSeleccionado   = ko.observable(null);
 		fo.secciones= ko.observableArray([]);
-		fo.seccionSeleccionada = ko.observable(null);
-		fo.aulas    = ko.observableArray([]);
-		fo.aulaSeleccionada    = ko.observable(null);
+		fo.seccionSeleccionado = ko.observable(null);
 
 		fo.cargarperiodos = function () {
 			$.ajax({
@@ -237,57 +225,29 @@ elseif(Auth::user()->idrol==5)
 			}
 		});
 
-		fo.cargarAulas = function (sede , nivel, grado, seccion) {
-			$.ajax({
-				type: "GET",
-				url: baseURL + "/api/v1/getAulas",
-				data: {sede:sede, nivel:nivel, grado:grado, seccion:seccion},
-				dataType: "json",
-				contentType: "application/json; charset=utf-8",
-				success: function (e) {
-					var aulasRaw =  e.aulas;
-                //limpio el arrray
-                fo.aulas.removeAll();
-                for (var i = 0; i < aulasRaw.length; i++) {
-                	fo.aulas.push(aulasRaw[i]);
-                };
-            },
-            error: function (r) {
-                // Luego...
-            }
-        });
-		}
 
-		fo.seccionSeleccionada.subscribe(function(newValue) {
-			if (newValue) {
-				fo.cargarAulas(fo.sedeSeleccionada(), fo.nivelSeleccionado(), fo.gradoSeleccionado(), newValue);
-			}
-		});
-
-		fo.guardarCookie = function (sede, nivel, grado, seccion, aula) {
+		fo.guardarCookie = function (sede, nivel, grado, seccion ) {
 			$.cookie('idsede'   , sede,   { expires: 1 , path:'/'});
 			$.cookie('idnivel'  , nivel,  { expires: 1 , path:'/'});
 			$.cookie('idgrado'  , grado,  { expires: 1 , path:'/'});
 			$.cookie('idseccion', seccion,{ expires: 1 , path:'/'});
-			$.cookie('idaula'   , aula,   { expires: 1 , path:'/'});
 		}
-
-		fo.aulaSeleccionada.subscribe(function(newValue) {
-			if (newValue) {
-				fo.guardarCookie(fo.sedeSeleccionada(), fo.nivelSeleccionado(), fo.gradoSeleccionado(), fo.seccionSeleccionada(), fo.aulaSeleccionada(),newValue);
-			}
-		});
+		
+		fo.seccionSeleccionado.subscribe(function(newValue) {
+	        if (newValue) {
+	            fo.guardarCookie(fo.sedeSeleccionada(), fo.nivelSeleccionado(), fo.gradoSeleccionado(), fo.seccionSeleccionado(), newValue);
+	        }
+    	});
 
 		fo.consultaVacantes = function () {
 			var sede = fo.sedeSeleccionada();
 			var nivel= fo.nivelSeleccionado();
 			var grado= fo.gradoSeleccionado();
-			var seccion = fo.seccionSeleccionada();
-			var aula = fo.aulaSeleccionada();
+			var seccion = fo.seccionSeleccionado();
 			$.ajax({
 				type: "GET",
 				url: baseURL+"/api/v1/getVacantes",
-				data: {sede:sede, nivel:nivel, grado:grado, seccion:seccion, aula:aula},
+				data: {sede:sede, nivel:nivel, grado:grado, seccion:seccion},
 				dataType: "json",
 				contentType: "application/json; charset=utf-8",
 				success: function (e) {
@@ -318,8 +278,7 @@ elseif(Auth::user()->idrol==5)
 			};
 		}
 
-		fo.cargarperiodos();
-		fo.cargarsedes();       
+		fo.cargarsedes();  
 	}    
 	var viewModel = new VacantesFormViewModel();
 

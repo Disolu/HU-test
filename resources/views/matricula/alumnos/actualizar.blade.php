@@ -303,7 +303,7 @@
 					@foreach($EstadoMatricula as $estado )
 						<label class="btn btn-default  btn-sm <?php echo($matricula->idestadomatricula == $estado->idestadomatricula ? 'active' :''); ?>">
 							<input type="radio" id="validate" name="alu_estado" autocomplete="off" value="{!! $estado->idestadomatricula !!}" <?php echo($matricula->idestadomatricula == $estado->idestadomatricula ? 'checked="checked"' :''); ?>> 
-							{!! $estado->name !!}
+							{!! $estado->nombre !!}
 						</label>
 					@endforeach	
 					</div>

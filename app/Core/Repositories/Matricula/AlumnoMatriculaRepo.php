@@ -25,14 +25,14 @@ class AlumnoMatriculaRepo {
             'alumnodatos.email','celular',
             'periodomatricula.nombre as nombreperiodo',
  
-            'sede_nombre',
-            'nivel_nombre',
-            'grado.name as grado_nombre',
-            'seccion.name as seccion_nombre',
+            'sede.nombre as sede_nombre',
+            'nivel.nombre as nivel_nombre',
+            'grado.nombre as grado_nombre',
+            'seccion.nombre as seccion_nombre',
             'monto',
             'pension.monto as monto',
-            'users.name as nombreusuario',
-            'tipopension.name as tipopension_nombre'
+            'users.nombre as nombreusuario',
+            'tipopension.nombre as tipopension_nombre'
             )        
         ->where('alumnomatricula.idalumno','=', $idalumno)
         ->where('alumnomatricula.idperiodomatricula','=', $idperiodomatricula)

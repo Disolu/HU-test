@@ -1,87 +1,75 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Administrador;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\CursoRequest;
 use App\Http\Controllers\Controller;
+use App\Core\Repositories\Cursos\CursosRepo;
+use Redirect;
+use Session;
 
 class AsignaturaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
+
+    protected $CursosRepo;
+
+    public function __construct(CursosRepo $CursosRepo)
+    {
+        $this->CursosRepo = $CursosRepo;
+    }
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
     public function create()
     {
-        //
+        $cursos = $this->CursosRepo->getCursos();
+        return view('administrador.asignaturas.index', compact('cursos'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  Request  $request
-     * @return Response
-     */
-    public function store(Request $request)
+    public function store(CursoRequest $request)
     {
-        //
+        $cursos = $this->CursosRepo->SaveCurso($request->all());
+
+        if($cursos){
+            Session::flash('message-success', 'Se registro correctamente al usuario');            
+            return Redirect::back();   
+        }
+        else{
+            Session::flash('message-danger', 'Ocurrio un error al validar al usuario');            
+            return Redirect::back()->withInput();   
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  Request  $request
-     * @param  int  $id
-     * @return Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function destroy($id)
     {
-        //
+        $curso = $this->CursosRepo->deleteCurso($id);
+        if($curso)
+        {
+            Session::flash('message-success', 'La asignatura ha sido eliminado');  
+            return redirect()->route('asignaturas');
+        }
+        else{
+            return redirect()->back()->withInput(); 
+        }
     }
 }

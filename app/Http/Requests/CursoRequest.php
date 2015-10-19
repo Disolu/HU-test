@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Http\Requests;
+
+use App\Http\Requests\Request;
+
+class CursoRequest extends Request
+{
+
+    public function authorize()
+    {
+        return true;
+    }
+
+    public function rules()
+    {
+        return [
+            'nombre' => 'required',
+            'grado'=> 'required'
+        ];
+    }
+}

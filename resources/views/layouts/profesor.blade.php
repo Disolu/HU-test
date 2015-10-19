@@ -13,9 +13,6 @@
 	<!-- Mobile Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-	<!-- Web Fonts  -->
-	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
-
 	<!-- Vendor CSS -->
 	<link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/css/bootstrap.css') }}" />
 	<link rel="stylesheet" href="{{ asset('assets/vendor/font-awesome/css/font-awesome.css') }}" />
@@ -72,7 +69,7 @@
 						</figure>
 						<div class="profile-info" data-lock-name="Juan Carlos" data-lock-email="juan@gmail.com">
 							<span class="name">{!! Auth::user()->name !!}</span>
-							<span class="role">Secretaria</span>
+							<span class="role">Profesor</span>
 						</div>
 						
 						<i class="fa custom-caret"></i>
@@ -131,15 +128,16 @@
 										</li>
 									</ul>
 								</li>
+
 								<li class="nav-parent">
 									<a>
 										<i class="fa fa-copy" aria-hidden="true"></i>
-										<span>Matriculas</span>
+										<span>Cursos</span>
 									</a>
 									<ul class="nav nav-children">
 										<li>
-											<a href="{!! route('searchvacantes') !!}">
-												Consulta vacante
+											<a href="{!! route('listacursos') !!}">
+												Listar cursos
 											</a>
 										</li>
 									</ul>

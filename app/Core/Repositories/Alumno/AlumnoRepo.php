@@ -34,6 +34,7 @@ class AlumnoRepo {
          ->select('fullname','codigo','impedimento','idalumnomatricula','alumno.idalumno as alumnoid')
          ->where('fullname','LIKE','%'.$alumno.'%')
          ->orWhere('dni', $alumno)
+         ->orWhere('codigo', $alumno)
          ->get();
     }
     public function SaveAlumno($idperiodomatricula,$iduser, $rawAlumno)
@@ -80,22 +81,23 @@ class AlumnoRepo {
                 $alumnoMatricula->idestadomatricula = $rawAlumno['alu_estado'];
                 $alumnoMatricula->idtipopension = $rawAlumno['alu_tipopension'];
                 $alumnoMatricula->usercreate = $iduser;
+                $alumnoMatricula->updated_at = '';
                 $alumnoMatricula->save();
         //registro de la Vacante, 
             $lastVacante = Vacante::
-                            select('idvacante','qty_matriculados')
-                            ->where('idseccion','=', $rawAlumno['alu_seccion'])
-                            ->where('idgrado','=', $rawAlumno['alu_grado'])
-                            ->where('idnivel','=', $rawAlumno['alu_nivel'])
-                            ->where('idsede','=',  $rawAlumno['alu_sede'])
-                            ->where('idperiodomatricula','=',1)
-                            ->orderBy('idvacante','desc')
-                            ->take(1)
-                            ->get();  
+                select('idvacante','qty_matriculados')
+                ->where('idseccion','=', $rawAlumno['alu_seccion'])
+                ->where('idgrado','=', $rawAlumno['alu_grado'])
+                ->where('idnivel','=', $rawAlumno['alu_nivel'])
+                ->where('idsede','=',  $rawAlumno['alu_sede'])
+                ->where('idperiodomatricula','=',$idperiodomatricula)
+                ->orderBy('idvacante','desc')
+                ->take(1)
+                ->get();  
             $newMatriculados = ($lastVacante[0]->qty_matriculados + 1);                            
             $alumnoVacante = Vacante::
-                              where('idvacante',$lastVacante[0]->idvacante)
-                              ->update(['qty_matriculados' => $newMatriculados]);                
+                where('idvacante',$lastVacante[0]->idvacante)
+                ->update(['qty_matriculados' => $newMatriculados]);                
             return true;        
     }
     public function SaveApoderado($iduser, $rawApoderados)
@@ -172,7 +174,7 @@ class AlumnoRepo {
     {
         return AlumnoObservacion::
         leftJoin('tipoobservacion', 'alumnoobservacion.idtipoobservacion', '=', 'tipoobservacion.idtipoobservacion')         
-         ->select('titulo','observacion','alumnoobservacion.idtipoobservacion','alumnoobservacion.created_at','name as nombretipoobservacion')
+         ->select('titulo','observacion','alumnoobservacion.idtipoobservacion','alumnoobservacion.created_at','nombre as nombretipoobservacion')
          ->where('idalumno','=',$id)
          ->orderBy('alumnoobservacion.created_at','desc')
          ->get();
@@ -180,7 +182,7 @@ class AlumnoRepo {
     public function getObservacionImpedimento($id)
     {
         return AlumnoObservacion::
-        select('titulo','observacion','alumnoobservacion.idtipoobservacion','alumnoobservacion.created_at','name as nombretipoobservacion')
+        select('titulo','observacion','alumnoobservacion.idtipoobservacion','alumnoobservacion.created_at','nombre as nombretipoobservacion')
          ->where('idalumno','=',$id)
          ->where('idtipoobservacion','=',4)
          ->orderBy('alumnoobservacion.created_at','desc')

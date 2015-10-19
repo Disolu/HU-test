@@ -22,4 +22,14 @@ class PeriodoRepo {
         ->take(1)
         ->get();
     }
+    public function getActivePeriodo($day)
+    {
+       return PeriodoMatricula::
+        select('idperiodomatricula','nombre')
+        ->where('inicio','<=',$day)
+        ->where('fin','>=',$day)
+        ->orderBy('idperiodomatricula', 'desc')
+        ->take(1)
+        ->get();
+    }
 }
