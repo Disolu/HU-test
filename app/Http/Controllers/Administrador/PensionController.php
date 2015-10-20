@@ -52,6 +52,7 @@ class PensionController extends Controller
         $dos = 2;
         $pensionesSede01     = $this->PensionRepo->getAllPensiones($periodos[0]->idperiodomatricula, $uno);
         $pensionesSede02     = $this->PensionRepo->getAllPensiones($periodos[0]->idperiodomatricula, $dos);
+
         return view('administrador.pensiones.index', compact('tipopensiones','sedes','niveles','periodos','pensionesSede01','pensionesSede02'));
     }
 

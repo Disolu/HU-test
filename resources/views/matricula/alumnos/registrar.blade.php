@@ -307,7 +307,7 @@
 						@foreach($TipoPension as $pension )
 						<label class="btn btn-default  btn-sm tipopension" id="{!! $pension->idtipopension !!}">
 							<input type="radio" name="alu_tipopension" autocomplete="off" value="{!! $pension->idtipopension !!} "> 
-							{!! $pension->name !!} 
+							{!! $pension->nombre !!} 
 						</label>
 						@endforeach
 						<div class="selectPension" style="display:none">
@@ -324,7 +324,7 @@
 					@foreach($EstadoMatricula as $estado )
 						<label class="btn btn-default  btn-sm">
 							<input type="radio" id="validate" name="alu_estado" autocomplete="off" value="{!! $estado->idestadomatricula !!}"> 
-							{!! $estado->name !!}
+							{!! $estado->nombre !!}
 						</label>
 					@endforeach	
 					</div>
@@ -354,12 +354,17 @@
 @stop
 @section('scripts')
 	@parent
-	{!! Html::script('http://knockoutjs.com/downloads/knockout-3.3.0.js') !!}
-	{!! Html::script('http://cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.min.js') !!}
+	<!--knockout-->
+	{!! Html::script('assets/javascripts/knockout-3.3.0.js') !!}
+
+	<!-- KnockoutJS Mapping http://knockoutjs.com/documentation/plugins-mapping.html -->
+	{!! Html::script('assets/javascripts/knockout.mapping.min.js') !!}
+
+	<!-- jQuery Cookie -->
 	{!! Html::script('assets/javascripts/jquery.cookie.js') !!}
 	<script type="text/javascript">
 	$(document).ready(function(){
-		var baseURL = "http://localhost/hufull/public/alumno/";		
+		var baseURL = "http://localhost:8080/hufull/public/alumno/";		
 	    var sede  = $.cookie("idsede");
 	    var nivel = $.cookie("idnivel");		
 	    $(".tipopension").click(function(){
@@ -372,7 +377,6 @@
 		    	contentType: "application/json; charset=utf-8",
 		    	success: function (data) {		    		
 		    		$(".selectPension").show();
-		    		console.log(data);
 		    		var $selectPension = $("#pension");
             		$selectPension.empty();
             		$selectPension.append($("<option>Seleccione pension</option>"));
@@ -392,7 +396,7 @@
 	</script>
 
 	<script>
-	var baseURL = "http://localhost/hufull/public/alumno/";
+	var baseURL = "http://localhost:8080/hufull/public/alumno/";
 	function AlumnoFormViewModel() {
 	    fo = this;
 	    fo.reID = "{{ $alumnodni->alu_id or ''}}";
@@ -477,9 +481,7 @@
 	        var c_niv = $.cookie('idnivel');
 	        var c_gra = $.cookie('idgrado');
 	        var c_sec = $.cookie('idseccion');
-	        var c_aul = $.cookie('idsede');
-	        var c_dni = $.cookie('idaula');
-	        var textodata = 'Sede: '+c_sed+' » Nivel: '+c_niv+' » Grado: '+c_gra+' » Seccion: '+c_sec+' » Aula: '+c_aul;
+	        var textodata = 'Sede: '+c_sed+' » Nivel: '+c_niv+' » Grado: '+c_gra+' » Seccion: '+c_sec;
 	        fo.datavacante(textodata);
 	        }
 	    };
@@ -537,7 +539,6 @@
 
 	    fo.loadAlumno = function(rawAlumno){
 	        fofi = rawAlumno;
-	        console.log(rawAlumno);
 	        fo.aid(fofi.alu_id);
 	        fo.adni(fofi.alu_dni);
 	        fo.anombre(fofi.alu_nonbres);
@@ -570,12 +571,10 @@
 	        
 	        $("input[name=estadoalumno][value='" + fofi.estadoalumno +"']").closest('label').addClass("active");
 	        $("input[name=estadoalumno][value='" + fofi.estadoalumno +"']").prop('checked', true);
-
 	    };
 
 	    fo.loadApoderado = function(rawApoderado){
 	        apo = rawApoderado;
-	        console.log(rawApoderado);
 
 	        fo.apo_id(apo.apo_id);
 	        fo.p_nombre(apo.p_nombres);
@@ -611,7 +610,6 @@
 
 	    fo.loadOtherData = function(rawOtherData){
 	        data = rawOtherData;
-	        console.log(rawOtherData);
 
 	        fo.datos_id(data.datos_id);
 	        fo.tipo_sangre(data.tipo_sangre);
@@ -721,10 +719,6 @@
 	            seguro :fo.seguro()
 	        }
 
-	        console.log(obj);
-	        console.log(objApoderados);
-	        console.log(objOtherData);
-
 	        //REGISTRA o ACTUALIZA al alumno.
 	        if( $("#pension option:selected").val() !=0){
 		        $.ajax({
@@ -735,13 +729,11 @@
 		            dataType: "json",
 		            contentType: "application/json; charset=utf-8",
 		            success: function (r) {
-		                //toastr.success('Sus cambios fueron registrados con éxito','Alumno Guardado');
 		                alert("Registro con éxito");
 		                $.removeCookie('idsede', { path: '/' });
 				        $.removeCookie('idnivel', { path: '/' });
 				        $.removeCookie('idgrado', { path: '/' });
 				        $.removeCookie('idseccion', { path: '/' });
-				        $.removeCookie('idaula', { path: '/' });
 
 				        setTimeout(function () { window.location = baseURL + r.alumnope; }, 100);
 				        console.log('Se registro con exito');
@@ -763,9 +755,6 @@
 	        $.removeCookie('idnivel', { path: '/' });
 	        $.removeCookie('idgrado', { path: '/' });
 	        $.removeCookie('idseccion', { path: '/' });
-	        $.removeCookie('idaula', { path: '/' });
-	        $.removeCookie('alu_dni', { path: '/' });
-	        //toastr.success('Se borraron las cookies del Proceso, puede empezar otro nuevamente...','Proceso Terminado');
 	        setTimeout(function () { window.location = baseURL + "searchvacantes"; }, 500);
 	    }
 	}

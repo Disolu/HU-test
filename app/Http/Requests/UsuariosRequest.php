@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Http\Requests;
+
+use App\Http\Requests\Request;
+
+class UsuariosRequest extends Request
+{
+
+    public function authorize()
+    {
+        return true;
+    }
+
+    public function rules()
+    {
+        return [
+            'nombre' => 'required',
+            'user' => 'required  | unique:users',
+            'email' => 'required | unique:users',
+            'idrol' => 'required',
+            'password' => 'required',
+        ];
+    }
+}

@@ -18,15 +18,17 @@ Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
 	//Ver detalles del alumno, step 2 matricula
 	Route::get('/{id}', ['as' => 'alumnodetalle', 'uses' => 'Matricula\AlumnosController@show'])->where('id', '[0-9]+');
 	Route::post('saveArchivosDataUsers/{id}', ['as' => 'saveArchivosDataUsers', 'uses' => 'Matricula\AlumnoUploadController@saveArchivosDataUsers'])->where('id', '[0-9]+');
+	
 	//Buscando al alumno
 	Route::get('buscar', ['as' => 'alumnobuscar', 'uses' => 'Matricula\AlumnosController@buscar']);
 	Route::post('buscar', ['as' => 'alumnobuscar', 'uses' => 'Matricula\AlumnosController@getAlumno']);
+	
 	//Nombre del alumno
 	Route::get('name', ['as' => 'name', 'uses' => 'Matricula\AlumnosController@getNameAlumno']);
 	
 	//Editar Alumno
-	Route::get('editar/{id}', ['as' => 'alumno', 'uses' => 'Matricula\AlumnosController@edit'])->where('id', '[0-9]+');
-	Route::put('editar/{id}', ['as' => 'updatealumno', 'uses' => 'Matricula\AlumnosController@update'])->where('id', '[0-9]+');
+	Route::get('edit/{id}', ['as' => 'alumno', 'uses' => 'Matricula\AlumnosController@edit'])->where('id', '[0-9]+');
+	Route::put('edit/{id}', ['as' => 'updatealumno', 'uses' => 'Matricula\AlumnosController@update'])->where('id', '[0-9]+');
 
 	//Consultar Vacante para un alumno existente
 	Route::get('searchvacante/{id}', ['as' => 'searchvacante', 'uses' => 'Matricula\VacanteController@viewVacante'])->where('id', '[0-9]+');
@@ -76,11 +78,85 @@ Route::group( ['middleware' => ['auth','administrador'], 'prefix'=>'admin'], fun
 	Route::get('/', function () {
 	    return view('administrador.index');
 	});
-	Route::get('pension', ['as' => 'pension', 'uses' => 'Administrador\PensionController@index']);
-	Route::post('pension', ['as' => 'pension', 'uses' => 'Administrador\PensionController@create']);
+
+	//Área de Institución
+	Route::group( ['middleware' => ['auth','administrador'], 'prefix'=>'institucion'], function() {
+		Route::get('sede', ['as' => 'sede', 'uses' => 'Administrador\SedeController@index']);
+		Route::get('sede/new',  ['as' => 'sedenew', 'uses' => 'Administrador\SedeController@create']);
+		Route::post('sede/new', ['as' => 'sedenew', 'uses' => 'Administrador\SedeController@store']);
+		Route::get('sede/{id}', ['as' => 'deletesede', 'uses' => 'Administrador\SedeController@destroy']);
+
+		Route::get('nivel', ['as' => 'nivel', 'uses' => 'Administrador\NivelController@index']);
+		Route::get('nivel/new',  ['as' => 'nivelnew', 'uses' => 'Administrador\NivelController@create']);
+		Route::post('nivel/new', ['as' => 'nivelnew', 'uses' => 'Administrador\NivelController@store']);
+		Route::get('nivel/{id}', ['as' => 'deletenivel', 'uses' => 'Administrador\NivelController@destroy']);
+
+		Route::get('grado', ['as' => 'grado', 'uses' => 'Administrador\GradoController@index']);
+		Route::get('grado/new',  ['as' => 'gradonew', 'uses' => 'Administrador\GradoController@create']);
+		Route::post('grado/new', ['as' => 'gradonew', 'uses' => 'Administrador\GradoController@store']);
+		Route::get('grado/{id}', ['as' => 'deletegrado', 'uses' => 'Administrador\GradoController@destroy']);
+
+		Route::get('seccion', ['as' => 'seccion', 'uses' => 'Administrador\SeccionController@index']);
+		Route::get('seccion/new',  ['as' => 'seccionnew', 'uses' => 'Administrador\SeccionController@create']);
+		Route::post('seccion/new', ['as' => 'seccionnew', 'uses' => 'Administrador\SeccionController@store']);
+		Route::get('seccion/{id}', ['as' => 'deleteseccion', 'uses' => 'Administrador\SeccionController@destroy']);
+		
+		Route::get('vacante', ['as' => 'vacante', 'uses' => 'Administrador\VacanteController@index']);
+		Route::get('vacante/new',  ['as' => 'vacantenew', 'uses' => 'Administrador\VacanteController@create']);
+		Route::post('vacante/new', ['as' => 'vacantenew', 'uses' => 'Administrador\VacanteController@store']);
+		Route::get('vacante/{id}', ['as' => 'deletevacante', 'uses' => 'Administrador\VacanteController@destroy']);
+		
+		Route::get('pension', ['as' => 'pension', 'uses' => 'Administrador\PensionController@index']);
+		Route::post('pension', ['as' => 'pension', 'uses' => 'Administrador\PensionController@create']);
+		
+		Route::get('tipopension/new',  ['as' => 'tipopensionnew', 'uses' => 'Administrador\TipoPensionController@create']);
+		Route::post('tipopension/new', ['as' => 'tipopensionnew', 'uses' => 'Administrador\TipoPensionController@store']);
+	});
+	
+	//Registro de Periodos de matricula
+	Route::get('periodo', ['as' => 'periodo', 'uses' => 'Administrador\PeriodoMatriculaController@create']);
+	Route::post('periodo', ['as' => 'periodo', 'uses' => 'Administrador\PeriodoMatriculaController@store']);
+	Route::get('periodo/{id}', ['as' => 'deleteperiodo', 'uses' => 'Administrador\PeriodoMatriculaController@destroy']);
+	Route::get('periodo/edit/{id}', ['as' => 'editperiodo', 'uses' => 'Administrador\PeriodoMatriculaController@edit']);
+	Route::put('periodo/edit/{id}', ['as' => 'updateperiodo', 'uses' => 'Administrador\PeriodoMatriculaController@update']);
+
 	//Reportes
 	Route::get('reportes', ['as' => 'reportes', 'uses' => 'Administrador\ReportesController@getAlumnosxSeccion']);
-	Route::resource('usuarios', 'Administrador\UsuariosController', ['as' => 'usuarios']);
+	
+	//Registro de Usuarios
+	Route::get('usuarios', ['as' => 'usuarios', 'uses' => 'Administrador\UsuariosController@create']);
+	Route::post('usuarios', ['as' => 'usuarios', 'uses' => 'Administrador\UsuariosController@store']);
+	Route::get('usuario/{id}', ['as' => 'deleteusuario', 'uses' => 'Administrador\UsuariosController@destroy']);
+	Route::get('usuario/edit/{id}', ['as' => 'editusuarios', 'uses' => 'Administrador\UsuariosController@edit']);
+	Route::put('usuario/edit/{id}', ['as' => 'updateusuarios', 'uses' => 'Administrador\UsuariosController@update']);
+
+	//Registro de Usuarios
+	Route::get('periodomatricula', ['as' => 'periodomatricula', 'uses' => 'Administrador\PeriodoMatriculaController@create']);
+	Route::post('periodomatricula', ['as' => 'periodomatricula', 'uses' => 'Administrador\PeriodoMatriculaController@store']);
+
+	//Registro de Cursos
+	Route::get('asignaturas', ['as' => 'asignaturas', 'uses' => 'Administrador\AsignaturaController@create']);
+	Route::post('asignaturas', ['as' => 'asignaturas', 'uses' => 'Administrador\AsignaturaController@store']);
+	Route::get('asignatura/{id}', ['as' => 'deleteasignatura', 'uses' => 'Administrador\AsignaturaController@destroy']);
+	
+	//Registro de Fechas de Notas
+	Route::get('fechanotas', ['as' => 'fechanotas', 'uses' => 'Administrador\NotasController@create']);
+	Route::post('fechanotas', ['as' => 'fechanotas', 'uses' => 'Administrador\NotasController@store']);
+	Route::get('fechanotas/{id}', ['as' => 'deletefechanotas', 'uses' => 'Administrador\NotasController@destroy']);
+	
+	//Profesor - Curso
+	Route::get('profesorasignatura', ['as' => 'profesorasignatura', 'uses' => 'Administrador\ProfesorController@create']);
+	Route::post('profesorasignatura', ['as' => 'profesorasignatura', 'uses' => 'Administrador\ProfesorController@store']);
+
+	//Tarjetas de Notas
+	Route::get('tarjetas', ['as' => 'tarjetas', 'uses' => 'Administrador\TarjetasController@index']);
+	Route::get('tarjetas/new', ['as' => 'tarjetasnew', 'uses' => 'Administrador\TarjetasController@create']);
+	Route::post('tarjetas/new', ['as' => 'tarjetasnew', 'uses' => 'Administrador\TarjetasController@store']);
+
+	//Tarjetas de Notas
+	Route::get('bloque', ['as' => 'bloque', 'uses' => 'Administrador\BloqueController@index']);
+	Route::get('bloque/new', ['as' => 'bloquenew', 'uses' => 'Administrador\BloqueController@create']);
+	Route::post('bloque/new', ['as' => 'bloquenew', 'uses' => 'Administrador\BloqueController@store']);
 });
 
 //AREA RESPONSABLE
@@ -95,6 +171,16 @@ Route::group( ['middleware' => ['auth','profesor'], 'prefix'=>'profesor'], funct
 	Route::get('/', function () {
 	    return view('profesor.index');
 	});
+
+	//Registro de Usuarios
+	Route::get('listacursos', ['as' => 'listacursos', 'uses' => 'Administrador\NotasController@index']);
+	Route::post('listacursos', ['as' => 'listacursos', 'uses' => 'Administrador\NotasController@store']);
+
+	//Registro de Notas
+	Route::get('notas/{grado}/{idcurso}/{idseccion}', ['as' => 'addnotas', 'uses' => 'Administrador\NotasController@register']);
+	Route::post('notas', ['as' => 'notas', 'uses' => 'Administrador\NotasController@store']);
+	Route::post('registernotas', ['as' => 'registernotas', 'uses' => 'Administrador\NotasController@registerNotas']);
+
 });
 
 //AREA SECRETARIA

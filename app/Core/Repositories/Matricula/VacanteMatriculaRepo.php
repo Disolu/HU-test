@@ -25,7 +25,7 @@ class VacanteMatriculaRepo {
     public function getTipoPension()
     {
         return TipoPension::           
-        select('idtipopension','name')
+        select('idtipopension','nombre')
         ->get();
     }
 
@@ -33,7 +33,7 @@ class VacanteMatriculaRepo {
     public function getEstadoMatricula()
     {
         return EstadoMatricula::           
-        select('idestadomatricula','name')
+        select('idestadomatricula','nombre')
         ->get();
     }
 
@@ -58,7 +58,7 @@ class VacanteMatriculaRepo {
     //El ultimo periodo
     public function getLastPeriodo()
     {
-        return PeriodoMatricula::           
+        return PeriodoMatricula::
         select('idperiodomatricula')
         ->orderBy('idperiodomatricula', 'desc')
         ->take(1)
@@ -69,7 +69,7 @@ class VacanteMatriculaRepo {
     public function getAllSedes()
     {
         return Sede::        	
-        select('sede_nombre','idsede')
+        select('nombre','idsede')
         ->get();
     }
 
@@ -77,7 +77,7 @@ class VacanteMatriculaRepo {
     public function getNiveles($sede_id)
     {
         return Nivel::        	
-        select('nivel_nombre','idnivel')
+        select('nombre','idnivel')
         ->where('idsede','=', $sede_id)
         ->get();
     }
@@ -85,7 +85,7 @@ class VacanteMatriculaRepo {
     public function getGrados($idsede, $idnivel)
     {
         return Grado::        	
-        select('name','idgrado')
+        select('nombre','idgrado')
         ->where('idsede','=', $idsede)
         ->where('idnivel','=', $idnivel)
         ->get();
@@ -94,7 +94,7 @@ class VacanteMatriculaRepo {
     public function getSecciones($idsede, $idnivel, $idgrado)
     {
         return Seccion::        	
-        select('name','idseccion')
+        select('nombre','idseccion')
         ->where('idsede','=', $idsede)
         ->where('idnivel','=', $idnivel)
         ->where('idgrado','=', $idgrado)
@@ -104,7 +104,7 @@ class VacanteMatriculaRepo {
     public function getAulas($idsede, $idnivel, $idgrado, $idseccion)
     {
         return Aula::        	
-        select('name','idaula')
+        select('nombre','idaula')
         ->where('idsede','=', $idsede)
         ->where('idnivel','=', $idnivel)
         ->where('idgrado','=', $idgrado)

@@ -7,13 +7,18 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Core\Repositories\Matricula\VacanteMatriculaRepo;
+use App\Core\Repositories\PeriodoRepo;
 
 class VacanteController extends Controller
 {
     protected $VacanteRepo;
-    public function __construct(VacanteMatriculaRepo $VacanteRepo)
+    public function __construct(
+        VacanteMatriculaRepo $VacanteRepo,
+        PeriodoRepo $PeriodoRepo
+        )
     {
         $this->VacanteRepo = $VacanteRepo;
+        $this->PeriodoRepo = $PeriodoRepo;
     }
 
     //Manda a la vista para matricular al alumno existente
@@ -21,15 +26,28 @@ class VacanteController extends Controller
     {
         $TipoPension = $this->VacanteRepo->getTipoPension();
         $EstadoMatricula = $this->VacanteRepo->getEstadoMatricula();
-        return view( 'matricula.vacante.index', compact('id','EstadoMatricula','TipoPension') );
+        return view('matricula.vacante.index', compact('id','EstadoMatricula','TipoPension') );
     }
+
     //Manda a la vista para matricular a un alumno nuevo
     public function viewVacantes()
     {
-        return view( 'matricula.vacante.search' );
+        $fecha = new \DateTime();
+        $day = $fecha->format('Y-m-d');
+
+        $lastPeriodo = $this->PeriodoRepo->getActivePeriodo($day);
+        
+        if(count($lastPeriodo) > 0)
+        {
+            return view('matricula.vacante.search');
+        }
+        else
+        {
+            return view('matricula.periodo.not');
+        }
+        
     }
     
-
     public function getPeriodos(Request $request)
     {   
         $data = $this->VacanteRepo->getAllPeriodos();
@@ -107,6 +125,8 @@ class VacanteController extends Controller
         $periodo = $this->VacanteRepo->getLastPeriodo();
         //Recoge las vacantes, filtrados por los parametros
         $fofi = $this->VacanteRepo->getVacantes($idsede, $idnivel, $idgrado, $idseccion, $periodo[0]->idperiodomatricula);
+        
+
         //Vacantes disponibles
         $vacantes = ($fofi[0]->qty_vacantes - $fofi[0]->qty_matriculados);
         //Enviamos la cantidad de vacantes por json

@@ -1,11 +1,14 @@
 <?php
 namespace App\Core\Entities;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Alumno extends Model
 {
+    use SoftDeletes;
     protected $table = 'alumno';
     protected $primaryKey = 'idalumno';
+    protected $dates = ['deleted_at'];
     protected $fillable = [
     'idalumno',
     'codigo', 
@@ -23,7 +26,7 @@ class Alumno extends Model
     'idestadoalumno',
     'iddistrito',
     'usercreate'
-    ];
+    ];   
 
     public function apoderado()
     {

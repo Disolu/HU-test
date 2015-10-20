@@ -21,16 +21,6 @@ elseif(Auth::user()->idrol==5)
 }
 ?>
 @extends("$variable")
-	@section('menu')
-	<ul class="nav nav-main">
-		<li class="nav-active">
-		  <a href="#">
-			<i class="fa fa-home" aria-hidden="true"></i>
-			<span>Intranet - Hipolito Unanue</span>
-		  </a>
-		</li>					
-	</ul>
-	@stop
 	
 	@section('cuerpo')
 		<p>Contenido para el profesor</p>

@@ -1,10 +1,13 @@
 <?php
 namespace App\Core\Entities;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class AlumnoMatricula extends Model
 {
+    use SoftDeletes;
     protected $table = 'alumnomatricula';
+    protected $dates = ['deleted_at'];
     protected $primaryKey = 'idalumnomatricula';
     protected $fillable = [
     'idalumno',  
@@ -37,6 +40,6 @@ class AlumnoMatricula extends Model
     }
     public function alumno()
     {
-        return $this->belongsTo('App\Core\Entities\Alumno', 'App\Core\Entities\AlumnoMatricula', 'idalumno', 'idseccion');
+        return $this->belongsTo('App\Core\Entities\Alumno', 'idalumno', 'idalumno');
     }
 }
