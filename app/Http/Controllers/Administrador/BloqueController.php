@@ -26,8 +26,8 @@ class BloqueController extends Controller
     public function index()
     {
 
-        $bloque = $this->BloqueRepo->getBloques();
-        return view("{$this->path}.{$this->subpath}.{$this->insubpath}.index", compact('bloque'));
+        $bloques = $this->BloqueRepo->getBloques();
+        return view("{$this->path}.{$this->subpath}.{$this->insubpath}.index", compact('bloques'));
     }
 
     public function create()

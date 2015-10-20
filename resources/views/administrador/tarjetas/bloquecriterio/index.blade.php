@@ -6,7 +6,7 @@
 		<header class="panel-heading">
 			<h2 class="panel-title">Bloque - Criterio</h2>
 			<div class="text-right">
-				<a href="{!! route('sedenew') !!}" class="btn btn-primary text-right" onclick="if (! confirm('¿Estás seguro que deseas agregar una nueva sede?, esto afectará a toda la institución.')) return false;"><i class="glyphicon-plus"></i> Agregar nuevo</a>
+				<a href="{!! route('bloquenew') !!}" class="btn btn-primary text-right" onclick="if (! confirm('¿Estás seguro que deseas agregar un nuevo bloque?, esto afectará a toda la institución.')) return false;"><i class="glyphicon-plus"></i> Agregar nuevo</a>
 			</div>
 		</header>
 		<div class="panel-body">
@@ -19,15 +19,14 @@
 								<table class="table mb-none">
 									<thead>
 										<tr>
-											<th>Nombres</th>
-											<th>Dirección</th>
+											<th>Nombre</th>
+											<th>Criterios</th>
 										</tr>
 									</thead>
 									<tbody>
-									@foreach($sedes as $sede)
+									@foreach($bloques as $bloque)
 										<tr>
-											<td>{!! $sede->nombre !!}</td>
-											<td>{!! $sede->sede_direccion !!}</td>
+											<td>{!! $bloque->nombre !!}</td>
 										</tr>
 									@endforeach	
 									</tbody>
