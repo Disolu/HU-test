@@ -15,7 +15,7 @@
 				<div class="form-group">
 					<label class="col-md-3 control-label" for="inputSuccess"></label>
 					<div class="col-md-6">				
-						{!! Form::text('nombre', null, ['class' => 'form-control input-sm mb-md', 'placeholder' => 'Nombre del nivel']) !!}
+						{!! Form::text('nombre', null, ['class' => 'form-control input-sm mb-md', 'placeholder' => 'Nombre de la tarjeta']) !!}
 						
 						<select name="idnivel" class="form-control">
 							<option>Seleccione Sede</option>
