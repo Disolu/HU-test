@@ -25,11 +25,6 @@
 @section('cuerpo')
 <section class="panel">
 	<header class="panel-heading">
-		<div class="panel-actions">
-			<a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
-			<a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss=""></a>
-		</div>
-
 		<h2 class="panel-title">Matriculados</h2>
 	</header>
 	<div class="panel-body">
@@ -47,10 +42,10 @@
 				<tbody>
         			@foreach($alumnomatricula as $matricula)
 					<tr>
-						<td>{!! $matricula->sede->sede_nombre !!}</td>
-						<td>{!! $matricula->nivel->nivel_nombre !!}</td>
-						<td>{!! $matricula->grado->name !!}</td>
-						<td>{!! $matricula->seccion->name !!}</td>
+						<td>{!! $matricula->sede->nombre !!}</td>
+						<td>{!! $matricula->nivel->nombre !!}</td>
+						<td>{!! $matricula->grado->nombre !!}</td>
+						<td>{!! $matricula->seccion->nombre !!}</td>
 						<td><strong>{!! $matricula->total !!}</strong></td>
 					</tr>	
 					@endforeach				
