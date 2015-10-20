@@ -20,6 +20,8 @@
 									<thead>
 										<tr>
 											<th>Nombre</th>
+											<th>Nivel</th>
+											<th>Sede</th>
 											<th>Criterios</th>
 										</tr>
 									</thead>
@@ -27,6 +29,9 @@
 									@foreach($bloques as $bloque)
 										<tr>
 											<td>{!! $bloque->nombre !!}</td>
+											<td> - </td>
+											<td> - </td>
+											<td> - </td>
 										</tr>
 									@endforeach	
 									</tbody>

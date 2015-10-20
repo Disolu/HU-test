@@ -38,6 +38,8 @@ class BloqueController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->all());
+        
         $tarjeta = $this->BloqueRepo->SaveTarjeta($request->all());
         if($tarjeta){
             Session::flash('message-success', 'Se registro correctamente la tarjeta');            
