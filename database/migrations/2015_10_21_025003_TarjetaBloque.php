@@ -5,23 +5,24 @@ use Illuminate\Database\Migrations\Migration;
 
 class TarjetaBloque extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
-        //
+        Schema::create('tarjetabloque', function (Blueprint $table) {
+            $table->increments('idtarjetabloque');
+            $table->string('nombre');
+            
+            $table->integer('usercreate')->unsigned();
+            $table->foreign('usercreate')->references('id')->on('users')->onUpdate('cascade');
+            $table->integer('userupdate');
+
+            $table->timestamps();
+            $table->softDeletes();
+        });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
-        //
+        Schema::drop('tarjetabloque');
     }
 }
