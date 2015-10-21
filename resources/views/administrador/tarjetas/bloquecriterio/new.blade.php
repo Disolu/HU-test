@@ -10,32 +10,33 @@
 		<div class="panel-body">
 			@include('alertas.request')
 			@include('alertas.success')
-			{!! Form::open(['route' => 'sedenew', 'method' => 'post']) !!}
+			{!! Form::open(['route' => 'bloquenew', 'method' => 'post']) !!}
 			{!! Form::token() !!}	
 				<div class="form-group">
 					<div class="col-md-6">
 						<label for="Nombre"><strong>Nombre del Bloque</strong></label>
 						{!! Form::text('nombre', null, ['class' => 'form-control input-sm mb-md', 'placeholder' => 'Nombre del bloque']) !!}
 						<hr>
-						<label for="Criterio">Criterio 01: </label>
-						{!! Form::text('sede_direccion', null, ['class' => 'form-control input-sm mb-md', 'placeholder' => 'Criterio 01']) !!}
+						<label for="Criterio">Criterio 1: </label>
+						{!! Form::text('criterio[]', null, ['class' => 'form-control input-sm mb-md', 'placeholder' => 'Criterio 1']) !!}
 
-						<label for="Criterio">Criterio 02: </label>
-						{!! Form::text('sede_direccion', null, ['class' => 'form-control input-sm mb-md', 'placeholder' => 'Criterio 02']) !!}
+						<label for="Criterio">Criterio 2: </label>
+						{!! Form::text('criterio[]', null, ['class' => 'form-control input-sm mb-md', 'placeholder' => 'Criterio 2']) !!}
 
-						<label for="Criterio">Criterio 03: </label>
-						{!! Form::text('sede_direccion', null, ['class' => 'form-control input-sm mb-md', 'placeholder' => 'Criterio 03']) !!}
+						<label for="Criterio">Criterio 3: </label>
+						{!! Form::text('criterio[]', null, ['class' => 'form-control input-sm mb-md', 'placeholder' => 'Criterio 3']) !!}
+						<p><a href="#" id="mascampos">+ Agregar más criterios</a></p>
 					</div>
 					<div class="col-md-6">
 						<h5>Tarjetas</h5>
 						<ul>
 						@foreach($tarjetas as $tarjeta)
 							<li>
-							<input type="checkbox">
-							
+							<input type="checkbox" name="tarjeta[]" value="{!! $tarjeta->idtarjeta !!}">
 							<label for="">
-								{!! $tarjeta->nivel->sede->nombre !!} | <strong>{!! $tarjeta->nivel->nombre !!}</strong> | <strong><code>{!! $tarjeta->nombre !!}</code></strong></li>
+								{!! $tarjeta->nivel->sede->nombre !!} | <strong>{!! $tarjeta->nivel->nombre !!}</strong> | <strong><code>{!! $tarjeta->nombre !!}</code></strong>
 							</label>
+							</li>
 						@endforeach
 						</ul>
 					</div>					
@@ -50,3 +51,34 @@
 	</section>
 </div>
 @endsection
+
+@section('scripts')
+@parent
+	<script>
+	jQuery.fn.generaNuevosCampos = function(etiqueta, nombreCampo, indice){
+		$(this).each(function(){
+			elem = $(this);
+			elem.data("etiqueta",etiqueta);
+			elem.data("nombreCampo",nombreCampo);
+			elem.data("indice",indice);
+			
+			elem.click(function(e){
+				e.preventDefault();
+				elem = $(this);
+				etiqueta = elem.data("etiqueta");
+				nombreCampo = elem.data("nombreCampo");
+				indice = elem.data("indice");
+				texto_insertar = '<p>' + etiqueta + ' ' + indice + ':<br><input type="text" class="form-control input-sm mb-md" name="' + nombreCampo +'" /></p>';
+				indice ++;
+				elem.data("indice",indice);
+				nuevo_campo = $(texto_insertar);
+				elem.before(nuevo_campo);
+			});
+		});
+		return this;
+	}
+	$(document).ready(function(){
+		$("#mascampos").generaNuevosCampos("Criterio", "criterio[]", 04);
+	});
+	</script>
+@endsection	

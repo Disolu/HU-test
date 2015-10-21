@@ -26,8 +26,8 @@ class BloqueController extends Controller
     public function index()
     {
 
-        $bloque = $this->BloqueRepo->getBloques();
-        return view("{$this->path}.{$this->subpath}.{$this->insubpath}.index", compact('bloque'));
+        $bloques = $this->BloqueRepo->getBloques();
+        return view("{$this->path}.{$this->subpath}.{$this->insubpath}.index", compact('bloques'));
     }
 
     public function create()
@@ -38,14 +38,27 @@ class BloqueController extends Controller
 
     public function store(Request $request)
     {
-        $tarjeta = $this->BloqueRepo->SaveTarjeta($request->all());
+        $tarjeta = $this->BloqueRepo->SaveBloque($request->all());
+        $lastTarjeta = $this->BloqueRepo->lastTarjeta();
+        $criterio = $request['criterio'];
+        
+        if($criterio){
+            for ($i=0; $i < count($criterio) ; $i++) { 
+            $data = [
+                'criterio' => $criterio[$i],
+                'idtarjetabloque' => $lastTarjeta[0]->idtarjetabloque
+            ];
+            $tarjeta = $this->BloqueRepo->SaveCriterio($data);
+            }
+        }
+        
         if($tarjeta){
-            Session::flash('message-success', 'Se registro correctamente la tarjeta');            
-            return redirect()->route('tarjetas');
+            Session::flash('message-success', 'Se registro correctamente el bloque y sus criterios');            
+            return redirect()->back();
         }
         else{
             Session::flash('message-danger', 'Ocurrio un error al validar el registro');            
-            return redirect()->route('tarjetanew');
+            return redirect()->back();
         }
     }
 
