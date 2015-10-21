@@ -69,7 +69,7 @@
 				etiqueta = elem.data("etiqueta");
 				nombreCampo = elem.data("nombreCampo");
 				indice = elem.data("indice");
-				texto_insertar = '<p>' + etiqueta + ' ' + indice + ':<br><input type="text" class="form-control input-sm mb-md" name="' + nombreCampo + indice + '" /></p>';
+				texto_insertar = '<p>' + etiqueta + ' ' + indice + ':<br><input type="text" class="form-control input-sm mb-md" name="' + nombreCampo +'" /></p>';
 				indice ++;
 				elem.data("indice",indice);
 				nuevo_campo = $(texto_insertar);
@@ -79,7 +79,7 @@
 		return this;
 	}
 	$(document).ready(function(){
-		$("#mascampos").generaNuevosCampos("Criterio", "criterio", 04);
+		$("#mascampos").generaNuevosCampos("Criterio", "criterio[]", 04);
 	});
 	</script>
 @endsection	
