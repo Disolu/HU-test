@@ -32,14 +32,13 @@
 						<ul>
 						@foreach($tarjetas as $tarjeta)
 							<li>
-							<input type="checkbox">
-							
+							<input type="checkbox" name="tarjeta[]" value="{!! $tarjeta->idtarjeta !!}">
 							<label for="">
-								{!! $tarjeta->nivel->sede->nombre !!} | <strong>{!! $tarjeta->nivel->nombre !!}</strong> | <strong><code>{!! $tarjeta->nombre !!}</code></strong></li>
+								{!! $tarjeta->nivel->sede->nombre !!} | <strong>{!! $tarjeta->nivel->nombre !!}</strong> | <strong><code>{!! $tarjeta->nombre !!}</code></strong>
 							</label>
+							</li>
 						@endforeach
 						</ul>
-
 					</div>					
 				</div>
 
