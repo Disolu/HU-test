@@ -1,6 +1,7 @@
 <?php
 namespace App\Core\Repositories\Administrador;
 use App\Core\Entities\Tarjeta;
+use App\Core\Entities\TarjetaBloque;
 use App\Core\Entities\Nivel;
 use Auth;
 
@@ -27,4 +28,13 @@ class BloqueRepo {
     ]);
     return $tarjeta;
 	}
+  public function SaveBloque($request)
+  {
+    $tarjeta = TarjetaBloque::create([
+      'nombre' => $request['nombre'],
+      'usercreate' => Auth::user()->id,
+      'updated_at' => ''
+    ]);
+    return $tarjeta;
+  }
 }
