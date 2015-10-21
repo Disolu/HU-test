@@ -18,7 +18,7 @@
 						{!! Form::text('nombre', null, ['class' => 'form-control input-sm mb-md', 'placeholder' => 'Nombre de la tarjeta']) !!}
 						
 						<select name="idnivel" class="form-control">
-							<option>Seleccione Sede</option>
+							<option>Seleccione Nivel</option>
 							@foreach($niveles as $nivel)
 							<option value="{!! $nivel->idnivel !!}"><strong>{!! $nivel->sede->nombre !!}</strong> - {!! $nivel->nombre !!}</option>	
 							@endforeach
