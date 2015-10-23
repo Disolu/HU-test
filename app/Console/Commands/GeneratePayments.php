@@ -83,23 +83,13 @@ class GeneratePayments extends Command
                    
                     $line = array(
                                 'sede'    => '01', //1
-                                'nombre'     => , //2
+                                'nombre'     => '', //2
                                 'codigo'     => '01', //2 Movimientos
                                 'meses'     => '  ', //2
                                 'bldat'     => $date_full, //8
-                                'bukrs'     => $country_code . '01', //4
-                                'budat'     => $date_full, //8
-                                'monat'     => $month, //2
-                                'xblnr'     => str_pad($numeration, 16, '0', STR_PAD_LEFT), //16
-                                'bktxt'     => str_pad('VENTA INTERNET', 25, ' ', STR_PAD_RIGHT), //25
-                                'wrbtr'     => $print_untaxed, //15
-                                'zfbdt'     => $date_full, //8
-                                'zznegocio' => mb_substr(str_repeat(' ', 4) . $transaction->cod_negocio , -4, 4), //4
-                                'zzmarca'   => mb_substr(str_repeat('0', 2) . $transaction->brand_id, -2, 2), //2
-                                'zzperc'    => $campaign, //2
                                 'zzejcom'   => $year, //4
                                 'zuonr'     => str_pad('', 18, ' '), //18
-                                'sgtxt'     => str_pad('VENTA INTERNET', 50, ' ', STR_PAD_RIGHT), //50
+                                'sgtxt'     => str_pad('', 50, ' ', STR_PAD_RIGHT), //50
                                 'prctr'     => PRCTR, //10
                             );
                     $file_contents .= implode($line) . PHP_EOL;
