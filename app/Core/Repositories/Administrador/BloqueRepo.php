@@ -12,7 +12,7 @@ class BloqueRepo {
 
   public function getBloques()
   {
-    return Tarjeta::all();
+    return TarjetaBloque::all();
   }
 
   public function getBimestres()

@@ -71,7 +71,7 @@ class BloqueController extends Controller
           return redirect()->back();
         }
         Session::flash('message-success', 'Se registro correctamente el bloque y sus criterios');            
-        return redirect()->back();
+        return redirect()->route('bloquenew');
       }
       else{
           Session::flash('message-danger', 'Ocurrio un error al validar el registro');            

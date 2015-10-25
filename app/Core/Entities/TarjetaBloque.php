@@ -15,4 +15,19 @@ class TarjetaBloque extends Model
     'idbimestre', 
     'usercreate'
     ];
+
+    public function bloque()
+    {
+      return $this->belongsTo('App\Core\Entities\Bloque','idbloque','idbloque');
+    }
+
+    public function bimestre()
+    {
+      return $this->belongsTo('App\Core\Entities\Bimestre','idbimestre','idbimestre');
+    }
+
+    public function tarjeta()
+    {
+      return $this->belongsTo('App\Core\Entities\Tarjeta','idtarjeta','idtarjeta');
+    }
 }

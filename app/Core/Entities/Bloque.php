@@ -13,4 +13,10 @@ class Bloque extends Model
     'nombre', 
     'usercreate'
     ];
+
+    public function criterios()
+    {
+      //return $this->belongsToMany('App\Core\Entities\TarjetaBloqueCriterio', 'idbloque', 'idbloque');
+      return $this->hasMany('App\Core\Entities\TarjetaBloqueCriterio', 'idbloque', 'idbloque');
+    }
 }
