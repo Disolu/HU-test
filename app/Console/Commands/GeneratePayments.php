@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use DB;
 use File;
+use DateTime;
 use Illuminate\Console\Command;
 
 
@@ -42,64 +43,74 @@ class GeneratePayments extends Command
      */
     public function handle()
     {
-        $numeration='000';
-        $today=date('Ymd');
-        $file_name  = "RC_{$numeration}_{$today}.TXT"; //  RC_000_YYYYMMDD.TXT
+       $numeration='000';
+       $today=date('Ymd');
+       $file_name  = "RC_{$numeration}_{$today}.TXT"; //  RC_000_YYYYMMDD.TXT
 
-        $source_file      = sys_get_temp_dir() . DIRECTORY_SEPARATOR . $file_name;
+       $source_file      = sys_get_temp_dir() . DIRECTORY_SEPARATOR . $file_name;
 
-        $sedes= DB::table('sede')->get();
+       $sedes= DB::table('sede')->get();
 
-
+       $file_contents_final="";
         foreach ($sedes as $key => $sede) {
-             $header =""; // 01 20547453035 300 PEN 20151007 000   
+                   
+            //One for file      
 
-            //RUC EMPRESA 20547453035
-            //NRO RECAUDO 100
-            //FECHA FACTURACION   08/04/2015
-            //MONEDA  PEN
-            //VERSION 000
+            $students= $this->getStudentsbySede($sede->idsede);
 
-            
-            //One for file
-            $header=str_pad($sede->idsede, 2, '0', STR_PAD_LEFT) .
+
+            if (!empty($students)) {
+
+                 $file_contents ="";
+                 $header ="";
+
+                    $header=str_pad($sede->idsede, 2, '0', STR_PAD_LEFT) .
                     '20547453035' .
                     '300' .
                     'PEN' .
                     str_pad($today, 8, ' ', STR_PAD_LEFT) .
                     $numeration .
                     PHP_EOL;
-
-            $students= $this->getStudentsbySede($sede->idsede);
-
-            if (!empty($students)) {
+                
                 foreach ($students as $key => $student) {
-                    //For student and pension
-                    $file_contents ="";
+                //For student and pension
+                 
+                   $ref_month= ($student->mes)+1;
+                   $months_pending= $this->getPendingMonths($ref_month);
+                   $nombres_completos=strtoupper($student->nombres).' '.strtoupper($student->apellido_paterno).' '.strtoupper($student->apellido_materno);
 
-                    /* 02GOMEZ FERNANDEZ GAELA THAIS   HU2014-621PENSION SETIEMBRE                     201609302017123100000000000033000000000000033000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000L000000000000000                                    
-                    */
-                   $nombres_completos=strtoupper($student->nombres).' ';
-                   
-                    $line = array(
-                                'sede'    => '01', //1
-                                'nombre'     => '', //2
-                                'codigo'     => '01', //2 Movimientos
-                                'meses'     => '  ', //2
-                                'bldat'     => $date_full, //8
-                                'zzejcom'   => $year, //4
-                                'zuonr'     => str_pad('', 18, ' '), //18
-                                'sgtxt'     => str_pad('', 50, ' ', STR_PAD_RIGHT), //50
-                                'prctr'     => PRCTR, //10
-                            );
-                    $file_contents .= implode($line) . PHP_EOL;
+
+                  foreach ($months_pending as $key => $value) {
+                       
+                       $especificacion = strtoupper($student->codigo).'PENSION '.$value;
+
+                        $line = array(
+                                    'sede'      => str_pad($sede->idsede, "2","0",STR_PAD_LEFT), //2
+                                    'nombre'    => str_pad($nombres_completos, '30'," ", STR_PAD_RIGHT), //30
+                                    'especificacion' => str_pad($especificacion, '48'," ", STR_PAD_RIGHT), //48
+                                    'relleno' => str_pad( " ", '208',"0", STR_PAD_RIGHT),
+                        );
+                        $file_contents .= implode($line) . PHP_EOL;
+                   }
 
                 }
+
+                $footer="";
+
+                $footer=str_pad(" ", "65","0",STR_PAD_LEFT). PHP_EOL;
+
+                $file_contents_final.= $header.$file_contents.$footer. PHP_EOL;
+
+                File::put($source_file, $file_contents_final);
+
             }
+        
+           
+
         }
 
+        
 
-        File::put($source_file, $file_contents);
 
     }
 
@@ -112,7 +123,8 @@ class GeneratePayments extends Command
     private function getStudentsbySede($sede){
 
        $query = DB::table('alumno')
-                   ->select('alumno.*',DB::raw('alumnomatricula.*,pension.idpension,pension.monto'))
+                   ->select('alumno.*',DB::raw('alumnomatricula.*,pension.idpension,pension.monto,mensualidades.*'))
+                   ->join('mensualidades', 'mensualidades.idalumno', '=', 'alumno.idalumno')
                    ->join('alumnomatricula', 'alumnomatricula.idalumno', '=', 'alumno.idalumno')
                    ->join('pension', 'pension.idpension', '=', 'alumnomatricula.idpension')
                    ->where('alumnomatricula.idsede', '=', $sede);
@@ -120,22 +132,72 @@ class GeneratePayments extends Command
 
     }
 
+    private function getPendingMonths($month){
 
-    /*
-    Un archivo por sede 
-    verificar que el alunmo esté activo
-    Los meses restantes por alumno , una linea cada uno
-    */
+        $months_array=array();
 
+        for ($i=$month; $i<=12; $i++) { 
+           
+            $months_array[]=$this->getNameMonth($i);
+        }
 
+        return $months_array;
 
-
-
-
-
-
+    }
 
 
+    private function getNameMonth($monthNum){
+
+        /*setlocale(LC_ALL,"es_ES@euro","es_ES","esp","ES_es","ES_ES");
+        $dateObj   = DateTime::createFromFormat('!m', $monthNum);
+        $monthName = $dateObj->getTimestamp();
+        return strftime("%B");*/
+
+        switch ($monthNum) {
+            case 1:
+                $th='ENERO';
+                break;
+            case 2:
+                $th='FEBRERO';
+                break;
+            case 3:
+                $th='MARZO';
+                break;
+            case 4:
+                $th='ABRIL';
+                break;
+            case 5:
+                $th='MAYO';
+                break;
+            case 6:
+                $th='JUNIO';
+                break;
+            case 7:
+                $th='JULIO';
+                break;
+            case 8:
+                $th='AGOSTO';
+                break;
+            case 9:
+                $th='SETIEMBRE';
+                break;
+            case 10:
+                $th='OCTUBRE';
+                break;
+            case 11:
+                $th='NOVIEMBRE';
+                break;
+            case 12:
+                $th='DICIEMBRE';
+                break;           
+        }
+
+        return $th;
+
+
+    }
+
+    
 
     
 }
