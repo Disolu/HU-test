@@ -12,8 +12,8 @@ class TarjetaBloqueCriterios extends Migration
             $table->increments('idbloquecriterio');
             $table->string('criterio');
 
-            $table->integer('idtarjetabloque')->unsigned();
-            $table->foreign('idtarjetabloque')->references('idtarjetabloque')->on('tarjetabloque')->onUpdate('cascade');
+            $table->integer('idbloque')->unsigned();
+            $table->foreign('idbloque')->references('idbloque')->on('bloque')->onUpdate('cascade');
             $table->integer('usercreate')->unsigned();
             $table->foreign('usercreate')->references('id')->on('users')->onUpdate('cascade');
             $table->integer('userupdate');

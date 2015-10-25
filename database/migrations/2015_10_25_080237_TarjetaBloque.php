@@ -7,8 +7,8 @@ class TarjetaBloque extends Migration
 {
     public function up()
     {
-        Schema::create('idtarjetabloque', function (Blueprint $table) {
-            $table->increments('ididtarjetabloque');
+        Schema::create('tarjetabloque', function (Blueprint $table) {
+            $table->increments('idtarjetabloque');
             $table->integer('idbloque')->unsigned();
             $table->integer('idtarjeta')->unsigned();
             $table->integer('idbimestre')->unsigned();
@@ -24,6 +24,6 @@ class TarjetaBloque extends Migration
 
     public function down()
     {
-        Schema::drop('idtarjetabloque');
+        Schema::drop('tarjetabloque');
     }
 }
