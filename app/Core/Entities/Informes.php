@@ -11,12 +11,19 @@ class Informes extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = [
     'idinforme',
+    'nombres',
     'dni', 
     'colegio', 
     'direccion',
     'motivo',
+    'comentario',
     'idgrado', 
     'usercreate',
     'userupdate'
     ];   
+
+    public function grado()
+    {
+        return $this->belongsTo('App\Core\Entities\Grado','idgrado','idgrado');
+    }
 }

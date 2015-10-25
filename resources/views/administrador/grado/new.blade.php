@@ -51,7 +51,7 @@
 <!-- jQuery Cookie -->
 {!! Html::script('assets/javascripts/jquery.cookie.js') !!}
 <script>
-	var baseURL = "http://localhost:8080/hufull/public/alumno";
+	var baseURL = "http://localhost/HU/public/alumno";
 	function VacantesFormViewModel () {
 		var fo = this;
 

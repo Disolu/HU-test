@@ -42,8 +42,9 @@ Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
 	Route::post('matricular/{id}', ['as' => 'matricular', 'uses' => 'Matricula\AlumnosController@registerMatricula'])->where('id', '[0-9]+');
 
 	//Informes
-	Route::get('informes', ['as' => 'informes', 'uses' => 'InformesController@showInformes']);
 	Route::post('informes',['as' => 'informes', 'uses' => 'InformesController@registerInforme']);
+	Route::get('informes', ['as' => 'informes', 'uses' => 'InformesController@showInformes']);
+	Route::get('informes/listar',['as' => 'listInformes', 'uses' => 'InformesController@listInformes']);
 
 	//Matricular Alumno
 	Route::get('matricula', ['as' => 'matricula', 'uses' => 'Matricula\AlumnosController@showNewMatricula']);

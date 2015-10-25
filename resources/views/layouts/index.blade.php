@@ -130,6 +130,11 @@
 									</a>
 									<ul class="nav nav-children">
 										<li>
+											<a href="{!! route('listInformes') !!}">
+												Informes
+											</a>
+										</li>
+										<li>
 											<a href="{!! route('searchvacantes') !!}">
 												Consulta vacante
 											</a>
