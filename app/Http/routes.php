@@ -33,13 +33,18 @@ Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
 	//Consultar Vacante para un alumno existente
 	Route::get('searchvacante/{id}', ['as' => 'searchvacante', 'uses' => 'Matricula\VacanteController@viewVacante'])->where('id', '[0-9]+');
 	Route::get('vacante', ['as' => 'vacante', 'uses' => 'Matricula\VacanteController@getVacante']);
+
 	//Consultar Vacante para un alumno nuevo
 	Route::get('searchvacantes', ['as' => 'searchvacantes', 'uses' => 'Matricula\VacanteController@viewVacantes']);
 	
 	//CRUD alumno
 	Route::get('matricular/{id}', ['as' => 'matricular', 'uses' => 'Matricula\AlumnosController@showMatricula'])->where('id', '[0-9]+');
 	Route::post('matricular/{id}', ['as' => 'matricular', 'uses' => 'Matricula\AlumnosController@registerMatricula'])->where('id', '[0-9]+');
-	
+
+	//Informes
+	Route::get('informes', ['as' => 'informes', 'uses' => 'InformesController@showInformes']);
+	Route::post('informes',['as' => 'informes', 'uses' => 'InformesController@registerInforme']);
+
 	//Matricular Alumno
 	Route::get('matricula', ['as' => 'matricula', 'uses' => 'Matricula\AlumnosController@showNewMatricula']);
 
