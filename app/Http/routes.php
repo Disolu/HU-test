@@ -180,7 +180,10 @@ Route::group( ['middleware' => ['auth','profesor'], 'prefix'=>'profesor'], funct
 	//Registro de Notas
 	Route::get('notas/{grado}/{idcurso}/{idseccion}', ['as' => 'addnotas', 'uses' => 'Administrador\NotasController@register']);
 	Route::post('notas', ['as' => 'notas', 'uses' => 'Administrador\NotasController@store']);
-	Route::post('registernotas', ['as' => 'registernotas', 'uses' => 'Administrador\NotasController@registerNotas']);
+	Route::post('notas/registernotas', ['as' => 'registernotas', 'uses' => 'Administrador\NotasController@registerNotas']);
+
+	Route::get('tarjetas/registernotas', ['as' => 'tarjetanotas', 'uses' => 'Administrador\NotasController@registerTarjetaNotas']);
+	Route::post('tarjetas/registernotas', ['as' => 'tarjetanotas', 'uses' => 'Administrador\NotasController@tarjetanotas']);
 
 });
 
