@@ -1,7 +1,7 @@
 <?php
 namespace App\Core\Repositories\Administrador;
 use App\Core\Entities\Tarjeta;
-use App\Core\Entities\TarjetaBloque;
+use App\Core\Entities\Bloque;
 use App\Core\Entities\TarjetaBloqueCriterio;
 use App\Core\Entities\Nivel;
 use Auth;
@@ -32,12 +32,12 @@ class BloqueRepo {
   
   public function lastTarjeta()
   {
-    return TarjetaBloque::orderby('created_at','DESC')->take(1)->get();
+    return Bloque::orderby('created_at','DESC')->take(1)->get();
   }
 
   public function SaveBloque($request)
   {
-    $tarjeta = TarjetaBloque::create([
+    $tarjeta = Bloque::create([
       'nombre' => $request['nombre'],
       'usercreate' => Auth::user()->id,
       'updated_at' => ''

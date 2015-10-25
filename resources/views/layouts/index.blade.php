@@ -229,6 +229,11 @@
 													</a>
 													<ul class="nav nav-children">
 														<li>
+															<a href="{!! route('tarjetabloques') !!}">
+																Tarjetas y bloques
+															</a>
+														</li>
+														<li>
 															<a href="{!! route('tarjetas') !!}">
 																Tipos de Tarjetas
 															</a>
