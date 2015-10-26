@@ -157,6 +157,7 @@
 										</li>
 									</ul>
 								</li>
+								</li>
 							</ul>
 							@show
 						</nav>

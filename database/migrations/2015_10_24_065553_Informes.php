@@ -14,6 +14,7 @@ class Informes extends Migration
             $table->string('colegio');
             $table->string('direccion');
             $table->string('motivo');
+            $table->string('comentario');
             $table->integer('idgrado')->unsigned();
 
             $table->foreign('idgrado')->references('idgrado')->on('grado')->onUpdate('cascade');
