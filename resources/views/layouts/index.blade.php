@@ -218,7 +218,7 @@
 												</li>
 												
 												<li>
-													<a href="{!! route('profesorasignatura') !!}">
+													<a href="{!! route('showprofesor') !!}">
 														Profesor Asignatura
 													</a>
 												</li>

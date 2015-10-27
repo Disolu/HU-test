@@ -18,4 +18,9 @@ class ProfesorSeccion extends Model
     {
     	return $this->belongsTo('App\Core\Entities\ProfesorCurso','idprofesorcurso','idprofesorcurso');
     }
+
+    public function seccion()
+    {
+        return $this->belongsTo('App\Core\Entities\Seccion','idseccion','idseccion');
+    }
 }
