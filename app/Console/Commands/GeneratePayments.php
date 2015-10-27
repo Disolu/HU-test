@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use DB;
 use File;
 use DateTime;
+use DateInterval;
 use Illuminate\Console\Command;
 
 
@@ -71,37 +72,65 @@ class GeneratePayments extends Command
                     str_pad($today, 8, ' ', STR_PAD_LEFT) .
                     $numeration .
                     PHP_EOL;
+
+                $countreg=0;
+                $sum_max=0;
+                $sum_min=0;
+                 
                 
                 foreach ($students as $key => $student) {
                 //For student and pension
                  
                    $ref_month= ($student->mes)+1;
+
                    $months_pending= $this->getPendingMonths($ref_month);
                    $nombres_completos=strtoupper($student->nombres).' '.strtoupper($student->apellido_paterno).' '.strtoupper($student->apellido_materno);
 
+                   $decimal=100;
+                   
 
-                  foreach ($months_pending as $key => $value) {
-                       
-                       $especificacion = strtoupper($student->codigo).'PENSION '.$value;
+                   foreach ($months_pending as $period => $nameMonth) {
+                           
+                            $especificacion = strtoupper($student->codigo).'PENSION '.$nameMonth;
 
-                        $line = array(
-                                    'sede'      => str_pad($sede->idsede, "2","0",STR_PAD_LEFT), //2
-                                    'nombre'    => str_pad($nombres_completos, '30'," ", STR_PAD_RIGHT), //30
-                                    'especificacion' => str_pad($especificacion, '48'," ", STR_PAD_RIGHT), //48
-                                    'relleno' => str_pad( " ", '208',"0", STR_PAD_RIGHT),
-                        );
-                        $file_contents .= implode($line) . PHP_EOL;
-                   }
+                            $countreg++;
+                            
+                            $year= date('Y');
+                            $fec_ref= $year.'-'.$period.'-01';
+                            $fec_ven = new DateTime( $fec_ref );
+                            $last_day = $fec_ven->format( 'Ymt' );
 
-                }
+                            $fec=$fec_ven->format('Y-m-d');
+                            $fec_foo= new DateTime($fec_ref.'+1 year +1 months');
+                            $fec_bloqueo=$fec_foo->format('Ymt');
 
-                $footer="";
+                            $sum_max +=$student->monto;
+                            $sum_min +=$student->monto;
 
-                $footer=str_pad(" ", "65","0",STR_PAD_LEFT). PHP_EOL;
+                            $line = array(
+                                        'sede'      => str_pad('2', "2","0",STR_PAD_LEFT), //2
+                                        'nombre'    => str_pad($nombres_completos, '30'," ", STR_PAD_RIGHT), //30
+                                        'especificacion' => str_pad($especificacion, '48'," ", STR_PAD_RIGHT), //48
+                                        'fec_ven'=>str_pad($last_day, '8'," ", STR_PAD_RIGHT),
+                                        'fec_bloqueo'=>str_pad($fec_bloqueo, '8'," ", STR_PAD_RIGHT),
+                                        'periodo'=>str_pad($period, '2',"0", STR_PAD_LEFT),
+                                        'monto_max'=>str_pad(number_format($student->monto * $decimal, 0, '', ''), 15, '0', STR_PAD_LEFT),
+                                        'monto_min'=>str_pad(number_format($student->monto * $decimal, 0, '', ''), 15, '0', STR_PAD_LEFT), 
+                                        'relleno' => str_pad( "0", '160',"0", STR_PAD_RIGHT),
+                            );
+                            $file_contents .= implode($line) . PHP_EOL;
+                       }
 
-                $file_contents_final.= $header.$file_contents.$footer. PHP_EOL;
+                    }
 
-                File::put($source_file, $file_contents_final);
+                    $footer="03".str_pad($countreg, 9,"0",STR_PAD_LEFT).
+                    str_pad(number_format($sum_max * $decimal, 0, '', ''), 18, '0', STR_PAD_LEFT).
+                    str_pad(number_format($sum_min * $decimal, 0, '', ''), 18, '0', STR_PAD_LEFT).
+                    str_pad( "0", 18,"0", STR_PAD_LEFT). PHP_EOL;
+
+                    $file_contents_final.= $header.$file_contents.$footer. PHP_EOL;
+
+                    File::put($source_file, $file_contents_final);
 
             }
         
@@ -116,6 +145,8 @@ class GeneratePayments extends Command
 
 
     private function getPayments(){
+
+        
         
     }
 
@@ -137,8 +168,10 @@ class GeneratePayments extends Command
         $months_array=array();
 
         for ($i=$month; $i<=12; $i++) { 
-           
-            $months_array[]=$this->getNameMonth($i);
+
+            $period= str_pad($i,"2","0", STR_PAD_LEFT);
+
+            $months_array[$period]=$this->getNameMonth($i);
         }
 
         return $months_array;
