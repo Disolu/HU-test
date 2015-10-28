@@ -145,7 +145,7 @@
 <!-- jQuery Cookie -->
 {!! Html::script('assets/javascripts/jquery.cookie.js') !!}
 <script>
-	var baseURL = "http://localhost/hufull/public/alumno";
+	var baseURL = "{!! config('app.urlglobal') !!}";
 	function VacantesFormViewModel () {
 		var fo = this;
 

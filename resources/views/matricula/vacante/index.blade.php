@@ -145,7 +145,7 @@
 {!! Html::script('assets/javascripts/jquery.cookie.js') !!}
 <script type="text/javascript">
 	$(document).ready(function(){
-		var baseURL = "http://localhost/hufull/public/alumno/";		
+		var baseURL = "{!! config('app.urlglobal') !!}";		
 		$(".tipopension").click(function(){
 			var tipopension =  $(this).attr('id');			
 
@@ -176,7 +176,7 @@
 	});
 </script>
 <script>
-	var baseURL = "http://localhost/hufull/public/alumno";
+	var baseURL = "{!! config('app.urlglobal') !!}";
 	function VacantesFormViewModel () {
 		var fo = this;
 
