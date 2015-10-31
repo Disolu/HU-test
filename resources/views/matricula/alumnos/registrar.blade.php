@@ -364,7 +364,7 @@
 	{!! Html::script('assets/javascripts/jquery.cookie.js') !!}
 	<script type="text/javascript">
 	$(document).ready(function(){
-		var baseURL = "http://localhost:8080/hufull/public/alumno/";		
+		var baseURL = "{!! config('app.urlglobal') !!}";	
 	    var sede  = $.cookie("idsede");
 	    var nivel = $.cookie("idnivel");		
 	    $(".tipopension").click(function(){
@@ -396,7 +396,7 @@
 	</script>
 
 	<script>
-	var baseURL = "http://localhost:8080/hufull/public/alumno/";
+	var baseURL = "{!! config('app.urlglobal') !!}";
 	function AlumnoFormViewModel() {
 	    fo = this;
 	    fo.reID = "{{ $alumnodni->alu_id or ''}}";
