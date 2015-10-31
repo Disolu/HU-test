@@ -22,7 +22,19 @@
                                             <input name="nombres" class="form-control input-sm mb-md" type="text" placeholder="Nombres completos">
                                             <input name="dni" class="form-control input-sm mb-md" type="text" placeholder="DNI">
                                             <input name="colegio" class="form-control input-sm mb-md" type="text" placeholder="Nombre del colegio">
-                                            <input name="distrito" class="form-control input-sm mb-md" type="text" placeholder="Distrito">
+                                           <select class="form-control mb-md" name="distrito">
+                                              <option> Seleccione distrito </option>
+                                              <option value="1"> Villa El Savador </option>
+                                              <option value="2"> Lurin </option>
+                                              <option value="3"> San Juan de Miraflores </option>
+                                              <option value="4"> Villa María del Triunfo </option>
+                                              <option value="5"> Santiago de Surco </option>
+                                              <option value="6"> Barranco </option>
+                                              <option value="7"> Chorrillos </option>
+                                              <option value="8"> San Luis </option>
+                                              <option value="9"> Surquillo </option>
+                                              <option value="10"> San Borja </option>
+                                           </select>
                                            <select class="form-control mb-md" name="motivo">
                                             <option>Seleccione un motivo</option>
                                             <option value="1">Motivo 01</option>
