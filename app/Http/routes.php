@@ -192,9 +192,9 @@ Route::group( ['middleware' => ['auth','profesor'], 'prefix'=>'profesor'], funct
 
 //AREA SECRETARIA
 Route::group( ['middleware' => ['auth','secretaria'], 'prefix'=>'secretaria'], function() {
-	Route::get('/', function () {
-	    return view('secretaria.index');
-	});
+	Route::get('/', ['as' => 'indexSecretaria', function () {
+    	return view('secretaria.index');
+	}]);
 });
 
 //AREA LEGAL
