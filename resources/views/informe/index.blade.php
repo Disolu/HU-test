@@ -10,56 +10,68 @@
                 @include('alertas.success')
                 @include('alertas.request')
                 <div class="row">
-                    <div class="col-md-12">
-                        <section class="panel">
-                            <div class="panel-body">
-                                <!-- inicio formulario-->
-                                {!! Form::open(['route' => 'informes', 'method' => 'post']) !!}
-                                {!! Form::token() !!}
-                                <div class="form-group">
-                                        <label class="col-md-3 control-label" for="inputSuccess"></label>
-                                        <div class="col-md-6">
-                                            <input name="nombres" class="form-control input-sm mb-md" type="text" placeholder="Nombres completos">
-                                            <input name="dni" class="form-control input-sm mb-md" type="text" placeholder="DNI">
-                                            <input name="colegio" class="form-control input-sm mb-md" type="text" placeholder="Nombre del colegio">
-                                            <input name="distrito" class="form-control input-sm mb-md" type="text" placeholder="Distrito">
-                                           <select class="form-control mb-md" name="motivo">
-                                            <option>Seleccione un motivo</option>
-                                            <option value="1">Motivo 01</option>
-                                            <option value="2">Motivo 02</option>
-                                            <option value="3">Motivo 03</option>
-                                            <option value="4">Motivo 04</option>
-                                            <option value="5">Motivo 05</option>
-                                            </select>
+                  <div class="col-md-12">
+                    <section class="panel">
+                      <div class="panel-body">
+                        <!-- inicio formulario-->
+                        {!! Form::open(['route' => 'informes', 'method' => 'post']) !!}
+                        {!! Form::token() !!}
+                        <div class="form-group">
+                          <label class="col-md-3 control-label" for="inputSuccess"></label>
+                          <div class="col-md-6">
+                              <input name="nombres" class="form-control input-sm mb-md" type="text" placeholder="Nombres completos">
+                              <input name="dni" class="form-control input-sm mb-md" type="text" placeholder="DNI">
+                              <input name="colegio" class="form-control input-sm mb-md" type="text" placeholder="Nombre del colegio">
+                             <select class="form-control mb-md" name="distrito">
+                                <option> Seleccione distrito </option>
+                                <option value="1"> Villa El Savador </option>
+                                <option value="2"> Lurin </option>
+                                <option value="3"> San Juan de Miraflores </option>
+                                <option value="4"> Villa María del Triunfo </option>
+                                <option value="5"> Santiago de Surco </option>
+                                <option value="6"> Barranco </option>
+                                <option value="7"> Chorrillos </option>
+                                <option value="8"> San Luis </option>
+                                <option value="9"> Surquillo </option>
+                                <option value="10"> San Borja </option>
+                             </select>
+                             <select class="form-control mb-md" name="motivo">
+                              <option>Seleccione un motivo</option>
+                              <option value="1">Motivo 01</option>
+                              <option value="2">Motivo 02</option>
+                              <option value="3">Motivo 03</option>
+                              <option value="4">Motivo 04</option>
+                              <option value="5">Motivo 05</option>
+                              </select>
 
-                                            <fieldset>
-                                                <div class="form-group">
-                                                    <select name="sede"  id="cboSede" class="form-control mb-md" data-bind="options: sedes, optionsText: 'nombre', optionsValue: 'idsede',  optionsCaption: 'Seleccione una Sede', value: sedeSeleccionada"></select>
-                                                </div>
-                                            </fieldset>
-                                            <fieldset>
-                                                <div class="form-group">
-                                                    <select name="nivel"  id="cboNivel" class="form-control mb-md" data-bind="options: niveles, optionsText: 'nombre', optionsValue: 'idnivel',  optionsCaption: 'Seleccione un Nivel', value: nivelSeleccionado"></select>
-                                                </div>
-                                            </fieldset>
-                                            <fieldset>
-                                                <div class="form-group">
-                                                    <select name="grado"  id="cboGrado" class="form-control mb-md" data-bind="options: grados, optionsText: 'nombre', optionsValue: 'idgrado',  optionsCaption: 'Seleccione un Grado', value: gradoSeleccionado"></select>
-                                                </div>
-                                            </fieldset>
-                                            <label for="comentario">Comentario</label>
-                                            <textarea name="comentario" class="form-control" cols="30" rows="5"></textarea>
-                                        </div>
-                                    </div>
+                              <fieldset>
+                                  <div class="form-group">
+                                      <select name="sede"  id="cboSede" class="form-control mb-md" data-bind="options: sedes, optionsText: 'nombre', optionsValue: 'idsede',  optionsCaption: 'Seleccione una Sede', value: sedeSeleccionada"></select>
+                                  </div>
+                              </fieldset>
+                              <fieldset>
+                                  <div class="form-group">
+                                      <select name="nivel"  id="cboNivel" class="form-control mb-md" data-bind="options: niveles, optionsText: 'nombre', optionsValue: 'idnivel',  optionsCaption: 'Seleccione un Nivel', value: nivelSeleccionado"></select>
+                                  </div>
+                              </fieldset>
+                              <fieldset>
+                                  <div class="form-group">
+                                      <select name="grado"  id="cboGrado" class="form-control mb-md" data-bind="options: grados, optionsText: 'nombre', optionsValue: 'idgrado',  optionsCaption: 'Seleccione un Grado', value: gradoSeleccionado"></select>
+                                  </div>
+                              </fieldset>
+                              <label for="comentario">Comentario</label>
+                              <textarea name="comentario" class="form-control" cols="30" rows="5"></textarea>
+                          </div>
+                        </div>
 
-                                    <p class="m-none">
-                                        <button type="submit" class="mb-xs mt-xs mr-xs btn btn-success">Registrar</button>
-                                    </p>
-                                {!! Form::close() !!}
-                                <!--fin de formulario -->
-                            </div>
-                        </section>
-                    </div>
+                        <p class="m-none">
+                            <button type="submit" class="mb-xs mt-xs mr-xs btn btn-success">Registrar</button>
+                        </p>
+                        {!! Form::close() !!}
+                        <!--fin de formulario -->
+                      </div>
+                    </section>
+                  </div>
                 </div>
             </div>
         </section>

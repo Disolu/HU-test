@@ -31,50 +31,34 @@
 	{!! csrf_field() !!}
 
 		<div class="row">
-		  <div class="col-md-4">
+		  <div class="col-md-3">
 		  	<fieldset>
 				<div class="form-group">
 					<select name="periodo" id="cboPeriodo" class="form-control mb-md" data-bind="options: periodos, optionsText: 'nombre', optionsValue: 'idperiodomatricula', value: pediodoSeleccionado"></select>
 				</div>
 			</fieldset>
 		  </div>
-		  <div class="col-md-4">
+		  <div class="col-md-3">
 		  	<fieldset>
 				<div class="form-group">
-					<select name="sede"  id="cboSede" class="form-control mb-md" data-bind="options: sedes, optionsText: 'sede_nombre', optionsValue: 'idsede',  optionsCaption: 'Seleccione una Sede', value: sedeSeleccionada"></select>
+					<select name="sede"  id="cboSede" class="form-control mb-md" data-bind="options: sedes, optionsText: 'nombre', optionsValue: 'idsede',  optionsCaption: 'Seleccione una Sede', value: sedeSeleccionada"></select>
 				</div>
 			</fieldset>
 		  </div>
-		  <div class="col-md-4">
+		  <div class="col-md-3">
 		  	<fieldset>
 				<div class="form-group">
-					<select name="nivel"  id="cboNivel" class="form-control mb-md" data-bind="options: niveles, optionsText: 'nivel_nombre', optionsValue: 'idnivel',  optionsCaption: 'Seleccione un Nivel', value: nivelSeleccionado"></select>
+					<select name="nivel"  id="cboNivel" class="form-control mb-md" data-bind="options: niveles, optionsText: 'nombre', optionsValue: 'idnivel',  optionsCaption: 'Seleccione un Nivel', value: nivelSeleccionado"></select>
 				</div>
 			</fieldset>
 		  </div>
-		</div>
-		<div class="row">
-			<div class="col-md-4">
+			<div class="col-md-3">
 		  	<fieldset>
 				<div class="form-group">
-					<select name="grado"  id="cboGrado" class="form-control mb-md" data-bind="options: grados, optionsText: 'name', optionsValue: 'idgrado',  optionsCaption: 'Seleccione un Grado', value: gradoSeleccionado"></select>
+					<select name="grado"  id="cboGrado" class="form-control mb-md" data-bind="options: grados, optionsText: 'nombre', optionsValue: 'idgrado',  optionsCaption: 'Seleccione un Grado', value: gradoSeleccionado"></select>
 				</div>
 			</fieldset>
-		  </div>
-		  <div class="col-md-4">
-		  	<fieldset>
-				<div class="form-group">
-					<select name="seccion"  id="cboSeccion" class="form-control mb-md" data-bind="options: secciones, optionsText: 'name', optionsValue: 'idseccion',  optionsCaption: 'Seleccione una Seccion', value: seccionSeleccionada"></select>
-				</div>
-			</fieldset>
-		  </div>
-		  <div class="col-md-4">
-		  	<fieldset>
-				<div class="form-group">
-					<select name="aula"  id="cboAula" class="form-control mb-md" data-bind="options: aulas, optionsText: 'name', optionsValue: 'idaula',  optionsCaption: 'Seleccione un Aula', value: aulaSeleccionada"></select>
-				</div>
-			</fieldset>
-		  </div>
+			</div>
 		</div>
 	</div>
 	
@@ -234,26 +218,6 @@
 			}
 		});
 
-		fo.cargarAulas = function (sede , nivel, grado, seccion) {
-			$.ajax({
-				type: "GET",
-				url: baseURL + "/api/v1/getAulas",
-				data: {sede:sede, nivel:nivel, grado:grado, seccion:seccion},
-				dataType: "json",
-				contentType: "application/json; charset=utf-8",
-				success: function (e) {
-					var aulasRaw =  e.aulas;
-                //limpio el arrray
-                fo.aulas.removeAll();
-                for (var i = 0; i < aulasRaw.length; i++) {
-                	fo.aulas.push(aulasRaw[i]);
-                };
-            },
-            error: function (r) {
-                // Luego...
-            }
-        });
-		}
 
 		fo.seccionSeleccionada.subscribe(function(newValue) {
 			if (newValue) {
