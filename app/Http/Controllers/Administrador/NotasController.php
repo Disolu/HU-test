@@ -132,4 +132,9 @@ class NotasController extends Controller
             return redirect()->back()->withInput(); 
         }
     }
+
+    public function registerTarjetaNotas()
+    {
+      return view('administraador.notas.newnotatarjeta');
+    }
 }

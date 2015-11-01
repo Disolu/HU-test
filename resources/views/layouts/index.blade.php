@@ -223,7 +223,7 @@
 												</li>
 												
 												<li>
-													<a href="{!! route('profesorasignatura') !!}">
+													<a href="{!! route('showprofesor') !!}">
 														Profesor Asignatura
 													</a>
 												</li>
@@ -233,6 +233,11 @@
 														Tarjetas
 													</a>
 													<ul class="nav nav-children">
+														<li>
+															<a href="{!! route('tarjetabloques') !!}">
+																Tarjetas y bloques
+															</a>
+														</li>
 														<li>
 															<a href="{!! route('tarjetas') !!}">
 																Tipos de Tarjetas

@@ -14,6 +14,7 @@ class ProfesorRepo {
         ]);
         return $profesor;
     }
+
     public function SaveProfesorSeccion($idcurso, $idseccion)
     {
         $profesor = ProfesorSeccion::create([
@@ -30,8 +31,26 @@ class ProfesorRepo {
         ->orderBy('created_at','desc')->take(1)->get();
     }
 
+    public function getProfesorCurso($idperiodo, $idprofe)
+    {
+        return ProfesorCurso::where('iduser', $idprofe)->where('idperiodomatricula',$idperiodo)->get();
+    }
+
     public function lastRegister()
     {
         return ProfesorCurso::orderBy('created_at','desc')->take(1)->get();
+    }
+
+    public function getProfesorAsignaturas($idperiodo)
+    {
+        return ProfesorCurso::where('idperiodomatricula', $idperiodo)
+        ->orderBy('created_at','desc')->get();
+    }
+
+    public function deleteRelacion($id)
+    {
+        $data = ProfesorCurso::where('idprofesorcurso', $id)->delete();
+        $data = ProfesorSeccion::where('idprofesorcurso', $id)->delete();
+        return $data;
     }
 }
