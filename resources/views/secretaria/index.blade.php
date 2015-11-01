@@ -218,26 +218,6 @@
 			}
 		});
 
-		fo.cargarAulas = function (sede , nivel, grado, seccion) {
-			$.ajax({
-				type: "GET",
-				url: baseURL + "/api/v1/getAulas",
-				data: {sede:sede, nivel:nivel, grado:grado, seccion:seccion},
-				dataType: "json",
-				contentType: "application/json; charset=utf-8",
-				success: function (e) {
-					var aulasRaw =  e.aulas;
-                //limpio el arrray
-                fo.aulas.removeAll();
-                for (var i = 0; i < aulasRaw.length; i++) {
-                	fo.aulas.push(aulasRaw[i]);
-                };
-            },
-            error: function (r) {
-                // Luego...
-            }
-        });
-		}
 
 		fo.seccionSeleccionada.subscribe(function(newValue) {
 			if (newValue) {
