@@ -4,7 +4,7 @@
 Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
 	//REPORTES
 	Route::post('reportes', ['as' => 'reportesAlumnos', 'uses' => 'Administrador\ReportesController@getAlumnos']);
-	Route::get('reportesexcel/{periodo}/{sede}/{nivel}/{grado}/{seccion}', ['as' => 'reportesexcel', 'uses' => 'Administrador\ReportesController@getAlumnosExcel']);
+	Route::get('reportesexcel/{periodo}/{sede}/{nivel}/{grado}', ['as' => 'reportesexcel', 'uses' => 'Administrador\ReportesController@getAlumnosExcel']);
 
 	//OBSERVACION
 	Route::get('observacion/{id}', ['as' => 'observacion', 'uses' => 'Alumno\ObservacionController@show'])->where('id', '[0-9]+');
