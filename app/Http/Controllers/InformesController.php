@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Requests\InformesRequest;
+use App\Http\Requests\InformesSearchRequest;
 use App\Core\Repositories\InformesRepo;
 use Session;
 class InformesController extends Controller
@@ -44,28 +45,10 @@ class InformesController extends Controller
 
     }
 
-    public function store(Request $request)
+    public function searchInformes(InformesSearchRequest $request)
     {
-        //
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
+        $request['sede'];
+        $request['nivel'];
+        $request['grado'];
     }
 }

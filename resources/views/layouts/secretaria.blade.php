@@ -125,7 +125,7 @@
 									</a>
 									<ul class="nav nav-children">
 										<li>
-											<a href="/">
+											<a href="{!! route('indexSecretaria') !!}">
 												Matriculas
 											</a>
 										</li>

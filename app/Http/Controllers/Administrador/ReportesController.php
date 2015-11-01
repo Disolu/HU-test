@@ -30,20 +30,19 @@ class ReportesController extends Controller
         $idsede    = $request->input('sede');
         $idnivel   = $request->input('nivel');
         $idgrado   = $request->input('grado');
-        $idseccion = $request->input('seccion');
 
-        $alumnos = $this->ReportesRepo->getAlumnos($idperiodo, $idsede, $idnivel, $idgrado, $idseccion);
+        $alumnos = $this->ReportesRepo->getAlumnos($idperiodo, $idsede, $idnivel, $idgrado);
 
         if($alumnos){
-            return view('matricula.reportes.alumnos', compact('alumnos','idperiodo','idsede','idnivel','idgrado','idseccion'));
+            return view('matricula.reportes.alumnos', compact('alumnos','idperiodo','idsede','idnivel','idgrado'));
         }
         else{
             return $redirect->back();
         }
     }
-    public function getAlumnosExcel($periodo, $sede, $nivel, $grado, $seccion, UserListExport $export)
+    public function getAlumnosExcel($periodo, $sede, $nivel, $grado, UserListExport $export)
     {
-        $alumnos = $this->ReportesRepo->getAlumnos($periodo, $sede, $nivel, $grado, $seccion);
+        $alumnos = $this->ReportesRepo->getAlumnos($periodo, $sede, $nivel, $grado);
         return $export->sheet('sheetName', function($sheet) use($alumnos)
         {
             $sheet->fromArray($alumnos);

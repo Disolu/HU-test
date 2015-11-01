@@ -4,13 +4,13 @@ use App\Core\Entities\AlumnoMatricula;
 
 class ReportesRepo {
     
-    public function getAlumnos($idperiodo,$idsede, $idnivel, $idgrado, $idseccion)
+    public function getAlumnos($idperiodo,$idsede, $idnivel, $idgrado)
     {
         $query = AlumnoMatricula::
          leftJoin('alumno', 'alumnomatricula.idalumno', '=', 'alumno.idalumno')
          ->leftJoin('pension', 'alumnomatricula.idpension', '=', 'pension.idpension')
          ->leftJoin('users', 'alumnomatricula.usercreate', '=', 'users.id')
-         ->select('fullname','codigo','idestadoalumno','monto','users.name as nameregister');
+         ->select('fullname','codigo','idestadoalumno','monto','users.nombre as nameregister');
 
         if($idperiodo) {
             $query->where('alumnomatricula.idperiodomatricula','=',$idperiodo);
@@ -23,9 +23,6 @@ class ReportesRepo {
         }
         if ($idgrado) {
             $query->where('alumnomatricula.idgrado','=',$idgrado);
-        }
-        if ($idseccion) {
-            $query->where('alumnomatricula.idseccion','=',$idseccion);
         }
         return $query->get();
     }
