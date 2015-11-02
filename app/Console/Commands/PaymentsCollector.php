@@ -38,7 +38,11 @@ class PaymentsCollector extends Command
     public function handle()
     {
         //Name of file /home/altimea/Descargas/REC04893_02_09_2015.TXT
-        $local_file_path = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'REC04893_02_09_2015.TXT';
+      $numeration='000';
+      $today=date('Ymd');
+      $file_name  = "RC_{$numeration}_{$today}.TXT";
+
+        $local_file_path = sys_get_temp_dir() . DIRECTORY_SEPARATOR . $file_name;
 
         $handle = fopen($local_file_path, "r") or die("Error al abrir archivo");
         $error_lines = array();
