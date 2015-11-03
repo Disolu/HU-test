@@ -140,8 +140,8 @@ EOT;
         
         $nomcliente     = rtrim($line_array['nomcliente']);
         $refpago     = trim($line_array['refpago']);
-        $importeorigen     = floatval($line_array['importeorigen']);
-        $importedestino     = floatval($line_array['importedestino']);
+        $importeorigen     = (floatval($line_array['importeorigen'])/100);
+        $importedestino     = (floatval($line_array['importedestino'])/100);
         $importemora     = floatval($line_array['importemora']);
         $ofpago     = trim($line_array['ofpago']);
         $nummov     = trim($line_array['nummov']);
