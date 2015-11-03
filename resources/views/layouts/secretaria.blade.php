@@ -118,6 +118,12 @@
 										<span>Intranet - Hipolito Unanue</span>
 									</a>
 								</li>
+								<li class="nav">
+									<a href="{!! route('listInformes') !!}">
+										<i class="fa fa-copy" aria-hidden="true"></i>
+										<span>Informes</span>
+									</a>
+								</li>
 								<li class="nav-parent">
 									<a>
 										<i class="fa fa-copy" aria-hidden="true"></i>
@@ -125,8 +131,13 @@
 									</a>
 									<ul class="nav nav-children">
 										<li>
-											<a href="/">
+											<a href="{!! route('indexSecretaria') !!}">
 												Matriculas
+											</a>
+										</li>
+										<li>
+											<a href="{!! route('reportes') !!}">
+												Alumno por sección
 											</a>
 										</li>
 									</ul>

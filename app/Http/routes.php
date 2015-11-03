@@ -4,7 +4,9 @@
 Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
 	//REPORTES
 	Route::post('reportes', ['as' => 'reportesAlumnos', 'uses' => 'Administrador\ReportesController@getAlumnos']);
-	Route::get('reportesexcel/{periodo}/{sede}/{nivel}/{grado}/{seccion}', ['as' => 'reportesexcel', 'uses' => 'Administrador\ReportesController@getAlumnosExcel']);
+	Route::get('reportesexcel/{periodo}/{sede}/{nivel}/{grado}', ['as' => 'reportesexcel', 'uses' => 'Administrador\ReportesController@getAlumnosExcel']);
+	Route::get('reportes', ['as' => 'reportes', 'uses' => 'Administrador\ReportesController@getAlumnosxSeccion']);
+	Route::get('reportes/matriculas', ['as' => 'indexSecretaria', function () { return view('matricula.reportes.index'); }]);
 
 	//OBSERVACION
 	Route::get('observacion/{id}', ['as' => 'observacion', 'uses' => 'Alumno\ObservacionController@show'])->where('id', '[0-9]+');
@@ -128,7 +130,7 @@ Route::group( ['middleware' => ['auth','administrador'], 'prefix'=>'admin'], fun
 	Route::put('periodo/edit/{id}', ['as' => 'updateperiodo', 'uses' => 'Administrador\PeriodoMatriculaController@update']);
 
 	//Reportes
-	Route::get('reportes', ['as' => 'reportes', 'uses' => 'Administrador\ReportesController@getAlumnosxSeccion']);
+	
 	
 	//Registro de Usuarios
 	Route::get('usuarios', ['as' => 'usuarios', 'uses' => 'Administrador\UsuariosController@create']);
@@ -192,9 +194,7 @@ Route::group( ['middleware' => ['auth','profesor'], 'prefix'=>'profesor'], funct
 
 //AREA SECRETARIA
 Route::group( ['middleware' => ['auth','secretaria'], 'prefix'=>'secretaria'], function() {
-	Route::get('/', function () {
-	    return view('secretaria.index');
-	});
+	Route::get('/', ['as' => 'indexSecretaria', function () { return view('matricula.reportes.index'); }]);
 });
 
 //AREA LEGAL
