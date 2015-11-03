@@ -119,6 +119,12 @@
 									</a>
 								</li>
 								<li class="nav-parent">
+									<a href="{!! route('listInformes') !!}">
+										<i class="fa fa-copy" aria-hidden="true"></i>
+										<span>Informes</span>
+									</a>
+								</li>
+								<li class="nav-parent">
 									<a>
 										<i class="fa fa-copy" aria-hidden="true"></i>
 										<span>Reportes</span>
@@ -127,6 +133,11 @@
 										<li>
 											<a href="{!! route('indexSecretaria') !!}">
 												Matriculas
+											</a>
+										</li>
+										<li>
+											<a href="{!! route('reportes') !!}">
+												Alumno por sección
 											</a>
 										</li>
 									</ul>
