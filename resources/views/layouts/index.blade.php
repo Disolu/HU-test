@@ -170,6 +170,11 @@
 														Alumno por sección
 													</a>
 												</li>
+												<li>
+													<a href="{!! route('indexSecretaria') !!}">
+														Alumnos matriculados
+													</a>
+												</li>
 											</ul>
 										</li>
 
