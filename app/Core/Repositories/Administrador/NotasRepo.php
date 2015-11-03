@@ -30,7 +30,8 @@ class NotasRepo {
     {
         return FechaNota::           
         select('idfechanota','idbimestre','fecha_inicio','fecha_fin')->get();
-    }    
+    }
+
     public function getAlumnos($grado, $seccion ,$periodo)
     {
         return AlumnoMatricula::
@@ -38,6 +39,23 @@ class NotasRepo {
         ->where('idgrado', $grado)
         ->where('idseccion', $seccion)
         ->get();
+    }
+
+    public function showFechanotas($periodo)
+    {
+        return FechaNota::
+        where('idperiodomatricula', $periodo)
+        ->where('idfechanota', $periodo)->take(1)->get();   
+    }
+
+    public function updatePeriodoNota($request, $id)
+    {
+        $user = FechaNota::where('idfechanota', $id)
+        ->update([
+            'fecha_inicio' => $request['start'],
+            'fecha_fin'    => $request['end'],
+        ]);
+        return $user;
     }
 
     public function getFechaNota($periodo, $datehow)
