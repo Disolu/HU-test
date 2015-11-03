@@ -78,6 +78,7 @@
 											<td>{!! $periodo->fecha_fin !!}</td>
 											<td>
 												<a href="{!! route('deletefechanotas', $periodo->idfechanota) !!}" class="delete-row" onclick="if (! confirm('¿Estás seguro que deseas eliminar esta fecha para registrar notas?')) return false;"><i class="fa fa-trash-o"></i></a>
+												<a href="{!! route('editfechanotas', $periodo->idfechanota) !!}" class="delete-row"><i class="fa fa-pencil"></i></a>
 											</td>
 										</tr>
 									@endforeach	

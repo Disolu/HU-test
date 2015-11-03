@@ -150,6 +150,8 @@ Route::group( ['middleware' => ['auth','administrador'], 'prefix'=>'admin'], fun
 	Route::get('fechanotas', ['as' => 'fechanotas', 'uses' => 'Administrador\NotasController@create']);
 	Route::post('fechanotas', ['as' => 'fechanotas', 'uses' => 'Administrador\NotasController@store']);
 	Route::get('fechanotas/{id}', ['as' => 'deletefechanotas', 'uses' => 'Administrador\NotasController@destroy']);
+	Route::get('fechanotas/edit/{id}', ['as' => 'editfechanotas', 'uses' => 'Administrador\NotasController@edit']);
+	Route::put('fechanotas/edit/{id}', ['as' => 'updatefechanotas', 'uses' => 'Administrador\NotasController@update']);
 	
 	//Profesor - Curso
 	Route::get('profesorasignatura', ['as' => 'profesorasignatura', 'uses' => 'Administrador\ProfesorController@create']);
