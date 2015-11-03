@@ -47,8 +47,17 @@ class InformesController extends Controller
 
     public function searchInformes(InformesSearchRequest $request)
     {
-        $request['sede'];
-        $request['nivel'];
-        $request['grado'];
+        $idsede    = $request->input('sede');
+        $idnivel   = $request->input('nivel');
+        $idgrado   = $request->input('grado');
+
+        $alumnos = $this->informesRepo->getSearchInforme($idsede, $idnivel, $idgrado);
+
+        if($alumnos){
+            return view("{$this->path}.list", compact('alumnos','idperiodo','idsede','idnivel','idgrado'));
+        }
+        else{
+            return $redirect->back();
+        }
     }
 }
