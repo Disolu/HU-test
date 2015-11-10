@@ -112,12 +112,23 @@ class NotasController extends Controller
 
     public function edit($id)
     {
-        //
+        $bimestres = $this->NotasRepo->getBimestre();
+        $periodonotas = $this->NotasRepo->showFechanotas($id);
+        return view('administrador.notas.edit_periodo', compact('bimestres','periodonotas'));
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $periodonotas = $this->NotasRepo->updatePeriodoNota($request->all(), $id);
+
+        if($periodonotas){
+            Session::flash('message-success', 'Se actualizo correctamente el periodo de notas');            
+            return redirect()->route('fechanotas');
+        }
+        else{
+            Session::flash('message-danger', 'Ocurrio un error al actualizar el periodo de notas');            
+            return redirect()->route('fechanotas');
+        }
     }
 
     public function destroy($id)
@@ -131,5 +142,10 @@ class NotasController extends Controller
         else{
             return redirect()->back()->withInput(); 
         }
+    }
+
+    public function registerTarjetaNotas()
+    {
+      return view('administraador.notas.newnotatarjeta');
     }
 }

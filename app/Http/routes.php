@@ -152,20 +152,25 @@ Route::group( ['middleware' => ['auth','administrador'], 'prefix'=>'admin'], fun
 	Route::get('fechanotas', ['as' => 'fechanotas', 'uses' => 'Administrador\NotasController@create']);
 	Route::post('fechanotas', ['as' => 'fechanotas', 'uses' => 'Administrador\NotasController@store']);
 	Route::get('fechanotas/{id}', ['as' => 'deletefechanotas', 'uses' => 'Administrador\NotasController@destroy']);
+	Route::get('fechanotas/edit/{id}', ['as' => 'editfechanotas', 'uses' => 'Administrador\NotasController@edit']);
+	Route::put('fechanotas/edit/{id}', ['as' => 'updatefechanotas', 'uses' => 'Administrador\NotasController@update']);
 	
 	//Profesor - Curso
-	Route::get('profesorasignatura', ['as' => 'profesorasignatura', 'uses' => 'Administrador\ProfesorController@create']);
-	Route::post('profesorasignatura', ['as' => 'profesorasignatura', 'uses' => 'Administrador\ProfesorController@store']);
-
+	Route::get('profesorasignatura', ['as' => 'showprofesor', 'uses' => 'Administrador\ProfesorController@show']);
+	Route::get('profesorasignatura/new', ['as' => 'profesorasignatura', 'uses' => 'Administrador\ProfesorController@create']);
+	Route::post('profesorasignatura/new', ['as' => 'profesorasignatura', 'uses' => 'Administrador\ProfesorController@store']);
+	Route::get('profesorasignatura/{id}', ['as' => 'deleteprofesorasignatura', 'uses' => 'Administrador\ProfesorController@destroy']);
+	
 	//Tarjetas de Notas
 	Route::get('tarjetas', ['as' => 'tarjetas', 'uses' => 'Administrador\TarjetasController@index']);
 	Route::get('tarjetas/new', ['as' => 'tarjetasnew', 'uses' => 'Administrador\TarjetasController@create']);
 	Route::post('tarjetas/new', ['as' => 'tarjetasnew', 'uses' => 'Administrador\TarjetasController@store']);
 
-	//Tarjetas de Notas
 	Route::get('bloque', ['as' => 'bloque', 'uses' => 'Administrador\BloqueController@index']);
 	Route::get('bloque/new', ['as' => 'bloquenew', 'uses' => 'Administrador\BloqueController@create']);
 	Route::post('bloque/new', ['as' => 'bloquenew', 'uses' => 'Administrador\BloqueController@store']);
+
+	Route::get('tarjetas/bloques', ['as' => 'tarjetabloques', 'uses' => 'Administrador\TarjetasController@show']);
 });
 
 //AREA RESPONSABLE
@@ -188,7 +193,10 @@ Route::group( ['middleware' => ['auth','profesor'], 'prefix'=>'profesor'], funct
 	//Registro de Notas
 	Route::get('notas/{grado}/{idcurso}/{idseccion}', ['as' => 'addnotas', 'uses' => 'Administrador\NotasController@register']);
 	Route::post('notas', ['as' => 'notas', 'uses' => 'Administrador\NotasController@store']);
-	Route::post('registernotas', ['as' => 'registernotas', 'uses' => 'Administrador\NotasController@registerNotas']);
+	Route::post('notas/registernotas', ['as' => 'registernotas', 'uses' => 'Administrador\NotasController@registerNotas']);
+
+	Route::get('tarjetas/registernotas', ['as' => 'tarjetanotas', 'uses' => 'Administrador\NotasController@registerTarjetaNotas']);
+	Route::post('tarjetas/registernotas', ['as' => 'tarjetanotas', 'uses' => 'Administrador\NotasController@tarjetanotas']);
 
 });
 

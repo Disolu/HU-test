@@ -48,9 +48,10 @@ class TarjetasController extends Controller
         }
     }
 
-    public function show($id)
+    public function show()
     {
-        //
+        $tarjetas = $this->TarjetaRepo->getTarjetas();
+        return view("{$this->path}.{$this->subpath}.list", compact('tarjetas'));
     }
 
     public function edit($id)
