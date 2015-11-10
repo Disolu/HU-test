@@ -18,6 +18,8 @@ class Informes extends Model
     'motivo',
     'comentario',
     'idgrado', 
+    'idsede',
+    'idnivel',
     'usercreate',
     'userupdate'
     ];   

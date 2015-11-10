@@ -42,13 +42,43 @@ class InformesController extends Controller
     {
         $informes = $this->informesRepo->listInformes();
         return view("{$this->path}.list", compact("informes"));
-
     }
 
     public function searchInformes(InformesSearchRequest $request)
     {
-        $request['sede'];
-        $request['nivel'];
-        $request['grado'];
+        $idsede    = $request->input('sede');
+        $idnivel   = $request->input('nivel');
+        $idgrado   = $request->input('grado');
+
+        $informes = $this->informesRepo->getSearchInforme($idsede, $idnivel, $idgrado);
+        
+        if($informes){
+            return view("{$this->path}.list", compact('informes','idsede','idnivel','idgrado'));
+        }
+        else{
+            return $redirect->back();
+        }
+    }
+
+    public function searchInformesvsMatricula(Request $request)
+    {
+        $idperiodo = $request->input('periodo');
+
+        $vs = $this->informesRepo->searchInformesvsMatricula($idperiodo);
+        $periodos = $this->informesRepo->allPeriodos();
+
+        if($vs){
+            return view("{$this->path}.vs", compact('vs','periodos'));
+        }
+        else{
+            return $redirect->back();
+        }
+    }
+
+    public function showMatriculaInformes()
+    {
+        $periodos = $this->informesRepo->allPeriodos();
+        $vs = $this->informesRepo->MatriculaVSInformes();
+        return view("{$this->path}.vs", compact("vs",'periodos'));
     }
 }

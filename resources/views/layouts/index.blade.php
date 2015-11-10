@@ -171,8 +171,13 @@
 													</a>
 												</li>
 												<li>
-													<a href="{!! route('indexSecretaria') !!}">
+													<a href="{!! route('alumnosMatriculados') !!}">
 														Alumnos matriculados
+													</a>
+												</li>
+												<li>
+													<a href="{!! route('matriculaInformes') !!}">
+														Informes vs Matriculados
 													</a>
 												</li>
 											</ul>

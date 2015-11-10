@@ -16,8 +16,12 @@ class Informes extends Migration
             $table->string('motivo');
             $table->string('comentario');
             $table->integer('idgrado')->unsigned();
+            $table->integer('idsede')->unsigned();
+            $table->integer('idnivel')->unsigned();
 
             $table->foreign('idgrado')->references('idgrado')->on('grado')->onUpdate('cascade');
+            $table->foreign('idsede')->references('idsede')->on('sede')->onUpdate('cascade');
+            $table->foreign('idnivel')->references('idnivel')->on('nivel')->onUpdate('cascade');
 
             $table->integer('usercreate')->unsigned();
             $table->foreign('usercreate')->references('id')->on('users')->onUpdate('cascade');

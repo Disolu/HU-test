@@ -118,7 +118,7 @@
 										<span>Intranet - Hipolito Unanue</span>
 									</a>
 								</li>
-								<li class="nav-parent">
+								<li class="nav">
 									<a href="{!! route('listInformes') !!}">
 										<i class="fa fa-copy" aria-hidden="true"></i>
 										<span>Informes</span>
@@ -133,6 +133,11 @@
 										<li>
 											<a href="{!! route('indexSecretaria') !!}">
 												Matriculas
+											</a>
+										</li>
+										<li>
+											<a href="{!! route('matriculaInformes') !!}">
+												Informes vs Matriculados
 											</a>
 										</li>
 										<li>
