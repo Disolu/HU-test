@@ -56,6 +56,9 @@ Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
 	Route::get('matricula/vs/informes', 	    ['as' => 'matriculaInformes', 		 'uses' => 'InformesController@showMatriculaInformes']);
 	Route::post('matricula/vs/informes/search', ['as' => 'searchInformesvsMatricula', 'uses' => 'InformesController@searchInformesvsMatricula']);
 
+	//Matriculados
+	Route::get('matriculados', ['as' => 'alumnosMatriculados', function () { return view('matricula.reportes.index'); }]);
+
 	//Vista para la ruta inicial.
 	Route::get('/', function () { return view('administrador.index'); });
 

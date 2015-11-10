@@ -136,7 +136,7 @@
 											</a>
 										</li>
 										<li>
-											<a href="{!! route('indexSecretaria') !!}">
+											<a href="{!! route('matriculaInformes') !!}">
 												Informes vs Matriculados
 											</a>
 										</li>
