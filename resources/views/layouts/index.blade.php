@@ -249,11 +249,6 @@
 															</a>
 														</li>
 														<li>
-															<a href="{!! route('tarjetas') !!}">
-																Tipos de Tarjetas
-															</a>
-														</li>
-														<li>
 															<a href="{!! route('bloque') !!}">
 																Bloques y criterios
 															</a>

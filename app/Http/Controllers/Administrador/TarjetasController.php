@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Requests\TarjetaRequest;
 use App\Http\Controllers\Controller;
 use App\Core\Repositories\Administrador\TarjetaRepo;
+use App\Core\Repositories\Administrador\TarjetaBloque;
 use Session;
 use Redirect;
 
@@ -40,7 +41,7 @@ class TarjetasController extends Controller
         $tarjeta = $this->TarjetaRepo->SaveTarjeta($request->all());
         if($tarjeta){
             Session::flash('message-success', 'Se registro correctamente la tarjeta');            
-            return redirect()->route('tarjetas');
+            return redirect()->route('tarjetabloques');
         }
         else{
             Session::flash('message-danger', 'Ocurrio un error al validar el registro');            
@@ -66,6 +67,29 @@ class TarjetasController extends Controller
 
     public function destroy($id)
     {
-        //
+        $tarjeta = $this->TarjetaRepo->deleteTarjeta($id);
+        if($tarjeta)
+        {
+            Session::flash('message-success', 'La tarjeta ha sido eliminado');  
+            return redirect()->route('tarjetabloques');
+        }
+        else{
+            return redirect()->back()->withInput(); 
+        }
     }
+
+    public function bloquedestroy($id)
+    {
+        $tarjeta = $this->TarjetaRepo->deleteTarjetaBloque($id);
+        if($tarjeta)
+        {
+            Session::flash('message-success', 'El bloque en la tarjeta ha sido eliminado');  
+            return redirect()->route('tarjetabloques');
+        }
+        else{
+            return redirect()->back()->withInput(); 
+        }
+    }
+
+    
 }
