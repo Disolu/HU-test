@@ -14,7 +14,7 @@ return [
     /*
     * URL'S GLOBALES
     */
-    'urlglobal' => 'http://localhost/HU/public/alumno',
+    'urlglobal' => 'http://localhost:8080/hufull/public/alumno',
 
     'providers' => [
         /*

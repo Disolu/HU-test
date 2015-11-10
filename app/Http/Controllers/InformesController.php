@@ -51,10 +51,10 @@ class InformesController extends Controller
         $idnivel   = $request->input('nivel');
         $idgrado   = $request->input('grado');
 
-        $alumnos = $this->informesRepo->getSearchInforme($idsede, $idnivel, $idgrado);
-
-        if($alumnos){
-            return view("{$this->path}.list", compact('alumnos','idperiodo','idsede','idnivel','idgrado'));
+        $informes = $this->informesRepo->getSearchInforme($idsede, $idnivel, $idgrado);
+        
+        if($informes){
+            return view("{$this->path}.list", compact('informes','idsede','idnivel','idgrado'));
         }
         else{
             return $redirect->back();

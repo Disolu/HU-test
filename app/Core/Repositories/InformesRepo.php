@@ -13,6 +13,8 @@ class InformesRepo {
             'direccion' => $request['distrito'],
             'motivo'    => $request['motivo'],
             'idgrado'   => $request['grado'],
+            'idnivel'   => $request['nivel'],
+            'idsede'    => $request['sede'],
             'comentario'=> $request['comentario'],
             'usercreate' => Auth::user()->id,
             'updated_at' => ''
@@ -26,23 +28,16 @@ class InformesRepo {
 
     public function getSearchInforme($idsede, $idnivel, $idgrado)
     {
-        $query = Informes::
-         leftJoin('alumno', 'alumnomatricula.idalumno', '=', 'alumno.idalumno')
-         ->leftJoin('pension', 'alumnomatricula.idpension', '=', 'pension.idpension')
-         ->leftJoin('users', 'alumnomatricula.usercreate', '=', 'users.id')
-         ->select('fullname','codigo','idestadoalumno','monto','users.nombre as nameregister');
+        $query = Informes::select('*');
 
-        if($idperiodo) {
-            $query->where('alumnomatricula.idperiodomatricula','=',$idperiodo);
-        }
         if ($idsede) {
-            $query->where('alumnomatricula.idsede','=',$idsede);
+            $query->where('idsede','=',$idsede);
         }
         if ($idnivel) {
-            $query->where('alumnomatricula.idnivel','=',$idnivel);
+            $query->where('idnivel','=',$idnivel);
         }
         if ($idgrado) {
-            $query->where('alumnomatricula.idgrado','=',$idgrado);
+            $query->where('idgrado','=',$idgrado);
         }
         return $query->get();
     }
