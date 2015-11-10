@@ -145,6 +145,11 @@
 												Alumno por sección
 											</a>
 										</li>
+										<li>
+											<a href="{!! route('seguimientoPagos') !!}">
+												Seguimiento de pagos
+											</a>
+										</li>
 									</ul>
 								</li>
 								<li class="nav-parent">

@@ -56,6 +56,10 @@ Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
 	Route::get('matricula/vs/informes', 	    ['as' => 'matriculaInformes', 		 'uses' => 'InformesController@showMatriculaInformes']);
 	Route::post('matricula/vs/informes/search', ['as' => 'searchInformesvsMatricula', 'uses' => 'InformesController@searchInformesvsMatricula']);
 
+	//Seguimiento de Pagos
+	Route::get('seguimiento/pagos', 	    ['as' => 'seguimientoPagos', 	   'uses' => 'SeguimientoPagosController@showSeguimientoPagos']);
+	Route::post('seguimiento/pagos/search', ['as' => 'searchSeguimientoPagos', 'uses' => 'SeguimientoPagosController@searchSeguimientoPagos']);
+
 	//Matriculados
 	Route::get('matriculados', ['as' => 'alumnosMatriculados', function () { return view('matricula.reportes.index'); }]);
 

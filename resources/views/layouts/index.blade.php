@@ -180,6 +180,11 @@
 														Informes vs Matriculados
 													</a>
 												</li>
+												<li>
+													<a href="{!! route('seguimientoPagos') !!}">
+														Seguimiento de pagos
+													</a>
+												</li>
 											</ul>
 										</li>
 
