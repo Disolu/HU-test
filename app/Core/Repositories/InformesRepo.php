@@ -1,6 +1,7 @@
 <?php
 namespace App\Core\Repositories;
 use App\Core\Entities\Informes;
+use App\Core\Entities\PeriodoMatricula;
 use Auth;
 
 class InformesRepo {
@@ -41,4 +42,27 @@ class InformesRepo {
         }
         return $query->get();
     }
+
+    public function MatriculaVSInformes()
+    {
+        return Informes::select('informes.created_at as fechaInforme','a.*','m.*','m.created_at as fechaMatricula')
+        ->leftJoin('alumno as a', 'informes.dni', '=', 'a.dni')
+        ->leftJoin('alumnomatricula as m', 'a.idalumno', '=', 'm.idalumno')
+        ->get();
+    }
+
+    public function allPeriodos()
+    {
+        return PeriodoMatricula::all();
+    }
+
+    public function searchInformesvsMatricula($periodo)
+    {
+        return Informes::select('informes.created_at as fechaInforme','a.*','m.*','m.created_at as fechaMatricula')
+        ->leftJoin('alumno as a', 'informes.dni', '=', 'a.dni')
+        ->leftJoin('alumnomatricula as m', 'a.idalumno', '=', 'm.idalumno')
+        ->where('m.idperiodomatricula',$periodo)
+        ->get();
+    }
+    
 }

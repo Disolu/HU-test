@@ -136,6 +136,11 @@
 											</a>
 										</li>
 										<li>
+											<a href="{!! route('indexSecretaria') !!}">
+												Informes vs Matriculados
+											</a>
+										</li>
+										<li>
 											<a href="{!! route('reportes') !!}">
 												Alumno por sección
 											</a>

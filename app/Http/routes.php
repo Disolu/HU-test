@@ -52,6 +52,10 @@ Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
 	//Matricular Alumno
 	Route::get('matricula', ['as' => 'matricula', 'uses' => 'Matricula\AlumnosController@showNewMatricula']);
 
+	//Matricula, Informes
+	Route::get('matricula/vs/informes', 	    ['as' => 'matriculaInformes', 		 'uses' => 'InformesController@showMatriculaInformes']);
+	Route::post('matricula/vs/informes/search', ['as' => 'searchInformesvsMatricula', 'uses' => 'InformesController@searchInformesvsMatricula']);
+
 	//Vista para la ruta inicial.
 	Route::get('/', function () { return view('administrador.index'); });
 
