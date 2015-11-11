@@ -77,7 +77,11 @@
                                     <tr>
                                       <td>{!! $data->fullname !!}</td>
                                       <td>{!! $data->dni !!}</td>
-                                      <td>{!! $data->grado->nombre !!} | {!! $data->grado->nivel->nombre !!} | {!! $data->grado->nivel->sede->nombre !!}</td>
+                                      <td>
+                                      @if(!empty($data->grado->nombre))
+                                       {!! $data->grado->nombre !!} | {!! $data->grado->nivel->nombre !!} | {!! $data->grado->nivel->sede->nombre !!}
+                                      @endif
+                                      </td>
                                       <td>{!! $data->fechaInforme !!}</td>
                                       <td>{!! $data->fechaMatricula !!}</td>
                                     </tr>
