@@ -44,16 +44,18 @@ class GeneratePayments extends Command
      */
     public function handle()
     {
-       $numeration='000';
+       $numeration = array('1' =>'001503' , '2'=>'004893' );
        $today=date('Ymd');
-       $file_name  = "RC_{$numeration}_{$today}.TXT"; //  RC_000_YYYYMMDD.TXT
-
-       $source_file      = sys_get_temp_dir() . DIRECTORY_SEPARATOR . $file_name;
+       
 
        $sedes= DB::table('sede')->get();
 
        $file_contents_final="";
         foreach ($sedes as $key => $sede) {
+
+            $file_name  = "RC_{$numeration[$sede->idsede]}_{$today}.TXT"; //  RC_000_YYYYMMDD.TXT
+
+            $source_file      = sys_get_temp_dir() . DIRECTORY_SEPARATOR . $file_name;
                    
             //One for file      
 
@@ -70,7 +72,8 @@ class GeneratePayments extends Command
                     '300' .
                     'PEN' .
                     str_pad($today, 8, ' ', STR_PAD_LEFT) .
-                    $numeration .
+                    '000' .
+                    str_pad("T", 9, " ", STR_PAD_LEFT) .
                     PHP_EOL;
 
                 $countreg=0;
@@ -91,7 +94,9 @@ class GeneratePayments extends Command
 
                    foreach ($months_pending as $period => $nameMonth) {
                            
-                            $especificacion = strtoupper($student->codigo).'PENSION '.$nameMonth;
+                            $codigo=str_pad($student->codigo, "10"," ",STR_PAD_LEFT);
+
+                            $especificacion = strtoupper($codigo).$nameMonth;
 
                             $countreg++;
                             
@@ -113,10 +118,12 @@ class GeneratePayments extends Command
                                         'especificacion' => str_pad($especificacion, '48'," ", STR_PAD_RIGHT), //48
                                         'fec_ven'=>str_pad($last_day, '8'," ", STR_PAD_RIGHT),
                                         'fec_bloqueo'=>str_pad($fec_bloqueo, '8'," ", STR_PAD_RIGHT),
-                                        'periodo'=>str_pad($period, '2',"0", STR_PAD_LEFT),
+                                        'periodo'=>str_pad("0", '2',"0", STR_PAD_LEFT),
                                         'monto_max'=>str_pad(number_format($student->monto * $decimal, 0, '', ''), 15, '0', STR_PAD_LEFT),
                                         'monto_min'=>str_pad(number_format($student->monto * $decimal, 0, '', ''), 15, '0', STR_PAD_LEFT), 
                                         'relleno' => str_pad( "0", '160',"0", STR_PAD_RIGHT),
+                                        'tail'=> str_pad( "0", '23',"0", STR_PAD_RIGHT),
+                                        'tail_'=> str_pad( "L", '16',"0", STR_PAD_RIGHT),
                             );
                             $file_contents .= implode($line) . PHP_EOL;
                        }

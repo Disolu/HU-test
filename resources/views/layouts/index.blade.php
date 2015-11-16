@@ -176,6 +176,21 @@
 														Alumno por sección
 													</a>
 												</li>
+												<li>
+													<a href="{!! route('alumnosMatriculados') !!}">
+														Alumnos matriculados
+													</a>
+												</li>
+												<li>
+													<a href="{!! route('matriculaInformes') !!}">
+														Informes vs Matriculados
+													</a>
+												</li>
+												<li>
+													<a href="{!! route('seguimientoPagos') !!}">
+														Seguimiento de pagos
+													</a>
+												</li>
 											</ul>
 										</li>
 
@@ -242,11 +257,6 @@
 														<li>
 															<a href="{!! route('tarjetabloques') !!}">
 																Tarjetas y bloques
-															</a>
-														</li>
-														<li>
-															<a href="{!! route('tarjetas') !!}">
-																Tipos de Tarjetas
 															</a>
 														</li>
 														<li>

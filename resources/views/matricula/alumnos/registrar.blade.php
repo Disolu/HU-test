@@ -371,7 +371,7 @@
 	    	var tipopension =  $(this).attr('id');
 		    $.ajax({
 		    	type: "GET",
-		    	url: baseURL + "api/v1/getPensiones",
+		    	url: baseURL + "/api/v1/getPensiones",
 		    	data: { tipo : tipopension, sede : sede, nivel : nivel},
 		    	dataType: "json",
 		    	contentType: "application/json; charset=utf-8",
@@ -461,7 +461,7 @@
 	        if (fo.reID != "") {
 	            $.ajax({
 	                type: "GET",
-	                url: baseURL + "api/v1/getAlumnoByID",
+	                url: baseURL + "/api/v1/getAlumnoByID",
 	                data: { alu_id : fo.reID},
 	                dataType: "json",
 	                contentType: "application/json; charset=utf-8",
@@ -490,7 +490,7 @@
 	        if (fo.reID != "") {
 	            $.ajax({
 	                type: "GET",
-	                url: baseURL + "api/v1/getApoderadosByID",
+	                url: baseURL + "/api/v1/getApoderadosByID",
 	                data: { alu_id : fo.reID},
 	                dataType: "json",
 	                contentType: "application/json; charset=utf-8",
@@ -513,7 +513,7 @@
 	        if (fo.reID != "") {
 	            $.ajax({
 	                type: "GET",
-	                url: baseURL + "api/v1/getOtherDataByID",
+	                url: baseURL + "/api/v1/getOtherDataByID",
 	                data: { alu_id : fo.reID},
 	                dataType: "json",
 	                contentType: "application/json; charset=utf-8",
@@ -723,7 +723,7 @@
 	        if( $("#pension option:selected").val() !=0){
 		        $.ajax({
 		            type: "GET",
-		            url: baseURL + "api/v1/addAlumno",
+		            url: baseURL + "/api/v1/addAlumno",
 		            //MANDO LOS OBJETOS CREADOS QUE TIENEN LAS PROPIEDADES
 		            data: {alumno: obj, apoderados: objApoderados, otherdata: objOtherData},  
 		            dataType: "json",
@@ -735,7 +735,7 @@
 				        $.removeCookie('idgrado', { path: '/' });
 				        $.removeCookie('idseccion', { path: '/' });
 
-				        setTimeout(function () { window.location = baseURL + r.alumnope; }, 100);
+				        setTimeout(function () { window.location = baseURL + "/" + r.alumnope; }, 100);
 				        console.log('Se registro con exito');
 		            },
 		            error: function (response) {
@@ -755,7 +755,7 @@
 	        $.removeCookie('idnivel', { path: '/' });
 	        $.removeCookie('idgrado', { path: '/' });
 	        $.removeCookie('idseccion', { path: '/' });
-	        setTimeout(function () { window.location = baseURL + "searchvacantes"; }, 500);
+	        setTimeout(function () { window.location = baseURL + "/searchvacantes"; }, 500);
 	    }
 	}
 	    var viewModel = new AlumnoFormViewModel();

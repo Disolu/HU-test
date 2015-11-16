@@ -9,6 +9,8 @@ Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
 	//REPORTES
 	Route::post('reportes', ['as' => 'reportesAlumnos', 'uses' => 'Administrador\ReportesController@getAlumnos']);
 	Route::get('reportesexcel/{periodo}/{sede}/{nivel}/{grado}', ['as' => 'reportesexcel', 'uses' => 'Administrador\ReportesController@getAlumnosExcel']);
+	Route::get('reportes', ['as' => 'reportes', 'uses' => 'Administrador\ReportesController@getAlumnosxSeccion']);
+	Route::get('reportes/matriculas', ['as' => 'indexSecretaria', function () { return view('matricula.reportes.index'); }]);
 
 	//OBSERVACION
 	Route::get('observacion/{id}', ['as' => 'observacion', 'uses' => 'Alumno\ObservacionController@show'])->where('id', '[0-9]+');
@@ -49,10 +51,21 @@ Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
 	Route::post('informes',['as' => 'informes', 'uses' => 'InformesController@registerInforme']);
 	Route::get('informes', ['as' => 'informes', 'uses' => 'InformesController@showInformes']);
 	Route::get('informes/listar',['as' => 'listInformes', 'uses' => 'InformesController@listInformes']);
-	Route::get('informes/search',['as' => 'searchInformes', 'uses' => 'InformesController@searchInformes']);
+	Route::post('informes/search',['as' => 'searchInformes', 'uses' => 'InformesController@searchInformes']);
 
 	//Matricular Alumno
 	Route::get('matricula', ['as' => 'matricula', 'uses' => 'Matricula\AlumnosController@showNewMatricula']);
+
+	//Matricula, Informes
+	Route::get('matricula/vs/informes', 	    ['as' => 'matriculaInformes', 		 'uses' => 'InformesController@showMatriculaInformes']);
+	Route::post('matricula/vs/informes/search', ['as' => 'searchInformesvsMatricula', 'uses' => 'InformesController@searchInformesvsMatricula']);
+
+	//Seguimiento de Pagos
+	Route::get('seguimiento/pagos', 	    ['as' => 'seguimientoPagos', 	   'uses' => 'SeguimientoPagosController@showSeguimientoPagos']);
+	Route::post('seguimiento/pagos/search', ['as' => 'searchSeguimientoPagos', 'uses' => 'SeguimientoPagosController@searchSeguimientoPagos']);
+
+	//Matriculados
+	Route::get('matriculados', ['as' => 'alumnosMatriculados', function () { return view('matricula.reportes.index'); }]);
 
 	//Vista para la ruta inicial.
 	Route::get('/', function () { return view('administrador.index'); });
@@ -132,7 +145,7 @@ Route::group( ['middleware' => ['auth','administrador'], 'prefix'=>'admin'], fun
 	Route::put('periodo/edit/{id}', ['as' => 'updateperiodo', 'uses' => 'Administrador\PeriodoMatriculaController@update']);
 
 	//Reportes
-	Route::get('reportes', ['as' => 'reportes', 'uses' => 'Administrador\ReportesController@getAlumnosxSeccion']);
+	
 	
 	//Registro de Usuarios
 	Route::get('usuarios', ['as' => 'usuarios', 'uses' => 'Administrador\UsuariosController@create']);
@@ -154,6 +167,8 @@ Route::group( ['middleware' => ['auth','administrador'], 'prefix'=>'admin'], fun
 	Route::get('fechanotas', ['as' => 'fechanotas', 'uses' => 'Administrador\NotasController@create']);
 	Route::post('fechanotas', ['as' => 'fechanotas', 'uses' => 'Administrador\NotasController@store']);
 	Route::get('fechanotas/{id}', ['as' => 'deletefechanotas', 'uses' => 'Administrador\NotasController@destroy']);
+	Route::get('fechanotas/edit/{id}', ['as' => 'editfechanotas', 'uses' => 'Administrador\NotasController@edit']);
+	Route::put('fechanotas/edit/{id}', ['as' => 'updatefechanotas', 'uses' => 'Administrador\NotasController@update']);
 	
 	//Profesor - Curso
 	Route::get('profesorasignatura', ['as' => 'showprofesor', 'uses' => 'Administrador\ProfesorController@show']);
@@ -162,15 +177,17 @@ Route::group( ['middleware' => ['auth','administrador'], 'prefix'=>'admin'], fun
 	Route::get('profesorasignatura/{id}', ['as' => 'deleteprofesorasignatura', 'uses' => 'Administrador\ProfesorController@destroy']);
 	
 	//Tarjetas de Notas
-	Route::get('tarjetas', ['as' => 'tarjetas', 'uses' => 'Administrador\TarjetasController@index']);
-	Route::get('tarjetas/new', ['as' => 'tarjetasnew', 'uses' => 'Administrador\TarjetasController@create']);
+	Route::get('tarjetas', 	    ['as' => 'tarjetas', 'uses' => 'Administrador\TarjetasController@index']);
+	Route::get('tarjetas/new',  ['as' => 'tarjetasnew', 'uses' => 'Administrador\TarjetasController@create']);
 	Route::post('tarjetas/new', ['as' => 'tarjetasnew', 'uses' => 'Administrador\TarjetasController@store']);
 
-	Route::get('bloque', ['as' => 'bloque', 'uses' => 'Administrador\BloqueController@index']);
-	Route::get('bloque/new', ['as' => 'bloquenew', 'uses' => 'Administrador\BloqueController@create']);
+	Route::get('bloque', 	  ['as' => 'bloque', 'uses' => 'Administrador\BloqueController@index']);
+	Route::get('bloque/new',  ['as' => 'bloquenew', 'uses' => 'Administrador\BloqueController@create']);
 	Route::post('bloque/new', ['as' => 'bloquenew', 'uses' => 'Administrador\BloqueController@store']);
 
 	Route::get('tarjetas/bloques', ['as' => 'tarjetabloques', 'uses' => 'Administrador\TarjetasController@show']);
+	Route::get('tarjetas/{id}',    ['as' => 'tarjetadelete', 'uses' => 'Administrador\TarjetasController@destroy']);
+	Route::get('tarjetas/bloque/{id}',['as' => 'tarjetabloquedelete', 'uses' => 'Administrador\TarjetasController@bloquedestroy']);
 });
 
 //AREA RESPONSABLE
@@ -202,9 +219,7 @@ Route::group( ['middleware' => ['auth','profesor'], 'prefix'=>'profesor'], funct
 
 //AREA SECRETARIA
 Route::group( ['middleware' => ['auth','secretaria'], 'prefix'=>'secretaria'], function() {
-	Route::get('/', ['as' => 'indexSecretaria', function () {
-    	return view('secretaria.index');
-	}]);
+	Route::get('/', ['as' => 'indexSecretaria', function () { return view('matricula.reportes.index'); }]);
 });
 
 //AREA LEGAL

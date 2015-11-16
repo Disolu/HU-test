@@ -118,6 +118,12 @@
 										<span>Intranet - Hipolito Unanue</span>
 									</a>
 								</li>
+								<li class="nav">
+									<a href="{!! route('listInformes') !!}">
+										<i class="fa fa-copy" aria-hidden="true"></i>
+										<span>Informes</span>
+									</a>
+								</li>
 								<li class="nav-parent">
 									<a>
 										<i class="fa fa-copy" aria-hidden="true"></i>
@@ -127,6 +133,21 @@
 										<li>
 											<a href="{!! route('indexSecretaria') !!}">
 												Matriculas
+											</a>
+										</li>
+										<li>
+											<a href="{!! route('matriculaInformes') !!}">
+												Informes vs Matriculados
+											</a>
+										</li>
+										<li>
+											<a href="{!! route('reportes') !!}">
+												Alumno por sección
+											</a>
+										</li>
+										<li>
+											<a href="{!! route('seguimientoPagos') !!}">
+												Seguimiento de pagos
 											</a>
 										</li>
 									</ul>
