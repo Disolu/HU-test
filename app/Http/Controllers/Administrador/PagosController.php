@@ -23,7 +23,7 @@ class PagosController extends Controller
 
     public function index()
     {
-        $pagos = DB::table('recepcionpagos')->get();
+        $pagos = DB::table('recepcionpagos')->paginate('10');
 
         return view('administrador.pagos.index',compact('pagos'));
     }

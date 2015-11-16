@@ -58,60 +58,62 @@
 	</div>	
 
 <section class="panel">
-		<header class="panel-heading">
-			<h2 class="panel-title">Pagos</h2>
-		</header>
-		<div class="row">
-			<div class="col-md-12">
-				<section class="panel">
-					<div class="panel-body">
+	<header class="panel-heading">
+		<h2 class="panel-title">Pagos</h2>
+	</header>
+	<div class="row">
+		<div class="col-md-12">
+			<section class="panel">
+				<div class="panel-body">
 
-					<div class="tabs tabs-danger">
-						<ul class="nav nav-tabs">
-							<li class="active">
-								<a href="#popular4" data-toggle="tab"> Pagos importados</a>
-							</li>
-							<li>
-								<a href="#recent4" data-toggle="tab"> Pagos generados</a>
-							</li>
-						</ul>
+				<div class="tabs tabs-danger">
+					<ul class="nav nav-tabs">
+						<li class="active">
+							<a href="#popular4" data-toggle="tab"> Pagos importados</a>
+						</li>
+						<li>
+							<a href="{{ route('seguimientoPagos') }}" data-toggle="tab"> Pagos generados</a>
+						</li>
+					</ul>
 
-						<div class="tab-content">
-							<div id="popular4" class="tab-pane active">
-								
-								<div class="table-responsive">
-									<table class="table mb-none">
-										<thead>
-											<tr>
-												<th>Fecha de proceso</th>
-												<th>Nombre del cliente</th>
-												<th>Fecha de pago</th>
-											</tr>
-										</thead>
-										<tbody>
-										@foreach($pagos as $data)
-											<tr>
-												<td>{!! $data->fecproceso !!}</td>
-												<td>{!! $data->nomcliente !!}</td>
-												<td>{!! $data->fecpago !!}</td>
-											</tr>
-										@endforeach	
-										</tbody>
-									</table>
-								</div>
-
+					<div class="tab-content">
+						<div id="popular4" class="tab-pane active">
+							
+							<div class="table-responsive">
+								<table class="table mb-none">
+									<thead>
+										<tr>
+											<th>Fecha de proceso</th>
+											<th>Nombre del cliente</th>
+											<th>Fecha de pago</th>
+										</tr>
+									</thead>
+									<tbody>
+									@foreach($pagos as $data)
+										<tr>
+											<td>{!! $data->fecproceso !!}</td>
+											<td>{!! $data->nomcliente !!}</td>
+											<td>{!! $data->fecpago !!}</td>
+										</tr>
+									@endforeach	
+									</tbody>
+								</table>
 							</div>
-							<div id="recent4" class="tab-pane">
-								<p>Recent</p>
-							</div>
+
+						</div>
+						<div id="recent4" class="tab-pane">
+							<p>Recent</p>
 						</div>
 					</div>
-
-						
-					</div>
-				</section>
-			</div>
+				</div>
+					<div class="center">
+						{!! $pagos->render() !!}
+					</div>	
+				</div>
+			</section>
 		</div>
+	</div>
+
 </section>
 </div>
 @endsection
