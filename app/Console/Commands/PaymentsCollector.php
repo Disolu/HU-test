@@ -106,6 +106,21 @@ EOT;
         $tipovalor     = trim($line_array['tipovalor']);
         $canalentrada     = trim($line_array['canalentrada']);
 
+        $mes = substr($refpago,18);
+        //ALUMNO
+        $codigoAlumno = substr($refpago,0, 10);
+        $a = DB::table('alumno')->where('codigo',$codigoAlumno)->take(1)->get();
+
+        if(!empty($a[0]->idalumno))
+        {
+          $idalumno = $a[0]->idalumno;
+          //NUMERO DEL MES
+          $numberMes = $this->numberMes($mes);
+          DB::table('alumnodeudas')
+              ->where('idalumno', $idalumno)
+              ->where('mes', $numberMes)
+              ->update(['status' => 1]);
+        }
         DB::table('recepcionpagos')
           ->insert(array(
               'codclase' => $codclase,
@@ -125,6 +140,49 @@ EOT;
               'created_at' => date('Y-m-d H:i:s')
           ));
         return false;
+    }
+
+    private function numberMes($mes)
+    {
+      switch ($mes) {
+        case 'ENERO':
+          $number = 01;
+          break;
+        case 'FEBRERO':
+          $number = 02;
+          break;
+        case 'MARZO':
+          $number = 03;
+          break;
+        case 'ABRIL':
+          $number = 04;
+          break;
+        case 'MAYO':
+          $number = 05;
+          break;
+        case 'JUNIO':
+          $number = 06;
+          break;
+        case 'JULIO':
+          $number = 07;
+          break;
+        case 'AGOSTO':
+          $number = 08;
+          break;
+        case 'SEPTIEMBRE':
+          $number = 09;
+          break;
+        case 'OCTUBRE':
+          $number = 10;
+          break; 
+        case 'NOVIEMBRE':
+          $number = 11;
+          break;
+        case 'DICIEMBRE':
+          $number = 12;
+          break;                       
+      }
+      return $number;
     }
 
     protected function __splitString($string, $lengths)

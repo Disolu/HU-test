@@ -113,7 +113,7 @@ class GeneratePayments extends Command
                    ->select('alumno.*',DB::raw('alumnomatricula.*,pension.idpension,pension.monto,mensualidades.*'))
                    ->join('mensualidades', 'mensualidades.idalumno', '=', 'alumno.idalumno')
                    ->join('alumnomatricula', 'alumnomatricula.idalumno', '=', 'alumno.idalumno')
-                   ->join('pension', 'pension.idpension', '=', 'alumnomatricula.idpension')
+                   ->join('pension', 'pension.idpension', '=', 'mensualidades.idpension')
                    ->where('alumnomatricula.idsede', '=', $sede);
         return $query->get();
     }
