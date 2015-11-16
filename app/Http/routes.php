@@ -2,6 +2,10 @@
 
 //RUTAS LIBRES, CON LOGIN
 Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
+	//LINEA
+	Route::get('banco/pagos', ['as' => 'bancoPagos', 'uses' => 'Administrador\PagosController@index']);
+	Route::post('banco/pagos', ['as' => 'bancoPagosUpload', 'uses' => 'Administrador\PagosController@store']);
+	
 	//REPORTES
 	Route::post('reportes', ['as' => 'reportesAlumnos', 'uses' => 'Administrador\ReportesController@getAlumnos']);
 	Route::get('reportesexcel/{periodo}/{sede}/{nivel}/{grado}', ['as' => 'reportesexcel', 'uses' => 'Administrador\ReportesController@getAlumnosExcel']);

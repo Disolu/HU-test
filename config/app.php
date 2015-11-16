@@ -15,6 +15,7 @@ return [
     * URL'S GLOBALES
     */
     'urlglobal' => 'http://localhost/HU/public/alumno',
+    'urlupload' => 'D:/',
 
     'providers' => [
         /*

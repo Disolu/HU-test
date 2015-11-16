@@ -149,6 +149,12 @@
 									</a>
 									<ul class="nav nav-children">
 										<li>
+											<a href="{!! route('bancoPagos') !!}">
+												Pagos
+											</a>
+										</li>
+										
+										<li>
 											<a href="{!! route('periodo') !!}">
 												Periodo Matricula
 											</a>
