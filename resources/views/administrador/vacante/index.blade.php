@@ -25,6 +25,7 @@
 											<th>Grado</th>
 											<th>Nivel</th>
 											<th>Sede</th>
+											<th>Periodo</th>
 											<th>Acción</th>
 										</tr>
 									</thead>
@@ -37,6 +38,7 @@
 											<td>{!! $vacante->grado->nombre !!}</td>
 											<td>{!! $vacante->nivel->nombre !!}</td>
 											<td>{!! $vacante->sede->nombre !!}</td>
+											<td>{!! $vacante->periodo->nombre !!}</td>
 											<td class="actions">
 												<a href="{!! route('deletevacante', $vacante->idvacante) !!}" class="delete-row"  onclick="if (! confirm('¿Estás seguro que deseas eliminar las vacantes?, esto afectará a toda la institución.')) return false;"><i class="fa fa-trash-o"></i></a>
 											</td>

@@ -49,21 +49,6 @@ class VacanteController extends Controller
         }
     }
 
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
     public function destroy($id)
     {
         $vacante = $this->VacanteRepo->deleteVacante($id);

@@ -40,4 +40,9 @@ class Vacante extends Model
     {
         return $this->belongsTo('App\Core\Entities\Sede','idsede','idsede');
     }
+
+    public function periodo()
+    {
+        return $this->belongsTo('App\Core\Entities\PeriodoMatricula','idperiodomatricula','idperiodomatricula');
+    }
 }

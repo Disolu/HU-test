@@ -6,6 +6,7 @@ use App\Core\Entities\AlumnoApoderado;
 use App\Core\Entities\AlumnoMatricula;
 use App\Core\Entities\AlumnoDatos;
 use App\Core\Entities\Vacante;
+use App\Core\Entities\Mensualidades;
 
 use App\Core\Repositories\Alumno\AlumnoRepo;
 use App\Core\Repositories\Matricula\PeriodoMatriculaRepo;
@@ -174,17 +175,15 @@ class AlumnosController extends Controller
 
     if($rawUser['alu_pension'])
     {
-
       $result    = $this->AlumnoRepo->SaveAlumno($periodomatricula[0]->idperiodomatricula, $iduser, $rawUser);
       $resultApo = $this->AlumnoRepo->SaveApoderado($iduser, $rawApoderados);
-      
-
       $resultOth = $this->AlumnoRepo->SaveOtrosDatos($iduser, $rawOtherData);  
     }
     //Si se registro al alumno & al apoderado y otros datos correctamente
     if($result && $resultApo && $resultOth)
     {
       $lastAlumno = $this->AlumnoRepo->LastAlumno();  
+      $deudas = $this->AlumnoRepo->SaveDeudasAlumno($iduser, $lastAlumno[0]->idalumno, $periodomatricula[0]->idperiodomatricula);  
     }
     return response()->json([
       'result'    => $result,

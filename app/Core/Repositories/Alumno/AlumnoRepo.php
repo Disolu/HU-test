@@ -6,6 +6,7 @@ use App\Core\Entities\AlumnoDatos;
 use App\Core\Entities\AlumnoMatricula;
 use App\Core\Entities\AlumnoObservacion;
 use App\Core\Entities\Vacante;
+use App\Core\Entities\AlumnoDeudas;
 
 class AlumnoRepo {
     public function getAlumnoJoins($alumno)
@@ -36,6 +37,19 @@ class AlumnoRepo {
          ->orWhere('dni', $alumno)
          ->orWhere('codigo', $alumno)
          ->get();
+    }
+    public function SaveDeudasAlumno($iduser, $alumno, $periodo)
+    {
+        for ($i=4; $i <= 12 ; $i++) { 
+            $deuda = new AlumnoDeudas;
+            $deuda->mes                 = str_pad($i, 2, '0', STR_PAD_LEFT);
+            $deuda->idalumno            = $alumno;
+            $deuda->usercreate          = $iduser;
+            $deuda->idperiodomatricula  = $periodo;
+            $deuda->status              = 0;
+            $deuda->created_at          = date('Y-m-d H:i:s');
+            $deuda->save();
+        }
     }
     public function SaveAlumno($idperiodomatricula,$iduser, $rawAlumno)
     {

@@ -122,6 +122,7 @@ EOT;
               'fecpago' => $fecpago,
               'tipovalor' => $tipovalor,
               'canalentrada' => $canalentrada,
+              'created_at' => date('Y-m-d H:i:s')
           ));
         return false;
     }
@@ -137,29 +138,4 @@ EOT;
 
         return $parts;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

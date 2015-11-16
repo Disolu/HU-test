@@ -36,11 +36,11 @@ class PagosController extends Controller
         $name = $request->file('files')->getClientOriginalName();
         $complete = $name;
 
-        Artisan::call('payments:collect-payments');
-
         if($complete == $namevalidate)
         {
             $request->file('files')->move($destinationPath, $complete);
+            
+            Artisan::call('payments:collect-payments');
             Session::flash('message-success', 'tu archivo ha sido subido y procesado con éxito');
             return redirect()->route('bancoPagos');
         }

@@ -6,7 +6,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Session;
 use Redirect;
-
+use Artisan;
 use App\Core\Repositories\Administrador\ReportesRepo;
 
 class UserListExport extends \Maatwebsite\Excel\Files\NewExcelFile {
@@ -22,6 +22,13 @@ class ReportesController extends Controller
     public function __construct(ReportesRepo $ReportesRepo)
     {
         $this->ReportesRepo = $ReportesRepo;
+    }
+
+    public function generador()
+    {
+        Artisan::call('payments:generate-payments');
+        Session::flash('message-success', 'Se generaron los registros de pago con éxito');            
+        return redirect()->back();
     }
 
     public function getAlumnos(Request $request)

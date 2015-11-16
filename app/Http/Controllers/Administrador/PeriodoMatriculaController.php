@@ -23,11 +23,6 @@ class PeriodoMatriculaController extends Controller
         $this->PeriodoMatriculaRepo = $PeriodoMatriculaRepo;
     }
 
-    public function index()
-    {
-        
-    }
-
     public function create()
     {
         $periodos = $this->PeriodoMatriculaRepo->getPeriodos();

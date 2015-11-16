@@ -41,6 +41,6 @@ class RecepcionPagos extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('recepcionpagos');
     }
 }
