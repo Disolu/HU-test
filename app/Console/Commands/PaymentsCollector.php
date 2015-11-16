@@ -110,7 +110,6 @@ EOT;
         //ALUMNO
         $codigoAlumno = substr($refpago,0, 10);
         $a = DB::table('alumno')->where('codigo',$codigoAlumno)->take(1)->get();
-
         if(!empty($a[0]->idalumno))
         {
           $idalumno = $a[0]->idalumno;
@@ -146,43 +145,43 @@ EOT;
     {
       switch ($mes) {
         case 'ENERO':
-          $number = 01;
+          $number = '01';
           break;
         case 'FEBRERO':
-          $number = 02;
+          $number = '02';
           break;
         case 'MARZO':
-          $number = 03;
+          $number = '03';
           break;
         case 'ABRIL':
-          $number = 04;
+          $number = '04';
           break;
         case 'MAYO':
-          $number = 05;
+          $number = '05';
           break;
         case 'JUNIO':
-          $number = 06;
+          $number = '06';
           break;
         case 'JULIO':
-          $number = 07;
+          $number = '07';
           break;
         case 'AGOSTO':
-          $number = 08;
+          $number = '08';
           break;
         case 'SEPTIEMBRE':
-          $number = 09;
+          $number = '09';
           break;
         case 'OCTUBRE':
-          $number = 10;
+          $number = '10';
           break; 
         case 'NOVIEMBRE':
-          $number = 11;
+          $number = '11';
           break;
         case 'DICIEMBRE':
-          $number = 12;
-          break;                       
+          $number = '12';
+          break;
       }
-      return $number;
+       return $number;  
     }
 
     protected function __splitString($string, $lengths)
