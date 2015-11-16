@@ -183,6 +183,7 @@ class AlumnosController extends Controller
     if($result && $resultApo && $resultOth)
     {
       $lastAlumno = $this->AlumnoRepo->LastAlumno();  
+      $pensiones = $this->AlumnoRepo->SavePensionesAlumno($iduser, $lastAlumno[0]->idalumno, $periodomatricula[0]->idperiodomatricula, $rawUser['alu_pension']);  
       $deudas = $this->AlumnoRepo->SaveDeudasAlumno($iduser, $lastAlumno[0]->idalumno, $periodomatricula[0]->idperiodomatricula);  
     }
     return response()->json([

@@ -10,8 +10,13 @@ class Mensualidades extends Migration
         Schema::create('mensualidades', function (Blueprint $table) {
             $table->increments('idmensualidades');
             $table->string('mes',2);
+            
+            $table->integer('idperiodomatricula')->unsigned();
+            $table->foreign('idperiodomatricula')->references('idperiodomatricula')->on('periodomatricula')->onUpdate('cascade');
+            
             $table->integer('idpension')->unsigned();
             $table->foreign('idpension')->references('idpension')->on('pension')->onDelete('cascade')->onUpdate('cascade'); 
+            
             $table->integer('idalumno')->unsigned();
             $table->foreign('idalumno')->references('idalumno')->on('alumno')->onDelete('cascade')->onUpdate('cascade');  
 

@@ -4,7 +4,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mensualidades extends Model
 {
-    use SoftDeletes;
     protected $table = 'mensualidades';
     protected $fillable = [
     'idmensualidades', 

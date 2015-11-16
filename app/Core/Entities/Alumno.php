@@ -44,4 +44,8 @@ class Alumno extends Model
     {
         return $this->hasOne('App\Core\Entities\AlumnoMatricula','idalumno');
     }
+    public function deudas()
+    {
+        return $this->hasMany('App\Core\Entities\AlumnoDeudas','idalumno');
+    }
 }

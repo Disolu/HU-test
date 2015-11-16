@@ -7,6 +7,7 @@ use App\Core\Entities\AlumnoMatricula;
 use App\Core\Entities\AlumnoObservacion;
 use App\Core\Entities\Vacante;
 use App\Core\Entities\AlumnoDeudas;
+use App\Core\Entities\Mensualidades;
 
 class AlumnoRepo {
     public function getAlumnoJoins($alumno)
@@ -51,6 +52,19 @@ class AlumnoRepo {
             $deuda->save();
         }
     }
+
+    public function SavePensionesAlumno($iduser, $alumno, $periodo, $pension)
+    {
+            $mensualidades = new Mensualidades;
+            $mensualidades->mes                 = 3;
+            $mensualidades->idpension           = $pension;
+            $mensualidades->idalumno            = $alumno;
+            $mensualidades->usercreate          = $iduser;
+            $mensualidades->created_at          = date('Y-m-d H:i:s');
+            $mensualidades->idperiodomatricula  = $periodo;
+            $mensualidades->save();
+    }
+    
     public function SaveAlumno($idperiodomatricula,$iduser, $rawAlumno)
     {
        $codigoAlumno = Alumno::select('codigo')->orderBy('idalumno','=','desc')->take(1)->get();
