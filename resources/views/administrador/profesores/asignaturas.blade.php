@@ -13,7 +13,7 @@
 			{!! Form::open(['route' => 'profesorasignatura', 'method' => 'POST']) !!}
 			{!! Form::token() !!}	
 				<div class="form-group">
-				<p>Selecciona al docente, y relacionalo con los cursos que enseñará en el presente periodo</p>
+					<p>Selecciona al docente, y relacionalo con los cursos que enseñará en el presente periodo</p>
 					<label class="col-md-3 control-label" for="inputSuccess"></label>
 					<div class="col-md-6">
 						<select class="form-control mb-md" name="profesor">
@@ -51,7 +51,7 @@
 												</div>
 													
 													@if($curso->grado->secciones)
-													<div class="row show-grid">Secciones: <br>
+													<div>
 														@foreach($curso->grado->secciones as $seccion)
 															<div class="checkbox-custom checkbox-success">
 																<input type="checkbox" id="inlineCheckbox1" name="seccion[]" value="{!! $seccion->idseccion !!}">
@@ -80,4 +80,11 @@
 		</div>
 	</section>
 </div>
+@endsection
+
+@section('scripts')
+@parent
+	<link rel="stylesheet" href="{{ asset('assets/vendor/jstree/themes/default/style.css') }}" />
+	<script src="{{ asset('assets/vendor/jstree/jstree.js') }}"></script>
+	<script src="{{ asset('assets/javascripts/ui-elements/examples.treeview.js') }}"></script>	
 @endsection

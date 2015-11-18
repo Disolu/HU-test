@@ -60,7 +60,6 @@
 							<div class="form-group mb-lg">
 								<div class="clearfix">
 									<label class="pull-left">Password</label>
-									<a href="#" class="pull-right">¿Olvidaste tu Password?</a>
 								</div>
 								<div class="input-group input-group-icon">
 									<input name="password" type="password" class="form-control input-lg" />
@@ -80,11 +79,10 @@
 									</div>
 								</div>
 								<div class="col-sm-4 text-right">
-									<button type="submit" class="btn btn-primary hidden-xs">Sign In</button>
-									<button type="submit" class="btn btn-primary btn-block btn-lg visible-xs mt-lg">Sign In</button>
+									<button type="submit" class="btn btn-primary hidden-xs">Ingresar</button>
+									<button type="submit" class="btn btn-primary btn-block btn-lg visible-xs mt-lg">Ingresar</button>
 								</div>
 							</div>
-							<p class="text-center">¿Tienes problemas para ingresar? <a href="#">Ti!</a>
 						</form>
 					</div>
 				</div>
