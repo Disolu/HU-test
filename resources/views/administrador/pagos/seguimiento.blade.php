@@ -75,8 +75,12 @@
 										<td>{!! $data->monto !!}</td>
 										<td>
 											<!-- Modal Basic -->
-											<a class="mb-xs mt-xs mr-xs modal-basic btnDetails" href="#modalBasic" data-id="{!! $data->idalumno !!}">Ver estado</a>
-											
+											<a class="mb-xs mt-xs mr-xs modal-basic btnDetails" href="#modalBasic" data-id="{!! $data->idalumno !!}">
+												Ver estado
+											</a> | 
+											<a href="{!! route('pagosObservacion', $data->idalumno) !!}">
+												Crear Inicidencia
+											</a>
 										</td>
 									</tr>
 
@@ -109,7 +113,6 @@
 													<footer class="panel-footer">
 														<div class="row">
 															<div class="col-md-12 text-right">
-																<button class="btn btn-danger modal-dismiss">Crear incidencia</button>
 																<button class="btn btn-default modal-dismiss">Cerrar</button>
 															</div>
 														</div>
@@ -157,11 +160,11 @@
             {
             	if(r[i].status == 1 ) { estado = "<span class='label label-primary'>Pagado</span>"; } else { estado = "<span class='label label-danger'>Pendiente</span>" }
 
-            	options += "<tr>";
-              options += "<td>"+r[i].mesdeuda+"</td>";
-              options += "<td>"+r[i].montopagar+"</td>";
-              options += "<td>"+estado+"</td>";
-              options += "</tr>";
+	            options += "<tr>";
+	              options += "<td>"+r[i].mesdeuda+"</td>";
+	              options += "<td>"+r[i].montopagar+"</td>";
+	              options += "<td>"+estado+"</td>";
+	            options += "</tr>";
             });
             $('#tableajax').html(options);
           }

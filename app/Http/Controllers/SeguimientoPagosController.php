@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Core\Repositories\Administrador\ReportesRepo;
 use DB;
+use Auth;
+use Redirect;
 
 class SeguimientoPagosController extends Controller
 {
@@ -38,7 +40,7 @@ class SeguimientoPagosController extends Controller
 
       $periodo = DB::table('periodomatricula')->take(1)->get();
       $alumno  = DB::table('alumnodeudas')
-        ->select('p.monto as montopagar','alumnodeudas.mes as mesdeuda','status')
+        ->select('p.monto as montopagar','alumnodeudas.mes as mesdeuda','status','alumnodeudas.idalumno as idalumnodeuda')
         ->leftJoin('mensualidades as m','alumnodeudas.idalumno','=','m.idalumno')
         ->leftJoin('pension as p','m.idpension','=','p.idpension')
 
@@ -53,5 +55,30 @@ class SeguimientoPagosController extends Controller
   {
     $pagos = $this->reporteRepo->SeguimientoPagos($request->all());
     return view('administrador.pagos.seguimiento', compact('pagos'));
+  }
+
+  public function pagosObservacion($id)
+  {
+    $alumnos = DB::table('alumno')
+    ->leftJoin('alumnodatos as ad','ad.idalumno','=','alumno.idalumno')
+    ->where('alumno.idalumno',$id)->get();
+
+    $incidencias = DB::table('alumnoincidenciapagos')->where('idalumno',$id)->get();
+    return view('administrador.pagos.observacion', compact('alumnos','incidencias'));
+  }
+
+  public function SeguimientoIncidencia(Request $request, $id)
+  {
+    DB::table('alumnoincidenciapagos')->insert(
+      [
+      'titulo' => $request['titulo'], 
+      'observacion' => $request['incidencia'],
+      'idtipoincidencia' => $request['tipoincidencia'],
+      'idalumno' => $id,
+      'usercreate' => Auth::user()->id,
+      'created_at' => date('Y-m-d H:i:s')
+      ]
+    );
+    return Redirect::back();
   }
 }

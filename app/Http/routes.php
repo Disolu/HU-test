@@ -68,8 +68,10 @@ Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
 
 	//Seguimiento de Pagos
 	Route::get('seguimiento/pagos', 	       ['as' => 'seguimientoPagos', 	  'uses' => 'SeguimientoPagosController@showSeguimientoPagos']);
+	Route::get('seguimiento/observacion/{id}', ['as' => 'pagosObservacion', 	  'uses' => 'SeguimientoPagosController@pagosObservacion']);
 	Route::post('seguimiento/pagos/search',    ['as' => 'searchSeguimientoPagos', 'uses' => 'SeguimientoPagosController@searchSeguimientoPagos']);
-	Route::post('seguimiento/pagos/ajax', ['as' => 'SeguimientoPagosAjax',   'uses' => 'SeguimientoPagosController@SeguimientoPagosAjax']);
+	Route::post('seguimiento/pagos/ajax', 	   ['as' => 'SeguimientoPagosAjax',   'uses' => 'SeguimientoPagosController@SeguimientoPagosAjax']);
+	Route::post('seguimiento/incidencia/{id}', ['as' => 'SeguimientoIncidencia',  'uses' => 'SeguimientoPagosController@SeguimientoIncidencia']);
 
 	//Matriculados
 	Route::get('matriculados', ['as' => 'alumnosMatriculados', function () { return view('matricula.reportes.index'); }]);
