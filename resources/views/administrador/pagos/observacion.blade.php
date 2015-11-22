@@ -80,6 +80,7 @@
 								<input type="text" name="titulo" class="form-control" placeholder="Titulo" required/>
 							</div>
 						</div>
+						<!--
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Importancia</label>
 							<div class="col-sm-9">
@@ -91,6 +92,7 @@
 								</select>
 							</div>
 						</div>
+						-->
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Incidencia</label>
 							<div class="col-sm-9">
@@ -133,15 +135,11 @@
 										</thead>
 										@foreach($incidencias as $data)
 										<tbody>
-											
-											@if($data->idtipoincidencia == 1)
-											<tr class="active">
-												@elseif($data->idtipoincidencia == 2)
-												<tr class="warning">
-												@elseif($data->idtipoincidencia == 3)
+
+												@if($data->rolpe == 5)
 												<tr class="danger">
-												@elseif($data->idtipoincidencia == 4)
-												<tr class="dark">										
+												@else
+												<tr class="active">
 											@endif
 													<td>{{ $data->titulo }}</td>
 													<td>{{ $data->observacion }}</td>

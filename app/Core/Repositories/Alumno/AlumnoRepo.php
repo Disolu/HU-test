@@ -18,6 +18,7 @@ class AlumnoRepo {
         ->where('idalumno','=', $alumno)
         ->get();
     }
+
     public function getAlumnoByID($alumno)
     {
          return Alumno::            
@@ -29,6 +30,7 @@ class AlumnoRepo {
          ->orWhere('dni', $alumno)
          ->get();
     }    
+
     public function getAlumno($alumno)
     {
          return Alumno::        	
@@ -39,6 +41,7 @@ class AlumnoRepo {
          ->orWhere('codigo', $alumno)
          ->get();
     }
+
     public function SaveDeudasAlumno($iduser, $alumno, $periodo)
     {
         for ($i=4; $i <= 12 ; $i++) { 
@@ -72,14 +75,17 @@ class AlumnoRepo {
             Armar el nuevo codigo del alumno 
         */
         if($codigoAlumno->isEmpty())
-        { $numero = 100000; }
+        { $numero = 000; }
         else
-        { $numero = substr($codigoAlumno[0]->codigo,6,5); }
-        $anio = date('Y'); 
+        { $numero = substr($codigoAlumno[0]->codigo,7,5); }
+        $anio = date('Y')."-";
+        $newcode = $numero+1;
 
             $existingAlumno = new Alumno;        
             $existingAlumno->nombres = $rawAlumno['alu_nonbres'];
-            $existingAlumno->codigo = "HU".$anio.($numero+1);
+            $existingAlumno->codigo = "HU".$anio.(str_pad($newcode,3,"0",STR_PAD_LEFT));
+
+
             $existingAlumno->apellido_paterno = $rawAlumno['alu_apellido_paterno'];
             $existingAlumno->apellido_materno = $rawAlumno['alu_apellido_materno'];
             $existingAlumno->fullname = $rawAlumno['alu_nonbres']." ".$rawAlumno['alu_apellido_paterno']." ".$rawAlumno['alu_apellido_materno'];
@@ -128,6 +134,7 @@ class AlumnoRepo {
                 ->update(['qty_matriculados' => $newMatriculados]);                
             return true;        
     }
+
     public function SaveApoderado($iduser, $rawApoderados)
     {
         $lastAlumno = Alumno::select('idalumno')->orderBy('idalumno','desc')->take(1)->get();
@@ -170,6 +177,7 @@ class AlumnoRepo {
         $existingApo->save();
         return true;
     }
+
     public function SaveOtrosDatos($iduser, $rawOtherData)
     {
         $lastAlumno = Alumno::select('idalumno')->orderBy('idalumno','desc')->take(1)->get();
@@ -190,6 +198,7 @@ class AlumnoRepo {
         $existingOther->save();
         return true;
     }
+
     public function LastAlumno()
     {
         return Alumno::            
@@ -198,6 +207,7 @@ class AlumnoRepo {
          ->orderBy('idalumno','desc')
          ->get();
     }
+
     public function getAllObservaciones($id)
     {
         return AlumnoObservacion::
@@ -207,6 +217,7 @@ class AlumnoRepo {
          ->orderBy('alumnoobservacion.created_at','desc')
          ->get();
     }
+
     public function getObservacionImpedimento($id)
     {
         return AlumnoObservacion::

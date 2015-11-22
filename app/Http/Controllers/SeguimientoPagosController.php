@@ -63,7 +63,12 @@ class SeguimientoPagosController extends Controller
     ->leftJoin('alumnodatos as ad','ad.idalumno','=','alumno.idalumno')
     ->where('alumno.idalumno',$id)->get();
 
-    $incidencias = DB::table('alumnoincidenciapagos')->where('idalumno',$id)->get();
+    $incidencias = DB::table('alumnoincidenciapagos')
+        ->select('titulo','observacion','idtipoincidencia','ru.idroluser as rolpe')
+        ->leftJoin('users as u','u.id','=','alumnoincidenciapagos.usercreate')
+        ->leftJoin('roluser as ru','ru.idroluser','=','u.idrol')
+        ->where('alumnoincidenciapagos.idalumno',$id)
+        ->get();
     return view('administrador.pagos.observacion', compact('alumnos','incidencias'));
   }
 
@@ -73,7 +78,7 @@ class SeguimientoPagosController extends Controller
       [
       'titulo' => $request['titulo'], 
       'observacion' => $request['incidencia'],
-      'idtipoincidencia' => $request['tipoincidencia'],
+      //'idtipoincidencia' => $request['tipoincidencia'],
       'idalumno' => $id,
       'usercreate' => Auth::user()->id,
       'created_at' => date('Y-m-d H:i:s')
