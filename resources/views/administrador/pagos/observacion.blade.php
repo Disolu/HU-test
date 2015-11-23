@@ -160,6 +160,7 @@
 
 		<div class="text-right mr-lg">
 			<a class="modal-with-form btn btn-default" href="#modalForm">Nueva Observación</a>
+			<a class="btn btn-default" href="{{ route('seguimientoPagos') }}">Regresar al reporte</a>
 		</div>
 </div>
 @stop
