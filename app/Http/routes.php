@@ -15,6 +15,7 @@ Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
 	//REPORTES
 	Route::post('reportes', ['as' => 'reportesAlumnos', 'uses' => 'Administrador\ReportesController@getAlumnos']);
 	Route::get('reportesexcel/{periodo}/{sede}/{nivel}/{grado}', ['as' => 'reportesexcel', 'uses' => 'Administrador\ReportesController@getAlumnosExcel']);
+	Route::get('reportesPagosexcel', ['as' => 'excelpagos', 'uses' => 'Administrador\ReportesController@getAlumnosPagosExcel']);
 	Route::get('reportes', ['as' => 'reportes', 'uses' => 'Administrador\ReportesController@getAlumnosxSeccion']);
 	Route::get('reportes/matriculas', ['as' => 'indexSecretaria', function () { return view('matricula.reportes.index'); }]);
 

@@ -8,7 +8,9 @@ use Session;
 use Redirect;
 use Artisan;
 use App\Core\Repositories\Administrador\ReportesRepo;
-
+use DB;
+use Excel;
+use App\Core\Entities\Alumno;
 class UserListExport extends \Maatwebsite\Excel\Files\NewExcelFile {
     public function getFilename()
     {
@@ -33,12 +35,13 @@ class ReportesController extends Controller
 
     public function getAlumnos(Request $request)
     {
+        $filtro    = $request->input('filtro');
         $idperiodo = $request->input('periodo');
         $idsede    = $request->input('sede');
         $idnivel   = $request->input('nivel');
         $idgrado   = $request->input('grado');
 
-        $alumnos = $this->ReportesRepo->getAlumnos($idperiodo, $idsede, $idnivel, $idgrado);
+        $alumnos = $this->ReportesRepo->getAlumnos($idperiodo, $idsede, $idnivel, $idgrado, $filtro);
 
         if($alumnos){
             return view('matricula.reportes.alumnos', compact('alumnos','idperiodo','idsede','idnivel','idgrado'));
@@ -47,6 +50,7 @@ class ReportesController extends Controller
             return $redirect->back();
         }
     }
+
     public function getAlumnosExcel($periodo, $sede, $nivel, $grado, UserListExport $export)
     {
         $alumnos = $this->ReportesRepo->getAlumnos($periodo, $sede, $nivel, $grado);
@@ -85,4 +89,29 @@ class ReportesController extends Controller
         echo "Cantidad de alumnos matriculados en la sede (2do Sector): ". count($Sede01)."<br>";
         echo "Cantidad de alumnos matriculados en la sede (Las Brisas): ". count($Sede02)."<br>";
     } 
+
+    public function getAlumnosPagosExcel()
+    {
+      $periodo = DB::table('periodomatricula')->take(1)->orderBy('idperiodomatricula','desc')->get();
+      $alumnos = Alumno::
+            select('codigo','fullname as Alumno','Dni','Direccion','p.monto','apo.p_nombres as Padre','apo.a_nombres as Madre','direccion','Telefono')
+            ->leftJoin('alumnodeudas','alumnodeudas.idalumno','=','alumno.idalumno')
+            ->leftJoin('mensualidades as m', 'alumno.idalumno', '=', 'm.idalumno')
+            ->leftJoin('pension as p', 'm.idpension', '=', 'p.idpension')
+            ->leftJoin('alumnomatricula as am','am.idalumno','=','alumno.idalumno')
+            ->leftJoin('alumnoapoderado as apo','apo.idalumno','=','alumno.idalumno')
+
+            ->where('alumnodeudas.idperiodomatricula', $periodo[0]->idperiodomatricula)
+            ->where('alumno.impedimento','<>','1')
+            ->groupBy('alumno.idalumno')
+            ->get();
+
+      Excel::create(date('Y-m-d'), function($excel) use($alumnos) 
+      {
+          $excel->sheet('Pagos', function($sheet) use($alumnos)  {
+              $sheet->fromArray($alumnos);
+          });
+      })->export('xls');
+      return Redirect::back();
+    }  
 }

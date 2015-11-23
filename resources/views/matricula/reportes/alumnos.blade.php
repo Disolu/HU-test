@@ -32,6 +32,7 @@
 	{!! csrf_field() !!}
 
 		<div class="row">
+
 		  <div class="col-md-3">
 		  	<fieldset>
 				<div class="form-group">
@@ -39,6 +40,7 @@
 				</div>
 				</fieldset>
 		  </div>
+
 		  <div class="col-md-3">
 		  	<fieldset>
 				<div class="form-group">
@@ -46,20 +48,31 @@
 				</div>
 				</fieldset>
 		  </div>
-		  <div class="col-md-3">
+
+		  <div class="col-md-2">
 		  	<fieldset>
 				<div class="form-group">
 					<select name="nivel"  id="cboNivel" class="form-control mb-md" data-bind="options: niveles, optionsText: 'nombre', optionsValue: 'idnivel',  optionsCaption: 'Seleccione un Nivel', value: nivelSeleccionado"></select>
 				</div>
 				</fieldset>
 		  </div>
-			<div class="col-md-3">
+
+		  <div class="col-md-2">
 			  <fieldset>
 					<div class="form-group">
 						<select name="grado"  id="cboGrado" class="form-control mb-md" data-bind="options: grados, optionsText: 'nombre', optionsValue: 'idgrado',  optionsCaption: 'Seleccione un Grado', value: gradoSeleccionado"></select>
 					</div>
 				</fieldset>
 		  </div>
+
+		  <div class="col-md-2">
+			  <fieldset>
+					<div class="form-group">
+						{!! Form::select('filtro', array('1' => 'Nuevos', '2' => 'Antiguos'), '1'); !!}
+					</div>
+				</fieldset>
+		  </div>
+
 		</div>	
 	</div>
 	

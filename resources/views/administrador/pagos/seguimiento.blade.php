@@ -65,7 +65,12 @@ elseif(Auth::user()->idrol==5)
 	</div>
 	
 	<div class="panel-footer">
-		<button type="submit" id="consultar" class="btn btn-primary col-md-offset-11 text-right">Consultar</button>
+		<a href='{!! route("excelpagos") !!}' class="mb-xs mt-xs mr-xs btn btn-info text-left">
+				<i class="fa fa-thumbs-up"></i> Descargar
+		</a>
+
+		<button type="submit" id="consultar" class="btn btn-primary col-md-offset-9 text-right">Consultar</button>
+		
 	</div>
 {!! Form::close() !!}
 

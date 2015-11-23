@@ -2,16 +2,19 @@
 namespace App\Core\Repositories\Administrador;
 use App\Core\Entities\AlumnoMatricula;
 use App\Core\Entities\PeriodoMatricula;
+use DB;
 
 class ReportesRepo {
     
-  public function getAlumnos($idperiodo,$idsede, $idnivel, $idgrado)
+  public function getAlumnos($idperiodo,$idsede, $idnivel, $idgrado, $filtro)
   {
       $query = AlumnoMatricula::
-       leftJoin('alumno', 'alumnomatricula.idalumno', '=', 'alumno.idalumno')
+      select('fullname','codigo','idestadoalumno','monto','users.nombre as nameregister',
+        DB::raw('(select count(*) from notacurso where notacurso.idalumno = alumnomatricula.idalumno) as notas'))
+       ->leftJoin('alumno', 'alumnomatricula.idalumno', '=', 'alumno.idalumno')
        ->leftJoin('pension', 'alumnomatricula.idpension', '=', 'pension.idpension')
-       ->leftJoin('users', 'alumnomatricula.usercreate', '=', 'users.id')
-       ->select('fullname','codigo','idestadoalumno','monto','users.nombre as nameregister');
+       ->leftJoin('users', 'alumnomatricula.usercreate', '=', 'users.id');
+       
 
       if($idperiodo) {
           $query->where('alumnomatricula.idperiodomatricula','=',$idperiodo);
@@ -24,6 +27,12 @@ class ReportesRepo {
       }
       if ($idgrado) {
           $query->where('alumnomatricula.idgrado','=',$idgrado);
+      }
+      if($filtro)
+      {
+        if($filtro == 2){
+          $query->havingRaw('notas > 0'); 
+        }
       }
       return $query->get();
   }
@@ -101,6 +110,5 @@ class ReportesRepo {
       $pagos->groupBy('alumno.idalumno');
 
       return $pagos->get();
-      
   }
 }

@@ -250,6 +250,7 @@ class AlumnosController extends Controller
     $otherdata = Alumno::find($id)->otherdata;
     $archivos  = Alumno::find($id)->archivos;        
     $matricula  = Alumno::find($id)->matricula; 
+    //dd($matricula);
     //Si no existen relaciones con este alumno.
     /*
       Esto puede suceder, porque metieron info en la tabla de forma manual y no se creearon las relaciones

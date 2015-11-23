@@ -22,16 +22,15 @@ class SeguimientoPagosController extends Controller
   public function showSeguimientoPagos()
   {
     $periodo = DB::table('periodomatricula')->take(1)->orderBy('idperiodomatricula','desc')->get();
-      $pagos = DB::table('alumno')
-          ->leftJoin('alumnodeudas','alumnodeudas.idalumno','=','alumno.idalumno')
-          ->leftJoin('mensualidades as m', 'alumno.idalumno', '=', 'm.idalumno')
-          ->leftJoin('pension as p', 'm.idpension', '=', 'p.idpension')
-          ->where('alumnodeudas.idperiodomatricula', $periodo[0]->idperiodomatricula)
-          ->where('alumno.impedimento','<>','1')
-          ->groupBy('alumno.idalumno')
-          ->get();
-
-      return view('administrador.pagos.seguimiento', compact('pagos'));
+    $pagos = DB::table('alumno')
+        ->leftJoin('alumnodeudas','alumnodeudas.idalumno','=','alumno.idalumno')
+        ->leftJoin('mensualidades as m', 'alumno.idalumno', '=', 'm.idalumno')
+        ->leftJoin('pension as p', 'm.idpension', '=', 'p.idpension')
+        ->where('alumnodeudas.idperiodomatricula', $periodo[0]->idperiodomatricula)
+        ->where('alumno.impedimento','<>','1')
+        ->groupBy('alumno.idalumno')
+        ->get();
+    return view('administrador.pagos.seguimiento', compact('pagos'));
   }
 
   public function SeguimientoPagosAjax(Request $request)
@@ -54,8 +53,10 @@ class SeguimientoPagosController extends Controller
   public function searchSeguimientoPagos(Request $request)
   {
     $pagos = $this->reporteRepo->SeguimientoPagos($request->all());
+    $periodo = DB::table('periodomatricula')->take(1)->orderBy('idperiodomatricula','desc')->get();
     return view('administrador.pagos.seguimiento', compact('pagos'));
   }
+
 
   public function pagosObservacion($id)
   {
