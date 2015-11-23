@@ -13,11 +13,12 @@ Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
 		'uses' => 'Administrador\ReportesController@generador']);
 
 	//REPORTES
-	Route::post('reportes', ['as' => 'reportesAlumnos', 'uses' => 'Administrador\ReportesController@getAlumnos']);
+	Route::post('reportes', 	 ['as' => 'reportesAlumnos', 'uses' => 'Administrador\ReportesController@getAlumnos']);
 	Route::get('reportesexcel/{periodo}/{sede}/{nivel}/{grado}', ['as' => 'reportesexcel', 'uses' => 'Administrador\ReportesController@getAlumnosExcel']);
 	Route::get('reportesPagosexcel', ['as' => 'excelpagos', 'uses' => 'Administrador\ReportesController@getAlumnosPagosExcel']);
-	Route::get('reportes', ['as' => 'reportes', 'uses' => 'Administrador\ReportesController@getAlumnosxSeccion']);
+	Route::get('reportes', 		 ['as' => 'reportes',        'uses' => 'Administrador\ReportesController@getAlumnosxSeccion']);
 	Route::get('reportes/matriculas', ['as' => 'indexSecretaria', function () { return view('matricula.reportes.index'); }]);
+	Route::post('reportes/notas', ['as' => 'NotasAlumnoAjax', 'uses' => 'Administrador\ReportesController@getAlumnosNotas']);
 
 	//OBSERVACION
 	Route::get('observacion/{id}', ['as' => 'observacion', 'uses' => 'Alumno\ObservacionController@show'])->where('id', '[0-9]+');

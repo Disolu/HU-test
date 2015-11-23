@@ -21,6 +21,7 @@ use App\Http\Requests\AlumnosRequest;
 use App\Http\Requests\MatriculaRequest;
 use App\Http\Requests\BuscarAlumnoRequest;
 use App\Http\Controllers\Controller;
+use DB;
 
 class AlumnosController extends Controller
 {
@@ -235,11 +236,22 @@ class AlumnosController extends Controller
     $matricula = $this->AlumnoMatriculaRepo->getAllDataAlumno($id, $periodomatricula[0]->idperiodomatricula);
     $alumno    = $this->AlumnoRepo->getAlumnoJoins($id);          
 
+    $periodo = DB::table('periodomatricula')
+        ->select('a.fullname','a.codigo','periodomatricula.nombre as periodo','a.idalumno','n.*','periodomatricula.idperiodomatricula as idperiodo')
+
+        ->leftJoin('alumnomatricula as am','am.idperiodomatricula','=','periodomatricula.idperiodomatricula')
+        ->leftJoin('alumno as a','a.idalumno','=','am.idalumno')
+        ->leftJoin('notacurso as n','n.idperiodomatricula','=','periodomatricula.idperiodomatricula')
+        ->where('a.idalumno',$id)
+        ->groupBy('periodomatricula.idperiodomatricula')
+        ->get();
+    $bimestres = DB::table('bimestre')->get();
+        
     if($matricula->isEmpty() or $alumno->isEmpty()){
       Session::flash('message-danger', ' No hemos encontrado suficientes datos para mostrar la pagina solicitada, consulte con el administrador de sistemas');
       return redirect()->back();            
     }else{            
-      return view('matricula.alumnos.perfil', compact('id','matricula','alumno','archivos'));
+      return view('matricula.alumnos.perfil', compact('id','matricula','alumno','archivos','periodo','bimestres'));
     }
   }
 

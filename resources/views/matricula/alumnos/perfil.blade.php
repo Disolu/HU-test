@@ -83,13 +83,87 @@
 					</div>
 				</div>
 			</div>
+			
+			<div class="row">
+				<section class="panel panel-featured panel-featured-primary">
+					<header class="panel-heading">
+						<div class="panel-actions">
+							<a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+						</div>
+						<h2 class="panel-title">Historial Notas:</h2>
+					</header>
+					<div class="panel-body" style="display: block;">
+						<section>
+							<table class="table table-hover">
+							  <thead>
+							  	<th>Periodo</th>
+							  	<th>Ver notas</th>
+							  </thead>
+
+							  <tbody>
+							  @foreach($periodo as $data)
+							  	<tr>
+								  	<td>{{ $data->periodo }}</td>
+								  	<td>
+								  		@foreach($bimestres as $bimestre)
+								  			<code>
+									  			<a href="#modalBasic" class="mb-xs mt-xs mr-xs modal-basic btnDetails" data-periodo="{{ $data->idperiodo }}" data-id="{{ $bimestre->idbimestre }}">
+									  				{{ $bimestre->nombre }}
+									  			</a>
+								  			</code> | 
+								  		@endforeach
+								  	</td>
+							  	</tr>
+							  @endforeach	
+							  </tbody>
+							</table>
+
+
+							<div id="modalBasic" class="modal-block mfp-hide">
+								<section class="panel">
+									<header class="panel-heading">
+										<h2 class="panel-title">Notas</h2>
+									</header>
+									<div class="panel-body">
+										<div class="modal-wrapper">
+											<div class="modal-text">
+												PERIODO: <strong id="periodo"></strong>
+												<table class="table table-hover mb-none">
+													<thead>
+														<tr>
+															<th>Curso</th>
+															<th>Nota</th>
+															<th>Fec. Registro</th>
+														</tr>
+													</thead>
+													<tbody id="tableajax">
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+									<footer class="panel-footer">
+										<div class="row">
+											<div class="col-md-12 text-right">
+												<button class="btn btn-default modal-dismiss">Cerrar</button>
+											</div>
+										</div>
+									</footer>
+								</section>
+							</div>
+
+
+						</section>
+					</div>
+
+				</section>
+			</div>
 
 			<div class="row">
 				<section class="panel panel-featured panel-featured-primary">
 					<header class="panel-heading">
 						<div class="panel-actions">
 							<a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
-							<a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss=""></a>
 						</div>
 						<h2 class="panel-title">Subir documentos:</h2>
 					</header>
@@ -179,8 +253,6 @@
 					</div>
 
 				</section>
-				
-				
 			</div>
 		</div>
 
@@ -192,3 +264,50 @@
 	</div>
 </div>
 @stop
+
+@section('scripts')
+@parent
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.btnDetails').click(function(){
+      $.ajax({
+        method: "POST",
+        url: "{!! route('NotasAlumnoAjax') !!}",
+        dataType: 'json',
+        data:
+        {
+          idperiodo: $(this).data('periodo'),
+          idbimestre: $(this).data('id'),
+          _token: '{!! csrf_token() !!}'
+        },
+        success:  function (r)
+        {
+          if(r.length < 1)
+          {
+            alert('No tenemos data suficiente.');
+          }
+          else
+          {
+          	var options;
+            $.each(r, function(i)
+            {
+            	$('#periodo').html(r[i].periodo);
+	            options += "<tr>";
+	              options += "<td>"+r[i].nombre+"</td>";
+	              options += "<td>"+r[i].nota_number+"</td>";
+	              options += "<td>"+r[i].registro+"</td>";
+	            options += "</tr>";
+            });
+            $('#tableajax').html(options);
+          }
+        },
+        error: function()
+        {
+          alert('error inesperado.');
+        }
+      });
+    });
+
+  });
+</script>
+@endsection

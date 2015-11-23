@@ -11,6 +11,7 @@ use App\Core\Repositories\Administrador\ReportesRepo;
 use DB;
 use Excel;
 use App\Core\Entities\Alumno;
+
 class UserListExport extends \Maatwebsite\Excel\Files\NewExcelFile {
     public function getFilename()
     {
@@ -24,6 +25,21 @@ class ReportesController extends Controller
     public function __construct(ReportesRepo $ReportesRepo)
     {
         $this->ReportesRepo = $ReportesRepo;
+    }
+
+    public function getAlumnosNotas(Request $request)
+    {
+      $notas = DB::table('notacurso')
+        ->select('c.nombre','nota_number','notacurso.created_at as registro','p.nombre as periodo')
+
+        ->leftJoin('curso as c','c.idcurso','=','notacurso.idcurso')
+        ->leftJoin('periodomatricula as p','p.idperiodomatricula','=','notacurso.idperiodomatricula')
+
+        ->where('notacurso.idperiodomatricula',$request['idperiodo'])
+        ->where('idbimestre',$request['idbimestre'])
+        ->get();
+        
+      return response()->json($notas)->setCallback($request->input('callback'));  
     }
 
     public function generador()
