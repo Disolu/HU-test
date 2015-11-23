@@ -72,7 +72,7 @@
 						</figure>
 						<div class="profile-info" data-lock-name="Juan Carlos" data-lock-email="juan@gmail.com">
 							<span class="name">{!! Auth::user()->name !!}</span>
-							<span class="role">Secretaria</span>
+							<span class="role">Área Legal</span>
 						</div>
 						
 						<i class="fa custom-caret"></i>
@@ -112,39 +112,32 @@
 						<nav id="menu" class="nav-main" role="navigation">
 							@section('menu')
 							<ul class="nav nav-main">
-								<li class="nav-active">
-									<a href="#">
-										<i class="fa fa-home" aria-hidden="true"></i>
-										<span>Intranet - Hipolito Unanue</span>
-									</a>
-								</li>
-								<li class="nav-parent">
-									<a>
-										<i class="fa fa-copy" aria-hidden="true"></i>
-										<span>Alumnos</span>
-									</a>
-									<ul class="nav nav-children">
-										<li>
-											<a href="{{route('alumnobuscar')}}">
-												Buscar alumno
-											</a>
-										</li>
-									</ul>
-								</li>
-								<li class="nav-parent">
-									<a>
-										<i class="fa fa-copy" aria-hidden="true"></i>
-										<span>Matriculas</span>
-									</a>
-									<ul class="nav nav-children">
-										<li>
-											<a href="{!! route('searchvacantes') !!}">
-												Consulta vacante
-											</a>
-										</li>
-									</ul>
-								</li>
-							</ul>
+									<li class="nav-active">
+										<a href="#">
+											<i class="fa fa-home" aria-hidden="true"></i>
+											<span>Intranet - Hipolito Unanue</span>
+										</a>
+									</li>
+									<li class="nav-parent">
+										<a>
+											<i class="fa fa-copy" aria-hidden="true"></i>
+											<span>Reportes</span>
+										</a>
+										<ul class="nav nav-children">
+											<li>
+												<a href="{!! route('reportes') !!}">
+													Alumno por sección
+												</a>
+											</li>
+											<li>
+												<a href="{!! route('seguimientoPagos') !!}">
+													Seguimiento de pagos
+												</a>
+											</li>
+										</ul>
+									</li>
+									</li>
+								</ul>
 							@show
 						</nav>
 						

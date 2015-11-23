@@ -72,7 +72,7 @@
 						</figure>
 						<div class="profile-info" data-lock-name="Juan Carlos" data-lock-email="juan@gmail.com">
 							<span class="name">{!! Auth::user()->name !!}</span>
-							<span class="role">Secretaria</span>
+							<span class="role">Área responsable</span>
 						</div>
 						
 						<i class="fa custom-caret"></i>
