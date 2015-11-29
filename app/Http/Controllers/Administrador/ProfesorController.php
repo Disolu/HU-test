@@ -10,9 +10,11 @@ use Redirect;
 use Session;
 use App\Core\Entities\Nivel;
 use App\Core\Entities\Usuarios;
+use App\Core\Entities\Sede;
 use App\Core\Repositories\Administrador\ProfesorRepo;
 use App\Core\Repositories\Matricula\PeriodoMatriculaRepo;
 use App\Http\Requests\ProfesorCursoRequest;
+use DB;
 
 class ProfesorController extends Controller
 {
@@ -29,51 +31,45 @@ class ProfesorController extends Controller
         $this->PeriodoMatriculaRepo = $PeriodoMatriculaRepo;
     }
 
-    public function index()
-    {
-        //
-    }
-
     public function create()
     {
         $nivel = Nivel::with('grado')->get();
         $profesores = Usuarios::where('idrol',4)->get();
-        return view('administrador.profesores.asignaturas', compact('nivel','profesores'));
+        $sedes = Sede::with('niveles')->get();
+        return view('administrador.profesores.asignaturas', compact('sedes','nivel','profesores'));
     }
 
     public function store(ProfesorCursoRequest $request)
     {
       $periodo  = $this->ProfesorRepo->getLastPeriodoMatricula();
       //PROFESOR CURSO (Verifica si el profesor ya esta registrado en el periodo actual)
-      $profesorCurso = $this->ProfesorRepo->getProfesorCurso($periodo[0]->idperiodomatricula,$request['profesor']);
-
+      $profesorCurso = $this->ProfesorRepo->getProfesorCurso($periodo[0]->idperiodomatricula, $request['profesor']);
+      
       if(count($profesorCurso) == 0)
       {
-        for ($i=0; $i<count($request['curso']); $i++) { 
+
+        for ($i=0; $i< count($request['curso']); $i++) {
           //Guardar al profesor con cada curso
           $profesor = $this->ProfesorRepo->SaveProfesorCurso($request, $request['curso'][$i], $periodo[0]->idperiodomatricula);
-          //Una vez registrado, traigo su ID:
-          $lastRegister = $this->ProfesorRepo->lastRegister();
-          if(count($lastRegister) > 0)
-          {
-              $idcurso = $lastRegister[0]->idprofesorcurso;
-              for ($i=0; $i<count($request['seccion']); $i++) 
-              { 
-                  $this->ProfesorRepo->SaveProfesorSeccion($idcurso, $request['seccion'][$i]);
-              }
-          }
+            //Una vez registrado, traigo su ID:
+            $lastRegister = $this->ProfesorRepo->lastRegister();
+            
+            for ($j=0; $j<count($request['seccion']); $j++) 
+            { 
+              $this->ProfesorRepo->SaveProfesorSeccion($lastRegister[0]->idprofesorcurso, $request['seccion'][$j]);
+            }
         }
-      }
+      }  
       else
       {
-          $idcurso = $profesorCurso[0]->idprofesorcurso;
-          for ($i=0; $i<count($request['seccion']); $i++) 
-          { 
-              $this->ProfesorRepo->SaveProfesorSeccion($idcurso, $request['seccion'][$i]);
-          }
+        $idcurso = $profesorCurso[0]->idprofesorcurso;
+        for ($i=0; $i<count($request['seccion']); $i++) 
+        { 
+            $this->ProfesorRepo->SaveProfesorSeccion($idcurso, $request['seccion'][$i]);
+        }
       }
-        Session::flash('message-success', 'Se registro al profesor con los cursos seleccionados');            
-        return Redirect::route('showprofesor');
+      Session::flash('message-success', 'Se registro al profesor con los cursos seleccionados');            
+      return Redirect::route('showprofesor');
     }
 
     public function show()

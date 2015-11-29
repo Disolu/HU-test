@@ -12,6 +12,9 @@ Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
 	Route::get('pagos/generador',   ['as' => 'bancoPagosGenerate', 
 		'uses' => 'Administrador\ReportesController@generador']);
 
+    Route::post('matricula/select/view', ['as' => 'viewselectmatricula',
+        'uses' => 'Matricula\AlumnosController@viewselectmatricula']);
+
 	//REPORTES
 	Route::post('reportes', 	 ['as' => 'reportesAlumnos', 'uses' => 'Administrador\ReportesController@getAlumnos']);
 	Route::get('reportesexcel/{periodo}/{sede}/{nivel}/{grado}', ['as' => 'reportesexcel', 'uses' => 'Administrador\ReportesController@getAlumnosExcel']);

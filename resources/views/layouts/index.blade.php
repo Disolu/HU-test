@@ -18,6 +18,7 @@
 	<link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-datepicker/css/datepicker3.css') }}" />
 	<link rel="stylesheet" href="{{ asset('assets/vendor/magnific-popup/magnific-popup.css') }}" />
 	<!-- Specific Page Vendor CSS -->		
+	<link rel="stylesheet" href="{{ asset('assets/vendor/morris/morris.css') }}" />
 	<link rel="stylesheet" href="{{ asset('assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css') }}" />	
 	<!-- Theme CSS -->
 	<link rel="stylesheet" href="{{ asset('assets/stylesheets/theme.css') }}" />
@@ -25,6 +26,7 @@
 	<link rel="stylesheet" href="{{ asset('assets/stylesheets/theme-custom.css') }}">
 	<!-- Head Libs -->
 	<script src="{{ asset('assets/vendor/modernizr/modernizr.js') }}"></script>
+	
 @show	
 </head>
 <body>

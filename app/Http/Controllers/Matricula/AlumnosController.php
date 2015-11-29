@@ -44,6 +44,17 @@ class AlumnosController extends Controller
     $this->AlumnoMatriculaRepo = $AlumnoMatriculaRepo;
   }
 
+  public function viewselectmatricula(Request $request)
+  {
+      $sede = DB::table('sede')->where('idsede', $request['sede'])->get();
+      $nivel = DB::table('nivel')->where('idnivel', $request['nivel'])->get();
+      $grado = DB::table('grado')->where('idgrado', $request['grado'])->get();
+      $seccion = DB::table('seccion')->where('idseccion', $request['seccion'])->get();
+
+      return response()->json(['sede' =>$sede[0]->nombre ,'nivel' => $nivel[0]->nombre, 'grado' => $grado[0]->nombre, 'seccion' => $seccion[0]->nombre])
+          ->setCallback($request->input('callback'));
+  }
+
   public function getAlumno(BuscarAlumnoRequest $request)
   {
     $alumno = $request['alumno'];
@@ -262,6 +273,7 @@ class AlumnosController extends Controller
     $otherdata = Alumno::find($id)->otherdata;
     $archivos  = Alumno::find($id)->archivos;        
     $matricula  = Alumno::find($id)->matricula; 
+    $TipoPension     = $this->VacanteRepo->getTipoPension();
     //dd($matricula);
     //Si no existen relaciones con este alumno.
     /*
@@ -270,7 +282,7 @@ class AlumnosController extends Controller
     if($apoderado or $otherdata or $archivos){
       $EstadoAlumno    = $this->VacanteRepo->getEstadoAlumno();
       $EstadoMatricula = $this->VacanteRepo->getEstadoMatricula();
-      return view('matricula.alumnos.actualizar', compact('matricula','alumno','apoderado','otherdata','archivos','EstadoAlumno','EstadoMatricula','id'));   
+      return view('matricula.alumnos.actualizar', compact('TipoPension','matricula','alumno','apoderado','otherdata','archivos','EstadoAlumno','EstadoMatricula','id'));   
     }
     else{
       Session::flash('message-danger', 'No existen relaciones suficientes con el alumno que se desea editar'); 

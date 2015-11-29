@@ -11,7 +11,6 @@
 			@include('alertas.request')
 			@include('alertas.success')
 			{!! Form::open(['route' => 'profesorasignatura', 'method' => 'POST']) !!}
-			{!! Form::token() !!}	
 				<div class="form-group">
 					<p>Selecciona al docente, y relacionalo con los cursos que enseñará en el presente periodo</p>
 					<label class="col-md-3 control-label" for="inputSuccess"></label>
@@ -25,52 +24,53 @@
 					</div>					
 				</div>
 
-				<div class="form-group">
-					@foreach($nivel as $data)
-						<section class="panel panel-featured-left panel-featured-tertiary">
-						<div class="panel-body">
-							<div class="widget-summary">
-								<div class="widget-summary-col widget-summary-col-icon">
-									<div class="summary-icon bg-tertiary">
-										<i class="fa fa-shopping-cart"></i>
-									</div>
-								</div>
-								<div class="widget-summary-col">
-									<div class="summary">
-										<h4 class="title">{!! $data->nombre !!}</h4>
-										<code>{!! $data->sede->nombre !!}</code>
+				<div class="col-md-12">
+					<h2 class="pb-lg">Sedes</h2>
 
-										@foreach($data->grado as $grado)
-										<div class="info">
-											<strong class="amount">{!! $grado->name !!}</strong>
-											
-												@foreach($grado->curso as $curso)
-												<div class="checkbox-custom checkbox-primary">
-													<input type="checkbox" id="inlineCheckbox2" name="curso[]" value="{!! $curso->idcurso !!}">
-													<label for="checkboxExample2">{!! $curso->nombre !!} - <strong> {!! $curso->grado->nombre !!} </strong></label>
-												</div>
-													
-													@if($curso->grado->secciones)
-													<div>
-														@foreach($curso->grado->secciones as $seccion)
-															<div class="checkbox-custom checkbox-success">
-																<input type="checkbox" id="inlineCheckbox1" name="seccion[]" value="{!! $seccion->idseccion !!}">
-																<label for="checkboxExample2">{!! $seccion->nombre !!}</label>
-															</div>
-														@endforeach
-													</div>	
-													@endif
+					<div class="toggle" data-plugin-toggle="">
+						@foreach($sedes as $data)
+						<section class="toggle">
+							<label><i class="fa fa-plus"></i><i class="fa fa-minus"></i>
+								{!! $data->nombre !!}
+							</label>
+							<p class="" style="height: 0px;">
+								@foreach($data->niveles as $nivel)
+									<h4 class="alternative-font" style="color: #2A427B">{{ $nivel->nombre }}</h4>
+
+									@foreach($nivel->grado as $grado)
+									<h6 class="alternative-font">{{ $grado->nombre }}</h6>
+										@if(count($grado->curso) == 0)
+											<code>{{ $grado->nombre }} no tiene cursos registrados.</code>
+										@endif
+
+										@foreach($grado->curso as $curso)
+										<p> - 
+											<label for="curso">
+												<input type="checkbox" id="inlineCheckbox2" name="curso[]" value="{!! $curso->idcurso !!}">
+												<strong>{{ $curso->nombre }}</strong>
+											</label>
+										</p>
+										<div class="alert alert-default">
+											<p>
+												Secciones: 
+												@foreach($grado->secciones as $seccion)
+													<span>
+														<input type="checkbox" name="seccion[]" value="{!! $seccion->idseccion !!}">
+														{{ $seccion->nombre }}
+													</span>
 												@endforeach
-												<hr>
+											</p>
 										</div>
 										@endforeach
-									</div>
-								</div>
-							</div>
-						</div>
+										
+
+									@endforeach
+
+								@endforeach
+							</p>
 						</section>
-						
-					@endforeach
+						@endforeach
+					</div>
 				</div>
 
 				<p class="m-none">

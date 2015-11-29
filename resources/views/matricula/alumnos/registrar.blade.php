@@ -299,8 +299,13 @@
 
 		<div class="panel panel-info">
 			<div class="panel-body">
-				<b>Se Matriculó para: </b><span data-bind="text: datavacante"></span><br />
-				
+				<b>Se Matriculó para: </b>
+                <p>
+                    <span id="sede"></span>:
+                    <span id="nivel"></span> |
+                    <span id="grado"></span>
+                    <span id="seccion"></span>
+                </p>
 				<div class="col-xs-4">
 					<label>Tipo de Pension</label> <br>
 					<div class="btn-group" data-toggle="buttons">
@@ -392,7 +397,25 @@
 		    	}
 		    });	    
 	    });
-	});
+
+        $.ajax({
+            method: "POST",
+            url: "{!! route('viewselectmatricula') !!}",
+            dataType: 'json',
+            data:
+            {
+                sede: $.cookie("idsede"), nivel: $.cookie("idnivel"), grado: $.cookie("idsede"), seccion: $.cookie("idsede"),
+                _token: '{!! csrf_token() !!}'
+            },
+            success:  function (r)
+            {
+                $('#sede').html(r.sede);
+                $('#nivel').html(r.nivel);
+                $('#grado').html(r.grado);
+                $('#seccion').html(r.seccion);
+            }
+        });
+    });
 	</script>
 
 	<script>

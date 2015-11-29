@@ -214,7 +214,7 @@ Theme Version: 	1.4.0
 		data: morrisLineData,
 		xkey: 'y',
 		ykeys: ['a', 'b'],
-		labels: ['Series A', 'Series B'],
+		labels: ['Sede Brisas', 'Sede 2do Sector'],
 		hideHover: true,
 		lineColors: ['#0088cc', '#734ba9'],
 	});
@@ -238,7 +238,7 @@ Theme Version: 	1.4.0
 		data: morrisBarData,
 		xkey: 'y',
 		ykeys: ['a', 'b'],
-		labels: ['Series A', 'Series B'],
+		labels: ['Sede Brisas', 'Sede 2do Sector'],
 		hideHover: true,
 		barColors: ['#0088cc', '#2baab1']
 	});
@@ -252,7 +252,7 @@ Theme Version: 	1.4.0
 		data: morrisAreaData,
 		xkey: 'y',
 		ykeys: ['a', 'b'],
-		labels: ['Series A', 'Series B'],
+		labels: ['Sede Brisas', 'Sede 2do Sector'],
 		lineColors: ['#0088cc', '#2baab1'],
 		fillOpacity: 0.7,
 		hideHover: true
@@ -267,7 +267,7 @@ Theme Version: 	1.4.0
 		data: morrisStackedData,
 		xkey: 'y',
 		ykeys: ['a', 'b'],
-		labels: ['Series A', 'Series B'],
+		labels: ['Sede Brisas', 'Sede 2do Sector'],
 		barColors: ['#0088cc', '#2baab1'],
 		fillOpacity: 0.7,
 		smooth: false,

@@ -34,7 +34,10 @@
 		</li>
 		<li class="">
 			<a href="#otros" data-toggle="tab" aria-expanded="true"> Otros datos</a>
-		</li>			
+		</li>	
+		<li class="">
+			<a href="#academica" data-toggle="tab" aria-expanded="true"> Matricula Académica</a>
+		</li>		
 	</ul>
 	<div class="tab-content">
 		<div id="alumno" class="tab-pane active">
@@ -293,88 +296,157 @@
 			<div style="clear:both"></div>
 		</div>
 
-		<div class="panel panel-info">
-			<div class="panel-body">
-				<b>Se Matriculó para: </b><code>Es importante seleccionar las siguientes opciones:</code><br />	
-				<div class="row">
-		  <div class="col-md-3">
-		  	<fieldset>
-				<div class="form-group">
-					<select name="periodo" id="cboPeriodo" class="form-control mb-md" data-bind="options: periodos, optionsText: 'nombre', optionsValue: 'idperiodomatricula', value: pediodoSeleccionado"></select>
-				</div>
-			</fieldset>
-		  </div>
-		  <div class="col-md-3">
-		  	<fieldset>
-				<div class="form-group">
-					<select name="sede"  id="cboSede" class="form-control mb-md" data-bind="options: sedes, optionsText: 'nombre', optionsValue: 'idsede',  optionsCaption: 'Seleccione una Sede', value: sedeSeleccionada"></select>
-				</div>
-			</fieldset>
-		  </div>
-		  <div class="col-md-3">
-		  	<fieldset>
-				<div class="form-group">
-					<select name="nivel"  id="cboNivel" class="form-control mb-md" data-bind="options: niveles, optionsText: 'nombre', optionsValue: 'idnivel',  optionsCaption: 'Seleccione un Nivel', value: nivelSeleccionado"></select>
-				</div>
-			</fieldset>
-		  </div>
-			<div class="col-md-3">
-		  	<fieldset>
-				<div class="form-group">
-					<select name="grado"  id="cboGrado" class="form-control mb-md" data-bind="options: grados, optionsText: 'nombre', optionsValue: 'idgrado',  optionsCaption: 'Seleccione un Grado', value: gradoSeleccionado"></select>
-				</div>
-			</fieldset>
-			</div>
-		</div>		
+		<div id="academica" class="tab-pane">
+			<h2>Registro Académico</h2>
+			
 
-				<div class="col-xs-5">
-					<label>Estado de Matricula</label> <br>
-					<div class="btn-group" data-toggle="buttons">
-					@foreach($EstadoMatricula as $estado )
-						<label class="btn btn-default  btn-sm <?php echo($matricula->idestadomatricula == $estado->idestadomatricula ? 'active' :''); ?>">
-							<input type="radio" id="validate" name="alu_estado" autocomplete="off" value="{!! $estado->idestadomatricula !!}" <?php echo($matricula->idestadomatricula == $estado->idestadomatricula ? 'checked="checked"' :''); ?>> 
-							{!! $estado->nombre !!}
-						</label>
-					@endforeach	
-					</div>
-				</div>
+			<div class="col-md-12">
 
-				<div class="col-xs-5">
-					<label>Estado del Alumno</label> <br>
-					<div class="btn-group" data-toggle="buttons">
-					@foreach($EstadoAlumno as $estadoAlumno )					
-						<label class="btn btn-default  btn-sm <?php echo($estadoAlumno->idestadoalumno == $alumno->idestadoalumno ? 'active' :''); ?> ">
-							<input type="radio" id="validate" name="estadoalumno" autocomplete="off" value="{!! $estadoAlumno->idestadoalumno !!}" <?php echo($estadoAlumno->idestadoalumno == $alumno->idestadoalumno ? 'checked="checked"' :''); ?> > 
-							{!! $estadoAlumno->nombre !!}
-						</label>
-					@endforeach	
-					</div>
+				<div class="table-responsive">
+					<table class="table table-hover mb-none">
+						<thead>
+							<tr>
+								<th>Sede</th>
+								<th>Nivel</th>
+								<th>Grado</th>
+								<th>Sección</th>
+								<th>Pensión</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>La Brisas</td>
+								<td>Primaria</td>
+								<td>1ero</td>
+								<td>A</td>
+								<td><strong>ESPECIAL:</strong> S/. 280</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
+				
+				<div class="panel-group" id="accordionSuccess">
+					<div class="panel panel-accordion panel-accordion-info">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionInfo" href="#collapseInfoOne">
+									Cambiar matricula académica
+								</a>
+							</h4>
+						</div>
 
-				<div class="col-xs-2">
-					<div class="form-group">
-						<p>¿Impedimento?</p>
-						<div class="col-sm-12">
-							<div class="radio-custom radio-danger">
-								<input type="radio" id="radioExample5" name="impedimento" value="1" <?php echo($alumno->impedimento == 1 ? 'checked="checked"' :''); ?> >
-								<label for="radioExample5">Si</label>
+						<div id="collapseInfoOne" class="accordion-body collapse">
+							<div class="panel-body">
+								<div class="alert alert-info">
+									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+									<p>Considerar la cantidad de vacantes disponibles previamente. <strong>Este proceso se ejecutará con o sin vacantes disponibles</strong></p>
+								</div>
+								<div class="form-group">
+									<b>Se Matriculó para: </b><code>Es importante seleccionar las siguientes opciones:</code><br />	
+									<div class="row">
+									  <div class="col-md-3">
+									  	<fieldset>
+											<div class="form-group">
+												<select name="periodo" id="cboPeriodo" class="form-control mb-md" data-bind="options: periodos, optionsText: 'nombre', optionsValue: 'idperiodomatricula', value: pediodoSeleccionado"></select>
+											</div>
+										</fieldset>
+									  </div>
+									  <div class="col-md-3">
+									  	<fieldset>
+											<div class="form-group">
+												<select name="sede"  id="cboSede" class="form-control mb-md" data-bind="options: sedes, optionsText: 'nombre', optionsValue: 'idsede',  optionsCaption: 'Seleccione una Sede', value: sedeSeleccionada"></select>
+											</div>
+										</fieldset>
+									  </div>
+									  <div class="col-md-3">
+									  	<fieldset>
+											<div class="form-group">
+												<select name="nivel"  id="cboNivel" class="form-control mb-md" data-bind="options: niveles, optionsText: 'nombre', optionsValue: 'idnivel',  optionsCaption: 'Seleccione un Nivel', value: nivelSeleccionado"></select>
+											</div>
+										</fieldset>
+									  </div>
+										<div class="col-md-3">
+									  	<fieldset>
+											<div class="form-group">
+												<select name="grado"  id="cboGrado" class="form-control mb-md" data-bind="options: grados, optionsText: 'nombre', optionsValue: 'idgrado',  optionsCaption: 'Seleccione un Grado', value: gradoSeleccionado"></select>
+											</div>
+										</fieldset>
+										</div>
+									</div>
+								</div>
 							</div>
-							<div class="radio-custom radio-danger">
-								<input type="radio" id="radioExample4" name="impedimento" value="0" <?php echo($alumno->impedimento == 0 ? 'checked="checked"' :''); ?>>
-								<label for="radioExample4">No</label>
+
+							<div class="col-md-12">
+								<label>Tipo de Pension</label> <br>
+								<div class="btn-group" data-toggle="buttons">
+									@foreach($TipoPension as $pension )
+									<label class="btn btn-default  btn-sm tipopension" id="{!! $pension->idtipopension !!}">
+										<input type="radio" name="alu_tipopension" autocomplete="off" value="{!! $pension->idtipopension !!} "> 
+										{!! $pension->nombre !!} 
+									</label>
+									@endforeach
+									<div class="selectPension" style="display:none">
+										<div class="form-group">
+											<select name="pension" id="pension" class="form-control mb-md" data-bind="value: pension"></select>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-5">
+						<label>Estado de Matricula</label> <br>
+						<div class="btn-group" data-toggle="buttons">
+						@foreach($EstadoMatricula as $estado )
+							<label class="btn btn-default  btn-sm <?php echo($matricula->idestadomatricula == $estado->idestadomatricula ? 'active' :''); ?>">
+								<input type="radio" id="validate" name="alu_estado" autocomplete="off" value="{!! $estado->idestadomatricula !!}" <?php echo($matricula->idestadomatricula == $estado->idestadomatricula ? 'checked="checked"' :''); ?>> 
+								{!! $estado->nombre !!}
+							</label>
+						@endforeach	
+						</div>
+					</div>
+
+					<div class="col-xs-5">
+						<label>Estado del Alumno</label> <br>
+						<div class="btn-group" data-toggle="buttons">
+						@foreach($EstadoAlumno as $estadoAlumno )					
+							<label class="btn btn-default  btn-sm <?php echo($estadoAlumno->idestadoalumno == $alumno->idestadoalumno ? 'active' :''); ?> ">
+								<input type="radio" id="validate" name="estadoalumno" autocomplete="off" value="{!! $estadoAlumno->idestadoalumno !!}" <?php echo($estadoAlumno->idestadoalumno == $alumno->idestadoalumno ? 'checked="checked"' :''); ?> > 
+								{!! $estadoAlumno->nombre !!}
+							</label>
+						@endforeach	
+						</div>
+					</div>
+
+					<div class="col-xs-2">
+						<div class="form-group">
+							<p>¿Impedimento?</p>
+							<div class="col-sm-12">
+								<div class="radio-custom radio-danger">
+									<input type="radio" id="radioExample5" name="impedimento" value="1" <?php echo($alumno->impedimento == 1 ? 'checked="checked"' :''); ?> >
+									<label for="radioExample5">Si</label>
+								</div>
+								<div class="radio-custom radio-danger">
+									<input type="radio" id="radioExample4" name="impedimento" value="0" <?php echo($alumno->impedimento == 0 ? 'checked="checked"' :''); ?>>
+									<label for="radioExample4">No</label>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<div style="clear:both"></div>
+	
 		</div>
-
 		<div class="panel-footer">
 			<button class="btn btn-primary" type="submit">Actualizar Alumno</button>
 			<a href="{!! route('alumnobuscar') !!}" class="btn btn-default ml-sm">Cancelar</a>
-		</div>	
+		</div>
 	</div>
-
 	{!!Form::close()!!}		
 </div>
 @stop
@@ -384,142 +456,36 @@
 <!--knockout-->
 {!! Html::script('assets/javascripts/knockout-3.3.0.js') !!}
 
-<!-- KnockoutJS Mapping http://knockoutjs.com/documentation/plugins-mapping.html -->
-{!! Html::script('assets/javascripts/knockout.mapping.min.js') !!}
-<script>
-	var baseURL = "{!! config('app.urlglobal') !!}";
-	function VacantesFormViewModel () {
-		var fo = this;
+<script type="text/javascript">
+	$(document).ready(function(){
+		var baseURL = "{!! config('app.urlglobal') !!}";	
+	    var sede  = $.cookie("idsede");
+	    var nivel = $.cookie("idnivel");		
+	    $(".tipopension").click(function(){
+	    	var tipopension =  $(this).attr('id');
+		    $.ajax({
+		    	type: "GET",
+		    	url: baseURL + "/api/v1/getPensiones",
+		    	data: { tipo : tipopension, sede : sede, nivel : nivel},
+		    	dataType: "json",
+		    	contentType: "application/json; charset=utf-8",
+		    	success: function (data) {		    		
+		    		$(".selectPension").show();
+		    		var $selectPension = $("#pension");
+            		$selectPension.empty();
+            		$selectPension.append($("<option>Seleccione pension</option>"));
 
-		fo.periodos = ko.observableArray([]);
-		fo.pediodoSeleccionado = ko.observable(null);
-		fo.sedes    = ko.observableArray([]);
-		fo.sedeSeleccionada    = ko.observable(null);
-		fo.niveles  = ko.observableArray([]);
-		fo.nivelSeleccionado   = ko.observable(null);
-		fo.grados   = ko.observableArray([]);
-		fo.gradoSeleccionado   = ko.observable(null);
-		fo.secciones= ko.observableArray([]);
-		fo.seccionSeleccionada = ko.observable(null);
-		fo.aulas    = ko.observableArray([]);
-		fo.aulaSeleccionada    = ko.observable(null);
+		    		$.each(data.pensiones, function(i, item) {
+		                $selectPension.append($("<option></option>").attr("value", item.idpension).text(item.monto));
+		            }); 
 
-
-
-		fo.cargarsedes = function () {
-			$.ajax({
-				type: "GET",
-				url: baseURL + "/api/v1/getSedes",
-				dataType: "json",               
-				contentType: "application/json; charset=utf-8",
-				success: function (e) {
-					var sedesRaw =  e.sedes;
-                //limpio el arrray
-                fo.sedes.removeAll();
-                for (var i = 0; i < sedesRaw.length; i++) {
-                	fo.sedes.push(sedesRaw[i]);
-                };
-            },
-            error: function (r) {
-                // Luego...
-            }
-        });
-		}
-
-		fo.cargarNiveles = function (sedeSeleccionada) {
-			$.ajax({
-				type: "GET",
-				url: baseURL + "/api/v1/getNivel",
-				data: {sede:sedeSeleccionada},
-				dataType: "json",
-				contentType: "application/json; charset=utf-8",
-				success: function (e) {
-					var nivelesRaw =  e.nivel;
-                //limpio el arrray
-                fo.niveles.removeAll();
-                for (var i = 0; i < nivelesRaw.length; i++) {
-                	fo.niveles.push(nivelesRaw[i]);
-                };
-            },
-            error: function (r) {
-                // Luego...
-            }
-        });
-		}
-
-		fo.sedeSeleccionada.subscribe(function(newValue) {
-			if (newValue) {
-				fo.cargarNiveles(newValue);
-			}
-		});
-
-		fo.cargarGrados = function (sede , nivel) {
-			$.ajax({
-				type: "GET",
-				url: baseURL + "/api/v1/getGrados",
-				data: {sede:sede, nivel:nivel},
-				dataType: "json",
-				contentType: "application/json; charset=utf-8",
-				success: function (e) {
-					var gradosRaw =  e.grado;
-                //limpio el arrray
-                fo.grados.removeAll();
-                for (var i = 0; i < gradosRaw.length; i++) {
-                	fo.grados.push(gradosRaw[i]);
-                };
-            },
-            error: function (r) {
-                // Luego...
-            }
-        });
-		}
-
-		fo.nivelSeleccionado.subscribe(function(newValue) {
-			if (newValue) {
-				fo.cargarGrados(fo.sedeSeleccionada() ,newValue);
-			}
-		});
-
-		fo.cargarSecciones = function (sede , nivel, grado) {
-			$.ajax({
-				type: "GET",
-				url: baseURL + "/api/v1/getSecciones",
-				data: {sede:sede, nivel:nivel, grado:grado},
-				dataType: "json",
-				contentType: "application/json; charset=utf-8",
-				success: function (e) {
-					var seccionRaw =  e.secciones;
-                //limpio el arrray
-                fo.secciones.removeAll();
-                for (var i = 0; i < seccionRaw.length; i++) {
-                	fo.secciones.push(seccionRaw[i]);
-                };
-            },
-            error: function (r) {
-                // Luego...
-            }
-        });
-		}
-
-		fo.gradoSeleccionado.subscribe(function(newValue) {
-			if (newValue) {
-				fo.cargarSecciones(fo.sedeSeleccionada(), fo.nivelSeleccionado(), newValue);
-			}
-		});
-
-
-		fo.seccionSeleccionada.subscribe(function(newValue) {
-			if (newValue) {
-				fo.cargarAulas(fo.sedeSeleccionada(), fo.nivelSeleccionado(), fo.gradoSeleccionado(), newValue);
-			}
-		});
-
-		fo.cargarsedes();       
-	}    
-	var viewModel = new VacantesFormViewModel();
-
-	$(function(){
-		ko.applyBindings(viewModel, $("#page-wrapper")[0]); 
-	});
-</script>
+		    	},
+		    	error: function (data) {
+		    		console.log(data);
+		    		$(".selectPension").hide();
+		    	}
+		    });	    
+	    });
+    });
+	</script>
 @stop

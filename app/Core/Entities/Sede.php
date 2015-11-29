@@ -14,4 +14,9 @@ class Sede extends Model
     'sede_direccion', 
     'usercreate'
     ];
+
+    public function niveles()
+    {
+        return $this->hasMany('App\Core\Entities\Nivel','idsede','idsede');
+    }
 }
