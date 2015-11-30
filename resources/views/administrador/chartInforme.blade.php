@@ -30,9 +30,7 @@ elseif(Auth::user()->idrol==5)
 					<div class="panel-actions">
 						<a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
 					</div>
-	
-					<h2 class="panel-title">Recepción de informes por sede</h2>
-					<p class="panel-subtitle">Informes mes por mes de las dos sedes existentes.</p>
+					<h2 class="panel-title">Recepción de informes personalizado</h2>
 				</header>
 				<div class="panel-body">
 				{!! Form::open(['route' => 'searchInformesGraph', 'method' => 'post']) !!}
@@ -66,22 +64,29 @@ elseif(Auth::user()->idrol==5)
 				</div>
 				
 				<div class="panel-body">
-					<!-- Morris: Bar -->
-					<div class="chart chart-md" id="morrisBar"></div>
+					<div class="col-md-12">
+			<section class="panel">
+				<div class="panel-body">
+					<!-- Flot: Bars -->
+					<div class="chart chart-md" id="flotBars"></div>
 					<script type="text/javascript">
 	
-						var morrisBarData = [
-						@foreach($query as $data)
-						{!! "{" !!}
+						var flotBarsData = [
 
-							y: "{{ $data->mes }}",
-							a: {!! $data->brisas !!},
-							b: {!! $data->sector2 !!}
+							@foreach($query as $data)
+							{!! "[" !!}
 
-						{!! "}," !!}
-						@endforeach
+								"{!! $data->mes !!}", {!! $data->qty !!},
+
+							{!! "]," !!}
+							@endforeach
+
 						];
 					</script>
+	
+				</div>
+			</section>
+		</div>
 				</div>
 			</section>
 		</div>
@@ -184,45 +189,7 @@ elseif(Auth::user()->idrol==5)
 	</div>
 	
 	<div class="row" style="display: none">
-		<div class="col-md-6">
-			<section class="panel">
-				<header class="panel-heading">
-					<div class="panel-actions">
-						<a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
-						<a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
-					</div>
-	
-					<h2 class="panel-title">Bars Chart</h2>
-					<p class="panel-subtitle">With the categories plugin you can plot categories/textual data easily.</p>
-				</header>
-				<div class="panel-body">
-	
-					<!-- Flot: Bars -->
-					<div class="chart chart-md" id="flotBars"></div>
-					<script type="text/javascript">
-	
-						var flotBarsData = [
-							["Jan", 28],
-							["Feb", 42],
-							["Mar", 25],
-							["Apr", 23],
-							["May", 37],
-							["Jun", 33],
-							["Jul", 18],
-							["Aug", 14],
-							["Sep", 18],
-							["Oct", 15],
-							["Nov", 4],
-							["Dec", 7]
-						];
-	
-						// See: assets/javascripts/ui-elements/examples.charts.js for more settings.
-	
-					</script>
-	
-				</div>
-			</section>
-		</div>
+		
 		<div class="col-md-6">
 			<section class="panel">
 				<header class="panel-heading">

@@ -17,6 +17,11 @@ class LoginController extends Controller
     {
         $this->middleware('guest', ['except' => 'getLogout']);
     }
+
+    public function home()
+    {
+        return view('administrador.index');
+    }
     
     public function postLogin(LoginRequest $request)
     {

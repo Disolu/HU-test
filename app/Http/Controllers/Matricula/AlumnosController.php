@@ -273,8 +273,28 @@ class AlumnosController extends Controller
     $otherdata = Alumno::find($id)->otherdata;
     $archivos  = Alumno::find($id)->archivos;        
     $matricula  = Alumno::find($id)->matricula; 
-    $TipoPension     = $this->VacanteRepo->getTipoPension();
-    //dd($matricula);
+    $TipoPension = $this->VacanteRepo->getTipoPension();
+
+    $dataMatricula = DB::table('alumnomatricula as ma')
+      ->select(
+        's.nombre as sede',
+        'n.nombre as nivel','n.idnivel',
+        'g.nombre as grado','g.idgrado',
+        'se.nombre as seccion','se.idseccion',
+        'p.monto as pension','p.idpension',
+        'tp.nombre as tipopension')
+
+      ->leftJoin('sede as s','s.idsede','=','ma.idsede')
+      ->leftJoin('nivel as n','n.idnivel','=','ma.idnivel')
+      ->leftJoin('grado as g','g.idgrado','=','ma.idgrado')
+      ->leftJoin('seccion as se','se.idseccion','=','ma.idseccion')
+      ->leftJoin('pension as p','p.idpension','=','ma.idpension')
+      ->leftJoin('tipopension as tp','tp.idtipopension','=','ma.idtipopension')
+      ->where('idalumno', $id)
+      ->orderBy('idalumnomatricula','desc')
+      ->take(1)
+      ->get();
+
     //Si no existen relaciones con este alumno.
     /*
       Esto puede suceder, porque metieron info en la tabla de forma manual y no se creearon las relaciones
@@ -282,7 +302,7 @@ class AlumnosController extends Controller
     if($apoderado or $otherdata or $archivos){
       $EstadoAlumno    = $this->VacanteRepo->getEstadoAlumno();
       $EstadoMatricula = $this->VacanteRepo->getEstadoMatricula();
-      return view('matricula.alumnos.actualizar', compact('TipoPension','matricula','alumno','apoderado','otherdata','archivos','EstadoAlumno','EstadoMatricula','id'));   
+      return view('matricula.alumnos.actualizar', compact('dataMatricula','TipoPension','matricula','alumno','apoderado','otherdata','archivos','EstadoAlumno','EstadoMatricula','id'));   
     }
     else{
       Session::flash('message-danger', 'No existen relaciones suficientes con el alumno que se desea editar'); 

@@ -12,6 +12,8 @@ use App\Http\Requests\PensionRequest;
 use App\Core\Repositories\Administrador\PensionRepo;
 use App\Core\Repositories\PeriodoRepo;
 use App\Core\Entities\Pension;
+use DB;
+
 class PensionController extends Controller
 {
     protected $PensionRepo;
@@ -39,6 +41,25 @@ class PensionController extends Controller
             ], 200)
         ->setCallback($request->input('callback'));
     }
+
+    public function getPensionesUpdateAlumno(Request $request)
+    {
+        $idtipo  = $_GET['tipo'];
+        $idnivel = $_GET['nivel'];
+
+        $getLastPeriodo = $this->PeriodoRepo->getLastPeriodo();
+        $pensiones = DB::table('pension')
+        ->where('idtipopension', $idtipo)
+        ->where('idnivel', $idnivel)
+        ->where('idperiodomatricula', $getLastPeriodo[0]->idperiodomatricula)
+        ->get();
+
+        return response()->json([
+            'pensiones' =>  $pensiones
+            ], 200)
+        ->setCallback($request->input('callback'));
+    }
+
     public function index()
     {
         //Para llenar los combos

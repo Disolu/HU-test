@@ -315,11 +315,11 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td>La Brisas</td>
-								<td>Primaria</td>
-								<td>1ero</td>
-								<td>A</td>
-								<td><strong>ESPECIAL:</strong> S/. 280</td>
+								<td>{!! $dataMatricula[0]->sede !!}</td>
+								<td>{!! $dataMatricula[0]->nivel !!}</td>
+								<td>{!! $dataMatricula[0]->grado !!}</td>
+								<td>{!! $dataMatricula[0]->seccion !!}</td>
+								<td><strong>{!! $dataMatricula[0]->tipopension !!}:</strong> S/. {!! $dataMatricula[0]->pension !!}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -342,7 +342,7 @@
 									<p>Considerar la cantidad de vacantes disponibles previamente. <strong>Este proceso se ejecutará con o sin vacantes disponibles</strong></p>
 								</div>
 								<div class="form-group">
-									<b>Se Matriculó para: </b><code>Es importante seleccionar las siguientes opciones:</code><br />	
+									<b>Seleccione información para el alumno: </b><code>Es importante seleccionar las siguientes opciones:</code><br />	
 									<div class="row">
 									  <div class="col-md-3">
 									  	<fieldset>
@@ -358,6 +358,7 @@
 											</div>
 										</fieldset>
 									  </div>
+
 									  <div class="col-md-3">
 									  	<fieldset>
 											<div class="form-group">
@@ -365,6 +366,7 @@
 											</div>
 										</fieldset>
 									  </div>
+
 										<div class="col-md-3">
 									  	<fieldset>
 											<div class="form-group">
@@ -372,26 +374,29 @@
 											</div>
 										</fieldset>
 										</div>
+
+										<div class="col-md-12">
+											<label><strong>Tipo de Pension</strong></label> <br>
+											<div class="btn-group" data-toggle="buttons">
+												@foreach($TipoPension as $pension )
+												<label class="btn btn-default  btn-sm tipopension" id="{!! $pension->idtipopension !!}">
+													<input type="radio" name="alu_tipopension" autocomplete="off" value="{!! $pension->idtipopension !!} "> 
+													{!! $pension->nombre !!} 
+												</label>
+												@endforeach
+												<div class="selectPension" style="display:none">
+													<div class="form-group">
+														<select name="pension" id="pension" class="form-control mb-md" data-bind="value: pension"></select>
+													</div>
+												</div>
+											</div>
+										</div>
+
 									</div>
 								</div>
 							</div>
 
-							<div class="col-md-12">
-								<label>Tipo de Pension</label> <br>
-								<div class="btn-group" data-toggle="buttons">
-									@foreach($TipoPension as $pension )
-									<label class="btn btn-default  btn-sm tipopension" id="{!! $pension->idtipopension !!}">
-										<input type="radio" name="alu_tipopension" autocomplete="off" value="{!! $pension->idtipopension !!} "> 
-										{!! $pension->nombre !!} 
-									</label>
-									@endforeach
-									<div class="selectPension" style="display:none">
-										<div class="form-group">
-											<select name="pension" id="pension" class="form-control mb-md" data-bind="value: pension"></select>
-										</div>
-									</div>
-								</div>
-							</div>
+							
 						</div>
 
 					</div>
@@ -463,10 +468,11 @@
 	    var nivel = $.cookie("idnivel");		
 	    $(".tipopension").click(function(){
 	    	var tipopension =  $(this).attr('id');
+	    	var nivelpe = {!! $dataMatricula[0]->idnivel !!};
 		    $.ajax({
 		    	type: "GET",
-		    	url: baseURL + "/api/v1/getPensiones",
-		    	data: { tipo : tipopension, sede : sede, nivel : nivel},
+		    	url: baseURL + "/api/v1/getPensionesUpdateAlumno",
+		    	data: { tipo : tipopension, nivel: 1 },
 		    	dataType: "json",
 		    	contentType: "application/json; charset=utf-8",
 		    	success: function (data) {		    		

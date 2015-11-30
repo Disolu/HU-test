@@ -40,7 +40,7 @@
 		@section('header')
 		<header class="header">
 			<div class="logo-container">
-				<a href="#" class="logo">
+				<a href="{{ route('home')}}" class="logo">
 					<img src="{{ asset('assets/images/logo.png') }}" height="35" alt="Hipolito Unanue" />
 				</a>
 				<div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
@@ -110,7 +110,7 @@
 							@section('menu')
 							<ul class="nav nav-main">
 								<li class="nav-active">
-									<a href="#">
+									<a href="{{ route('home')}}">
 										<i class="fa fa-home" aria-hidden="true"></i>
 										<span>Intranet - Hipolito Unanue</span>
 									</a>

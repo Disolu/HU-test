@@ -9,6 +9,8 @@ use App\Http\Requests\InformesRequest;
 use App\Http\Requests\InformesSearchRequest;
 use App\Core\Repositories\InformesRepo;
 use Session;
+use DB;
+
 class InformesController extends Controller
 {
     private $path = "informe";
@@ -80,5 +82,40 @@ class InformesController extends Controller
         $periodos = $this->informesRepo->allPeriodos();
         $vs = $this->informesRepo->MatriculaVSInformes();
         return view("{$this->path}.vs", compact("vs",'periodos'));
+    }
+
+    public function home()
+    {
+      $query = DB::table('informes')
+      ->selectRaw(
+       "DATE_FORMAT(created_at,'%Y%m') as mes, 
+       (select count(*) from informes where idsede = 1 and DATE_FORMAT(created_at,'%Y%m') = mes) as brisas, 
+       (select count(*) from informes where idsede = 2 and DATE_FORMAT(created_at,'%Y%m') = mes) as sector2")
+      ->groupBy(DB::raw( "DATE_FORMAT(created_at,'%Y%m')" ) )
+      ->get();
+
+      return view('administrador.index', compact('query'));
+    }
+
+    public function searchInformesGraph(Request $request)
+    {
+      $query = DB::table('informes')
+      ->selectRaw('count(*) as qty, DATE_FORMAT(created_at,"%Y%m") as mes');
+
+      if($request['sede'])
+      {
+        $query->where('idsede', $request['sede']);
+      }
+      if($request['nivel'])
+      {
+        $query->where('idnivel', $request['nivel']);
+      }
+      if($request['grado'])
+      {
+        $query->where('idgrado', $request['grado']);
+      }
+
+      $query->groupBy(DB::raw( "DATE_FORMAT(created_at,'%Y%m')" ) );
+      return view('administrador.chartInforme')->with('query',$query->get());
     }
 }

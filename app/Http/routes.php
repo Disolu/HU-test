@@ -106,6 +106,8 @@ Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
 
 	    //Traer las pensiones con filtros
 		Route::get('getPensiones',  ['as' => 'getPensiones', 'uses' => 'Administrador\PensionController@getPensiones']);    	    
+		Route::get('getPensionesUpdateAlumno',  ['as' => 'getPensionesUpdateAlumno', 'uses' => 'Administrador\PensionController@getPensionesUpdateAlumno']);    	    
+    
     });
 
 });
@@ -113,9 +115,8 @@ Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
 //ADMINISTRADOR
 Route::group( ['middleware' => ['auth','administrador'], 'prefix'=>'admin'], function() {
 
-	Route::get('/', function () {
-	    return view('administrador.index');
-	});
+	Route::get('/', ['as' => 'home', 'uses' => 'InformesController@home']);
+	Route::post('/informes/graph', ['as' => 'searchInformesGraph', 'uses' => 'InformesController@searchInformesGraph']);
 
 	//Área de Institución
 	Route::group( ['middleware' => ['auth','administrador'], 'prefix'=>'institucion'], function() {
