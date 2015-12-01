@@ -26,57 +26,95 @@
 	<div class="panel-heading">
 		<h3 class="panel-title">Consula: Alumnos matriculados</h3>
 	</div>
-	<div class="panel-body">		
-	{!! Form::open(['route' => 'reportesAlumnos', 'method' => 'post']) !!}
-	{!! csrf_field() !!}
+	<div class="panel-body">
+	{!! Form::open(['route' => ['updatealumnoAcademico',$id], 'method' => 'put']) !!}
 
-		<div class="row">
-		  <div class="col-md-3">
-		  	<fieldset>
-				<div class="form-group">
-					<select name="periodo" id="cboPeriodo" class="form-control mb-md" data-bind="options: periodos, optionsText: 'nombre', optionsValue: 'idperiodomatricula', value: pediodoSeleccionado"></select>
+			<h2>Registro Académico</h2>
+			<div class="col-md-12">
+				<div class="table-responsive">
+					<table class="table table-hover mb-none">
+						<thead>
+							<tr>
+								<th>Sede</th>
+								<th>Nivel</th>
+								<th>Grado</th>
+								<th>Sección</th>
+								<th>Pensión</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>{!! $dataMatricula[0]->sede !!}</td>
+								<td>{!! $dataMatricula[0]->nivel !!}</td>
+								<td>{!! $dataMatricula[0]->grado !!}</td>
+								<td>{!! $dataMatricula[0]->seccion !!}</td>
+								<td><strong>{!! $dataMatricula[0]->tipopension !!}:</strong> S/. {!! $dataMatricula[0]->pension !!}</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
-			</fieldset>
-		  </div>
-
-		  <div class="col-md-3">
-		  	<fieldset>
 				<div class="form-group">
-					<select name="sede"  id="cboSede" class="form-control mb-md" data-bind="options: sedes, optionsText: 'nombre', optionsValue: 'idsede',  optionsCaption: 'Seleccione una Sede', value: sedeSeleccionada"></select>
-				</div>
-			</fieldset>
-		  </div>
+					<b>Seleccione información para el alumno: </b><code>Es importante seleccionar las siguientes opciones:</code><br />	
+					<div class="row">
+					  <div class="col-md-3">
+					  	<fieldset>
+							<div class="form-group">
+								<select name="sede"  id="cboSede" class="form-control mb-md" data-bind="options: sedes, optionsText: 'nombre', optionsValue: 'idsede',  optionsCaption: 'Seleccione una Sede', value: sedeSeleccionada"></select>
+							</div>
+						</fieldset>
+					  </div>
 
-		  <div class="col-md-2">
-		  	<fieldset>
-				<div class="form-group">
-					<select name="nivel"  id="cboNivel" class="form-control mb-md" data-bind="options: niveles, optionsText: 'nombre', optionsValue: 'idnivel',  optionsCaption: 'Seleccione un Nivel', value: nivelSeleccionado"></select>
-				</div>
-			</fieldset>
-		  </div>
+					  <div class="col-md-3">
+					  	<fieldset>
+							<div class="form-group">
+								<select name="nivel"  id="cboNivel" class="form-control mb-md" data-bind="options: niveles, optionsText: 'nombre', optionsValue: 'idnivel',  optionsCaption: 'Seleccione un Nivel', value: nivelSeleccionado"></select>
+							</div>
+						</fieldset>
+					  </div>
 
-		  <div class="col-md-2">
-		  	<fieldset>
-				<div class="form-group">
-					<select name="grado"  id="cboGrado" class="form-control mb-md" data-bind="options: grados, optionsText: 'nombre', optionsValue: 'idgrado',  optionsCaption: 'Seleccione un Grado', value: gradoSeleccionado"></select>
-				</div>
-			</fieldset>
-		  </div>
+						<div class="col-md-3">
+					  	<fieldset>
+							<div class="form-group">
+								<select name="grado"  id="cboGrado" class="form-control mb-md" data-bind="options: grados, optionsText: 'nombre', optionsValue: 'idgrado',  optionsCaption: 'Seleccione un Grado', value: gradoSeleccionado"></select>
+							</div>
+						</fieldset>
+						</div>
 
-		  <div class="col-md-2">
-			  <fieldset>
-					<div class="form-group">
-						{!! Form::select('filtro', array('1' => 'Nuevos', '2' => 'Antiguos'), '1'); !!}
+						<div class="col-md-3">
+					  	<fieldset>
+							<div class="form-group">
+								<select name="seccion"  id="cboSeccion" class="form-control mb-md" data-bind="options: secciones, optionsText: 'nombre', optionsValue: 'idseccion',  optionsCaption: 'Seleccione una Sección', value: seccionSeleccionado"></select>
+							</div>
+						</fieldset>
+						</div>
 					</div>
-				</fieldset>
-		  </div>
+				</div>
+
+				<div class="col-md-12">
+					<label><strong>Tipo de Pension</strong></label> <br>
+					<div class="btn-group" data-toggle="buttons">
+						@foreach($TipoPension as $pension )
+						<label class="btn btn-default  btn-sm tipopension" id="{!! $pension->idtipopension !!}">
+							<input type="radio" name="alu_tipopension" autocomplete="off" value="{!! $pension->idtipopension !!} "> 
+							{!! $pension->nombre !!} 
+						</label>
+						@endforeach
+						<div class="selectPension" style="display:none">
+							<div class="form-group">
+								<select name="pension" id="pension" class="form-control mb-md" data-bind="value: pension"></select>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				
+			</div>
+			<div style="clear:both"></div>
+		<div class="panel-footer">
+			<button class="btn btn-primary" type="submit">Actualizar Alumno</button>
+			<a href="{!! route('alumnobuscar') !!}" class="btn btn-default ml-sm">Cancelar</a>
 		</div>
-	</div>
-	
-	<div class="panel-footer">
-		<button type="submit" id="consultar" class="btn btn-primary">Consultar</button>
-	</div>
-	{!! Form::close() !!}
+	{!!Form::close()!!}		
 </div>
 @stop
 
@@ -84,13 +122,39 @@
 @parent
 <!--knockout-->
 {!! Html::script('assets/javascripts/knockout-3.3.0.js') !!}
+<script type="text/javascript">
+	$(document).ready(function(){
+		var baseURL = "{!! config('app.urlglobal') !!}";	
+	    var sede  = $.cookie("idsede");
+	    var nivel = $.cookie("idnivel");		
+	    $(".tipopension").click(function(){
+	    	var tipopension =  $(this).attr('id');
+	    	var nivelpe = {!! $dataMatricula[0]->idnivel !!};
+		    $.ajax({
+		    	type: "GET",
+		    	url: baseURL + "/api/v1/getPensionesUpdateAlumno",
+		    	data: { tipo : tipopension, nivel: 1 },
+		    	dataType: "json",
+		    	contentType: "application/json; charset=utf-8",
+		    	success: function (data) {		    		
+		    		$(".selectPension").show();
+		    		var $selectPension = $("#pension");
+            		$selectPension.empty();
+            		$selectPension.append($("<option>Seleccione pension</option>"));
 
-<!-- KnockoutJS Mapping http://knockoutjs.com/documentation/plugins-mapping.html -->
-{!! Html::script('assets/javascripts/knockout.mapping.min.js') !!}
+		    		$.each(data.pensiones, function(i, item) {
+		                $selectPension.append($("<option></option>").attr("value", item.idpension).text(item.monto));
+		            }); 
 
-<!-- jQuery Cookie -->
-{!! Html::script('assets/javascripts/jquery.cookie.js') !!}
-<script>
+		    	},
+		    	error: function (data) {
+		    		console.log(data);
+		    		$(".selectPension").hide();
+		    	}
+		    });	    
+	    });
+    });
+	</script><script>
 	var baseURL = "{!! config('app.urlglobal') !!}";
 	function VacantesFormViewModel () {
 		var fo = this;
@@ -252,4 +316,5 @@
 		ko.applyBindings(viewModel, $("#page-wrapper")[0]); 
 	});
 </script>
+
 @stop

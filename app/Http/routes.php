@@ -47,6 +47,16 @@ Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
 	Route::get('edit/{id}', ['as' => 'alumno', 'uses' => 'Matricula\AlumnosController@edit'])->where('id', '[0-9]+');
 	Route::put('edit/{id}', ['as' => 'updatealumno', 'uses' => 'Matricula\AlumnosController@update'])->where('id', '[0-9]+');
 
+	Route::put('edit/academico/{id}', [
+		'as' => 'updatealumnoAcademico', 
+		'uses' => 'Matricula\AlumnosController@updatealumnoAcademico'])
+	->where('id', '[0-9]+');
+	
+	Route::get('edit/academico/{id}', [
+		'as' => 'alumnoAcademico', 
+		'uses' => 'Matricula\AlumnosController@editAcademico'])
+	->where('id', '[0-9]+');
+
 	//Consultar Vacante para un alumno existente
 	Route::get('searchvacante/{id}', ['as' => 'searchvacante', 'uses' => 'Matricula\VacanteController@viewVacante'])->where('id', '[0-9]+');
 	Route::get('vacante', ['as' => 'vacante', 'uses' => 'Matricula\VacanteController@getVacante']);

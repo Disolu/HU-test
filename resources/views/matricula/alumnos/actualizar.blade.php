@@ -298,10 +298,8 @@
 
 		<div id="academica" class="tab-pane">
 			<h2>Registro Académico</h2>
-			
 
 			<div class="col-md-12">
-
 				<div class="table-responsive">
 					<table class="table table-hover mb-none">
 						<thead>
@@ -311,6 +309,7 @@
 								<th>Grado</th>
 								<th>Sección</th>
 								<th>Pensión</th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -320,87 +319,31 @@
 								<td>{!! $dataMatricula[0]->grado !!}</td>
 								<td>{!! $dataMatricula[0]->seccion !!}</td>
 								<td><strong>{!! $dataMatricula[0]->tipopension !!}:</strong> S/. {!! $dataMatricula[0]->pension !!}</td>
+								<td><a href="{{ route('alumnoAcademico',$id) }}" class="mb-xs mt-xs mr-xs btn btn-danger">Editar</a></td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 				
-				<div class="panel-group" id="accordionSuccess">
-					<div class="panel panel-accordion panel-accordion-info">
-						<div class="panel-heading">
-							<h4 class="panel-title">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionInfo" href="#collapseInfoOne">
-									Cambiar matricula académica
-								</a>
-							</h4>
-						</div>
-
-						<div id="collapseInfoOne" class="accordion-body collapse">
-							<div class="panel-body">
-								<div class="alert alert-info">
-									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-									<p>Considerar la cantidad de vacantes disponibles previamente. <strong>Este proceso se ejecutará con o sin vacantes disponibles</strong></p>
-								</div>
-								<div class="form-group">
-									<b>Seleccione información para el alumno: </b><code>Es importante seleccionar las siguientes opciones:</code><br />	
-									<div class="row">
-									  <div class="col-md-3">
-									  	<fieldset>
-											<div class="form-group">
-												<select name="periodo" id="cboPeriodo" class="form-control mb-md" data-bind="options: periodos, optionsText: 'nombre', optionsValue: 'idperiodomatricula', value: pediodoSeleccionado"></select>
-											</div>
-										</fieldset>
-									  </div>
-									  <div class="col-md-3">
-									  	<fieldset>
-											<div class="form-group">
-												<select name="sede"  id="cboSede" class="form-control mb-md" data-bind="options: sedes, optionsText: 'nombre', optionsValue: 'idsede',  optionsCaption: 'Seleccione una Sede', value: sedeSeleccionada"></select>
-											</div>
-										</fieldset>
-									  </div>
-
-									  <div class="col-md-3">
-									  	<fieldset>
-											<div class="form-group">
-												<select name="nivel"  id="cboNivel" class="form-control mb-md" data-bind="options: niveles, optionsText: 'nombre', optionsValue: 'idnivel',  optionsCaption: 'Seleccione un Nivel', value: nivelSeleccionado"></select>
-											</div>
-										</fieldset>
-									  </div>
-
-										<div class="col-md-3">
-									  	<fieldset>
-											<div class="form-group">
-												<select name="grado"  id="cboGrado" class="form-control mb-md" data-bind="options: grados, optionsText: 'nombre', optionsValue: 'idgrado',  optionsCaption: 'Seleccione un Grado', value: gradoSeleccionado"></select>
-											</div>
-										</fieldset>
-										</div>
-
-										<div class="col-md-12">
-											<label><strong>Tipo de Pension</strong></label> <br>
-											<div class="btn-group" data-toggle="buttons">
-												@foreach($TipoPension as $pension )
-												<label class="btn btn-default  btn-sm tipopension" id="{!! $pension->idtipopension !!}">
-													<input type="radio" name="alu_tipopension" autocomplete="off" value="{!! $pension->idtipopension !!} "> 
-													{!! $pension->nombre !!} 
-												</label>
-												@endforeach
-												<div class="selectPension" style="display:none">
-													<div class="form-group">
-														<select name="pension" id="pension" class="form-control mb-md" data-bind="value: pension"></select>
-													</div>
-												</div>
-											</div>
-										</div>
-
-									</div>
-								</div>
+				<hr>
+				<div class="col-md-12">
+					<label><strong>Tipo de Pension</strong></label> <br>
+					<div class="btn-group" data-toggle="buttons">
+						@foreach($TipoPension as $pension )
+						<label class="btn btn-default  btn-sm tipopension" id="{!! $pension->idtipopension !!}">
+							<input type="radio" name="alu_tipopension" autocomplete="off" value="{!! $pension->idtipopension !!} "> 
+							{!! $pension->nombre !!} 
+						</label>
+						@endforeach
+						<div class="selectPension" style="display:none">
+							<div class="form-group">
+								<select name="pension" id="pension" class="form-control mb-md" data-bind="value: pension"></select>
 							</div>
-
-							
 						</div>
-
 					</div>
 				</div>
+				<hr>
+				<br><br><br>
 
 				<div class="row">
 					<div class="col-md-5">
@@ -444,6 +387,7 @@
 					</div>
 				</div>
 			</div>
+
 			<div style="clear:both"></div>
 	
 		</div>
@@ -458,9 +402,6 @@
 
 @section('scripts')
 @parent
-<!--knockout-->
-{!! Html::script('assets/javascripts/knockout-3.3.0.js') !!}
-
 <script type="text/javascript">
 	$(document).ready(function(){
 		var baseURL = "{!! config('app.urlglobal') !!}";	

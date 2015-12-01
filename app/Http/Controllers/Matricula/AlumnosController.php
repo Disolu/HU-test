@@ -266,6 +266,33 @@ class AlumnosController extends Controller
     }
   }
 
+  public function editAcademico($id)
+  {
+    $alumno = Alumno::find($id);
+    $TipoPension = $this->VacanteRepo->getTipoPension();
+    $dataMatricula = DB::table('alumnomatricula as ma')
+      ->select(
+        's.nombre as sede',
+        'n.nombre as nivel','n.idnivel',
+        'g.nombre as grado','g.idgrado',
+        'se.nombre as seccion','se.idseccion',
+        'p.monto as pension','p.idpension',
+        'tp.nombre as tipopension')
+
+      ->leftJoin('sede as s','s.idsede','=','ma.idsede')
+      ->leftJoin('nivel as n','n.idnivel','=','ma.idnivel')
+      ->leftJoin('grado as g','g.idgrado','=','ma.idgrado')
+      ->leftJoin('seccion as se','se.idseccion','=','ma.idseccion')
+      ->leftJoin('pension as p','p.idpension','=','ma.idpension')
+      ->leftJoin('tipopension as tp','tp.idtipopension','=','ma.idtipopension')
+      ->where('idalumno', $id)
+      ->orderBy('idalumnomatricula','desc')
+      ->take(1)
+      ->get();
+
+    return view('matricula.alumnos.actualizarAcademico', compact('dataMatricula','TipoPension','alumno','id'));   
+  }
+
   public function edit($id)
   {
     $alumno = Alumno::find($id);
@@ -396,5 +423,30 @@ class AlumnosController extends Controller
       ]);
     Session::flash('message-success', 'Se actualizo con éxito al alumno'); 
     return redirect()->route('alumnobuscar'); 
+  }
+
+  public function updatealumnoAcademico(Request $request, $id)
+  {
+    $matricula = DB::table('alumnomatricula')->where('idalumno', $id)->orderBy('idalumnomatricula','desc')->take(1)->get();
+
+    if($request['sede'] && $request['nivel'] && $request['grado'] && $request['seccion'] && $request['pension'] && $request['alu_tipopension'])
+    {
+      DB::table('alumnomatricula')
+        ->where('idalumnomatricula', $matricula[0]->idalumnomatricula)
+        ->update([
+          'idsede'      => $request['sede'],
+          'idnivel'     => $request['nivel'],
+          'idgrado'     => $request['grado'],
+          'idseccion'   => $request['seccion'],
+          'idpension'   => $request['pension'],
+          'idtipopension' => $request['alu_tipopension'],
+          'updated_at'  => date('Y-m-d H:i:s')
+          ]);
+    Session::flash('message-success', 'Se actualizo con éxito al alumno'); 
+    return redirect()->route('alumnobuscar'); 
+    }
+    Session::flash('message-danger', 'Se deben seleccionar todas las opciones'); 
+    return redirect()->back(); 
+    
   }
 }
