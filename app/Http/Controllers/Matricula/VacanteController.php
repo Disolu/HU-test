@@ -50,7 +50,7 @@ class VacanteController extends Controller
     
     public function getPeriodos(Request $request)
     {   
-        $data = $this->VacanteRepo->getAllPeriodos();
+        $data = $this->VacanteRepo->getLastPeriodo();
         return response()->json([
             'periodos' =>  $data
             ], 200)

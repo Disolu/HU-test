@@ -130,6 +130,8 @@ class AlumnosController extends Controller
   //Matricula de alumno existente
   public function registerMatricula(MatriculaRequest $request, $id)
   {
+    //dd($request->all());
+
     //Matriculando al Alumno
     $alumno = AlumnoMatricula::create([
       'idalumno'   => $id,
@@ -137,7 +139,6 @@ class AlumnosController extends Controller
       'idnivel'    => $request['nivel'],
       'idsede'     => $request['sede'],            
       'idgrado'    => $request['grado'],
-      'idaula'     => $request['aula'],
       'idperiodomatricula'=> $request['periodo'],
       'idestadomatricula'=> $request['estado'],
       'idtipopension'=> $request['alu_tipopension'],

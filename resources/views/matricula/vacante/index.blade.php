@@ -111,29 +111,25 @@
 				
 			</div>
 		</div>
-		{!! Form::close() !!}
+		
 	</div>
 	
 	<div class="panel-footer">
-		<button id="consultar" class="btn btn-primary" data-bind="click: consultaVacantes">Consultar</button>
+		<button id="consultar" type="submit" class="btn btn-primary">Matricular</button>
 	</div>
+	{!! Form::close() !!}
 </div>
 @stop
 
 @section('scripts')
 @parent
-<!--knockout-->
-{!! Html::script('http://knockoutjs.com/downloads/knockout-3.3.0.js') !!}
+	{!! Html::script('assets/javascripts/knockout-3.3.0.js') !!}
 
-<!-- KnockoutJS Mapping http://knockoutjs.com/documentation/plugins-mapping.html -->
-{!! Html::script('http://cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.min.js') !!}
+	<!-- KnockoutJS Mapping http://knockoutjs.com/documentation/plugins-mapping.html -->
+	{!! Html::script('assets/javascripts/knockout.mapping.min.js') !!}
 
-<!-- jQuery -->
-{!! Html::script('https://code.jquery.com/jquery-2.1.4.min.js') !!} 
-<!--https://code.jquery.com/jquery-2.1.4.min.js-->
-
-<!-- jQuery Cookie -->
-{!! Html::script('assets/javascripts/jquery.cookie.js') !!}
+	<!-- jQuery Cookie -->
+	{!! Html::script('assets/javascripts/jquery.cookie.js') !!}
 <script type="text/javascript">
 	$(document).ready(function(){
 		var baseURL = "{!! config('app.urlglobal') !!}";		
@@ -348,14 +344,14 @@
 
 		fo.consultaVacantes = function () {
 			var sede = fo.sedeSeleccionada();
+			alert(sede);
 			var nivel= fo.nivelSeleccionado();
 			var grado= fo.gradoSeleccionado();
 			var seccion = fo.seccionSeleccionada();
-			var aula = fo.aulaSeleccionada();
 			$.ajax({
 				type: "GET",
 				url: baseURL+"/api/v1/getVacantes",
-				data: {sede:sede, nivel:nivel, grado:grado, seccion:seccion, aula:aula},
+				data: {sede:sede, nivel:nivel, grado:grado, seccion:seccion},
 				dataType: "json",
 				contentType: "application/json; charset=utf-8",
 				success: function (e) {

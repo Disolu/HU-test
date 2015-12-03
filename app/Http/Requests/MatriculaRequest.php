@@ -19,7 +19,6 @@ class MatriculaRequest extends Request
             'nivel'    => 'required|integer|not_in:0',
             'sede'     => 'required|integer|not_in:0',
             'grado'    => 'required|integer|not_in:0',
-            'aula'     => 'required|integer|not_in:0',
             'periodo'=> 'required|integer|not_in:0',
             'estado'=> 'required|integer|not_in:0',
             'alu_tipopension'=> 'required|integer|not_in:0',

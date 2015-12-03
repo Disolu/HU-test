@@ -59,8 +59,7 @@ class VacanteMatriculaRepo {
     public function getLastPeriodo()
     {
         return PeriodoMatricula::
-        select('idperiodomatricula')
-        ->orderBy('idperiodomatricula', 'desc')
+        orderBy('idperiodomatricula', 'desc')
         ->take(1)
         ->get();
     }
