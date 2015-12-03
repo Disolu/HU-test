@@ -57,31 +57,22 @@
 		
 		<fieldset>
 			<div class="form-group">
-				<select name="sede"  id="cboSede" class="form-control mb-md" data-bind="options: sedes, optionsText: 'sede_nombre', optionsValue: 'idsede',  optionsCaption: 'Seleccione una Sede', value: sedeSeleccionada"></select>
+				<select name="sede"  id="cboSede" class="form-control mb-md" data-bind="options: sedes, optionsText: 'nombre', optionsValue: 'idsede',  optionsCaption: 'Seleccione una Sede', value: sedeSeleccionada"></select>
 			</div>
 		</fieldset>
-		
 		<fieldset>
 			<div class="form-group">
-				<select name="nivel"  id="cboNivel" class="form-control mb-md" data-bind="options: niveles, optionsText: 'nivel_nombre', optionsValue: 'idnivel',  optionsCaption: 'Seleccione un Nivel', value: nivelSeleccionado"></select>
+				<select name="nivel"  id="cboNivel" class="form-control mb-md" data-bind="options: niveles, optionsText: 'nombre', optionsValue: 'idnivel',  optionsCaption: 'Seleccione un Nivel', value: nivelSeleccionado"></select>
 			</div>
 		</fieldset>
-
 		<fieldset>
 			<div class="form-group">
-				<select name="grado"  id="cboGrado" class="form-control mb-md" data-bind="options: grados, optionsText: 'name', optionsValue: 'idgrado',  optionsCaption: 'Seleccione un Grado', value: gradoSeleccionado"></select>
+				<select name="grado"  id="cboGrado" class="form-control mb-md" data-bind="options: grados, optionsText: 'nombre', optionsValue: 'idgrado',  optionsCaption: 'Seleccione un Grado', value: gradoSeleccionado"></select>
 			</div>
 		</fieldset>
-
 		<fieldset>
 			<div class="form-group">
-				<select name="seccion"  id="cboSeccion" class="form-control mb-md" data-bind="options: secciones, optionsText: 'name', optionsValue: 'idseccion',  optionsCaption: 'Seleccione una Seccion', value: seccionSeleccionada"></select>
-			</div>
-		</fieldset>
-
-		<fieldset>
-			<div class="form-group">
-				<select name="aula"  id="cboAula" class="form-control mb-md" data-bind="options: aulas, optionsText: 'name', optionsValue: 'idaula',  optionsCaption: 'Seleccione un Aula', value: aulaSeleccionada"></select>
+				<select name="seccion"  id="cboSeccion" class="form-control mb-md" data-bind="options: secciones, optionsText: 'nombre', optionsValue: 'idseccion',  optionsCaption: 'Seleccione una Seccion', value: seccionSeleccionado"></select>
 			</div>
 		</fieldset>
 
@@ -95,7 +86,7 @@
 						@foreach($TipoPension as $pension )
 						<label class="btn btn-default  btn-sm tipopension" id="{!! $pension->idtipopension !!}">
 							<input type="radio" name="alu_tipopension" autocomplete="off" value="{!! $pension->idtipopension !!} "> 
-							{!! $pension->name !!} 
+							{!! $pension->nombre !!} 
 						</label>
 						@endforeach
 						<div class="selectPension" style="display:none">
@@ -112,7 +103,7 @@
 						@foreach($EstadoMatricula as $estado )
 						<label class="btn btn-default  btn-sm">
 							<input type="radio" name="estado" autocomplete="off" value="{!! $estado->idestadomatricula !!}"> 
-							{!! $estado->name !!}
+							{!! $estado->nombre !!}
 						</label>
 						@endforeach	
 					</div>

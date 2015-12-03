@@ -35,10 +35,11 @@ class AlumnoRepo {
     {
          return Alumno::        	
          leftJoin('alumnomatricula', 'alumno.idalumno', '=', 'alumnomatricula.idalumno')
-         ->select('fullname','codigo','impedimento','idalumnomatricula','alumno.idalumno as alumnoid')
+         ->select('fullname','codigo','impedimento','idalumnomatricula','alumno.idalumno as alumnoid','idperiodomatricula')
          ->where('fullname','LIKE','%'.$alumno.'%')
          ->orWhere('dni', $alumno)
          ->orWhere('codigo', $alumno)
+         ->orderBy('alumno.idalumno','desc')
          ->get();
     }
 

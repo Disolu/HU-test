@@ -58,13 +58,15 @@
 									<span class="text-warning"><a href="{!! route('alumno', $alumno->alumnoid) !!}">(Editar)</a></span>
 									@if( count($getPeriodoMatricula)>0 )
 
-									@if( empty($alumno->idalumnomatricula) )
-									<a href="{!! route('searchvacante',$alumno->alumnoid) !!}"><span class="label label-info">Matricular</span></a>
-									@else
-									<span class="label label-success">Matriculado</span>
-									@endif
+
+										@if( $getPeriodoMatricula[0]->idperiodomatricula != $alumno->idperiodomatricula) 
+										<a href="{!! route('searchvacante',$alumno->alumnoid) !!}"><span class="label label-info">Matricular</span></a>
+										@else
+										<span class="label label-success">Matriculado</span>
+										@endif
 
 									@endif	
+
 									@endif
 								</div>
 

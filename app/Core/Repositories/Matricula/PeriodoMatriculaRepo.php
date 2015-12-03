@@ -7,7 +7,7 @@ class PeriodoMatriculaRepo {
     public function getPeriodoMatricula($fecha)
     {
         return PeriodoMatricula::        	
-        select('nombre','inicio','fin')
+        select('nombre','inicio','fin','idperiodomatricula')
         ->where('fin', '>=', $fecha)
         ->take(1)
         ->get();
