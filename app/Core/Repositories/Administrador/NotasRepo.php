@@ -6,6 +6,7 @@ use App\Core\Entities\Bimestre;
 use App\Core\Entities\ProfesorCurso;
 use App\Core\Entities\AlumnoMatricula;
 use Auth;
+use DB;
 
 class NotasRepo {
    
@@ -35,10 +36,13 @@ class NotasRepo {
     public function getAlumnos($grado, $seccion ,$periodo)
     {
         return AlumnoMatricula::
-        where('idperiodomatricula',$periodo)
-        ->where('idgrado', $grado)
-        ->where('idseccion', $seccion)
-        ->get();
+            //leftJoin('notacurso as nc','nc.idalumno','=','alumnomatricula.idalumno')
+            select('*', DB::raw("(select count(*) from notacurso where idbimestre = 1 and idperiodomatricula = {$periodo} ) as bimestre1"))
+            ->where('idperiodomatricula',$periodo)
+            ->where('idgrado', $grado)
+            ->where('idseccion', $seccion)
+            //->groupBy('nc.idalumno')
+            ->get();
     }
 
     public function showFechanotas($periodo)

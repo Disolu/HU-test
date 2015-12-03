@@ -52,25 +52,25 @@
 						<td class="hidden-xs hidden-sm">{!! $data->alumno->fullname !!}</td>
 						<td class="text-right">
 							<div class="col-md-6 form-group">
-								<input type="text" class="form-control" {!! $bimestre !!} name="bimestreINota[]" maxlength="2">
+								<input type="text" class="form-control" {!! $bimestre !!} name="bimestreINota[]" maxlength="2" value="{{ $data->bimestre1 }}">
 							</div>
 						</td>
 
 						<td class="text-right">
 							<div class="col-md-6 form-group">
-								<input type="text" class="form-control" {!! $bimestreII !!} name="bimestreIINota[]" maxlength="2">
+								<input type="text" class="form-control" {!! $bimestreII !!} name="bimestreIINota[]" maxlength="2" value="{{ $data->nota_number }}">
 							</div>
 						</td>
 
 						<td class="text-right">
 							<div class="col-md-6 form-group">
-								<input type="text" class="form-control" {!! $bimestreIII !!} name="bimestreIIINota[]" maxlength="2">
+								<input type="text" class="form-control" {!! $bimestreIII !!} name="bimestreIIINota[]" maxlength="2" value="{{ $data->nota_number }}">
 							</div>
 						</td>
 
 						<td lass="text-right">
 							<div class="col-md-6 form-group">
-								<input type="text" class="form-control" {!! $bimestreIV !!} name="bimestreIVNota[]" maxlength="2">
+								<input type="text" class="form-control" {!! $bimestreIV !!} name="bimestreIVNota[]" maxlength="2" value="{{ $data->nota_number }}">
 							</div>
 						</td>
 

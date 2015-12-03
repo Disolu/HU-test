@@ -38,17 +38,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NotasController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="NotasController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Administrador/NotasController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.42777777" vertical-offset="279" max-vertical-offset="1054">
-              <caret line="108" column="32" selection-start-line="108" selection-start-column="23" selection-end-line="108" selection-end-column="32" />
+            <state vertical-scroll-proportion="-6.730769" vertical-offset="199" max-vertical-offset="884">
+              <caret line="83" column="44" selection-start-line="83" selection-start-column="44" selection-end-line="83" selection-end-column="44" />
               <folding>
                 <element signature="e#431#531#0#PHP" expanded="false" />
                 <element signature="e#537#2231#0#PHP" expanded="false" />
                 <element signature="e#2237#2471#0#PHP" expanded="false" />
                 <element signature="e#2477#3090#0#PHP" expanded="false" />
-                <element signature="e#3100#3921#0#PHP" expanded="false" />
+                <element signature="e#3927#5106#0#PHP" expanded="false" />
                 <element signature="e#5112#5360#0#PHP" expanded="false" />
                 <element signature="e#5366#5893#0#PHP" expanded="false" />
                 <element signature="e#5899#6265#0#PHP" expanded="false" />
@@ -59,11 +59,23 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="NotasRepo.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Core/Repositories/Administrador/NotasRepo.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3954306" vertical-offset="319" max-vertical-offset="1547">
+              <caret line="38" column="14" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="14" />
+              <folding>
+                <marker date="1449131478272" expanded="true" signature="1245:1438" placeholder="select nota_..notacurso..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="register.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/administrador/notas/register.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.076923" vertical-offset="0" max-vertical-offset="1700">
-              <caret line="20" column="53" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="53" />
+            <state vertical-scroll-proportion="-7.3076925" vertical-offset="728" max-vertical-offset="1700">
+              <caret line="54" column="153" selection-start-line="54" selection-start-column="153" selection-end-line="54" selection-end-column="153" />
               <folding />
             </state>
           </provider>
@@ -105,6 +117,8 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Administrador/ProfesorController.php" />
         <option value="$PROJECT_DIR$/resources/views/administrador/notas/list.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Administrador/NotasController.php" />
+        <option value="$PROJECT_DIR$/resources/views/administrador/notas/register.blade.php" />
+        <option value="$PROJECT_DIR$/app/Core/Repositories/Administrador/NotasRepo.php" />
       </list>
     </option>
   </component>
@@ -344,7 +358,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20367648" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20367648" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32861635" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -681,26 +695,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Core/Repositories/Administrador/NotasRepo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.730769" vertical-offset="843" max-vertical-offset="1496">
-          <caret line="71" column="43" selection-start-line="71" selection-start-column="43" selection-end-line="71" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/administrador/notas/list.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.230769" vertical-offset="269" max-vertical-offset="986">
           <caret line="33" column="86" selection-start-line="33" selection-start-column="79" selection-end-line="33" selection-end-column="86" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/administrador/notas/register.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.076923" vertical-offset="0" max-vertical-offset="1700">
-          <caret line="20" column="53" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="53" />
           <folding />
         </state>
       </provider>
@@ -718,19 +716,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Administrador/NotasController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42777777" vertical-offset="279" max-vertical-offset="1054">
-          <caret line="108" column="32" selection-start-line="108" selection-start-column="23" selection-end-line="108" selection-end-column="32" />
+        <state vertical-scroll-proportion="-6.730769" vertical-offset="199" max-vertical-offset="884">
+          <caret line="83" column="44" selection-start-line="83" selection-start-column="44" selection-end-line="83" selection-end-column="44" />
           <folding>
             <element signature="e#431#531#0#PHP" expanded="false" />
             <element signature="e#537#2231#0#PHP" expanded="false" />
             <element signature="e#2237#2471#0#PHP" expanded="false" />
             <element signature="e#2477#3090#0#PHP" expanded="false" />
-            <element signature="e#3100#3921#0#PHP" expanded="false" />
+            <element signature="e#3927#5106#0#PHP" expanded="false" />
             <element signature="e#5112#5360#0#PHP" expanded="false" />
             <element signature="e#5366#5893#0#PHP" expanded="false" />
             <element signature="e#5899#6265#0#PHP" expanded="false" />
             <element signature="e#6271#6379#0#PHP" expanded="false" />
             <marker date="1449128147039" expanded="true" signature="1141:1774" placeholder="select count..alumnos..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/administrador/notas/register.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.3076925" vertical-offset="728" max-vertical-offset="1700">
+          <caret line="54" column="153" selection-start-line="54" selection-start-column="153" selection-end-line="54" selection-end-column="153" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Core/Repositories/Administrador/NotasRepo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3954306" vertical-offset="319" max-vertical-offset="1547">
+          <caret line="38" column="14" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="14" />
+          <folding>
+            <marker date="1449131478272" expanded="true" signature="1245:1438" placeholder="select nota_..notacurso..." />
           </folding>
         </state>
       </provider>
