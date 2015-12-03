@@ -21,7 +21,7 @@
 			@include('alertas.request')
 			@include('alertas.error')
 			
-			@foreach($cursos as $data)
+			@foreach($cursospe as $data)
 			<section class="panel panel-horizontal">
 				<header class="panel-heading bg-primary">
 					<div class="panel-heading-icon">
@@ -29,14 +29,20 @@
 					</div>
 				</header>
 				<div class="panel-body p-lg">
-					<h3 class="text-semibold mt-sm">
-						<a href="{!! route('addnotas', [$data->curso->grado->idgrado, $data->curso->idcurso, $data->curso->grado->seccion->idseccion] ) !!}">{!! $data->curso->nombre !!}</a>
-					</h3>					
-					<p>
-					<code>{!! $data->curso->grado->nombre !!} {!! $data->curso->grado->seccion->nombre !!}</code> | 
-					<code>{!! $data->curso->grado->nivel->nombre !!}</code> |
-					<code>{!! $data->curso->grado->nivel->sede->nombre !!}</code> | 
-					Tienes {!! count($data->curso->grado->matriculados) !!} alumnos.</p>
+
+                    <h3 class="text-semibold mt-sm">
+                        <a href="{!! route('addnotas', [$data->idgrado, $data->idcurso, $data->idseccion] ) !!}">
+                            <strong><h4>{!! $data->curso !!}</h4></strong>
+                        </a>
+                    </h3>
+
+                    <p>
+                        <code>{!! $data->sede !!}</code> |
+					    <code>{!! $data->nivel !!}</code> |
+					    <code>{!! $data->grado !!}</code> |
+                        <code>{!! $data->seccion !!}</code>
+					    Tienes {!! $data->qty !!} alumnos.
+                    </p>
 				</div>
 			</section>
 			@endforeach

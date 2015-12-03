@@ -28,11 +28,25 @@ class NotasController extends Controller
         $lastPeriodo = $this->NotasRepo->getLastPeriodoMatricula();
         if(count($lastPeriodo) > 0)
         {
-            $cursos = $this->NotasRepo->getCursosProfesor($lastPeriodo[0]->idperiodomatricula);
+            $cursospe = DB::table('profesorcurso as pc')
+                ->select('pc.idprofesorcurso','cu.idcurso','cu.nombre as curso','sede.nombre as sede','sede.idsede','nivel.idnivel','nivel.nombre as nivel','grado.nombre as grado','grado.idgrado','s.nombre as seccion','s.idseccion',
+                DB::raw("(select count(*) from alumnomatricula where idseccion =  ps.idseccion and idperiodomatricula = {$lastPeriodo[0]->idperiodomatricula} ) as qty"))
+                ->join('curso as cu','cu.idcurso','=','pc.idcurso')
+                ->join('profesorseccion as ps','ps.idprofesorcurso','=','pc.idprofesorcurso')
+                ->join('seccion as s','s.idseccion','=','ps.idseccion')
+                ->join('sede','sede.idsede','=','s.idsede')
+                ->join('nivel','nivel.idnivel','=','s.idnivel')
+                ->join('grado','grado.idgrado','=','s.idgrado')
+                ->where('pc.idperiodomatricula',$lastPeriodo[0]->idperiodomatricula)
+                ->where('pc.iduser', Auth::user()->id)
+                ->groupBy('pc.idprofesorcurso')
+                ->get();
+            //dd($cursospe);
+            //$cursos = $this->NotasRepo->getCursosProfesor($lastPeriodo[0]->idperiodomatricula);
 
             $datehow = Date('Y-m-d');
             $fechanota = $this->NotasRepo->getFechaNota($lastPeriodo[0]->idperiodomatricula, $datehow); 
-            return view('administrador.notas.list', compact('cursos','fechanota'));
+            return view('administrador.notas.list', compact('cursospe','fechanota'));
         }
         else
         {

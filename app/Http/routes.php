@@ -197,9 +197,11 @@ Route::group( ['middleware' => ['auth','administrador'], 'prefix'=>'admin'], fun
 	
 	//Profesor - Curso
 	Route::get('profesorasignatura', ['as' => 'showprofesor', 'uses' => 'Administrador\ProfesorController@show']);
+
 	Route::get('profesorasignatura/new', ['as' => 'profesorasignatura', 'uses' => 'Administrador\ProfesorController@create']);
 	Route::post('profesorasignatura/new', ['as' => 'profesorasignatura', 'uses' => 'Administrador\ProfesorController@store']);
-	Route::get('profesorasignatura/{id}', ['as' => 'deleteprofesorasignatura', 'uses' => 'Administrador\ProfesorController@destroy']);
+
+    Route::get('profesorasignatura/{id}', ['as' => 'deleteprofesorasignatura', 'uses' => 'Administrador\ProfesorController@destroy']);
 	
 	//Tarjetas de Notas
 	Route::get('tarjetas', 	    ['as' => 'tarjetas', 'uses' => 'Administrador\TarjetasController@index']);

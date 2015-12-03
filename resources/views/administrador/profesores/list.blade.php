@@ -14,8 +14,6 @@
 			@include('alertas.request')
 			@include('alertas.success')
 			<div class="col-md-12">
-
-
 				<div class="toggle" data-plugin-toggle="" data-plugin-options="{ &quot;isAccordion&quot;: true }">
 					@foreach($profesores as $profesor)
 					<section class="toggle">
@@ -33,7 +31,6 @@
 											<th>Acción</th>
 										</tr>
 									</thead>
-
 									<tbody>
 									@foreach($profesor->curso as $curso)
 										<tr>
@@ -68,8 +65,6 @@
 					</section>
 					@endforeach
 				</div>
-
-
 			</div>
 		</div>
 	</section>

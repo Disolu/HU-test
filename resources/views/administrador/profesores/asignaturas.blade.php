@@ -55,17 +55,14 @@
 												Secciones: 
 												@foreach($grado->secciones as $seccion)
 													<span>
-														<input type="checkbox" name="seccion[]" value="{!! $seccion->idseccion !!}">
+														<input type="checkbox" name="seccion_{!! $curso->idcurso !!}[]" value="{!! $seccion->idseccion !!}">
 														{{ $seccion->nombre }}
 													</span>
 												@endforeach
 											</p>
 										</div>
 										@endforeach
-										
-
 									@endforeach
-
 								@endforeach
 							</p>
 						</section>

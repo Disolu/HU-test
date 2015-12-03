@@ -41,25 +41,30 @@ class ProfesorController extends Controller
 
     public function store(ProfesorCursoRequest $request)
     {
+        //dd($request->all());
       $periodo  = $this->ProfesorRepo->getLastPeriodoMatricula();
       //PROFESOR CURSO (Verifica si el profesor ya esta registrado en el periodo actual)
       $profesorCurso = $this->ProfesorRepo->getProfesorCurso($periodo[0]->idperiodomatricula, $request['profesor']);
       
+      /*
+       *
       if(count($profesorCurso) == 0)
       {
-
+      **/
         for ($i=0; $i< count($request['curso']); $i++) {
           //Guardar al profesor con cada curso
-          $profesor = $this->ProfesorRepo->SaveProfesorCurso($request, $request['curso'][$i], $periodo[0]->idperiodomatricula);
+            $curso = $request['curso'][$i];
+            $this->ProfesorRepo->SaveProfesorCurso($request, $request['curso'][$i], $periodo[0]->idperiodomatricula);
             //Una vez registrado, traigo su ID:
             $lastRegister = $this->ProfesorRepo->lastRegister();
             
-            for ($j=0; $j<count($request['seccion']); $j++) 
+            for ($j=0; $j<count($request["seccion_$curso"]); $j++)
             { 
-              $this->ProfesorRepo->SaveProfesorSeccion($lastRegister[0]->idprofesorcurso, $request['seccion'][$j]);
+              $this->ProfesorRepo->SaveProfesorSeccion($lastRegister[0]->idprofesorcurso, $request["seccion_$curso"][$j]);
             }
         }
-      }  
+      /* } */
+     /*
       else
       {
         $idcurso = $profesorCurso[0]->idprofesorcurso;
@@ -68,6 +73,7 @@ class ProfesorController extends Controller
             $this->ProfesorRepo->SaveProfesorSeccion($idcurso, $request['seccion'][$i]);
         }
       }
+     */
       Session::flash('message-success', 'Se registro al profesor con los cursos seleccionados');            
       return Redirect::route('showprofesor');
     }
