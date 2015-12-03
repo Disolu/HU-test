@@ -39,7 +39,8 @@ class AlumnoRepo {
          ->where('fullname','LIKE','%'.$alumno.'%')
          ->orWhere('dni', $alumno)
          ->orWhere('codigo', $alumno)
-         ->orderBy('alumno.idalumno','desc')
+         ->take(1)
+         ->orderBy('idperiodomatricula','desc')
          ->get();
     }
 

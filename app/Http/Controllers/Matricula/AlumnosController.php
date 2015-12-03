@@ -62,6 +62,7 @@ class AlumnosController extends Controller
 
     //Informacion del alumno por (nombre, apellidos, dni)
     $getAlumno = $this->AlumnoRepo->getAlumno($alumno);
+      //dd($getAlumno);
 
     //Existe periodo de matricula activo.
     $getPeriodoMatricula = $this->PeriodoMatriculaRepo->getPeriodoMatricula($fecha);  
