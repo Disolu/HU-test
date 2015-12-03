@@ -123,6 +123,7 @@ class VacanteController extends Controller
         
         //Recoge el ultimo periodo disponible
         $periodo = $this->VacanteRepo->getLastPeriodo();
+
         //Recoge las vacantes, filtrados por los parametros
         $fofi = $this->VacanteRepo->getVacantes($idsede, $idnivel, $idgrado, $idseccion, $periodo[0]->idperiodomatricula);
 

@@ -142,7 +142,7 @@
 
 			$.ajax({
 				type: "GET",
-				url: baseURL + "api/v1/getPensiones",
+				url: baseURL + "/api/v1/getPensiones",
 				data: { tipo : tipopension, sede : $("#cboSede option:selected").val(), nivel : $("#cboNivel option:selected").val()},
 				dataType: "json",
 				contentType: "application/json; charset=utf-8",
