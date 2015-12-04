@@ -6,35 +6,34 @@ use DB;
 
 class ReportesRepo {
     
-  public function getAlumnos($idperiodo,$idsede, $idnivel, $idgrado, $filtro)
+  public function getAlumnos($array)
   {
-      $query = AlumnoMatricula::
-      select('fullname','codigo','idestadoalumno','monto','users.nombre as nameregister',
-        DB::raw('(select count(*) from notacurso where notacurso.idalumno = alumnomatricula.idalumno) as notas'))
-       ->leftJoin('alumno', 'alumnomatricula.idalumno', '=', 'alumno.idalumno')
-       ->leftJoin('pension', 'alumnomatricula.idpension', '=', 'pension.idpension')
-       ->leftJoin('users', 'alumnomatricula.usercreate', '=', 'users.id');
-       
-
-      if($idperiodo) {
-          $query->where('alumnomatricula.idperiodomatricula','=',$idperiodo);
+    $query = AlumnoMatricula::
+    select('fullname as Nombres','codigo','idestadoalumno as Estado','monto as Pension','users.nombre as Personal',
+      DB::raw('(select count(*) from notacurso where notacurso.idalumno = alumnomatricula.idalumno) as notas'))
+     ->leftJoin('alumno', 'alumnomatricula.idalumno', '=', 'alumno.idalumno')
+     ->leftJoin('pension', 'alumnomatricula.idpension', '=', 'pension.idpension')
+     ->leftJoin('users', 'alumnomatricula.usercreate', '=', 'users.id');
+     
+    if($array['idperiodo']) {
+        $query->where('alumnomatricula.idperiodomatricula','=',$array['idperiodo']);
+    }
+    if ($array['idsede']) {
+        $query->where('alumnomatricula.idsede','=',$array['idsede']);
+    }
+    if ($array['idnivel']) {
+        $query->where('alumnomatricula.idnivel','=',$array['idnivel']);
+    }
+    if ($array['idgrado']) {
+        $query->where('alumnomatricula.idgrado','=',$array['idgrado']);
+    }
+    if($array['filtro'])
+    {
+      if($array['filtro'] == 2){
+        $query->havingRaw('notas > 0'); 
       }
-      if ($idsede) {
-          $query->where('alumnomatricula.idsede','=',$idsede);
-      }
-      if ($idnivel) {
-          $query->where('alumnomatricula.idnivel','=',$idnivel);
-      }
-      if ($idgrado) {
-          $query->where('alumnomatricula.idgrado','=',$idgrado);
-      }
-      if($filtro)
-      {
-        if($filtro == 2){
-          $query->havingRaw('notas > 0'); 
-        }
-      }
-      return $query->get();
+    }
+    return $query->get();
   }
 
   public function getAlumnosxSede($idsede, $idperiodomatricula)

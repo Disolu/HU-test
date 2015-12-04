@@ -36,7 +36,7 @@ class AlumnoMatricula extends Model
     }
     public function grado()
     {
-        return $this->belongsTo('App\Core\Entities\grado','idgrado','idgrado');
+        return $this->belongsTo('App\Core\Entities\Grado','idgrado','idgrado');
     }
     public function alumno()
     {

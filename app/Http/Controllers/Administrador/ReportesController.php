@@ -15,7 +15,7 @@ use App\Core\Entities\Alumno;
 class UserListExport extends \Maatwebsite\Excel\Files\NewExcelFile {
     public function getFilename()
     {
-        return 'reporteAlumnos';
+        return 'Matriculados_'.time();
     }
 }
 
@@ -51,29 +51,38 @@ class ReportesController extends Controller
 
     public function getAlumnos(Request $request)
     {
-        $filtro    = $request->input('filtro');
-        $idperiodo = $request->input('periodo');
-        $idsede    = $request->input('sede');
-        $idnivel   = $request->input('nivel');
-        $idgrado   = $request->input('grado');
+      $arrayGet = [
+        'filtro'    => $request->input('filtro'),
+        'idperiodo' => $request->input('periodo'),
+        'idsede'  => $request->input('sede'),
+        'idnivel' => $request->input('nivel'),
+        'idgrado' => $request->input('grado')
+        ];
 
-        $alumnos = $this->ReportesRepo->getAlumnos($idperiodo, $idsede, $idnivel, $idgrado, $filtro);
+        $alumnos = $this->ReportesRepo->getAlumnos($arrayGet);
 
         if($alumnos){
-            return view('matricula.reportes.alumnos', compact('alumnos','idperiodo','idsede','idnivel','idgrado'));
+            return view('matricula.reportes.alumnos', compact('alumnos'));
         }
         else{
             return $redirect->back();
         }
     }
 
-    public function getAlumnosExcel($periodo, $sede, $nivel, $grado, UserListExport $export)
+    public function getAlumnosExcel(Request $request, UserListExport $export)
     {
-        $alumnos = $this->ReportesRepo->getAlumnos($periodo, $sede, $nivel, $grado);
-        return $export->sheet('sheetName', function($sheet) use($alumnos)
-        {
-            $sheet->fromArray($alumnos);
-        })->export('xls');
+      $arrayGet = [
+        'filtro'    => $request->input('filtro'),
+        'idperiodo' => $request->input('periodo'),
+        'idsede'  => $request->input('sede'),
+        'idnivel' => $request->input('nivel'),
+        'idgrado' => $request->input('grado')
+        ];
+      $alumnos = $this->ReportesRepo->getAlumnos($arrayGet);
+      return $export->sheet('matriculados_'.time(), function($sheet) use($alumnos)
+      {
+          $sheet->fromArray($alumnos);
+      })->export('xls');
     }
 
     public function getAlumnosxSede(Request $request)

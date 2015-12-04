@@ -27,9 +27,7 @@
 		<h3 class="panel-title">Consula: Alumnos matriculados</h3>
 	</div>
 	<div class="panel-body">		
-	{!! Form::open(['route' => 'reportesAlumnos', 'method' => 'post']) !!}
-	{!! csrf_field() !!}
-
+	{!! Form::open(['route' => 'reportesAlumnos', 'method' => 'GET']) !!}
 		<div class="row">
 		  <div class="col-md-3">
 		  	<fieldset>

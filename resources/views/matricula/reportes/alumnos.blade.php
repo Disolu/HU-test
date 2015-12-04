@@ -28,9 +28,7 @@
 		<h3 class="panel-title">Consula: Alumnos matriculados</h3>
 	</div>
 	<div class="panel-body">		
-	{!! Form::open(['route' => 'reportesAlumnos', 'method' => 'post']) !!}
-	{!! csrf_field() !!}
-
+	{!! Form::open(['route' => 'reportesAlumnos', 'method' => 'GET']) !!}
 		<div class="row">
 
 		  <div class="col-md-3">
@@ -72,7 +70,6 @@
 					</div>
 				</fieldset>
 		  </div>
-
 		</div>	
 	</div>
 	
@@ -104,25 +101,25 @@
         			@foreach($alumnos as $data)
 					<tr>
 						<td>{!! $data->codigo !!}</td>
-						<td>{!! $data->fullname !!}</td>
+						<td>{!! $data->Nombres !!}</td>
 						<td>
-						@if($data->idestadoalumno == 1)
+						@if($data->Estado == 1)
 							Activo
-						@elseif($data->idestadoalumno == 2)
+						@elseif($data->Estado == 2)
 							Retirado
-						@elseif($data->idestadoalumno == 3)
+						@elseif($data->Estado == 3)
 							Suspendido
-						@elseif($data->idestadoalumno == 4)
+						@elseif($data->Estado == 4)
 							Expulsado			
 						@endif	
 						</td>
-						<td>{!! $data->monto !!}</td>
-						<td><strong>{!! $data->nameregister !!}</strong></td>
+						<td>{!! $data->Pension !!}</td>
+						<td><strong>{!! $data->Personal !!}</strong></td>
 					</tr>	
 					@endforeach				
 				</tbody>
 			</table>
-			<a href='{!! route("reportesexcel", array($idperiodo,$idsede,$idnivel,$idgrado)) !!}' class="mb-xs mt-xs mr-xs btn btn-info">
+			<a href='{!! route("reportesexcel", Input::all()) !!}' class="mb-xs mt-xs mr-xs btn btn-info">
 				<i class="fa fa-thumbs-up"></i> Descargar
 			</a>
 		</div>
@@ -133,10 +130,10 @@
 @section('scripts')
 @parent
 <!--knockout-->
-{!! Html::script('http://knockoutjs.com/downloads/knockout-3.3.0.js') !!}
+{!! Html::script('assets/javascripts/knockout-3.3.0.js') !!}
 
 <!-- KnockoutJS Mapping http://knockoutjs.com/documentation/plugins-mapping.html -->
-{!! Html::script('http://cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.min.js') !!}
+{!! Html::script('assets/javascripts/knockout.mapping.min.js') !!}
 
 <!-- jQuery Cookie -->
 {!! Html::script('assets/javascripts/jquery.cookie.js') !!}

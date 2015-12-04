@@ -16,8 +16,14 @@ Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
         'uses' => 'Matricula\AlumnosController@viewselectmatricula']);
 
 	//REPORTES
-	Route::post('reportes', 	 ['as' => 'reportesAlumnos', 'uses' => 'Administrador\ReportesController@getAlumnos']);
-	Route::get('reportesexcel/{periodo}/{sede}/{nivel}/{grado}', ['as' => 'reportesexcel', 'uses' => 'Administrador\ReportesController@getAlumnosExcel']);
+	Route::get('reportesAlumnos', 	 
+		['as' => 'reportesAlumnos', 
+		'uses' => 'Administrador\ReportesController@getAlumnos']);
+
+	Route::get('reportesexcel/{inputs?}', 
+		['as' => 'reportesexcel', 
+		'uses' => 'Administrador\ReportesController@getAlumnosExcel']);
+
 	Route::get('reportesPagosexcel', ['as' => 'excelpagos', 'uses' => 'Administrador\ReportesController@getAlumnosPagosExcel']);
 	Route::get('reportes', 		 ['as' => 'reportes',        'uses' => 'Administrador\ReportesController@getAlumnosxSeccion']);
 	Route::get('reportes/matriculas', ['as' => 'indexSecretaria', function () { return view('matricula.reportes.index'); }]);
@@ -89,7 +95,8 @@ Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
 	Route::post('seguimiento/incidencia/{id}', ['as' => 'SeguimientoIncidencia',  'uses' => 'SeguimientoPagosController@SeguimientoIncidencia']);
 
 	//Matriculados
-	Route::get('matriculados', ['as' => 'alumnosMatriculados', function () { return view('matricula.reportes.index'); }]);
+	Route::get('matriculados', 
+		['as' => 'alumnosMatriculados', function () { return view('matricula.reportes.index'); }]);
 
 	//Vista para la ruta inicial.
 	Route::get('/', function () { return view('administrador.index'); });
