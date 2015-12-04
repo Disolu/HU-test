@@ -162,6 +162,58 @@ elseif(Auth::user()->idrol==5)
 <!-- jQuery Cookie -->
 <script type="text/javascript">
   $(document).ready(function(){
+  	
+  	
+
+  	function TranslateDate(theDate)
+  	{
+  		var date;
+  		switch(theDate)
+  		{
+		    case '01':
+		        date = "Enero";
+		        break;
+		    case '02':
+		        date = "Febrero";
+		        break;
+		    case '03':
+		        date = "Marzo";
+		        break;
+		    case '04':
+		        date = "Abril";
+		        break;
+		    case '05':
+		        date = "Mayo";
+		        break;
+		    case '06':
+		        date = "Junio";
+		        break;
+		    case '07':
+		        date = "Julio";
+		        break;
+		    case '08':
+		        date = "Agosto";
+		        break;
+		    case '09':
+		        date = "Septiembre";
+		        break;
+		    case '10':
+		        date = "Octubre";
+		        break;
+		    case '11':
+		        date = "Noviembre";
+		        break;
+		    case '12':
+		        date = "Diciembre";
+		        break;    
+		        
+		    default:
+		    	  date = "No found";
+		    	  break;    
+  		}
+  		return "Pagos: "+date;
+  	}
+
     $('.btnDetails').click(function(){
       $.ajax({
         method: "POST",
@@ -184,10 +236,10 @@ elseif(Auth::user()->idrol==5)
           	var estado;
             $.each(r, function(i)
             {
+            	var date = r[i].mesdeuda;
             	if(r[i].status == 1 ) { estado = "<span class='label label-primary'>Pagado</span>"; } else { estado = "<span class='label label-danger'>Pendiente</span>" }
-
 	            options += "<tr>";
-	              options += "<td>"+r[i].mesdeuda+"</td>";
+	              options += "<td>"+TranslateDate(date)+"</td>";
 	              options += "<td>"+r[i].montopagar+"</td>";
 	              options += "<td>"+estado+"</td>";
 	            options += "</tr>";
@@ -345,7 +397,6 @@ elseif(Auth::user()->idrol==5)
 			}
 		});
 
-
 		fo.seccionSeleccionada.subscribe(function(newValue) {
 			if (newValue) {
 				fo.cargarAulas(fo.sedeSeleccionada(), fo.nivelSeleccionado(), fo.gradoSeleccionado(), newValue);
@@ -357,7 +408,6 @@ elseif(Auth::user()->idrol==5)
 				fo.guardarCookie(fo.sedeSeleccionada(), fo.nivelSeleccionado(), fo.gradoSeleccionado(), fo.seccionSeleccionada(), fo.aulaSeleccionada(),newValue);
 			}
 		});
-
 
 		fo.cargarperiodos();
 		fo.cargarsedes();       

@@ -14,7 +14,7 @@ return [
     /*
     * URL'S GLOBALES
     */
-    'urlglobal' => 'http://localhost:8080/hufull/public/alumno',
+    'urlglobal' => 'http://localhost/HU/public/alumno',
     'urlupload' => 'D:/',
 
     'providers' => [
@@ -114,6 +114,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'PDF'  => Barryvdh\DomPDF\Facade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'DateHelper' => App\Http\Helpers\DateHelper::class,
     ],
 
 ];
