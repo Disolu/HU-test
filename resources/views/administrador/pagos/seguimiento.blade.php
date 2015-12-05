@@ -168,8 +168,8 @@ elseif(Auth::user()->idrol==5)
 <!-- jQuery Cookie -->
 <script type="text/javascript">
   $(document).ready(function(){
-  	
-  	
+
+
 
   	function TranslateDate(theDate)
   	{
@@ -242,6 +242,7 @@ elseif(Auth::user()->idrol==5)
           	var estado;
             $.each(r, function(i)
             {
+
             	var date = r[i].mesdeuda;
             	if(r[i].status == 1 ) { estado = "<span class='label label-primary'>Pagado</span>"; } else { estado = "<span class='label label-danger'>Pendiente</span>" }
 	            options += "<tr>";
