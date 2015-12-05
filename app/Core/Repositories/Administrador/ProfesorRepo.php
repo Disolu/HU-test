@@ -60,4 +60,11 @@ class ProfesorRepo {
         $data = ProfesorSeccion::where('idprofesorcurso', $id)->delete();
         return $data;
     }
+
+    public function deleteSeccion($id)
+    {
+        $data = ProfesorSeccion::where('idprofesorseccion', $id)->delete();
+        return $data;
+    }
+
 }

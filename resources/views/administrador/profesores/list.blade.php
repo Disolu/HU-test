@@ -39,7 +39,7 @@
 											<td class="dark">{!! $curso->grado->nombre !!}</td>
 											<td class="dark">{!! $curso->grado->nivel->nombre !!}</td>
 											<td class="actions">
-												<a href="{!! route('deleteprofesorasignatura', $curso->id) !!}" class="delete-row" onclick="if (! confirm('¿Estás seguro que deseas eliminar la relación?, esto afectará a toda la institución.')) return false;"><i class="fa fa-trash-o"></i></a>
+												<a href="{!! route('deleteprofesorasignatura', $cursos->idprofesorcurso) !!}" class="delete-row" onclick="if (! confirm('¿Estás seguro que deseas eliminar la relación?, esto afectará a toda la institución.')) return false;"><i class="fa fa-trash-o"></i></a>
 											</td>
 										</tr>
 										@if($cursos->secciones)
@@ -52,7 +52,7 @@
 												<tr>
 													<td>{!! $seccion->seccion->nombre !!}</td>
 													<td class="actions">
-														<a href="{!! route('deleteprofesorasignatura', $curso->id) !!}" class="delete-row" onclick="if (! confirm('¿Estás seguro que deseas eliminar la relación?, esto afectará a toda la institución.')) return false;"><i class="fa fa-trash-o"></i></a>
+														<a href="{!! route('deleteprofesorseccion', $seccion->idprofesorseccion) !!}" class="delete-row" onclick="if (! confirm('¿Estás seguro que deseas eliminar la relación?, esto afectará a toda la institución.')) return false;"><i class="fa fa-trash-o"></i></a>
 													</td>
 												</tr>
 												@endforeach

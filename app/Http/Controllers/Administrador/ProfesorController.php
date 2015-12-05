@@ -104,11 +104,24 @@ class ProfesorController extends Controller
         $profesor = $this->ProfesorRepo->deleteRelacion($id);
         if($profesor)
         {
-            Session::flash('message-success', 'La relación ha sido eliminado');  
+            Session::flash('message-success', 'El curso y las secciones asignadas han sido eliminadas');
             return redirect()->route('showprofesor');
         }
         else{
             return redirect()->back(); 
         }
     }
+    public function destroySeccion($id)
+    {
+        $profesor = $this->ProfesorRepo->deleteSeccion($id);
+        if($profesor)
+        {
+            Session::flash('message-success', 'La sección asignada han sido eliminada');
+            return redirect()->route('showprofesor');
+        }
+        else{
+            return redirect()->back();
+        }
+    }
+
 }
