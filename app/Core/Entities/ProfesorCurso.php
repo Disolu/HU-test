@@ -25,6 +25,11 @@ class ProfesorCurso extends Model
         return $this->belongsTo('App\Core\Entities\Usuarios','iduser','id');
     }
 
+    public function profesorcursos()
+    {
+        return $this->hasMany('App\Core\Entities\ProfesorCurso','iduser','iduser');
+    }
+
     public function secciones()
     {
         return $this->hasMany('App\Core\Entities\ProfesorSeccion','idprofesorcurso','idprofesorcurso');

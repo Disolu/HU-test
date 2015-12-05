@@ -20,7 +20,8 @@
 						<label>
 							{!! $profesor->profesor->nombre !!}
 						</label>
-						<div class="toggle-content" style="display: none;">
+                        @foreach($profesor->profesorcursos as $cursos)
+                            <div class="toggle-content" style="display: none;">
 							<div class="table-responsive">
 								<table class="table mb-none">
 									<thead>
@@ -32,7 +33,7 @@
 										</tr>
 									</thead>
 									<tbody>
-									@foreach($profesor->curso as $curso)
+									@foreach($cursos->curso as $curso)
 										<tr>
 											<td class="info"><strong>{!! $curso->nombre !!}</strong></td>
 											<td class="dark">{!! $curso->grado->nombre !!}</td>
@@ -62,6 +63,7 @@
 								</table>
 							</div>
 						</div>
+                        @endforeach
 					</section>
 					@endforeach
 				</div>

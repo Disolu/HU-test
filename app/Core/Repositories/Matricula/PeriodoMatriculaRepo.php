@@ -47,6 +47,10 @@ class PeriodoMatriculaRepo {
         return $periodo;
     }
 
+    public function getUniqueProfesores()
+    {
+
+    }
     public function updatePeriodo($request, $id)
     {
         $periodo = PeriodoMatricula::where('idperiodomatricula', $id)

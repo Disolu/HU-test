@@ -44,9 +44,14 @@ class ProfesorRepo {
     public function getProfesorAsignaturas($idperiodo)
     {
         return ProfesorCurso::where('idperiodomatricula', $idperiodo)
-            //->groupBy('iduser')
+            ->groupBy('iduser')
             ->orderBy('created_at','desc')
             ->get();
+    }
+
+    public function getUniqueProfesores($idperiodo)
+    {
+        return ProfesorCurso::where('idperiodomatricula',$idperiodo)->groupBy('iduser')->get();
     }
 
     public function deleteRelacion($id)
