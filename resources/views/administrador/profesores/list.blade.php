@@ -35,20 +35,20 @@
 									<tbody>
 									@foreach($cursos->curso as $curso)
 										<tr>
-											<td class="info"><strong>{!! $curso->nombre !!}</strong></td>
+											<td class="success"><strong>{!! $curso->nombre !!}</strong></td>
 											<td class="dark">{!! $curso->grado->nombre !!}</td>
 											<td class="dark">{!! $curso->grado->nivel->nombre !!}</td>
 											<td class="actions">
 												<a href="{!! route('deleteprofesorasignatura', $curso->id) !!}" class="delete-row" onclick="if (! confirm('¿Estás seguro que deseas eliminar la relación?, esto afectará a toda la institución.')) return false;"><i class="fa fa-trash-o"></i></a>
 											</td>
 										</tr>
-										@if($curso->secciones)
+										@if($cursos->secciones)
 											<table class="table table-bordered mb-none">
 												<tr class="info">
 													<th>Secciones</th>
 													<th></th>
 												</tr>
-												@foreach($curso->secciones as $seccion)
+												@foreach($cursos->secciones as $seccion)
 												<tr>
 													<td>{!! $seccion->nombre !!}</td>
 													<td class="actions">
