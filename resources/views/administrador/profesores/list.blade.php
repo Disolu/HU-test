@@ -50,7 +50,7 @@
 												</tr>
 												@foreach($cursos->secciones as $seccion)
 												<tr>
-													<td>{!! $seccion->nombre !!}</td>
+													<td>{!! $seccion->seccion->nombre !!}</td>
 													<td class="actions">
 														<a href="{!! route('deleteprofesorasignatura', $curso->id) !!}" class="delete-row" onclick="if (! confirm('¿Estás seguro que deseas eliminar la relación?, esto afectará a toda la institución.')) return false;"><i class="fa fa-trash-o"></i></a>
 													</td>
