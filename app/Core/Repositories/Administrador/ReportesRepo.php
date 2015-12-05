@@ -9,10 +9,13 @@ class ReportesRepo {
   public function getAlumnos($array)
   {
     $query = AlumnoMatricula::
-    select('fullname as Nombres','codigo','idestadoalumno as Estado','monto as Pension','users.nombre as Personal',
+    select('fullname as Nombres','codigo','idestadoalumno as Estado','monto as Pension','users.nombre as Personal','sede.nombre as Sede','nivel.nombre as Nivel','grado.nombre as Grado',
       DB::raw('(select count(*) from notacurso where notacurso.idalumno = alumnomatricula.idalumno) as notas'))
      ->leftJoin('alumno', 'alumnomatricula.idalumno', '=', 'alumno.idalumno')
      ->leftJoin('pension', 'alumnomatricula.idpension', '=', 'pension.idpension')
+     ->leftJoin('nivel','alumnomatricula.idnivel','=','nivel.idnivel')
+     ->leftJoin('grado','alumnomatricula.idgrado','=','grado.idgrado')
+     ->leftJoin('sede','alumnomatricula.idsede','=','sede.idsede')
      ->leftJoin('users', 'alumnomatricula.usercreate', '=', 'users.id');
      
     if($array['idperiodo']) {
