@@ -23,7 +23,7 @@
 						
 						{!! Form::password('password', ['class' => 'form-control input-sm mb-md', 'placeholder' => '*******']) !!}						
 						
-						{!! Form::select('idrol', ['1' => 'Admnistrador', '2' => 'Responsable de Área', '3' => 'Secretaria', '4' => 'Profesor', '4' => 'Profesor']) !!}
+						{!! Form::select('idrol', ['1' => 'Admnistrador', '2' => 'Responsable de Área', '3' => 'Secretaria', '4' => 'Profesor', '4' => 'Profesor','5'=>'Área Legal']) !!}
 
 					</div>					
 				</div>

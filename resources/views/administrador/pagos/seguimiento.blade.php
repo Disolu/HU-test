@@ -54,7 +54,7 @@ elseif(Auth::user()->idrol==5)
 				</div>
 			</fieldset>
 		  </div>
-			<div class="col-md-3">
+		  <div class="col-md-3">
 		  	<fieldset>
 				<div class="form-group">
 					<select name="grado"  id="cboGrado" class="form-control mb-md" data-bind="options: grados, optionsText: 'nombre', optionsValue: 'idgrado',  optionsCaption: 'Seleccione un Grado', value: gradoSeleccionado"></select>
@@ -62,6 +62,12 @@ elseif(Auth::user()->idrol==5)
 			</fieldset>
 			</div>
 		</div>
+        <div class="row">
+            <div class="col-md-12">
+                {!! Form::label('Dni', 'Dni') !!}
+                {!! Form::text('dni', $value = null, $attributes = array('class' => 'form-control')) !!}
+            </div>
+        </div>
 	</div>
 	
 	<div class="panel-footer">

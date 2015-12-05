@@ -82,6 +82,7 @@ class ReportesRepo {
     $idsede    = $request['sede'];
     $idnivel   = $request['nivel'];
     $idgrado   = $request['grado'];
+    $dni       = $request['dni'];
 
     $periodo = PeriodoMatricula::take(1)->orderBy('idperiodomatricula','desc')->get();
     
@@ -106,6 +107,9 @@ class ReportesRepo {
       }
       if ($idgrado) {
           $pagos->where('alumnomatricula.idgrado','=',$idgrado);
+      }
+      if ($dni) {
+          $pagos->where('alumno.dni','=',$dni);
       }
       
       $pagos->where('alumno.impedimento','<>','1');

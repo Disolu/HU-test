@@ -57,7 +57,6 @@ class SeguimientoPagosController extends Controller
     return view('administrador.pagos.seguimiento', compact('pagos'));
   }
 
-
   public function pagosObservacion($id)
   {
     $alumnos = DB::table('alumno')
