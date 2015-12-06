@@ -34,7 +34,7 @@
                         <div class="widget-summary-col">
                             <div class="summary">
                                 <h4 class="title">
-                                    <a href="{{ route('addnotas', $data->idcurso) }}">{!! $data->nombre !!}</a>
+                                    <a href="{{ route('addnotas', [$data->idcurso, $data->idseccion]) }}">{!! $data->nombre !!}</a>
                                 </h4>
                             </div>
                         </div>
