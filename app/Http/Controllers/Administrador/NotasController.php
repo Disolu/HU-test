@@ -94,7 +94,9 @@ class NotasController extends Controller
             ->take(1)
             ->get();
 
-        $alumnos = $this->NotasRepo->getAlumnos($datape[0]->idgrado, $idseccion, $lastPeriodo[0]->idperiodomatricula);
+        $alumnos = $this->NotasRepo->getAlumnos($idcurso, $datape[0]->idgrado, $idseccion, $lastPeriodo[0]->idperiodomatricula);
+        //dd($alumnos);
+
         $fechanota = $this->NotasRepo->getFechaNota($lastPeriodo[0]->idperiodomatricula, $datehow);
         //dd($fechanota);
         $namecurso = Cursos::where('idcurso', $idcurso)->get();

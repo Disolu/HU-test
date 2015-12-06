@@ -29,16 +29,15 @@
 						<th class="text-right hidden-xs hidden-sm">II Bimestre</th>
 						<th class="text-right">III Bimestre</th>
 						<th class="text-right">IV Bimestre</th>
-						<th class="text-right hidden-xs hidden-sm">Promedio</th>
 					</tr>
 				</thead>
 				<tbody>
 			
 				<?php 
-				$fechanota[0]->bimestre->idbimestre == 1 ? $bimestre = ""    : $bimestre 	= "disabled='disabled'";
-				$fechanota[0]->bimestre->idbimestre == 2 ? $bimestreII = ""  : $bimestreII  = "disabled='disabled'";
-				$fechanota[0]->bimestre->idbimestre == 3 ? $bimestreIII = "" : $bimestreIII = "disabled='disabled'";
-				$fechanota[0]->bimestre->idbimestre == 4 ? $bimestreIV = ""  : $bimestreIV 	= "disabled='disabled'";
+				$fechanota[0]->bimestre->idbimestre == 1 ? $bimestre    = "style='width: 80px'"  : $bimestre 	= "style='display: none' disabled='disabled'";
+				$fechanota[0]->bimestre->idbimestre == 2 ? $bimestreII  = "style='width: 80px'"  : $bimestreII  = "style='display: none' disabled='disabled'";
+				$fechanota[0]->bimestre->idbimestre == 3 ? $bimestreIII = "style='width: 80px'"  : $bimestreIII = "style='display: none' disabled='disabled'";
+				$fechanota[0]->bimestre->idbimestre == 4 ? $bimestreIV  = "style='width: 80px'"  : $bimestreIV 	= "style='display: none' disabled='disabled'";
 				?>
 				<input type="hidden" name="idbimestre" value="{!! $fechanota[0]->bimestre->idbimestre !!}">
 				<input type="hidden" name="idperiodo" value="{!! $lastPeriodo[0]->idperiodomatricula !!}">
@@ -52,29 +51,26 @@
 						<td class="hidden-xs hidden-sm">{!! $data->alumno->fullname !!}</td>
 						<td class="text-right">
 							<div class="col-md-6 form-group">
-								<input type="text" class="form-control" {!! $bimestre !!} name="bimestreINota[]" maxlength="2" value="{{ $data->bimestre1 }}">
+								<input type="text" style="width: 80px;" class="form-control" {!! $bimestre !!} name="bimestreINota[]" maxlength="2" value="{{ $data->bimestre1 }}">
 							</div>
 						</td>
 
 						<td class="text-right">
 							<div class="col-md-6 form-group">
-								<input type="text" class="form-control" {!! $bimestreII !!} name="bimestreIINota[]" maxlength="2" value="{{ $data->nota_number }}">
+								<input type="text" class="form-control" {!! $bimestreII !!} name="bimestreIINota[]" maxlength="2" value="{{ $data->bimestre2 }}">
 							</div>
 						</td>
 
 						<td class="text-right">
 							<div class="col-md-6 form-group">
-								<input type="text" class="form-control" {!! $bimestreIII !!} name="bimestreIIINota[]" maxlength="2" value="{{ $data->nota_number }}">
+								<input type="text" class="form-control" {!! $bimestreIII !!} name="bimestreIIINota[]" maxlength="2" value="{{ $data->bimestre3 }}">
 							</div>
 						</td>
 
 						<td lass="text-right">
 							<div class="col-md-6 form-group">
-								<input type="text" class="form-control" {!! $bimestreIV !!} name="bimestreIVNota[]" maxlength="2" value="{{ $data->nota_number }}">
+								<input type="text" class="form-control" {!! $bimestreIV !!} name="bimestreIVNota[]" maxlength="2" value="{{ $data->bimestre4 }}">
 							</div>
-						</td>
-
-						<td lass="text-right hidden-xs hidden-sm">
 						</td>
 					</tr>
 				@endforeach	

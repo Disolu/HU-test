@@ -33,14 +33,19 @@ class NotasRepo {
         select('idfechanota','idbimestre','fecha_inicio','fecha_fin')->get();
     }
 
-    public function getAlumnos($grado, $seccion ,$periodo)
+    public function getAlumnos($idcurso, $grado, $seccion ,$periodo)
     {
         return AlumnoMatricula::
-            //leftJoin('notacurso as nc','nc.idalumno','=','alumnomatricula.idalumno')
-            select('*', DB::raw("(select count(*) from notacurso where idbimestre = 1 and idperiodomatricula = {$periodo} ) as bimestre1"))
-            ->where('idperiodomatricula',$periodo)
-            ->where('idgrado', $grado)
-            ->where('idseccion', $seccion)
+            select('*',
+            DB::raw("(select nota_number from notacurso as nc where nc.idbimestre = 1 and nc.idperiodomatricula = {$periodo} and nc.idcurso = {$idcurso} and nc.idalumno = alumnomatricula.idalumno) as bimestre1"),
+            DB::raw("(select nota_number from notacurso as nc where nc.idbimestre = 2 and nc.idperiodomatricula = {$periodo} and nc.idcurso = {$idcurso} and nc.idalumno = alumnomatricula.idalumno) as bimestre2"),
+            DB::raw("(select nota_number from notacurso as nc where nc.idbimestre = 3 and nc.idperiodomatricula = {$periodo} and nc.idcurso = {$idcurso} and nc.idalumno = alumnomatricula.idalumno) as bimestre3"),
+            DB::raw("(select nota_number from notacurso as nc where nc.idbimestre = 4 and nc.idperiodomatricula = {$periodo} and nc.idcurso = {$idcurso} and nc.idalumno = alumnomatricula.idalumno) as bimestre4"))
+
+            ->where('alumnomatricula.idperiodomatricula',$periodo)
+            ->where('alumnomatricula.idgrado', $grado)
+            ->where('alumnomatricula.idseccion', $seccion)
+
             //->groupBy('nc.idalumno')
             ->get();
     }
