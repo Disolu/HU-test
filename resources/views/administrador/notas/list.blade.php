@@ -22,29 +22,26 @@
 			@include('alertas.error')
 			
 			@foreach($cursospe as $data)
-			<section class="panel panel-horizontal">
-				<header class="panel-heading bg-primary">
-					<div class="panel-heading-icon">
-						<i class="fa fa-music"></i>
-					</div>
-				</header>
-				<div class="panel-body p-lg">
-
-                    <h3 class="text-semibold mt-sm">
-                        <a href="{!! route('addnotas', [$data->idgrado, $data->idcurso, $data->idseccion] ) !!}">
-                            <strong><h4>{!! $data->curso !!}</h4></strong>
-                        </a>
-                    </h3>
-
-                    <p>
-                        <code>{!! $data->sede !!}</code> |
-					    <code>{!! $data->nivel !!}</code> |
-					    <code>{!! $data->grado !!}</code> |
-                        <code>{!! $data->seccion !!}</code>
-					    Tienes {!! $data->qty !!} alumnos.
-                    </p>
-				</div>
-			</section>
+                <div class="col-md-6 col-lg-6 col-xl-3">
+                    <section class="panel panel-featured-bottom panel-featured-primary">
+                        <div class="panel-body">
+                    <div class="widget-summary widget-summary-xs">
+                        <div class="widget-summary-col widget-summary-col-icon">
+                            <div class="summary-icon bg-primary">
+                                <i class="fa fa-life-ring"></i>
+                            </div>
+                        </div>
+                        <div class="widget-summary-col">
+                            <div class="summary">
+                                <h4 class="title">
+                                    <a href="{{ route('addnotas', $data->idcurso) }}">{!! $data->nombre !!}</a>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    </section>
+                </div>
 			@endforeach
 		</div>
 	</section>

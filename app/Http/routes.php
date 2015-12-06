@@ -243,7 +243,7 @@ Route::group( ['middleware' => ['auth','profesor'], 'prefix'=>'profesor'], funct
 	Route::post('listacursos', ['as' => 'listacursos', 'uses' => 'Administrador\NotasController@store']);
 
 	//Registro de Notas
-	Route::get('notas/{grado}/{idcurso}/{idseccion}', ['as' => 'addnotas', 'uses' => 'Administrador\NotasController@register']);
+	Route::get('notas/{idcurso}', ['as' => 'addnotas', 'uses' => 'Administrador\NotasController@register']);
 	Route::post('notas', ['as' => 'notas', 'uses' => 'Administrador\NotasController@store']);
 	Route::post('notas/registernotas', ['as' => 'registernotas', 'uses' => 'Administrador\NotasController@registerNotas']);
 
