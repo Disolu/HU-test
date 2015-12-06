@@ -25,49 +25,67 @@
 				</div>
 
 				<div class="col-md-12">
-					<h2 class="pb-lg">Sedes</h2>
+                    <div class="panel-group" id="accordion">
+                        @foreach($sedes as $data)
+                        <div class="panel panel-accordion">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#sede_{!! $data->idsede !!}">
+                                        {!! $data->nombre !!}
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="sede_{!! $data->idsede !!}" class="accordion-body collapse">
+                                <div class="panel-body">
+                                    @foreach($data->niveles as $nivel)
+                                        <h5 class="alternative-font" style="color: greenyellowen">{{ $nivel->nombre }}</h5>
+                                        @foreach($nivel->grado as $grado)
+                                            <div class="panel-group" id="accordion_{!! $grado->idgrado !!}">
+                                                <div class="panel panel-accordion">
+                                                    <div class="panel-heading">
+                                                        <h4 class="panel-title">
+                                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_{!! $grado->idgrado !!}" href="#grado_{!! $grado->idgrado !!}">
+                                                                <strong>{{ $grado->nombre }}</strong>
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="grado_{!! $grado->idgrado !!}" class="accordion-body collapse">
+                                                        <div class="panel-body">
+                                                            @if(count($grado->curso) == 0)
+                                                                <code>{{ $grado->nombre }} no tiene cursos registrados.</code>
+                                                            @endif
 
-					<div class="toggle" data-plugin-toggle="">
-						@foreach($sedes as $data)
-						<section class="toggle">
-							<label><i class="fa fa-plus"></i><i class="fa fa-minus"></i>
-								{!! $data->nombre !!}
-							</label>
-							<p class="" style="height: 0px;">
-								@foreach($data->niveles as $nivel)
-									<h4 class="alternative-font" style="color: #2A427B">{{ $nivel->nombre }}</h4>
+                                                            @foreach($grado->curso as $curso)
+                                                                <p> -
+                                                                    <label for="curso">
+                                                                        <input type="checkbox" id="inlineCheckbox2" name="curso[]" value="{!! $curso->idcurso !!}">
+                                                                        <strong>{{ $curso->nombre }}</strong>
+                                                                    </label>
+                                                                </p>
+                                                                <div class="alert alert-default">
+                                                                    <p>
+                                                                        Secciones:
+                                                                        @foreach($grado->secciones as $seccion)
+                                                                            <span>
+														                        <input type="checkbox" name="seccion_{!! $curso->idcurso !!}[]" value="{!! $seccion->idseccion !!}">
+                                                                                {{ $seccion->nombre }}
+													                        </span>
+                                                                        @endforeach
+                                                                    </p>
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
 
-									@foreach($nivel->grado as $grado)
-									<h6 class="alternative-font">{{ $grado->nombre }}</h6>
-										@if(count($grado->curso) == 0)
-											<code>{{ $grado->nombre }} no tiene cursos registrados.</code>
-										@endif
-
-										@foreach($grado->curso as $curso)
-										<p> - 
-											<label for="curso">
-												<input type="checkbox" id="inlineCheckbox2" name="curso[]" value="{!! $curso->idcurso !!}">
-												<strong>{{ $curso->nombre }}</strong>
-											</label>
-										</p>
-										<div class="alert alert-default">
-											<p>
-												Secciones: 
-												@foreach($grado->secciones as $seccion)
-													<span>
-														<input type="checkbox" name="seccion_{!! $curso->idcurso !!}[]" value="{!! $seccion->idseccion !!}">
-														{{ $seccion->nombre }}
-													</span>
-												@endforeach
-											</p>
-										</div>
-										@endforeach
-									@endforeach
-								@endforeach
-							</p>
-						</section>
-						@endforeach
-					</div>
 				</div>
 
 				<p class="m-none">

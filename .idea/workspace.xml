@@ -25,10 +25,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3562387" vertical-offset="3390" max-vertical-offset="4539">
+            <state vertical-scroll-proportion="-3.581818" vertical-offset="3390" max-vertical-offset="4539">
               <caret line="211" column="138" selection-start-line="211" selection-start-column="124" selection-end-line="211" selection-end-column="138" />
               <folding>
                 <element signature="e#14559#14648#1#PHP" expanded="false" />
@@ -38,65 +38,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProfesorController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Administrador/ProfesorController.php">
+      <file leaf-file-name="asignaturas.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/administrador/profesores/asignaturas.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.538462" vertical-offset="574" max-vertical-offset="1258">
-              <caret line="115" column="54" selection-start-line="115" selection-start-column="41" selection-end-line="115" selection-end-column="54" />
+            <state vertical-scroll-proportion="0.48506153" vertical-offset="1203" max-vertical-offset="1870">
+              <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
               <folding>
-                <element signature="e#543#786#0#PHP" expanded="false" />
-                <element signature="e#792#1078#0#PHP" expanded="false" />
-                <element signature="e#1084#2586#0#PHP" expanded="false" />
+                <element signature="e#1820#1848#0#HTML" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProfesorRepo.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Core/Repositories/Administrador/ProfesorRepo.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.5" vertical-offset="200" max-vertical-offset="799">
-              <caret line="65" column="57" selection-start-line="65" selection-start-column="57" selection-end-line="65" selection-end-column="57" />
-              <folding>
-                <element signature="e#195#494#0#PHP" expanded="false" />
-                <element signature="e#305#460#1#PHP" expanded="false" />
-                <element signature="e#500#741#0#PHP" expanded="false" />
-                <element signature="e#747#947#0#PHP" expanded="false" />
-                <element signature="e#953#1123#0#PHP" expanded="false" />
-                <element signature="e#1129#1247#0#PHP" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="list.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/administrador/profesores/list.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.192308" vertical-offset="497" max-vertical-offset="1343">
-              <caret line="54" column="97" selection-start-line="54" selection-start-column="76" selection-end-line="54" selection-end-column="97" />
-              <folding>
-                <element signature="e#854#876#0#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProfesorCurso.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Core/Entities/ProfesorCurso.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.0" vertical-offset="72" max-vertical-offset="714">
-              <caret line="19" column="65" selection-start-line="19" selection-start-column="58" selection-end-line="19" selection-end-column="65" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProfesorSeccion.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Core/Entities/ProfesorSeccion.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.076923" vertical-offset="0" max-vertical-offset="527">
-              <caret line="21" column="27" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="27" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -115,7 +64,6 @@
         <option value="$PROJECT_DIR$/resources/views/matricula/alumnos/registrar.blade.php" />
         <option value="$PROJECT_DIR$/app/Core/Repositories/Alumno/AlumnoRepo.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Matricula/AlumnosController.php" />
-        <option value="$PROJECT_DIR$/resources/views/administrador/profesores/asignaturas.blade.php" />
         <option value="$PROJECT_DIR$/app/Core/Entities/Cursos.php" />
         <option value="$PROJECT_DIR$/resources/views/administrador/notas/list.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Administrador/NotasController.php" />
@@ -136,6 +84,7 @@
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Administrador/ProfesorController.php" />
         <option value="$PROJECT_DIR$/app/Core/Repositories/Administrador/ProfesorRepo.php" />
+        <option value="$PROJECT_DIR$/resources/views/administrador/profesores/asignaturas.blade.php" />
       </list>
     </option>
   </component>
@@ -201,7 +150,73 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HU" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hufull" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="administrador" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HU" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hufull" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="administrador" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="profesores" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HU" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hufull" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -216,10 +231,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -286,7 +297,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1376" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -552,13 +563,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/administrador/profesores/asignaturas.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.576923" vertical-offset="538" max-vertical-offset="1564">
-          <caret line="57" column="116" selection-start-line="57" selection-start-column="116" selection-end-line="57" selection-end-column="116" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Core/Entities/Cursos.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6426117" vertical-offset="0" max-vertical-offset="582">
@@ -766,8 +770,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/administrador/profesores/list.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.192308" vertical-offset="497" max-vertical-offset="1343">
-          <caret line="54" column="97" selection-start-line="54" selection-start-column="76" selection-end-line="54" selection-end-column="97" />
+        <state vertical-scroll-proportion="0.8594025" vertical-offset="344" max-vertical-offset="1343">
+          <caret line="49" column="53" selection-start-line="49" selection-start-column="53" selection-end-line="49" selection-end-column="53" />
           <folding>
             <element signature="e#854#876#0#HTML" expanded="true" />
           </folding>
@@ -776,7 +780,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Core/Repositories/Administrador/ProfesorRepo.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.5" vertical-offset="200" max-vertical-offset="799">
+        <state vertical-scroll-proportion="0.7371134" vertical-offset="200" max-vertical-offset="799">
           <caret line="65" column="57" selection-start-line="65" selection-start-column="57" selection-end-line="65" selection-end-column="57" />
           <folding>
             <element signature="e#195#494#0#PHP" expanded="false" />
@@ -791,7 +795,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Administrador/ProfesorController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.538462" vertical-offset="574" max-vertical-offset="1258">
+        <state vertical-scroll-proportion="0.6494845" vertical-offset="574" max-vertical-offset="1258">
           <caret line="115" column="54" selection-start-line="115" selection-start-column="41" selection-end-line="115" selection-end-column="54" />
           <folding>
             <element signature="e#543#786#0#PHP" expanded="false" />
@@ -803,11 +807,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3562387" vertical-offset="3390" max-vertical-offset="4539">
+        <state vertical-scroll-proportion="-3.581818" vertical-offset="3390" max-vertical-offset="4539">
           <caret line="211" column="138" selection-start-line="211" selection-start-column="124" selection-end-line="211" selection-end-column="138" />
           <folding>
             <element signature="e#14559#14648#1#PHP" expanded="false" />
             <element signature="e#15978#16061#1#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/administrador/profesores/asignaturas.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48506153" vertical-offset="1203" max-vertical-offset="1870">
+          <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+          <folding>
+            <element signature="e#1820#1848#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
