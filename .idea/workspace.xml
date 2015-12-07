@@ -28,44 +28,69 @@
       <file leaf-file-name="AlumnosController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Matricula/AlumnosController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.038462" vertical-offset="470" max-vertical-offset="7446">
-              <caret line="63" column="41" selection-start-line="63" selection-start-column="41" selection-end-line="63" selection-end-column="41" />
-              <folding />
+            <state vertical-scroll-proportion="-14.461538" vertical-offset="950" max-vertical-offset="1785">
+              <caret line="173" column="43" selection-start-line="173" selection-start-column="43" selection-end-line="173" selection-end-column="43" />
+              <folding>
+                <element signature="e#2653#2961#0#PHP" expanded="false" />
+                <element signature="e#2965#3290#0#PHP" expanded="false" />
+                <element signature="e#3294#3612#0#PHP" expanded="false" />
+                <element signature="e#3616#3728#0#PHP" expanded="false" />
+                <element signature="e#3732#4070#0#PHP" expanded="false" />
+                <element signature="e#4110#5345#0#PHP" expanded="false" />
+                <element signature="e#5349#5423#0#PHP" expanded="false" />
+                <element signature="e#5703#7285#0#PHP" expanded="false" />
+                <element signature="e#7289#7364#0#PHP" expanded="false" />
+                <element signature="e#7368#8324#0#PHP" expanded="false" />
+                <element signature="e#7453#8037#1#PHP" expanded="false" />
+                <element signature="e#8328#9765#0#PHP" expanded="false" />
+                <element signature="e#9769#10824#0#PHP" expanded="false" />
+                <element signature="e#10828#12675#0#PHP" expanded="false" />
+                <element signature="e#12679#16292#0#PHP" expanded="false" />
+                <element signature="e#16296#17359#0#PHP" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AlumnoRepo.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AlumnoRepo.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Core/Repositories/Alumno/AlumnoRepo.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.1153846" vertical-offset="2" max-vertical-offset="4063">
-              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.7869416" vertical-offset="86" max-vertical-offset="952">
+              <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
               <folding>
                 <element signature="e#46#75#0#PHP" expanded="true" />
+                <element signature="e#366#650#0#PHP" expanded="false" />
+                <element signature="e#656#1212#0#PHP" expanded="false" />
+                <element signature="e#1222#1833#0#PHP" expanded="false" />
+                <element signature="e#2266#2793#0#PHP" expanded="false" />
+                <element signature="e#2799#3330#0#PHP" expanded="false" />
+                <element signature="e#3340#6973#0#PHP" expanded="false" />
+                <element signature="e#6979#9480#0#PHP" expanded="false" />
+                <element signature="e#9486#10482#0#PHP" expanded="false" />
+                <element signature="e#10488#10667#0#PHP" expanded="false" />
+                <element signature="e#10673#11144#0#PHP" expanded="false" />
+                <element signature="e#11150#11542#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="buscar.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/matricula/alumnos/buscar.blade.php">
+      <file leaf-file-name="buscarRestringidos.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/matricula/alumnos/buscarRestringidos.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.846154" vertical-offset="857" max-vertical-offset="1700">
-              <caret line="67" column="57" selection-start-line="67" selection-start-column="40" selection-end-line="67" selection-end-column="57" />
+            <state vertical-scroll-proportion="-15.038462" vertical-offset="714" max-vertical-offset="1683">
+              <caret line="65" column="33" selection-start-line="65" selection-start-column="33" selection-end-line="65" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="resultadobusqueda.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/matricula/alumnos/resultadobusqueda.blade.php">
+      <file leaf-file-name="resultadorestringidos.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/matricula/alumnos/resultadorestringidos.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5114235" vertical-offset="117" max-vertical-offset="1003">
-              <caret line="24" column="41" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
-              <caret line="24" column="76" selection-start-line="24" selection-start-column="76" selection-end-line="24" selection-end-column="76" />
-              <folding>
-                <element signature="e#1128#2349#0#HTML" expanded="false" />
-              </folding>
+            <state vertical-scroll-proportion="-13.730769" vertical-offset="0" max-vertical-offset="680">
+              <caret line="21" column="49" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -104,10 +129,12 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Administrador/NotasController.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/profesor.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Matricula/AlumnosController.php" />
-        <option value="$PROJECT_DIR$/app/Core/Repositories/Alumno/AlumnoRepo.php" />
         <option value="$PROJECT_DIR$/resources/views/matricula/alumnos/buscar.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Matricula/AlumnosController.php" />
         <option value="$PROJECT_DIR$/resources/views/matricula/alumnos/resultadobusqueda.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/matricula/alumnos/buscarRestringidos.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/matricula/alumnos/resultadorestringidos.blade.php" />
+        <option value="$PROJECT_DIR$/app/Core/Repositories/Alumno/AlumnoRepo.php" />
       </list>
     </option>
   </component>
@@ -348,29 +375,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="15" />
+      <option name="time" value="16" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="29" max-vertical-offset="1989">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <element signature="e#15362#17018#1#PHP" expanded="false" />
-            <element signature="e#17324#17407#1#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/matricula/alumnos/registrar.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="6936" max-vertical-offset="13515">
-          <caret line="408" column="14" selection-start-line="408" selection-start-column="14" selection-end-line="408" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Matricula/AlumnosController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6443">
@@ -572,6 +581,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.076923" vertical-offset="0" max-vertical-offset="561">
           <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding>
+            <element signature="e#143#374#0#PHP" expanded="false" />
+            <element signature="e#380#533#0#PHP" expanded="false" />
+            <element signature="e#539#658#0#PHP" expanded="false" />
+            <element signature="e#709#907#0#PHP" expanded="false" />
+            <element signature="e#958#1308#0#PHP" expanded="false" />
+            <element signature="e#1369#1696#0#PHP" expanded="false" />
+            <element signature="e#1702#1854#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -722,45 +740,86 @@
         <state vertical-scroll-proportion="0.52196836" vertical-offset="230" max-vertical-offset="4454">
           <caret line="31" column="105" selection-start-line="31" selection-start-column="80" selection-end-line="31" selection-end-column="105" />
           <folding>
-            <element signature="e#15362#17018#1#PHP" expanded="false" />
-            <element signature="e#17324#17407#1#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Matricula/AlumnosController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.038462" vertical-offset="470" max-vertical-offset="7446">
-          <caret line="63" column="41" selection-start-line="63" selection-start-column="41" selection-end-line="63" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Core/Repositories/Alumno/AlumnoRepo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.1153846" vertical-offset="2" max-vertical-offset="4063">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding>
-            <element signature="e#46#75#0#PHP" expanded="true" />
+            <element signature="e#15491#17147#1#PHP" expanded="false" />
+            <element signature="e#17453#17536#1#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/matricula/alumnos/buscar.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.846154" vertical-offset="857" max-vertical-offset="1700">
+        <state vertical-scroll-proportion="0.49560633" vertical-offset="857" max-vertical-offset="1700">
           <caret line="67" column="57" selection-start-line="67" selection-start-column="40" selection-end-line="67" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Matricula/AlumnosController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.461538" vertical-offset="950" max-vertical-offset="1785">
+          <caret line="173" column="43" selection-start-line="173" selection-start-column="43" selection-end-line="173" selection-end-column="43" />
+          <folding>
+            <element signature="e#2653#2961#0#PHP" expanded="false" />
+            <element signature="e#2965#3290#0#PHP" expanded="false" />
+            <element signature="e#3294#3612#0#PHP" expanded="false" />
+            <element signature="e#3616#3728#0#PHP" expanded="false" />
+            <element signature="e#3732#4070#0#PHP" expanded="false" />
+            <element signature="e#4110#5345#0#PHP" expanded="false" />
+            <element signature="e#5349#5423#0#PHP" expanded="false" />
+            <element signature="e#5703#7285#0#PHP" expanded="false" />
+            <element signature="e#7289#7364#0#PHP" expanded="false" />
+            <element signature="e#7368#8324#0#PHP" expanded="false" />
+            <element signature="e#7453#8037#1#PHP" expanded="false" />
+            <element signature="e#8328#9765#0#PHP" expanded="false" />
+            <element signature="e#9769#10824#0#PHP" expanded="false" />
+            <element signature="e#10828#12675#0#PHP" expanded="false" />
+            <element signature="e#12679#16292#0#PHP" expanded="false" />
+            <element signature="e#16296#17359#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/matricula/alumnos/resultadobusqueda.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5114235" vertical-offset="117" max-vertical-offset="1003">
-          <caret line="24" column="41" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
-          <caret line="24" column="76" selection-start-line="24" selection-start-column="76" selection-end-line="24" selection-end-column="76" />
+        <state vertical-scroll-proportion="1.7627417" vertical-offset="0" max-vertical-offset="1530">
+          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/matricula/alumnos/resultadorestringidos.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.730769" vertical-offset="0" max-vertical-offset="680">
+          <caret line="21" column="49" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/matricula/alumnos/buscarRestringidos.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.038462" vertical-offset="714" max-vertical-offset="1683">
+          <caret line="65" column="33" selection-start-line="65" selection-start-column="33" selection-end-line="65" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Core/Repositories/Alumno/AlumnoRepo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7869416" vertical-offset="86" max-vertical-offset="952">
+          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
           <folding>
-            <element signature="e#1128#2349#0#HTML" expanded="false" />
+            <element signature="e#46#75#0#PHP" expanded="true" />
+            <element signature="e#366#650#0#PHP" expanded="false" />
+            <element signature="e#656#1212#0#PHP" expanded="false" />
+            <element signature="e#1222#1833#0#PHP" expanded="false" />
+            <element signature="e#2266#2793#0#PHP" expanded="false" />
+            <element signature="e#2799#3330#0#PHP" expanded="false" />
+            <element signature="e#3340#6973#0#PHP" expanded="false" />
+            <element signature="e#6979#9480#0#PHP" expanded="false" />
+            <element signature="e#9486#10482#0#PHP" expanded="false" />
+            <element signature="e#10488#10667#0#PHP" expanded="false" />
+            <element signature="e#10673#11144#0#PHP" expanded="false" />
+            <element signature="e#11150#11542#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>

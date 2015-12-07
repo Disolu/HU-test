@@ -55,6 +55,8 @@ Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
 	Route::get('buscar', ['as' => 'alumnobuscar', 'uses' => 'Matricula\AlumnosController@buscar']);
 	Route::post('buscar', ['as' => 'alumnobuscar', 'uses' => 'Matricula\AlumnosController@getAlumno']);
 	
+	Route::get('buscar/restringidos', ['as' => 'searchrestringidos', 'uses' => 'Matricula\AlumnosController@searchrestringidos']);
+
 	//Nombre del alumno
 	Route::get('name', ['as' => 'name', 'uses' => 'Matricula\AlumnosController@getNameAlumno']);
 	

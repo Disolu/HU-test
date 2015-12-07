@@ -46,6 +46,22 @@ class AlumnoRepo {
          ->get();
     }
 
+    public function getAlumnoRestricciones($alumno)
+    {
+        if($alumno)
+        {
+            $restringidos = DB::table('restringidos')
+                ->where('fullname','LIKE','%'.$alumno.'%')
+                ->orWhere('dni', $alumno)
+                ->take(1)
+                ->get();
+        }
+        else{
+            $restringidos = DB::table('restringidos')->get();
+        }
+        return $restringidos;
+    }
+
     public function SaveDeudasAlumno($iduser, $alumno, $periodo)
     {
         for ($i=4; $i <= 12 ; $i++) { 

@@ -146,6 +146,11 @@
 												Consulta vacante
 											</a>
 										</li>
+										<li>
+											<a href="{!! route('searchrestringidos') !!}">
+												Consulta restringidos
+											</a>
+										</li>
 									</ul>
 								</li>
 

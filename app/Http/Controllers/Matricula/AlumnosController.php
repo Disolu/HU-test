@@ -167,10 +167,18 @@ class AlumnosController extends Controller
   public function buscar(){
     return view('matricula.alumnos.buscar');
   }
+
+  public function searchrestringidos(Request $request)
+  {
+    $alumno = $request['alumno'];
+    $getAlumno = $this->AlumnoRepo->getAlumnoRestricciones($alumno);
+    return view('matricula.alumnos.buscarRestringidos', compact('getAlumno'));
+  }
+
   //Matricula de alumno Nuevo
   public function addAlumno(Request $request)
   { 
-  //RECOGEMOS LOS OBJETOS DE JS
+    
     $iduser = $request->user()->id;
     $rawUser       = $_GET['alumno'];
     $rawApoderados = $_GET['apoderados'];

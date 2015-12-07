@@ -6,28 +6,27 @@
 		<div class="col-md-6 col-lg-6 col-xl-4">
 			<section class="panel panel-featured-left panel-featured-primary">
 
-				<div class="panel-body">			
+				<div class="panel-body">
 					<div class="widget-summary widget-summary-sm">
 						<div class="widget-summary-col widget-summary-col-icon">
 							<div class="summary-icon bg-primary">
 								<i class="fa fa-life-ring"></i>
 							</div>
-						</div>			
+						</div>
 
 						<div class="widget-summary-col">
 							<div class="summary">
 								<h4 class="title">
-									{!! $alumno->fullname !!} 
+									{!! $alumno->fullname !!}
 								</h4>
 
 								<div class="info">
 									<strong class="amount"><a href="{!! $alumno->alumnoid !!}">{!! $alumno->codigo !!}</a></strong>
-                                    <code>{!! $alumno->observacion !!}</code>
 									@if($alumno->impedimento == 1)
 									<span class="text-warning"><a href="{!! route('alumno', $alumno->alumnoid) !!}">(Editar)</a></span>
 									<a href="{!! route('observacion',$alumno->alumnoid) !!}" class="mb-xs mt-xs mr-xs btn btn-xs btn-danger">Impedimento</a>
 									<!--
-									<a class="mb-xs mt-xs mr-xs modal-basic btn btn-xs btn-danger" href="#modalFullColorDanger{!! $alumno->alumnoid !!}">Impedimento</a>									
+									<a class="mb-xs mt-xs mr-xs modal-basic btn btn-xs btn-danger" href="#modalFullColorDanger{!! $alumno->alumnoid !!}">Impedimento</a>
 									<div id="modalFullColorDanger{!! $alumno->alumnoid !!}" class="modal-block modal-full-color modal-block-danger mfp-hide">
 										<section class="panel">
 											<header class="panel-heading">
@@ -54,22 +53,26 @@
 											</footer>
 										</section>
 									</div>
-									-->	
+									-->
 									@else
 									<span class="text-warning"><a href="{!! route('alumno', $alumno->alumnoid) !!}">(Editar)</a></span>
-                                        @if( count($getPeriodoMatricula)>0 )
-                                            @if( $getPeriodoMatricula[0]->idperiodomatricula != $alumno->idperiodomatricula)
-                                            <a href="{!! route('searchvacante',$alumno->alumnoid) !!}"><span class="label label-info">Matricular</span></a>
-                                            @else
-                                            <span class="label label-success">Matriculado</span>
-                                            @endif
-                                        @endif
+									@if( count($getPeriodoMatricula)>0 )
+
+
+										@if( $getPeriodoMatricula[0]->idperiodomatricula != $alumno->idperiodomatricula)
+										<a href="{!! route('searchvacante',$alumno->alumnoid) !!}"><span class="label label-info">Matricular</span></a>
+										@else
+										<span class="label label-success">Matriculado</span>
+										@endif
+
+									@endif
+
 									@endif
 								</div>
 
 							</div>
 
-						</div>			
+						</div>
 					</div>
 				</div>
 
