@@ -28,12 +28,12 @@
       <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.961538" vertical-offset="3155" max-vertical-offset="4012">
-              <caret line="245" column="43" selection-start-line="245" selection-start-column="43" selection-end-line="245" selection-end-column="43" />
+            <state vertical-scroll-proportion="-15.961538" vertical-offset="3223" max-vertical-offset="4080">
+              <caret line="249" column="43" selection-start-line="249" selection-start-column="43" selection-end-line="249" selection-end-column="43" />
               <folding>
                 <element signature="e#7934#10398#1#PHP" expanded="false" />
                 <element signature="e#14559#14648#1#PHP" expanded="false" />
-                <element signature="e#15970#16053#1#PHP" expanded="false" />
+                <element signature="e#16082#16165#1#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -49,7 +49,7 @@
                 <element signature="e#537#2661#0#PHP" expanded="false" />
                 <element signature="e#2667#2901#0#PHP" expanded="false" />
                 <element signature="e#2907#3520#0#PHP" expanded="false" />
-                <marker date="1449447084219" expanded="true" signature="825:1206" placeholder="select idsec..profesorseccion..." />
+                <marker date="1449453004050" expanded="true" signature="825:1206" placeholder="select idsec..profesorseccion..." />
               </folding>
             </state>
           </provider>
@@ -333,7 +333,7 @@
           <folding>
             <element signature="e#7934#10398#1#PHP" expanded="false" />
             <element signature="e#14559#14648#1#PHP" expanded="false" />
-            <element signature="e#15970#16053#1#PHP" expanded="false" />
+            <element signature="e#16082#16165#1#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -629,12 +629,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.961538" vertical-offset="3155" max-vertical-offset="4012">
-          <caret line="245" column="43" selection-start-line="245" selection-start-column="43" selection-end-line="245" selection-end-column="43" />
+        <state vertical-scroll-proportion="-15.961538" vertical-offset="3223" max-vertical-offset="4080">
+          <caret line="249" column="43" selection-start-line="249" selection-start-column="43" selection-end-line="249" selection-end-column="43" />
           <folding>
             <element signature="e#7934#10398#1#PHP" expanded="false" />
             <element signature="e#14559#14648#1#PHP" expanded="false" />
-            <element signature="e#15970#16053#1#PHP" expanded="false" />
+            <element signature="e#16082#16165#1#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -697,7 +697,7 @@
             <element signature="e#537#2661#0#PHP" expanded="false" />
             <element signature="e#2667#2901#0#PHP" expanded="false" />
             <element signature="e#2907#3520#0#PHP" expanded="false" />
-            <marker date="1449447084219" expanded="true" signature="825:1206" placeholder="select idsec..profesorseccion..." />
+            <marker date="1449453004050" expanded="true" signature="825:1206" placeholder="select idsec..profesorseccion..." />
           </folding>
         </state>
       </provider>

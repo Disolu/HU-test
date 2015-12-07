@@ -250,6 +250,10 @@ Route::group( ['middleware' => ['auth','profesor'], 'prefix'=>'profesor'], funct
 	Route::get('tarjetas/registernotas', ['as' => 'tarjetanotas', 'uses' => 'Administrador\NotasController@registerTarjetaNotas']);
 	Route::post('tarjetas/registernotas', ['as' => 'tarjetanotas', 'uses' => 'Administrador\NotasController@tarjetanotas']);
 
+	//Tutoria
+	Route::get('tutoria', ['as' => 'tutoria', 'uses' => 'Administrador\TutoriaController@register']);
+
+
 });
 
 //AREA SECRETARIA
