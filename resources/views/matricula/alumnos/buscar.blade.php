@@ -53,11 +53,10 @@
 				<label class="col-md-3 control-label">Nombre / Dni</label>
 				<div class="col-md-6">
 					<div class="input-group input-search">
-							<!--<input onkeypress="return justNumbers(event);" type="text" class="form-control dni" name="alumno" id="alumno" data-bind="textInput : keyword, event: {keypress: enterSearch}" placeholder="Buscar alumno...">-->
-							<input type="text" class="form-control" name="alumno" id="alumno" placeholder="Buscar alumno...">
-							<span class="input-group-btn">
-								<button class="btn btn-default"  data-bind="click: consultarAlumno" type="submit"><i class="fa fa-search"></i></button>
-							</span>
+                        <input type="text" class="form-control" name="alumno" id="alumno" placeholder="Buscar alumno...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default"  data-bind="click: consultarAlumno" type="submit"><i class="fa fa-search"></i></button>
+                        </span>
 					</div>
 					<span class="help-block">
 						Busque al alumno utilizando su nombre, apellidos o dni.

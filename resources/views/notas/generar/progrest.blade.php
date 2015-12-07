@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>OPTIMIST</title>
+    <title>PROGRESO</title>
     {!! Html::style('assets/css/progrest.css') !!}
 </head>
 <body>
@@ -15,14 +15,14 @@
             <center>
                 <p style="text-align:center">COLEGIO PRIVADO HIPOLITO UNANUE</p>
                 <p><h1 style="text-align:center">Informacion de Progreso del niño</h1></p>
-                <div style="text-align:center; width:470px">Inicial 2015 II bimestre</div>
+                <div style="text-align:center; width:470px">Inicial 2015 {{ $nbimestre }} bimestre</div>
             </center>
         </div>
 
     </header>
     <div style="width:670px; text-align:left">
         <label>Apellidos y Nombres:</label>
-        <label>-</label>
+        <label>{{ $alumno[0]->apellido_paterno}} {{ $alumno[0]->apellido_materno}}, {{ $alumno[0]->nombres}}</label>
     </div>
     <br />
     <div style="width:670px; text-align:left">

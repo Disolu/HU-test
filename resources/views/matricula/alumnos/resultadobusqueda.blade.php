@@ -22,6 +22,7 @@
 
 								<div class="info">
 									<strong class="amount"><a href="{!! $alumno->alumnoid !!}">{!! $alumno->codigo !!}</a></strong>
+                                    <code>{!! $alumno->observacion !!}</code>
 									@if($alumno->impedimento == 1)
 									<span class="text-warning"><a href="{!! route('alumno', $alumno->alumnoid) !!}">(Editar)</a></span>
 									<a href="{!! route('observacion',$alumno->alumnoid) !!}" class="mb-xs mt-xs mr-xs btn btn-xs btn-danger">Impedimento</a>
@@ -56,17 +57,13 @@
 									-->	
 									@else
 									<span class="text-warning"><a href="{!! route('alumno', $alumno->alumnoid) !!}">(Editar)</a></span>
-									@if( count($getPeriodoMatricula)>0 )
-
-
-										@if( $getPeriodoMatricula[0]->idperiodomatricula != $alumno->idperiodomatricula) 
-										<a href="{!! route('searchvacante',$alumno->alumnoid) !!}"><span class="label label-info">Matricular</span></a>
-										@else
-										<span class="label label-success">Matriculado</span>
-										@endif
-
-									@endif	
-
+                                        @if( count($getPeriodoMatricula)>0 )
+                                            @if( $getPeriodoMatricula[0]->idperiodomatricula != $alumno->idperiodomatricula)
+                                            <a href="{!! route('searchvacante',$alumno->alumnoid) !!}"><span class="label label-info">Matricular</span></a>
+                                            @else
+                                            <span class="label label-success">Matriculado</span>
+                                            @endif
+                                        @endif
 									@endif
 								</div>
 

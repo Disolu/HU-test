@@ -53,18 +53,23 @@ class GenerarLibretasController extends Controller
     return view('libreta.libreta', compact('dataAlumnos'));
   }
 
-  public function generateLibreta($idalumno)
+  public function generateLibreta($idalumno, $bimestre)
   {
-    return view('notas.generar.libreta');
+    $alumno = DB::table('alumno')->where('idalumno', $idalumno)->get();
+    return view('notas.generar.libreta', compact('alumno'));
   }
 
-  public function generateOptimist($idalumno)
+  public function generateOptimist($idalumno, $bimestre)
   {
-    return view('notas.generar.optimist');
+    $nbimestre = !empty($bimestre) ? $bimestre : 1;
+    $alumno = DB::table('alumno')->where('idalumno', $idalumno)->get();
+    return view('notas.generar.optimist', compact('alumno', 'nbimestre'));
   }
 
-  public function generateProgrest($idalumno)
+  public function generateProgrest($idalumno, $bimestre)
   {
-    return view('notas.generar.progrest');
+    $nbimestre = !empty($bimestre) ? $bimestre : 1;
+    $alumno = DB::table('alumno')->where('idalumno', $idalumno)->get();
+    return view('notas.generar.progrest', compact('alumno', 'nbimestre'));
   }
 }

@@ -23,7 +23,7 @@
             <table>
                 <tr>
                     <td>ALUMNO</td>
-                    <td>Apaza Raymundo, Renzo Medardo</td>
+                    <td>{{ $alumno[0]->apellido_paterno}} {{ $alumno[0]->apellido_materno}}, {{ $alumno[0]->nombres}}</td>
                 </tr>
 
                 <tr>

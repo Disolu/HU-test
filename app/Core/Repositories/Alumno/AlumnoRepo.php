@@ -8,6 +8,7 @@ use App\Core\Entities\AlumnoObservacion;
 use App\Core\Entities\Vacante;
 use App\Core\Entities\AlumnoDeudas;
 use App\Core\Entities\Mensualidades;
+use DB;
 
 class AlumnoRepo {
     public function getAlumnoJoins($alumno)
@@ -35,7 +36,8 @@ class AlumnoRepo {
     {
          return Alumno::        	
          leftJoin('alumnomatricula', 'alumno.idalumno', '=', 'alumnomatricula.idalumno')
-         ->select('fullname','codigo','impedimento','idalumnomatricula','alumno.idalumno as alumnoid','idperiodomatricula')
+         ->select('fullname','codigo','impedimento','idalumnomatricula','alumno.idalumno as alumnoid','idperiodomatricula',
+             DB::raw('(select observacion from restringidos as rt where rt.dni = alumno.dni) observacion'))
          ->where('fullname','LIKE','%'.$alumno.'%')
          ->orWhere('dni', $alumno)
          ->orWhere('codigo', $alumno)

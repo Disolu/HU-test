@@ -25,14 +25,46 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <file leaf-file-name="AlumnosController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Matricula/AlumnosController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.52196836" vertical-offset="230" max-vertical-offset="4454">
-              <caret line="31" column="105" selection-start-line="31" selection-start-column="80" selection-end-line="31" selection-end-column="105" />
+            <state vertical-scroll-proportion="-10.038462" vertical-offset="470" max-vertical-offset="7446">
+              <caret line="63" column="41" selection-start-line="63" selection-start-column="41" selection-end-line="63" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AlumnoRepo.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Core/Repositories/Alumno/AlumnoRepo.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.1153846" vertical-offset="2" max-vertical-offset="4063">
+              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
               <folding>
-                <element signature="e#15338#16994#1#PHP" expanded="false" />
-                <element signature="e#17300#17383#1#PHP" expanded="false" />
+                <element signature="e#46#75#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="buscar.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/matricula/alumnos/buscar.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.846154" vertical-offset="857" max-vertical-offset="1700">
+              <caret line="67" column="57" selection-start-line="67" selection-start-column="40" selection-end-line="67" selection-end-column="57" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="resultadobusqueda.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/matricula/alumnos/resultadobusqueda.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5114235" vertical-offset="117" max-vertical-offset="1003">
+              <caret line="24" column="41" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
+              <caret line="24" column="76" selection-start-line="24" selection-start-column="76" selection-end-line="24" selection-end-column="76" />
+              <folding>
+                <element signature="e#1128#2349#0#HTML" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -50,8 +82,6 @@
         <option value="$PROJECT_DIR$/resources/views/layouts/responsable.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Matricula/VacanteController.php" />
         <option value="$PROJECT_DIR$/resources/views/matricula/alumnos/registrar.blade.php" />
-        <option value="$PROJECT_DIR$/app/Core/Repositories/Alumno/AlumnoRepo.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Matricula/AlumnosController.php" />
         <option value="$PROJECT_DIR$/app/Core/Entities/Cursos.php" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/resources/views/informe/vs.blade.php" />
@@ -74,6 +104,10 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Administrador/NotasController.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/profesor.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Matricula/AlumnosController.php" />
+        <option value="$PROJECT_DIR$/app/Core/Repositories/Alumno/AlumnoRepo.php" />
+        <option value="$PROJECT_DIR$/resources/views/matricula/alumnos/buscar.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/matricula/alumnos/resultadobusqueda.blade.php" />
       </list>
     </option>
   </component>
@@ -139,7 +173,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -153,11 +191,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="matricula" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -171,15 +213,33 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
+              <option name="myItemId" value="matricula" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alumnos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HU" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hufull" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -246,7 +306,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1376" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -293,31 +353,13 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/administrador/notas/register.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="728" max-vertical-offset="1700">
-          <caret line="54" column="153" selection-start-line="54" selection-start-column="153" selection-end-line="54" selection-end-column="153" />
-          <folding>
-            <element signature="e#2598#2618#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/administrador/notas/list.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="269" max-vertical-offset="986">
-          <caret line="33" column="86" selection-start-line="33" selection-start-column="79" selection-end-line="33" selection-end-column="86" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="29" max-vertical-offset="1989">
           <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding>
-            <element signature="e#15338#16994#1#PHP" expanded="false" />
-            <element signature="e#17300#17383#1#PHP" expanded="false" />
+            <element signature="e#15362#17018#1#PHP" expanded="false" />
+            <element signature="e#17324#17407#1#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -459,20 +501,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="6936" max-vertical-offset="13515">
           <caret line="408" column="14" selection-start-line="408" selection-start-column="14" selection-end-line="408" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Matricula/AlumnosController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43760985" vertical-offset="737" max-vertical-offset="7718">
-          <caret line="64" column="8" selection-start-line="64" selection-start-column="8" selection-end-line="64" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Core/Repositories/Alumno/AlumnoRepo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5670103" vertical-offset="248" max-vertical-offset="3910">
-          <caret line="41" column="9" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -694,8 +722,45 @@
         <state vertical-scroll-proportion="0.52196836" vertical-offset="230" max-vertical-offset="4454">
           <caret line="31" column="105" selection-start-line="31" selection-start-column="80" selection-end-line="31" selection-end-column="105" />
           <folding>
-            <element signature="e#15338#16994#1#PHP" expanded="false" />
-            <element signature="e#17300#17383#1#PHP" expanded="false" />
+            <element signature="e#15362#17018#1#PHP" expanded="false" />
+            <element signature="e#17324#17407#1#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Matricula/AlumnosController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.038462" vertical-offset="470" max-vertical-offset="7446">
+          <caret line="63" column="41" selection-start-line="63" selection-start-column="41" selection-end-line="63" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Core/Repositories/Alumno/AlumnoRepo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.1153846" vertical-offset="2" max-vertical-offset="4063">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding>
+            <element signature="e#46#75#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/matricula/alumnos/buscar.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.846154" vertical-offset="857" max-vertical-offset="1700">
+          <caret line="67" column="57" selection-start-line="67" selection-start-column="40" selection-end-line="67" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/matricula/alumnos/resultadobusqueda.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5114235" vertical-offset="117" max-vertical-offset="1003">
+          <caret line="24" column="41" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
+          <caret line="24" column="76" selection-start-line="24" selection-start-column="76" selection-end-line="24" selection-end-column="76" />
+          <folding>
+            <element signature="e#1128#2349#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -30,8 +30,8 @@ Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
 
 	//Generar Libretas
 	Route::get('libreta/generar/{id}',  ['as' => 'generatelibreta',  'uses' => 'GenerarLibretasController@generateLibreta'])->where('id', '[0-9]+');
-	Route::get('optimist/generar/{id}', ['as' => 'generateOptimist', 'uses' => 'GenerarLibretasController@generateOptimist'])->where('id', '[0-9]+');
-	Route::get('progrest/generar/{id}', ['as' => 'generateProgrest', 'uses' => 'GenerarLibretasController@generateProgrest'])->where('id', '[0-9]+');
+	Route::get('optimist/generar/{id}/{bimestre?}', ['as' => 'generateOptimist', 'uses' => 'GenerarLibretasController@generateOptimist'])->where('id', '[0-9]+');
+	Route::get('progrest/generar/{id}/{bimestre?}', ['as' => 'generateProgrest', 'uses' => 'GenerarLibretasController@generateProgrest'])->where('id', '[0-9]+');
 
 	Route::get('reportesPagosexcel', ['as' => 'excelpagos', 'uses' => 'Administrador\ReportesController@getAlumnosPagosExcel']);
 	Route::get('reportes', 		 ['as' => 'reportes',        'uses' => 'Administrador\ReportesController@getAlumnosxSeccion']);

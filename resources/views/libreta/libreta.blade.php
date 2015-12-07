@@ -32,26 +32,39 @@
 {!! Form::open(['route' => 'generarlibretas', 'method' => 'GET']) !!}
 	<div class="panel-body">
 		<div class="row">
-		  <div class="col-md-3">
+			<div class="col-md-2">
+		  	<fieldset>
+	  			<select class="form-control mb-md" name="bimestre">
+						<option value="1">Bimestre I</option>
+						<option value="2">Bimestre II</option>
+						<option value="3">Bimestre III</option>
+						<option value="4">Bimestre VI</option>
+					</select>
+		  	</fieldset>
+		  </div>
+
+		  <div class="col-md-2">
 		  	<fieldset>
 				<div class="form-group">
-					<select name="sede"  id="cboSede" class="form-control mb-md" data-bind="options: sedes, optionsText: 'nombre', optionsValue: 'idsede',  optionsCaption: 'Seleccione una Sede', value: sedeSeleccionada"></select>
+					<select name="sede"  id="cboSede" class="form-control mb-md" data-bind="options: sedes, optionsText: 'nombre', optionsValue: 'idsede',  optionsCaption: 'Sede', value: sedeSeleccionada"></select>
 				</div>
-			</fieldset>
+				</fieldset>
 		  </div>
-		  <div class="col-md-3">
+
+		  <div class="col-md-2">
 		  	<fieldset>
 				<div class="form-group">
 					<select name="nivel"  id="cboNivel" class="form-control mb-md" data-bind="options: niveles, optionsText: 'nombre', optionsValue: 'idnivel',  optionsCaption: 'Nivel', value: nivelSeleccionado"></select>
 				</div>
-			</fieldset>
+				</fieldset>
 		  </div>
+
 		  <div class="col-md-3">
 		  	<fieldset>
 				<div class="form-group">
-					<select name="grado"  id="cboGrado" class="form-control mb-md" data-bind="options: grados, optionsText: 'nombre', optionsValue: 'idgrado',  optionsCaption: 'Seleccione un Grado', value: gradoSeleccionado"></select>
+					<select name="grado"  id="cboGrado" class="form-control mb-md" data-bind="options: grados, optionsText: 'nombre', optionsValue: 'idgrado',  optionsCaption: 'Grado', value: gradoSeleccionado"></select>
 				</div>
-			</fieldset>
+				</fieldset>
 		  </div>
 
 		  <div class="col-md-3">
@@ -59,15 +72,16 @@
 				<div class="form-group">
 					<select name="seccion"  id="cboSeccion" class="form-control mb-md" data-bind="options: secciones, optionsText: 'nombre', optionsValue: 'idseccion',  optionsCaption: 'Sección', value: seccionSeleccionado"></select>
 				</div>
-			</fieldset>
+				</fieldset>
 		  </div>
 		</div>
-        <div class="row">
-            <div class="col-md-12">
-                {!! Form::label('Dni', 'Dni') !!}
-                {!! Form::text('dni', $value = null, $attributes = array('class' => 'form-control')) !!}
-            </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            {!! Form::label('Dni', 'Dni') !!}
+            {!! Form::text('dni', $value = null, $attributes = array('class' => 'form-control')) !!}
         </div>
+    </div>
 	</div>
 	
 	<div class="panel-footer">
@@ -98,8 +112,8 @@
 										<td>{{ $data->codigo }}</td>
 										<td>
 											<a href="{{ route('generatelibreta',  $data->idalumno)}}">Libreta</a> | 
-											<a href="{{ route('generateOptimist', $data->idalumno)}}">Optimist</a> | 
-											<a href="{{ route('generateProgrest', $data->idalumno)}}">Posgrest</a>
+											<a href="{{ route('generateOptimist', [$data->idalumno, Input::get('bimestre')])}}">Optimist</a> | 
+											<a href="{{ route('generateProgrest', [$data->idalumno, Input::get('bimestre')])}}">Progreso</a>
 										</td>	
 									</tr>
 								@endforeach

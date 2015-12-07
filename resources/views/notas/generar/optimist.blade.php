@@ -23,7 +23,7 @@
     </header>
     <div style="width:670px; text-align:left">
         <label>Apellidos y Nombres:</label>
-        <label>-</label>
+        <label>{{ $alumno[0]->apellido_paterno}} {{ $alumno[0]->apellido_materno}}, {{ $alumno[0]->nombres}}</label>
     </div>
     <div style="width:670px; text-align:right">
         <label>Aquí la variable de Aula</label>
