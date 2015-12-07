@@ -25,71 +25,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AlumnosController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Matricula/AlumnosController.php">
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.461538" vertical-offset="950" max-vertical-offset="1785">
-              <caret line="173" column="43" selection-start-line="173" selection-start-column="43" selection-end-line="173" selection-end-column="43" />
+            <state vertical-scroll-proportion="-8.038462" vertical-offset="318" max-vertical-offset="4488">
+              <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
               <folding>
-                <element signature="e#2653#2961#0#PHP" expanded="false" />
-                <element signature="e#2965#3290#0#PHP" expanded="false" />
-                <element signature="e#3294#3612#0#PHP" expanded="false" />
-                <element signature="e#3616#3728#0#PHP" expanded="false" />
-                <element signature="e#3732#4070#0#PHP" expanded="false" />
-                <element signature="e#4110#5345#0#PHP" expanded="false" />
-                <element signature="e#5349#5423#0#PHP" expanded="false" />
-                <element signature="e#5703#7285#0#PHP" expanded="false" />
-                <element signature="e#7289#7364#0#PHP" expanded="false" />
-                <element signature="e#7368#8324#0#PHP" expanded="false" />
-                <element signature="e#7453#8037#1#PHP" expanded="false" />
-                <element signature="e#8328#9765#0#PHP" expanded="false" />
-                <element signature="e#9769#10824#0#PHP" expanded="false" />
-                <element signature="e#10828#12675#0#PHP" expanded="false" />
-                <element signature="e#12679#16292#0#PHP" expanded="false" />
-                <element signature="e#16296#17359#0#PHP" expanded="false" />
+                <element signature="e#15491#17147#1#PHP" expanded="false" />
+                <element signature="e#17453#17536#1#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AlumnoRepo.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Core/Repositories/Alumno/AlumnoRepo.php">
+      <file leaf-file-name="GenerarLibretasController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/GenerarLibretasController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7869416" vertical-offset="86" max-vertical-offset="952">
-              <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-              <folding>
-                <element signature="e#46#75#0#PHP" expanded="true" />
-                <element signature="e#366#650#0#PHP" expanded="false" />
-                <element signature="e#656#1212#0#PHP" expanded="false" />
-                <element signature="e#1222#1833#0#PHP" expanded="false" />
-                <element signature="e#2266#2793#0#PHP" expanded="false" />
-                <element signature="e#2799#3330#0#PHP" expanded="false" />
-                <element signature="e#3340#6973#0#PHP" expanded="false" />
-                <element signature="e#6979#9480#0#PHP" expanded="false" />
-                <element signature="e#9486#10482#0#PHP" expanded="false" />
-                <element signature="e#10488#10667#0#PHP" expanded="false" />
-                <element signature="e#10673#11144#0#PHP" expanded="false" />
-                <element signature="e#11150#11542#0#PHP" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="buscarRestringidos.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/matricula/alumnos/buscarRestringidos.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.038462" vertical-offset="714" max-vertical-offset="1683">
-              <caret line="65" column="33" selection-start-line="65" selection-start-column="33" selection-end-line="65" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="resultadorestringidos.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/matricula/alumnos/resultadorestringidos.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.730769" vertical-offset="0" max-vertical-offset="680">
-              <caret line="21" column="49" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
+            <state vertical-scroll-proportion="0.7010309" vertical-offset="663" max-vertical-offset="1258">
+              <caret line="69" column="3" selection-start-line="69" selection-start-column="3" selection-end-line="69" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -135,6 +88,7 @@
         <option value="$PROJECT_DIR$/resources/views/matricula/alumnos/buscarRestringidos.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/matricula/alumnos/resultadorestringidos.blade.php" />
         <option value="$PROJECT_DIR$/app/Core/Repositories/Alumno/AlumnoRepo.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/GenerarLibretasController.php" />
       </list>
     </option>
   </component>
@@ -200,11 +154,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
+              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -218,15 +168,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
+              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="matricula" />
+              <option name="myItemId" value="Http" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -240,33 +186,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
+              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
+              <option name="myItemId" value="Http" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="matricula" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="alumnos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HU" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hufull" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
+              <option name="myItemId" value="Controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -342,7 +270,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20367648" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20367648" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32861635" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -380,13 +308,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Matricula/AlumnosController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6443">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Core/Entities/Vacante.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="901">
@@ -735,47 +656,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.52196836" vertical-offset="230" max-vertical-offset="4454">
-          <caret line="31" column="105" selection-start-line="31" selection-start-column="80" selection-end-line="31" selection-end-column="105" />
-          <folding>
-            <element signature="e#15491#17147#1#PHP" expanded="false" />
-            <element signature="e#17453#17536#1#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/matricula/alumnos/buscar.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.49560633" vertical-offset="857" max-vertical-offset="1700">
           <caret line="67" column="57" selection-start-line="67" selection-start-column="40" selection-end-line="67" selection-end-column="57" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Matricula/AlumnosController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.461538" vertical-offset="950" max-vertical-offset="1785">
-          <caret line="173" column="43" selection-start-line="173" selection-start-column="43" selection-end-line="173" selection-end-column="43" />
-          <folding>
-            <element signature="e#2653#2961#0#PHP" expanded="false" />
-            <element signature="e#2965#3290#0#PHP" expanded="false" />
-            <element signature="e#3294#3612#0#PHP" expanded="false" />
-            <element signature="e#3616#3728#0#PHP" expanded="false" />
-            <element signature="e#3732#4070#0#PHP" expanded="false" />
-            <element signature="e#4110#5345#0#PHP" expanded="false" />
-            <element signature="e#5349#5423#0#PHP" expanded="false" />
-            <element signature="e#5703#7285#0#PHP" expanded="false" />
-            <element signature="e#7289#7364#0#PHP" expanded="false" />
-            <element signature="e#7368#8324#0#PHP" expanded="false" />
-            <element signature="e#7453#8037#1#PHP" expanded="false" />
-            <element signature="e#8328#9765#0#PHP" expanded="false" />
-            <element signature="e#9769#10824#0#PHP" expanded="false" />
-            <element signature="e#10828#12675#0#PHP" expanded="false" />
-            <element signature="e#12679#16292#0#PHP" expanded="false" />
-            <element signature="e#16296#17359#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -821,6 +706,50 @@
             <element signature="e#10673#11144#0#PHP" expanded="false" />
             <element signature="e#11150#11542#0#PHP" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Matricula/AlumnosController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.66080844" vertical-offset="950" max-vertical-offset="1785">
+          <caret line="173" column="43" selection-start-line="173" selection-start-column="43" selection-end-line="173" selection-end-column="43" />
+          <folding>
+            <element signature="e#2653#2961#0#PHP" expanded="false" />
+            <element signature="e#2965#3290#0#PHP" expanded="false" />
+            <element signature="e#3294#3612#0#PHP" expanded="false" />
+            <element signature="e#3616#3728#0#PHP" expanded="false" />
+            <element signature="e#3732#4070#0#PHP" expanded="false" />
+            <element signature="e#4110#5345#0#PHP" expanded="false" />
+            <element signature="e#5349#5423#0#PHP" expanded="false" />
+            <element signature="e#5703#7285#0#PHP" expanded="false" />
+            <element signature="e#7289#7364#0#PHP" expanded="false" />
+            <element signature="e#7368#8324#0#PHP" expanded="false" />
+            <element signature="e#7453#8037#1#PHP" expanded="false" />
+            <element signature="e#8328#9765#0#PHP" expanded="false" />
+            <element signature="e#9769#10824#0#PHP" expanded="false" />
+            <element signature="e#10828#12675#0#PHP" expanded="false" />
+            <element signature="e#12679#16292#0#PHP" expanded="false" />
+            <element signature="e#16296#17359#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.038462" vertical-offset="318" max-vertical-offset="4488">
+          <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
+          <folding>
+            <element signature="e#15491#17147#1#PHP" expanded="false" />
+            <element signature="e#17453#17536#1#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/GenerarLibretasController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7010309" vertical-offset="663" max-vertical-offset="1258">
+          <caret line="69" column="3" selection-start-line="69" selection-start-column="3" selection-end-line="69" selection-end-column="3" />
+          <folding />
         </state>
       </provider>
     </entry>
