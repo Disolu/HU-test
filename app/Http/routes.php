@@ -24,6 +24,15 @@ Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
 		['as' => 'reportesexcel', 
 		'uses' => 'Administrador\ReportesController@getAlumnosExcel']);
 
+    Route::get('generar/libretas',
+        ['as' => 'generarlibretas',
+        'uses' => 'GenerarLibretasController@generarLibretas']);
+
+	//Generar Libretas
+	Route::get('libreta/generar/{id}',  ['as' => 'generatelibreta',  'uses' => 'GenerarLibretasController@generateLibreta'])->where('id', '[0-9]+');
+	Route::get('optimist/generar/{id}', ['as' => 'generateOptimist', 'uses' => 'GenerarLibretasController@generateOptimist'])->where('id', '[0-9]+');
+	Route::get('progrest/generar/{id}', ['as' => 'generateProgrest', 'uses' => 'GenerarLibretasController@generateProgrest'])->where('id', '[0-9]+');
+
 	Route::get('reportesPagosexcel', ['as' => 'excelpagos', 'uses' => 'Administrador\ReportesController@getAlumnosPagosExcel']);
 	Route::get('reportes', 		 ['as' => 'reportes',        'uses' => 'Administrador\ReportesController@getAlumnosxSeccion']);
 	Route::get('reportes/matriculas', ['as' => 'indexSecretaria', function () { return view('matricula.reportes.index'); }]);
@@ -123,8 +132,7 @@ Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
 
 	    //Traer las pensiones con filtros
 		Route::get('getPensiones',  ['as' => 'getPensiones', 'uses' => 'Administrador\PensionController@getPensiones']);    	    
-		Route::get('getPensionesUpdateAlumno',  ['as' => 'getPensionesUpdateAlumno', 'uses' => 'Administrador\PensionController@getPensionesUpdateAlumno']);    	    
-    
+		Route::get('getPensionesUpdateAlumno',  ['as' => 'getPensionesUpdateAlumno', 'uses' => 'Administrador\PensionController@getPensionesUpdateAlumno']);    	      
     });
 
 });
@@ -251,9 +259,14 @@ Route::group( ['middleware' => ['auth','profesor'], 'prefix'=>'profesor'], funct
 	Route::post('tarjetas/registernotas', ['as' => 'tarjetanotas', 'uses' => 'Administrador\NotasController@tarjetanotas']);
 
 	//Tutoria
-	Route::get('tutoria', ['as' => 'tutoria', 'uses' => 'Administrador\TutoriaController@register']);
+	Route::get('tutoria/registrar',  ['as' => 'tutoria', 'uses' => 'Administrador\TutoriaController@register']);
+	Route::post('tutoria/registrar',  ['as' => 'tutoria', 'uses' => 'Administrador\TutoriaController@store']);
 
+	Route::get('optimist/registrar', ['as' => 'registerOptimist', 'uses' => 'Administrador\TutoriaController@registerOptimist']);
+	Route::post('optimist/registrar', ['as' => 'registerOptimist', 'uses' => 'Administrador\TutoriaController@storeOptimist']);
 
+	Route::get('progrest/registrar', ['as' => 'registerProgrest', 'uses' => 'Administrador\TutoriaController@registerProgrest']);
+	Route::post('progrest/registrar', ['as' => 'registerProgrest', 'uses' => 'Administrador\TutoriaController@storeProgrest']);
 });
 
 //AREA SECRETARIA

@@ -17,4 +17,15 @@ class TutoriaController extends Controller
     {
         return view('tutoria.index');
     }
+    
+    public function registerOptimist()
+    {
+        return view('tutoria.optimist');
+    }
+
+    public function registerProgrest()
+    {
+        return view('tutoria.progrest');
+    }
+
 }
