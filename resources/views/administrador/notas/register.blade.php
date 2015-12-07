@@ -18,8 +18,11 @@
 			</div>
 			@include('alertas.request')
 			@include('alertas.success')
+            @if(1 == 1)
 			{!! Form::open(['route' => 'registernotas', 'method' => 'post']) !!}
-			{!! Form::token() !!}
+            @else
+
+            @endif
 			<table class="table table-no-more table-bordered table-striped mb-none">
 				<thead>
 					<tr>

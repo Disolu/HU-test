@@ -4,7 +4,7 @@ return [
 
     'debug' => env('APP_DEBUG', true),
     'url' => 'http://localhost',
-    'timezone' => 'UTC',
+    'timezone' => 'America/Lima',
     'locale' => 'en',
     'fallback_locale' => 'en',
     'key' => env('APP_KEY', 'SomeRandomString'),

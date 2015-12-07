@@ -86,7 +86,7 @@ class NotasController extends Controller
     
     public function register($idcurso, $idseccion)
     {
-        $datehow = Date('Y-m-d H:i:s');
+        $datenow = Date('Ymd');
         $lastPeriodo = $this->NotasRepo->getLastPeriodoMatricula();
         $datape = DB::table('curso')
             ->leftJoin('grado','grado.idgrado','=','curso.idgrado')
@@ -95,10 +95,9 @@ class NotasController extends Controller
             ->get();
 
         $alumnos = $this->NotasRepo->getAlumnos($idcurso, $datape[0]->idgrado, $idseccion, $lastPeriodo[0]->idperiodomatricula);
-        //dd($alumnos);
 
-        $fechanota = $this->NotasRepo->getFechaNota($lastPeriodo[0]->idperiodomatricula, $datehow);
-        //dd($fechanota);
+        $fechanota = $this->NotasRepo->getFechaNota($lastPeriodo[0]->idperiodomatricula, $datenow);
+
         $namecurso = Cursos::where('idcurso', $idcurso)->get();
 
         if(count($fechanota)>0)

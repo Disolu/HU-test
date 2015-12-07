@@ -67,13 +67,14 @@ class NotasRepo {
         return $user;
     }
 
-    public function getFechaNota($periodo, $datehow)
+    public function getFechaNota($periodo, $datenow)
     {
         return FechaNota::
         where('idperiodomatricula', $periodo)
-        //->whereBetween($datehow, [$fecha_inicio, $fecha_fin])
+        ->whereRaw("20151206 between DATE_FORMAT(fecha_inicio, '%Y%m%d') and DATE_FORMAT(fecha_fin,'%Y%m%d')")
         ->get();
     }
+
     public function getCursosProfesor($periodo)
     {
         return ProfesorCurso::
