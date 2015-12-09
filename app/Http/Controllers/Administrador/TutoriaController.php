@@ -68,14 +68,16 @@ class TutoriaController extends Controller
       return redirect()->back();
     }
     
-    public function registerOptimist()
+    public function registerOptimist($id)
     {
-        return view('tutoria.optimist');
+      $alumno = DB::table('alumno')->where('idalumno',$id)->get();
+      return view('tutoria.optimist', compact('alumno'));
     }
 
-    public function registerProgrest()
+    public function registerProgrest($id)
     {
-        return view('tutoria.progrest');
+      $alumno = DB::table('alumno')->where('idalumno',$id)->get();
+      return view('tutoria.progrest', compact('alumno'));
     }
 
 }

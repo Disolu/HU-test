@@ -6,7 +6,7 @@
 		<header class="panel-heading">
 			<h2 class="panel-title">Bloque - Criterio</h2>
 			<div class="text-right">
-				<a href="{!! route('bloquenew') !!}" class="btn btn-primary text-right" onclick="if (! confirm('¿Estás seguro que deseas agregar un nuevo bloque?, esto afectará a toda la institución.')) return false;"><i class="glyphicon-plus"></i> Agregar nuevo</a>
+				<a href="{!! route('bloquenew') !!}" class="btn btn-primary text-right"><i class="glyphicon-plus"></i> Agregar nuevo</a>
 			</div>
 		</header>
 		<div class="panel-body">
@@ -19,10 +19,10 @@
 								<table class="table mb-none">
 									<thead>
 										<tr>
-											<th>Nombre</th>
+											<th>Bloque</th>
+											<th>Criterios</th>
 											<th>Bimestre</th>
 											<th>Tarjeta</th>
-											<th>Criterios</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -32,8 +32,6 @@
 												<code>{!! $bloque->tarjeta->nivel->sede->nombre !!}</code>
 												<strong>{!! $bloque->bloque->nombre !!}</strong>
 											</td>
-											<td>{!! $bloque->bimestre->nombre !!}</td>
-											<td class="text-warning">{!! $bloque->tarjeta->nombre !!}</td>
 											<td>
 											@if($bloque->bloque->criterios)
 												<ul>
@@ -43,6 +41,8 @@
 												</ul>
 											@endif
 											</td>
+											<td width="120px">{!! $bloque->bimestre->nombre !!}</td>
+											<td class="text-warning">{!! $bloque->tarjeta->nombre !!}</td>
 										</tr>
 									@endforeach	
 									</tbody>

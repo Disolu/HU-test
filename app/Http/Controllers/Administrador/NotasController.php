@@ -100,6 +100,7 @@ class NotasController extends Controller
         $tutoria = DB::table('profesortutoria')
           ->where('idseccion',$idseccion)
           ->where('idperiodomatricula', $lastPeriodo[0]->idperiodomatricula)
+          ->where('idprofesor', Auth::user()->id)
           ->get();
         $datape = DB::table('curso')
             ->leftJoin('grado','grado.idgrado','=','curso.idgrado')

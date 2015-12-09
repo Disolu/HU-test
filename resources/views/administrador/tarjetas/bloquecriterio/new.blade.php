@@ -12,7 +12,6 @@
 			@include('alertas.success')
 			@include('alertas.error')
 			{!! Form::open(['route' => 'bloquenew', 'method' => 'post']) !!}
-			{!! Form::token() !!}	
 				<div class="form-group">
 					<div class="col-md-6">
 						<label for="Nombre"><strong>Nombre del Bloque</strong></label>
@@ -60,7 +59,7 @@
 				</div>
 
 				<p class="m-none">
-					<button type="submit" class="mb-xs mt-xs mr-xs btn btn-success" OnClick="if (! confirm('¿Estás seguro que deseas hacer este registro?')) return false;">Registrar</button>
+					<button type="submit" class="mb-xs mt-xs mr-xs btn btn-success">Registrar</button>
 					<a class="mb-xs mt-xs mr-xs btn btn-default" href="javascript:history.back(1)">Cancelar</a>
 				</p>
 			{!! Form::close() !!}

@@ -6,7 +6,7 @@
 		<header class="panel-heading">
 			<h2 class="panel-title">Tarjetas Registradas</h2>
 			<div class="text-right">
-				<a href="{!! route('tarjetasnew') !!}" class="btn btn-primary text-right" onclick="if (! confirm('¿Estás seguro que deseas agregar una nueva tarjeta ?, esto afectará a toda la institución.')) return false;"><i class="glyphicon-plus"></i> Agregar nuevo</a>
+				<a href="{!! route('tarjetasnew') !!}" class="btn btn-primary text-right"><i class="glyphicon-plus"></i> Agregar nuevo</a>
 			</div>
 		</header>
 		<div class="panel-body">
@@ -33,12 +33,12 @@
 						<div class="panel panel-accordion panel-accordion-first">
 							<div class="panel-heading">
 								<h4 class="panel-title">
-									<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1One">
+									<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{!! $tarjeta->nombre !!}">
 										<i class="fa fa-check"></i> Bloques
 									</a>
 								</h4>
 							</div>
-							<div id="collapse1One" class="accordion-body collapse in">
+							<div id="collapse{!! $tarjeta->nombre !!}" class="accordion-body collapse in">
 								<div class="panel-body">
 									<ul class="widget-todo-list ui-sortable">
 										@if($tarjeta->tarjetabloque)

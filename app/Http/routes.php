@@ -264,11 +264,11 @@ Route::group( ['middleware' => ['auth','profesor'], 'prefix'=>'profesor'], funct
 	Route::get('tutoria/registrar/{id}',  ['as' => 'tutoria', 'uses' => 'Administrador\TutoriaController@register'])->where('id', '[0-9]+');
 	Route::post('tutoria/registrar/{id}',  ['as' => 'tutoria', 'uses' => 'Administrador\TutoriaController@store'])->where('id', '[0-9]+');
 
-	Route::get('optimist/registrar', ['as' => 'registerOptimist', 'uses' => 'Administrador\TutoriaController@registerOptimist']);
-	Route::post('optimist/registrar', ['as' => 'registerOptimist', 'uses' => 'Administrador\TutoriaController@storeOptimist']);
+	Route::get('optimist/registrar/{id}', ['as' => 'registerOptimist', 'uses' => 'Administrador\TutoriaController@registerOptimist']);
+	Route::post('optimist/registrar/{id}', ['as' => 'registerOptimist', 'uses' => 'Administrador\TutoriaController@storeOptimist']);
 
-	Route::get('progrest/registrar', ['as' => 'registerProgrest', 'uses' => 'Administrador\TutoriaController@registerProgrest']);
-	Route::post('progrest/registrar', ['as' => 'registerProgrest', 'uses' => 'Administrador\TutoriaController@storeProgrest']);
+	Route::get('progrest/registrar/{id}', ['as' => 'registerProgrest', 'uses' => 'Administrador\TutoriaController@registerProgrest']);
+	Route::post('progrest/registrar/{id}', ['as' => 'registerProgrest', 'uses' => 'Administrador\TutoriaController@storeProgrest']);
 });
 
 //AREA SECRETARIA

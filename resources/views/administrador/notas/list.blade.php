@@ -29,7 +29,7 @@
 							<div class="info">
 								@foreach($tutorias as $tutoria)
 								<div class="col-md-3">
-									<a href="{{ route('tutoria') }}" style="color: #FFFA15"><strong> > Sección: {{ $tutoria->seccion }}</strong></a><br>
+									<a href="javascript:void(0)" style="color: #FFFA15"><strong> > Sección: {{ $tutoria->seccion }}</strong></a><br>
 									<span style="font-size: 11px;">{{ $tutoria->sede }} | {{ $tutoria->nivel }} | {{ $tutoria->grado }}</span>
 								</div>
 								@endforeach
