@@ -32,7 +32,9 @@
 						<th class="text-right hidden-xs hidden-sm">II Bimestre</th>
 						<th class="text-right">III Bimestre</th>
 						<th class="text-right">IV Bimestre</th>
+						@if($tutoria)
 						<th class="text-right">Tutoria</th>
+						@endif
 					</tr>
 				</thead>
 				<tbody>
@@ -77,12 +79,13 @@
 								<input type="text" class="form-control" {!! $bimestreIV !!} name="bimestreIVNota[]" maxlength="2" value="{{ $data->bimestre4 }}">
 							</div>
 						</td>
-
+						@if($tutoria)
 						<td>
-							<a href="{{ route('tutoria', $data->alumno->idalumno) }}">Tutoria</a> | 
+							<a href="{{ route('tutoria', $data->alumno->idalumno) }}" target="_black">Tutoria</a> | 
 							<a href="#">Progreso</a> | 
 							<a href="#">Optimist</a> 
 						</td>
+						@endif
 					</tr>
 				@endforeach	
 				</tbody>

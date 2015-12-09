@@ -61,7 +61,7 @@ class NotasController extends Controller
               ->get();
           */
 
-          $datehow = Date('Y-m-d');
+          $datehow = Date('Ymd');
           $fechanota = $this->NotasRepo->getFechaNota($lastPeriodo[0]->idperiodomatricula, $datehow); 
           return view('administrador.notas.list', compact('tutorias','cursospe','fechanota'));
         }
@@ -97,6 +97,10 @@ class NotasController extends Controller
     {
         $datenow = Date('Ymd');
         $lastPeriodo = $this->NotasRepo->getLastPeriodoMatricula();
+        $tutoria = DB::table('profesortutoria')
+          ->where('idseccion',$idseccion)
+          ->where('idperiodomatricula', $lastPeriodo[0]->idperiodomatricula)
+          ->get();
         $datape = DB::table('curso')
             ->leftJoin('grado','grado.idgrado','=','curso.idgrado')
             ->where('idcurso', $idcurso)
@@ -104,14 +108,12 @@ class NotasController extends Controller
             ->get();
 
         $alumnos = $this->NotasRepo->getAlumnos($idcurso, $datape[0]->idgrado, $idseccion, $lastPeriodo[0]->idperiodomatricula);
-
         $fechanota = $this->NotasRepo->getFechaNota($lastPeriodo[0]->idperiodomatricula, $datenow);
-
         $namecurso = Cursos::where('idcurso', $idcurso)->get();
 
         if(count($fechanota)>0)
         {
-            return view('administrador.notas.register', compact('alumnos','fechanota','lastPeriodo', 'idcurso','idseccion','namecurso'));
+            return view('administrador.notas.register', compact('tutoria','alumnos','fechanota','lastPeriodo', 'idcurso','idseccion','namecurso'));
         }
         else{
             Session::flash('message-danger', ' aun no puedes subir las notas, te encuentras fuera de fecha.');            

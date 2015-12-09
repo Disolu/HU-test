@@ -45,8 +45,6 @@ class NotasRepo {
             ->where('alumnomatricula.idperiodomatricula',$periodo)
             ->where('alumnomatricula.idgrado', $grado)
             ->where('alumnomatricula.idseccion', $seccion)
-
-            //->groupBy('nc.idalumno')
             ->get();
     }
 
@@ -71,7 +69,7 @@ class NotasRepo {
     {
         return FechaNota::
         where('idperiodomatricula', $periodo)
-        ->whereRaw("20151206 between DATE_FORMAT(fecha_inicio, '%Y%m%d') and DATE_FORMAT(fecha_fin,'%Y%m%d')")
+        ->whereRaw("$datenow between DATE_FORMAT(fecha_inicio, '%Y%m%d') and DATE_FORMAT(fecha_fin,'%Y%m%d')")
         ->get();
     }
 
