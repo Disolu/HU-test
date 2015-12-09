@@ -5,11 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateRolusuarioTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('roluser', function (Blueprint $table) {
@@ -19,12 +15,7 @@ class CreateRolusuarioTable extends Migration
             $table->softDeletes();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+    
     public function down()
     {
         Schema::drop('roluser');

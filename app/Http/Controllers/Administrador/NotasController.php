@@ -28,33 +28,42 @@ class NotasController extends Controller
         $lastPeriodo = $this->NotasRepo->getLastPeriodoMatricula();
         if(count($lastPeriodo) > 0)
         {
-            $cursospe = DB::table('profesorcurso as pc')
-                ->select('pc.idprofesorcurso','cu.idcurso','cu.nombre','ps.idseccion')
-                ->leftJoin('curso as cu','cu.idcurso','=','pc.idcurso')
-                ->leftJoin('profesorseccion as ps','ps.idprofesorcurso','=','pc.idprofesorcurso')
-                ->where('pc.idperiodomatricula',$lastPeriodo[0]->idperiodomatricula)
-                ->where('pc.iduser', Auth::user()->id)
-                ->groupBy('pc.idprofesorcurso')
-                ->get();
-            /*
-            $cursospe = DB::table('profesorcurso as pc')
-                ->select('pc.idprofesorcurso','cu.idcurso','cu.nombre as curso','sede.nombre as sede','sede.idsede','nivel.idnivel','nivel.nombre as nivel','grado.nombre as grado','grado.idgrado','s.nombre as seccion','s.idseccion',
-                DB::raw("(select count(*) from alumnomatricula where idseccion =  ps.idseccion and idperiodomatricula = {$lastPeriodo[0]->idperiodomatricula} ) as qty"))
-                ->join('curso as cu','cu.idcurso','=','pc.idcurso')
-                ->join('profesorseccion as ps','ps.idprofesorcurso','=','pc.idprofesorcurso')
-                ->join('seccion as s','s.idseccion','=','ps.idseccion')
-                ->join('sede','sede.idsede','=','s.idsede')
-                ->join('nivel','nivel.idnivel','=','s.idnivel')
-                ->join('grado','grado.idgrado','=','s.idgrado')
-                ->where('pc.idperiodomatricula',$lastPeriodo[0]->idperiodomatricula)
-                ->where('pc.iduser', Auth::user()->id)
-                ->groupBy('pc.idprofesorcurso')
-                ->get();
-            */
+          $cursospe = DB::table('profesorcurso as pc')
+              ->select('pc.idprofesorcurso','cu.idcurso','cu.nombre','ps.idseccion')
+              ->leftJoin('curso as cu','cu.idcurso','=','pc.idcurso')
+              ->leftJoin('profesorseccion as ps','ps.idprofesorcurso','=','pc.idprofesorcurso')
+              ->where('pc.idperiodomatricula',$lastPeriodo[0]->idperiodomatricula)
+              ->where('pc.iduser', Auth::user()->id)
+              ->groupBy('pc.idprofesorcurso')
+              ->get();
+          $tutorias = DB::table('profesortutoria as pt')
+            ->select('s.nombre as seccion','g.nombre as grado','n.nombre as nivel','sd.nombre as sede')
+              ->leftJoin('seccion as s','s.idseccion','=','pt.idseccion')
+              ->leftJoin('grado as g','g.idgrado','=','s.idgrado')
+              ->leftJoin('nivel as n','n.idnivel','=','g.idnivel')
+              ->leftJoin('sede as sd','sd.idsede','=','n.idsede')
+              ->where('pt.idperiodomatricula',$lastPeriodo[0]->idperiodomatricula)
+              ->where('pt.idprofesor', Auth::user()->id)
+              ->get();
+          /*
+          $cursospe = DB::table('profesorcurso as pc')
+              ->select('pc.idprofesorcurso','cu.idcurso','cu.nombre as curso','sede.nombre as sede','sede.idsede','nivel.idnivel','nivel.nombre as nivel','grado.nombre as grado','grado.idgrado','s.nombre as seccion','s.idseccion',
+              DB::raw("(select count(*) from alumnomatricula where idseccion =  ps.idseccion and idperiodomatricula = {$lastPeriodo[0]->idperiodomatricula} ) as qty"))
+              ->join('curso as cu','cu.idcurso','=','pc.idcurso')
+              ->join('profesorseccion as ps','ps.idprofesorcurso','=','pc.idprofesorcurso')
+              ->join('seccion as s','s.idseccion','=','ps.idseccion')
+              ->join('sede','sede.idsede','=','s.idsede')
+              ->join('nivel','nivel.idnivel','=','s.idnivel')
+              ->join('grado','grado.idgrado','=','s.idgrado')
+              ->where('pc.idperiodomatricula',$lastPeriodo[0]->idperiodomatricula)
+              ->where('pc.iduser', Auth::user()->id)
+              ->groupBy('pc.idprofesorcurso')
+              ->get();
+          */
 
-            $datehow = Date('Y-m-d');
-            $fechanota = $this->NotasRepo->getFechaNota($lastPeriodo[0]->idperiodomatricula, $datehow); 
-            return view('administrador.notas.list', compact('cursospe','fechanota'));
+          $datehow = Date('Y-m-d');
+          $fechanota = $this->NotasRepo->getFechaNota($lastPeriodo[0]->idperiodomatricula, $datehow); 
+          return view('administrador.notas.list', compact('tutorias','cursospe','fechanota'));
         }
         else
         {

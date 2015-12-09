@@ -54,7 +54,16 @@
                                                             @if(count($grado->curso) == 0)
                                                                 <code>{{ $grado->nombre }} no tiene cursos registrados.</code>
                                                             @endif
-
+                                                            <div class="alert alert-success">
+                                                                <strong>Tutoria:</strong>
+                                                                  <p>Secciones: <strong>{{ $grado->nombre }}</strong> | {{ $nivel->nombre }}</p>
+                                                                  @foreach($grado->secciones as $seccion)
+                                                                    <span>
+                                                                      <input type="checkbox" name="secciontutoria[]" value="{!! $seccion->idseccion !!}">
+                                                                        {{ $seccion->nombre }}
+                                                                    </span>
+                                                                  @endforeach
+                                                            </div>
                                                             @foreach($grado->curso as $curso)
                                                                 <p> -
                                                                     <label for="curso">
@@ -62,14 +71,14 @@
                                                                         <strong>{{ $curso->nombre }}</strong>
                                                                     </label>
                                                                 </p>
-                                                                <div class="alert alert-default">
+                                                                <div class="alert alert-info">
                                                                     <p>
                                                                         Secciones:
                                                                         @foreach($grado->secciones as $seccion)
-                                                                            <span>
-														                        <input type="checkbox" name="seccion_{!! $curso->idcurso !!}[]" value="{!! $seccion->idseccion !!}">
-                                                                                {{ $seccion->nombre }}
-													                        </span>
+                                                                          <span>
+														                                                <input type="checkbox" name="seccion_{!! $curso->idcurso !!}[]" value="{!! $seccion->idseccion !!}">
+                                                                              {{ $seccion->nombre }}
+													                                                </span>
                                                                         @endforeach
                                                                     </p>
                                                                 </div>

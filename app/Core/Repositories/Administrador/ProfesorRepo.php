@@ -38,7 +38,7 @@ class ProfesorRepo {
 
     public function lastRegister()
     {
-        return ProfesorCurso::orderBy('created_at','desc')->take(1)->get();
+        return ProfesorCurso::orderBy('idprofesorcurso','desc')->take(1)->get();
     }
 
     public function getProfesorAsignaturas($idperiodo)

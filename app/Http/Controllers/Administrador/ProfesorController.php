@@ -41,39 +41,52 @@ class ProfesorController extends Controller
 
     public function store(ProfesorCursoRequest $request)
     {
-        //dd($request->all());
       $periodo  = $this->ProfesorRepo->getLastPeriodoMatricula();
-      //PROFESOR CURSO (Verifica si el profesor ya esta registrado en el periodo actual)
       $profesorCurso = $this->ProfesorRepo->getProfesorCurso($periodo[0]->idperiodomatricula, $request['profesor']);
-      
-      /*
-       *
+            
       if(count($profesorCurso) == 0)
       {
-      **/
-        for ($i=0; $i< count($request['curso']); $i++) {
-          //Guardar al profesor con cada curso
-            $curso = $request['curso'][$i];
-            $this->ProfesorRepo->SaveProfesorCurso($request, $request['curso'][$i], $periodo[0]->idperiodomatricula);
-            //Una vez registrado, traigo su ID:
-            $lastRegister = $this->ProfesorRepo->lastRegister();
-            
-            for ($j=0; $j<count($request["seccion_$curso"]); $j++)
-            { 
-              $this->ProfesorRepo->SaveProfesorSeccion($lastRegister[0]->idprofesorcurso, $request["seccion_$curso"][$j]);
-            }
+        for ($h=0; $h < count($request['secciontutoria']); $h++) 
+        { 
+          DB::table('profesortutoria')->insert([
+            [
+            'idseccion'  => $request['secciontutoria'][$h], 
+            'idprofesor' => $request['profesor'],
+            'idperiodomatricula' => $periodo[0]->idperiodomatricula,
+            'created_at' => date('Y-m-d H:i:s')
+            ]
+          ]);
         }
-      /* } */
-     /*
+        for ($i=0; $i< count($request['curso']); $i++) {
+          $curso = $request['curso'][$i];
+          $this->ProfesorRepo->SaveProfesorCurso($request, $request['curso'][$i], $periodo[0]->idperiodomatricula);
+          //Una vez registrado, traigo su ID:
+          $lastRegister = $this->ProfesorRepo->lastRegister();
+          for ($j=0; $j<count($request["seccion_$curso"]); $j++)
+          { 
+            $this->ProfesorRepo->SaveProfesorSeccion($lastRegister[0]->idprofesorcurso, $request["seccion_$curso"][$j]);
+          }
+        }
+      } 
       else
       {
         $idcurso = $profesorCurso[0]->idprofesorcurso;
         for ($i=0; $i<count($request['seccion']); $i++) 
+        {
+          $this->ProfesorRepo->SaveProfesorSeccion($idcurso, $request['seccion'][$i]);
+        }
+        for ($h=0; $h < count($request['secciontutoria']); $h++) 
         { 
-            $this->ProfesorRepo->SaveProfesorSeccion($idcurso, $request['seccion'][$i]);
+          DB::table('profesortutoria')->insert([
+            [
+            'idseccion'  => $request['secciontutoria'][$h], 
+            'idprofesor' => $request['profesor'],
+            'idperiodomatricula' => $periodo[0]->idperiodomatricula,
+            'created_at' => date('Y-m-d H:i:s')
+            ]
+          ]);
         }
       }
-     */
       Session::flash('message-success', 'Se registro al profesor con los cursos seleccionados');            
       return Redirect::route('showprofesor');
     }
@@ -89,16 +102,6 @@ class ProfesorController extends Controller
         return view('administrador.profesores.list', compact('uniqueProfesores','profesores'));
     }
 
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
     public function destroy($id)
     {
         $profesor = $this->ProfesorRepo->deleteRelacion($id);
@@ -111,6 +114,7 @@ class ProfesorController extends Controller
             return redirect()->back(); 
         }
     }
+
     public function destroySeccion($id)
     {
         $profesor = $this->ProfesorRepo->deleteSeccion($id);

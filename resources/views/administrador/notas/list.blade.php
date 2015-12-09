@@ -18,6 +18,28 @@
 				</ul>
 			</div>
 		@endif
+		
+		@if($tutorias)
+		<section class="panel">
+			<div class="panel-body bg-quartenary">
+				<div class="widget-summary">
+					<div class="widget-summary-col">
+						<div class="summary">
+							<h4 class="title">Tutorias a cargo:</h4>
+							<div class="info">
+								@foreach($tutorias as $tutoria)
+								<div class="col-md-3">
+									<a href="{{ route('tutoria') }}" style="color: #FFFA15"><strong> > Sección: {{ $tutoria->seccion }}</strong></a><br>
+									<span style="font-size: 11px;">{{ $tutoria->sede }} | {{ $tutoria->nivel }} | {{ $tutoria->grado }}</span>
+								</div>
+								@endforeach
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		@endif
 			@include('alertas.request')
 			@include('alertas.error')
 			

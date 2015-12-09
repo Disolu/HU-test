@@ -32,6 +32,7 @@
 						<th class="text-right hidden-xs hidden-sm">II Bimestre</th>
 						<th class="text-right">III Bimestre</th>
 						<th class="text-right">IV Bimestre</th>
+						<th class="text-right">Tutoria</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -52,6 +53,7 @@
 						<input type="hidden" name="idalumno[]" value="{!! $data->alumno->idalumno !!}">						
 						<td data-title="Code">{!! $data->alumno->codigo !!}</td>
 						<td class="hidden-xs hidden-sm">{!! $data->alumno->fullname !!}</td>
+						
 						<td class="text-right">
 							<div class="col-md-6 form-group">
 								<input type="text" style="width: 80px;" class="form-control" {!! $bimestre !!} name="bimestreINota[]" maxlength="2" value="{{ $data->bimestre1 }}">
@@ -74,6 +76,12 @@
 							<div class="col-md-6 form-group">
 								<input type="text" class="form-control" {!! $bimestreIV !!} name="bimestreIVNota[]" maxlength="2" value="{{ $data->bimestre4 }}">
 							</div>
+						</td>
+
+						<td>
+							<a href="{{ route('tutoria', $data->alumno->idalumno) }}">Tutoria</a> | 
+							<a href="#">Progreso</a> | 
+							<a href="#">Optimist</a> 
 						</td>
 					</tr>
 				@endforeach	
