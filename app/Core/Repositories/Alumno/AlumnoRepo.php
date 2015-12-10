@@ -103,7 +103,14 @@ class AlumnoRepo {
 
             $existingAlumno = new Alumno;        
             $existingAlumno->nombres = $rawAlumno['alu_nonbres'];
-            $existingAlumno->codigo = "HU".$anio.(str_pad($newcode,3,"0",STR_PAD_LEFT));
+            if($rawAlumno['alu_codigo'])
+            {
+                $existingAlumno->codigo = $rawAlumno['alu_codigo'];
+            }
+            else
+            {
+                $existingAlumno->codigo = "HU".$anio.(str_pad($newcode,3,"0",STR_PAD_LEFT));
+            }
 
 
             $existingAlumno->apellido_paterno = $rawAlumno['alu_apellido_paterno'];

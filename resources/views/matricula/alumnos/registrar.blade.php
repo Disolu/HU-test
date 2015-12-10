@@ -42,6 +42,10 @@
 			@include('alertas.success')
 			<div class="col-xs-6">                                
 				<div class="form-group">
+					<label>Codigo</label>
+					<input type="text" name="codigo" class="form-control" id="validate" maxlength="10" placeholder="Ingrese el codigo" data-bind="value: acodigo">
+				</div>
+				<div class="form-group">
 					<label>Nombre</label>
 					<input type="text" name="nombres" class="form-control" id="validate" placeholder="Ingrese un nombre" data-bind="value: anombre">
 				</div>
@@ -427,6 +431,7 @@
 	    var c_dni = $.cookie("alu_dni");
 	    fo.adni = ko.observable(c_dni);
 	    fo.anombre = ko.observable(null);
+	    fo.acodigo = ko.observable(null);
 	    fo.apaterno = ko.observable(null);
 	    fo.amaterno = ko.observable(null);
 	    fo.sexo = ko.observable("M");
@@ -565,6 +570,7 @@
 	        fo.aid(fofi.alu_id);
 	        fo.adni(fofi.alu_dni);
 	        fo.anombre(fofi.alu_nonbres);
+	        fo.acodigo(fofi.alu_codigo);
 	        fo.apaterno(fofi.alu_apellido_paterno);
 	        fo.amaterno(fofi.alu_apellido_materno);
 	        fo.sexo(fofi.alu_sexo);
@@ -667,6 +673,7 @@
 	        var obj = {
 	            alu_id : fo.aid(),
 	            alu_nonbres : fo.anombre(),
+	            alu_codigo : fo.acodigo(),
 	            alu_apellido_paterno : fo.apaterno(),
 	            alu_apellido_materno : fo.amaterno(),
 	            alu_sexo : fo.sexo(),
