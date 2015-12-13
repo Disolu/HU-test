@@ -19,6 +19,21 @@ class TutoriaController extends Controller
       $this->NotasRepo = $NotasRepo;
     }
 
+    public function tutoria($idseccion)
+    {
+      $lastPeriodo = $this->NotasRepo->getLastPeriodoMatricula();
+      $datehow = Date('Ymd');
+      $fechanota = $this->NotasRepo->getFechaNota($lastPeriodo[0]->idperiodomatricula, $datehow); 
+      
+      $alumnos = DB::table('alumnomatricula')
+      ->leftJoin('alumno as a','a.idalumno','=','alumnomatricula.idalumno')
+      ->where('idseccion', $idseccion)
+      ->where('idperiodomatricula', $lastPeriodo[0]->idperiodomatricula)
+      ->get();
+
+      return view('administrador.notas.tutoria', compact('alumnos','fechanota'));
+    }
+
     public function register($id)
     {
       $lastPeriodo = $this->NotasRepo->getLastPeriodoMatricula();
@@ -31,6 +46,7 @@ class TutoriaController extends Controller
         ->get();
       return view('tutoria.index', compact('alumno','notastutoria'));
     }
+
     public function store($id, Request $request)
     {
       $lastPeriodo = $this->NotasRepo->getLastPeriodoMatricula();
