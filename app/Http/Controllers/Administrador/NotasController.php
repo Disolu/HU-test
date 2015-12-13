@@ -12,6 +12,7 @@ use Redirect;
 use Session;
 use App\Core\Repositories\Administrador\NotasRepo;
 use App\Core\Entities\Cursos;
+use App\Core\Entities\NotaCurso;
 use DB;
 use Auth;
 
@@ -29,15 +30,15 @@ class NotasController extends Controller
         if(count($lastPeriodo) > 0)
         {
           $cursospe = DB::table('profesorcurso as pc')
-              ->select('pc.idprofesorcurso','cu.idcurso','cu.nombre','ps.idseccion')
-              ->leftJoin('curso as cu','cu.idcurso','=','pc.idcurso')
-              ->leftJoin('profesorseccion as ps','ps.idprofesorcurso','=','pc.idprofesorcurso')
-              ->where('pc.idperiodomatricula',$lastPeriodo[0]->idperiodomatricula)
-              ->where('pc.iduser', Auth::user()->id)
-              ->groupBy('pc.idprofesorcurso')
-              ->get();
+            ->select('pc.idprofesorcurso','cu.idcurso','cu.nombre','ps.idseccion')
+            ->leftJoin('curso as cu','cu.idcurso','=','pc.idcurso')
+            ->leftJoin('profesorseccion as ps','ps.idprofesorcurso','=','pc.idprofesorcurso')
+            ->where('pc.idperiodomatricula',$lastPeriodo[0]->idperiodomatricula)
+            ->where('pc.iduser', Auth::user()->id)
+            ->groupBy('pc.idprofesorcurso')
+            ->get();
           $tutorias = DB::table('profesortutoria as pt')
-            ->select('s.nombre as seccion','g.nombre as grado','n.nombre as nivel','sd.nombre as sede')
+            ->select('s.nombre as seccion','s.idseccion as idsection','g.nombre as grado','n.nombre as nivel','sd.nombre as sede')
               ->leftJoin('seccion as s','s.idseccion','=','pt.idseccion')
               ->leftJoin('grado as g','g.idgrado','=','s.idgrado')
               ->leftJoin('nivel as n','n.idnivel','=','g.idnivel')
@@ -45,22 +46,6 @@ class NotasController extends Controller
               ->where('pt.idperiodomatricula',$lastPeriodo[0]->idperiodomatricula)
               ->where('pt.idprofesor', Auth::user()->id)
               ->get();
-          /*
-          $cursospe = DB::table('profesorcurso as pc')
-              ->select('pc.idprofesorcurso','cu.idcurso','cu.nombre as curso','sede.nombre as sede','sede.idsede','nivel.idnivel','nivel.nombre as nivel','grado.nombre as grado','grado.idgrado','s.nombre as seccion','s.idseccion',
-              DB::raw("(select count(*) from alumnomatricula where idseccion =  ps.idseccion and idperiodomatricula = {$lastPeriodo[0]->idperiodomatricula} ) as qty"))
-              ->join('curso as cu','cu.idcurso','=','pc.idcurso')
-              ->join('profesorseccion as ps','ps.idprofesorcurso','=','pc.idprofesorcurso')
-              ->join('seccion as s','s.idseccion','=','ps.idseccion')
-              ->join('sede','sede.idsede','=','s.idsede')
-              ->join('nivel','nivel.idnivel','=','s.idnivel')
-              ->join('grado','grado.idgrado','=','s.idgrado')
-              ->where('pc.idperiodomatricula',$lastPeriodo[0]->idperiodomatricula)
-              ->where('pc.iduser', Auth::user()->id)
-              ->groupBy('pc.idprofesorcurso')
-              ->get();
-          */
-
           $datehow = Date('Ymd');
           $fechanota = $this->NotasRepo->getFechaNota($lastPeriodo[0]->idperiodomatricula, $datehow); 
           return view('administrador.notas.list', compact('tutorias','cursospe','fechanota'));
@@ -133,19 +118,25 @@ class NotasController extends Controller
             else{
                 $notaChar = $request['bimestreINota'][$i];
             }
-            DB::table('notacurso')->insert([
-                [
-                'idbimestre'         => $request['idbimestre'], 
-                'idperiodomatricula' => $request['idperiodo'],
-                'idcurso'            => $request['idcurso'],
-                'idseccion'          => $request['idseccion'],
-                'nota_number'        => $notaNumber,
-                'nota_char'          => $notaChar,
-                'idalumno'           => $request['idalumno'][$i],
-                'usercreate'         => Auth::user()->id,
-                'updated_at'         => ''
-                ],
-            ]);
+
+            $notacurso = NotaCurso::where('idalumno',$request['idalumno'][$i])
+              ->where('idperiodomatricula', $request['idperiodo'])
+              ->where('idcurso',$request['idcurso'])
+              ->first();
+
+            if(!$notacurso){
+                $notacurso = new NotaCurso;
+            }
+            $notacurso->idbimestre         = $request['idbimestre'];
+            $notacurso->idperiodomatricula = $request['idperiodo'];
+            $notacurso->idcurso            = $request['idcurso'];
+            $notacurso->idseccion          = $request['idseccion'];
+            $notacurso->nota_number        = $notaNumber;
+            $notacurso->nota_char          = $notaChar;
+            $notacurso->idalumno           = $request['idalumno'][$i];
+            $notacurso->usercreate         = Auth::user()->id;
+            $notacurso->updated_at         = '';
+            $notacurso->save();
         }
         Session::flash('message-success', ' La notas se han registrado con éxito.');            
         return Redirect::back();   
