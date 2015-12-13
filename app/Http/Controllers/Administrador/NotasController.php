@@ -12,6 +12,7 @@ use Redirect;
 use Session;
 use App\Core\Repositories\Administrador\NotasRepo;
 use App\Core\Entities\Cursos;
+use App\Core\Entities\NotaCurso;
 use DB;
 use Auth;
 
@@ -133,19 +134,25 @@ class NotasController extends Controller
             else{
                 $notaChar = $request['bimestreINota'][$i];
             }
-            DB::table('notacurso')->insert([
-                [
-                'idbimestre'         => $request['idbimestre'], 
-                'idperiodomatricula' => $request['idperiodo'],
-                'idcurso'            => $request['idcurso'],
-                'idseccion'          => $request['idseccion'],
-                'nota_number'        => $notaNumber,
-                'nota_char'          => $notaChar,
-                'idalumno'           => $request['idalumno'][$i],
-                'usercreate'         => Auth::user()->id,
-                'updated_at'         => ''
-                ],
-            ]);
+
+            $notacurso = NotaCurso::where('idalumno',$request['idalumno'][$i])
+              ->where('idperiodomatricula', $request['idperiodo'])
+              ->where('idcurso',$request['idcurso'])
+              ->first();
+
+            if(!$notacurso){
+                $notacurso = new NotaCurso;
+            }
+            $notacurso->idbimestre         = $request['idbimestre'];
+            $notacurso->idperiodomatricula = $request['idperiodo'];
+            $notacurso->idcurso            = $request['idcurso'];
+            $notacurso->idseccion          = $request['idseccion'];
+            $notacurso->nota_number        = $notaNumber;
+            $notacurso->nota_char          = $notaChar;
+            $notacurso->idalumno           = $request['idalumno'][$i];
+            $notacurso->usercreate         = Auth::user()->id;
+            $notacurso->updated_at         = '';
+            $notacurso->save();
         }
         Session::flash('message-success', ' La notas se han registrado con éxito.');            
         return Redirect::back();   
