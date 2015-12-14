@@ -23,8 +23,9 @@
             <th>Codigo</th>
             <th class="hidden-xs hidden-sm">Nombres</th>
             <th class="text-right"></th>
-            <th class="text-right hidden-xs hidden-sm"></th>
+            @foreach($tarjetas as $tarjeta)
             <th class="text-right"></th>
+            @endforeach
           </tr>
         </thead>
         <tbody>
@@ -33,8 +34,9 @@
             <td data-title="Code">{!! $data->codigo !!}</td>
             <td class="hidden-xs hidden-sm">{!! $data->fullname !!}</td>
             <td><a href="{{ route('tutoria', $data->idalumno) }}" target="_black">Tutoria</a></td>
-            <td><a href="{{ route('registerOptimist', $data->idalumno) }}" target="_black">Progreso</a></td>
-            <td><a href="{{ route('registerProgrest', $data->idalumno) }}" target="_black">Optimist</a></td>
+            @foreach($tarjetas as $tarjeta)
+            <td><a href="{{ route('typetarjeta', [$data->idalumno, $tarjeta->idtarjeta]) }}" target="_black">{{ $tarjeta->nombre }}</a></td>
+            @endforeach
           </tr>
         @endforeach 
         </tbody>

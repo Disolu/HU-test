@@ -30,4 +30,9 @@ class TarjetaBloque extends Model
     {
       return $this->belongsTo('App\Core\Entities\Tarjeta','idtarjeta','idtarjeta');
     }
+
+    public function criterios()
+    {
+      return $this->hasMany('App\Core\Entities\TarjetaBloqueCriterio', 'idbloque', 'idbloque');
+    }
 }
