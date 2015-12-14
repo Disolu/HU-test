@@ -46,6 +46,7 @@ class GeneratePayments extends Command
               'PEN' .
               str_pad($today, 8, ' ', STR_PAD_LEFT) .
               '000' .
+              str_pad(' ', 330, ' ', STR_PAD_LEFT) .
               PHP_EOL;  
           }else{
               $header=str_pad($sede->idsede, 2, '0', STR_PAD_LEFT) .
@@ -55,6 +56,7 @@ class GeneratePayments extends Command
               str_pad($today, 8, ' ', STR_PAD_LEFT) .
               '000' .
               str_pad("T", 8, " ", STR_PAD_LEFT) .
+              str_pad(' ', 322, ' ', STR_PAD_LEFT) .
               PHP_EOL;
           }
 
@@ -99,6 +101,7 @@ class GeneratePayments extends Command
                   'relleno'        => str_pad( "0", '160',"0", STR_PAD_RIGHT),
                   'tail'           => str_pad( "0", '23',"0", STR_PAD_RIGHT),
                   'tail_'          => str_pad( "L", '16',"0", STR_PAD_RIGHT),
+                  'tail__'          => str_pad( " ", '33'," ", STR_PAD_LEFT),
                 );
                 $file_contents .= implode($line) . PHP_EOL;
              }
@@ -107,7 +110,8 @@ class GeneratePayments extends Command
           $footer="03".str_pad($countreg, 9,"0",STR_PAD_LEFT).
           str_pad(number_format($sum_max * $decimal, 0, '', ''), 18, '0', STR_PAD_LEFT).
           str_pad(number_format($sum_min * $decimal, 0, '', ''), 18, '0', STR_PAD_LEFT).
-          str_pad( "0", 18,"0", STR_PAD_LEFT). PHP_EOL;
+          str_pad( "0", 18,"0", STR_PAD_LEFT).
+          str_pad( " ", 295," ", STR_PAD_LEFT). PHP_EOL;
 
         }else{
           return false;
@@ -144,7 +148,24 @@ class GeneratePayments extends Command
 
         $nombres_completos=trim($student->nombres).' '.trim($student->apellido_paterno).' '.trim($student->apellido_materno);
 
+        $nombres_completos=str_replace('Á','A',$nombres_completos);
+        $nombres_completos=str_replace('É','E',$nombres_completos);
+        $nombres_completos=str_replace('Í','I',$nombres_completos);
+        $nombres_completos=str_replace('Ó','O',$nombres_completos);
+        $nombres_completos=str_replace('Ú','U',$nombres_completos);
+        $nombres_completos=str_replace('Ñ','N',$nombres_completos);
+        $nombres_completos=str_replace('&','Y',$nombres_completos);
+        $nombres_completos=str_replace('À','A',$nombres_completos);
+        $nombres_completos=str_replace('È','E',$nombres_completos);
+        $nombres_completos=str_replace('Ì','I',$nombres_completos);
+        $nombres_completos=str_replace('Ò','O',$nombres_completos);
+        $nombres_completos=str_replace('Ù','U',$nombres_completos);
+        $nombres_completos=str_replace('Ä','A',$nombres_completos);
+        $nombres_completos=str_replace('Ë','E',$nombres_completos);
+        $nombres_completos=str_replace('Ï','I',$nombres_completos);
+        $nombres_completos=str_replace('Ö','O',$nombres_completos);
         $nombres_completos=str_replace('Ñ','n',$nombres_completos);
+        $nombres_completos=str_replace('Ü','u',$nombres_completos);
         $nombres_completos=strtolower($nombres_completos);
         $nombres_completos=str_replace(array('.',',',':','_','¿','?','-'),'',$nombres_completos);
         $nombres_completos=str_replace('á','a',$nombres_completos);
@@ -165,6 +186,9 @@ class GeneratePayments extends Command
         $nombres_completos=str_replace('ö','o',$nombres_completos);
         $nombres_completos=str_replace('ü','u',$nombres_completos);
         $nombres_completos=str_replace('Ñ','n',$nombres_completos);
+
+  
+       
         
         if (strlen($nombres_completos)>=30) {
          $nombres_completos=substr($nombres_completos, 0, 30);
