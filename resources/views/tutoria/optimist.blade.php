@@ -8,9 +8,9 @@
 			<h2 class="panel-title">Optimist: <strong>{{ $alumno[0]->fullname }}</strong></h2>
 		</header>
 		<div class="panel-body">
-		{!! Form::open(['route' => 'tutoriaregister', 'method' => 'POST']) !!}
+		{!! Form::open(['route' => ['tutoriaregister',$id], 'method' => 'POST']) !!}
 			<div class="panel-group" id="accordion">
-			@foreach($tarjetas as $data)
+			@foreach($tarjetaBloque as $data)
 			<input type="hidden" name="bloque[]" value="{{ $data->idbloque }}">
 				<div class="panel panel-accordion">
 					<div class="panel-heading">
@@ -27,7 +27,7 @@
 								<thead>
 									<tr>
 									@foreach($data->criterios as $criterio)
-										<input type="hidden" name="criterio[]" value="{{ $data->idbloque }}_{{ $criterio->idbloquecriterio }}">
+										<input type="hidden" name="criterio_{{ $data->idbloque }}[]" value="{{ $criterio->idbloquecriterio }}">
 										<th>{{ $criterio->criterio }}</th>
 										@endforeach
 									</tr>
@@ -39,22 +39,22 @@
 										<td>
 											<div class="col-md-6 text-right">S</div>
 											<div class="col-md-6 text-left">
-												<input type="radio" name="S_{{ $criterio->idbloquecriterio }}" value="{{ $criterio->idbloquecriterio }}_S">
+												<input type="radio" name="value_{{ $criterio->idbloquecriterio }}[]" value="{{ $criterio->idbloquecriterio }}_S">
 											</div>
 
 											<div class="col-md-6 text-right">CS</div>
 											<div class="col-md-6 text-left">
-												<input type="radio" name="CS_{{ $criterio->idbloquecriterio }}" value="{{ $criterio->idbloquecriterio }}_CS">
+												<input type="radio" name="value_{{ $criterio->idbloquecriterio }}[]" value="{{ $criterio->idbloquecriterio }}_CS">
 											</div>
 
 											<div class="col-md-6 text-right">AV</div>
 											<div class="col-md-6 text-left">
-												<input type="radio" name="AV_{{ $criterio->idbloquecriterio }}" value="{{ $criterio->idbloquecriterio }}_AV">
+												<input type="radio" name="value_{{ $criterio->idbloquecriterio }}[]" value="{{ $criterio->idbloquecriterio }}_AV">
 											</div>
 
 											<div class="col-md-6 text-right">N</div>
 											<div class="col-md-6 text-left">
-												<input type="radio" name="N_{{ $criterio->idbloquecriterio }}" value="{{ $criterio->idbloquecriterio }}_N">
+												<input type="radio" name="value_{{ $criterio->idbloquecriterio }}[]" value="{{ $criterio->idbloquecriterio }}_N">
 											</div>
 										</td>
 										@endforeach

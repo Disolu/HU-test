@@ -11,6 +11,8 @@ use DB;
 use Auth;
 use App\Core\Repositories\Administrador\NotasRepo;
 use App\Core\Entities\TarjetaBloque;
+use App\Core\Entities\NotaTarjeta;
+
 class TutoriaController extends Controller
 {
     protected $NotasRepo;
@@ -36,10 +38,40 @@ class TutoriaController extends Controller
       return view('administrador.notas.tutoria', compact('alumnos','fechanota','tarjetas'));
     }
 
-    public function storeTutoria(Request $request)
+    public function storeTutoria($id, Request $request)
     {
-      dd($request->all());
+      $lastPeriodo = $this->NotasRepo->getLastPeriodoMatricula();
+      for($i=0; $i<count($request['bloque']); $i++)
+      {
 
+        $bloque = $request['bloque'][$i];
+        for ($j=0; $j<count($request["criterio_$bloque"]) ; $j++) 
+        {
+          
+          $criterio = $request["criterio_$bloque"][$j];
+          for ($k=0; $k<count($request["value_$criterio"]); $k++) 
+          {
+            $value = explode("_", $request["value_$criterio"][$k]);
+            $notatarjeta = new NotaTarjeta;
+            $notatarjeta->S                  = ($value[1] == 'S')  ? 1 : 0;
+            $notatarjeta->CS                 = ($value[1] == 'CS') ? 1 : 0;
+            $notatarjeta->AV                 = ($value[1] == 'AV') ? 1 : 0;
+            $notatarjeta->N                  = ($value[1] == 'N')  ? 1 : 0;
+            $notatarjeta->idtarjeta          = 1;
+            $notatarjeta->idbloque           = $request['bloque'][$i];
+            $notatarjeta->idbloquecriterio   = $request["criterio_$bloque"][$j];
+            $notatarjeta->idbimestre         = 1;
+            $notatarjeta->idperiodomatricula = $lastPeriodo[0]->idperiodomatricula
+            $notatarjeta->idtutor            = Auth::user()->id;
+            $notatarjeta->idalumno           = $id;
+            $notatarjeta->created_at         = date('Y-m-d H:i:s');
+            $notatarjeta->save();
+
+            echo "BLOQUE: ".$request['bloque'][$i] . " CRITERIO: " .$request["criterio_$bloque"][$j]. " VALUE: " . $value[1] ."<br>";
+          }
+        }
+
+      }
     }
 
 
@@ -98,7 +130,7 @@ class TutoriaController extends Controller
       //NECESITO TODOS LOS BLOQUES POR NIVEL
         //NECESITO TODOS LOS CRITERIOS QUE ESTAN DENTRO DE LOS BLOQUES
       //NECESITO A LOS ALUMNOS.
-      $tarjetas = TarjetaBloque::select('t.nombre as tarjeta','b.nombre as bloque','idtarjetabloque','tarjetabloque.idbloque')
+      $tarjetaBloque = TarjetaBloque::select('t.nombre as tarjeta','b.nombre as bloque','idtarjetabloque','tarjetabloque.idbloque')
       ->leftJoin('tarjeta as t','t.idtarjeta','=','tarjetabloque.idtarjeta')
       ->leftJoin('bloque as b','b.idbloque','=','tarjetabloque.idbloque')
 
@@ -106,7 +138,7 @@ class TutoriaController extends Controller
       ->get();
 
       $alumno = DB::table('alumno')->where('idalumno',$id)->get();
-      return view('tutoria.optimist', compact('alumno','tarjetas'));
+      return view('tutoria.optimist', compact('alumno','tarjetaBloque','id'));
     }
 
     public function registerProgrest($id)

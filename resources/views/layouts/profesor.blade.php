@@ -126,11 +126,6 @@
 												Buscar alumno
 											</a>
 										</li>
-                                        <li>
-                                            <a href="{{route('generarlibretas')}}">
-                                                Generar libretas
-                                            </a>
-                                        </li>
 									</ul>
 								</li>
 

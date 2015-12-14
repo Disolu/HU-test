@@ -264,7 +264,7 @@ Route::group( ['middleware' => ['auth','profesor'], 'prefix'=>'profesor'], funct
 
 	//Tutoria
 	Route::get('tutoria/{idseccion}', ['as' => 'tutorialist', 'uses' => 'Administrador\TutoriaController@tutoria']);
-	Route::post('tutoria/registrar',  ['as' => 'tutoriaregister', 'uses' => 'Administrador\TutoriaController@storeTutoria']);
+	Route::post('tutoria/registrar/{idalumno}',  ['as' => 'tutoriaregister', 'uses' => 'Administrador\TutoriaController@storeTutoria']);
 	
 
 
