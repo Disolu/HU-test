@@ -30,8 +30,8 @@ class GeneratePayments extends Command
       foreach ($sedes as $key => $sede){
         $file_contents_final="";
         $file_name  = "RC_{$numeration[$sede->idsede]}_{$today}.TXT"; // RC_000_YYYYMMDD.TXT
-        $source_file = sys_get_temp_dir() . DIRECTORY_SEPARATOR . $file_name;
-        //$source_file = config('app.urlupload').$file_name;       
+        //$source_file = sys_get_temp_dir() . DIRECTORY_SEPARATOR . $file_name;
+        $source_file = config('app.urlupload').$file_name;       
         //One for file      
         $students= $this->getStudentsbySede($sede->idsede);
         
