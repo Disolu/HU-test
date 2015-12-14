@@ -39,22 +39,22 @@
 										<td>
 											<div class="col-md-6 text-right">S</div>
 											<div class="col-md-6 text-left">
-												<input type="radio" name="{{ $criterio->idbloquecriterio }}" value="{{ $criterio->idbloquecriterio }}_S">
+												<input type="radio" name="S_{{ $criterio->idbloquecriterio }}" value="{{ $criterio->idbloquecriterio }}_S">
 											</div>
 
 											<div class="col-md-6 text-right">CS</div>
 											<div class="col-md-6 text-left">
-												<input type="radio" name="{{ $criterio->idbloquecriterio }}" value="{{ $criterio->idbloquecriterio }}_CS">
+												<input type="radio" name="CS_{{ $criterio->idbloquecriterio }}" value="{{ $criterio->idbloquecriterio }}_CS">
 											</div>
 
 											<div class="col-md-6 text-right">AV</div>
 											<div class="col-md-6 text-left">
-												<input type="radio" name="{{ $criterio->idbloquecriterio }}" value="{{ $criterio->idbloquecriterio }}_AV">
+												<input type="radio" name="AV_{{ $criterio->idbloquecriterio }}" value="{{ $criterio->idbloquecriterio }}_AV">
 											</div>
 
 											<div class="col-md-6 text-right">N</div>
 											<div class="col-md-6 text-left">
-												<input type="radio" name="{{ $criterio->idbloquecriterio }}" value="{{ $criterio->idbloquecriterio }}_N">
+												<input type="radio" name="N_{{ $criterio->idbloquecriterio }}" value="{{ $criterio->idbloquecriterio }}_N">
 											</div>
 										</td>
 										@endforeach
