@@ -30,8 +30,8 @@ class GeneratePayments extends Command
       foreach ($sedes as $key => $sede){
         $file_contents_final="";
         $file_name  = "RC_{$numeration[$sede->idsede]}_{$today}.TXT"; // RC_000_YYYYMMDD.TXT
-        //$source_file = sys_get_temp_dir() . DIRECTORY_SEPARATOR . $file_name;
-        $source_file = config('app.urlupload').$file_name;       
+        $source_file = sys_get_temp_dir() . DIRECTORY_SEPARATOR . $file_name;
+        //$source_file = config('app.urlupload').$file_name;       
         //One for file      
         $students= $this->getStudentsbySede($sede->idsede);
         
@@ -46,6 +46,7 @@ class GeneratePayments extends Command
               'PEN' .
               str_pad($today, 8, ' ', STR_PAD_LEFT) .
               '000' .
+              str_pad(' ', 330, ' ', STR_PAD_LEFT) .
               PHP_EOL;  
           }else{
               $header=str_pad($sede->idsede, 2, '0', STR_PAD_LEFT) .
@@ -55,6 +56,7 @@ class GeneratePayments extends Command
               str_pad($today, 8, ' ', STR_PAD_LEFT) .
               '000' .
               str_pad("T", 8, " ", STR_PAD_LEFT) .
+              str_pad(' ', 322, ' ', STR_PAD_LEFT) .
               PHP_EOL;
           }
 
@@ -99,6 +101,7 @@ class GeneratePayments extends Command
                   'relleno'        => str_pad( "0", '160',"0", STR_PAD_RIGHT),
                   'tail'           => str_pad( "0", '23',"0", STR_PAD_RIGHT),
                   'tail_'          => str_pad( "L", '16',"0", STR_PAD_RIGHT),
+                  'tail__'          => str_pad( " ", '33'," ", STR_PAD_LEFT),
                 );
                 $file_contents .= implode($line) . PHP_EOL;
              }
@@ -107,7 +110,8 @@ class GeneratePayments extends Command
           $footer="03".str_pad($countreg, 9,"0",STR_PAD_LEFT).
           str_pad(number_format($sum_max * $decimal, 0, '', ''), 18, '0', STR_PAD_LEFT).
           str_pad(number_format($sum_min * $decimal, 0, '', ''), 18, '0', STR_PAD_LEFT).
-          str_pad( "0", 18,"0", STR_PAD_LEFT). PHP_EOL;
+          str_pad( "0", 18,"0", STR_PAD_LEFT).
+          str_pad( " ", 295," ", STR_PAD_LEFT). PHP_EOL;
 
         }else{
           return false;
