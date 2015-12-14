@@ -33,7 +33,6 @@ class TarjetaBloque extends Model
 
     public function criterios()
     {
-      //return $this->manyThroughMany('App\Core\Entities\TarjetaBloque', 'App\Core\Entities\TarjetaBloqueCriterio', 'period_id', 'id', 'topic_id');
       return $this->hasMany('App\Core\Entities\TarjetaBloqueCriterio', 'idbloque', 'idbloque');
     }
 }

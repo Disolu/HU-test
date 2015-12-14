@@ -36,6 +36,13 @@ class TutoriaController extends Controller
       return view('administrador.notas.tutoria', compact('alumnos','fechanota','tarjetas'));
     }
 
+    public function storeTutoria(Request $request)
+    {
+      dd($request->all());
+
+    }
+
+
     public function register($id)
     {
       $lastPeriodo = $this->NotasRepo->getLastPeriodoMatricula();

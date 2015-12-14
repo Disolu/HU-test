@@ -260,12 +260,15 @@ Route::group( ['middleware' => ['auth','profesor'], 'prefix'=>'profesor'], funct
 	Route::get('tarjetas/registernotas', ['as' => 'tarjetanotas', 'uses' => 'Administrador\NotasController@registerTarjetaNotas']);
 	Route::post('tarjetas/registernotas', ['as' => 'tarjetanotas', 'uses' => 'Administrador\NotasController@tarjetanotas']);
 
+
+
 	//Tutoria
-	Route::get('tutoria/{idseccion}',  ['as' => 'tutorialist', 'uses' => 'Administrador\TutoriaController@tutoria']);
+	Route::get('tutoria/{idseccion}', ['as' => 'tutorialist', 'uses' => 'Administrador\TutoriaController@tutoria']);
+	Route::post('tutoria/registrar',  ['as' => 'tutoriaregister', 'uses' => 'Administrador\TutoriaController@storeTutoria']);
+	
+
 
 	Route::get('tutoria/registrar/{id}',  ['as' => 'tutoria', 'uses' => 'Administrador\TutoriaController@register'])->where('id', '[0-9]+');
-	Route::post('tutoria/registrar/{id}',  ['as' => 'tutoria', 'uses' => 'Administrador\TutoriaController@store'])->where('id', '[0-9]+');
-
 	Route::get('optimist/registrar/{id}/{tarjeta}', ['as' => 'typetarjeta', 'uses' => 'Administrador\TutoriaController@typetarjeta']);
 	Route::post('optimist/registrar/{id}', ['as' => 'registerOptimist', 'uses' => 'Administrador\TutoriaController@storeOptimist']);
 

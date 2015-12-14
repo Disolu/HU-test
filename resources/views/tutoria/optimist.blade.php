@@ -8,8 +8,10 @@
 			<h2 class="panel-title">Optimist: <strong>{{ $alumno[0]->fullname }}</strong></h2>
 		</header>
 		<div class="panel-body">
+		{!! Form::open(['route' => 'tutoriaregister', 'method' => 'POST']) !!}
 			<div class="panel-group" id="accordion">
 			@foreach($tarjetas as $data)
+			<input type="hidden" name="bloque[]" value="{{ $data->idbloque }}">
 				<div class="panel panel-accordion">
 					<div class="panel-heading">
 						<h4 class="panel-title">
@@ -25,6 +27,7 @@
 								<thead>
 									<tr>
 									@foreach($data->criterios as $criterio)
+										<input type="hidden" name="criterio[]" value="{{ $data->idbloque }}_{{ $criterio->idbloquecriterio }}">
 										<th>{{ $criterio->criterio }}</th>
 										@endforeach
 									</tr>
@@ -65,11 +68,11 @@
 			@endforeach
 			</div>
 
-
 			<p class="m-none">
 				<button type="submit" class="mb-xs mt-xs mr-xs btn btn-success">Registrar</button>
 				<a class="mb-xs mt-xs mr-xs btn btn-default" href="javascript:history.back(1)">Cancelar</a>
-			</p>		
+			</p>
+		{!! Form::close() !!}		
 		</div>
 	</section>
 </div>
