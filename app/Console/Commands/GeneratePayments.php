@@ -148,7 +148,24 @@ class GeneratePayments extends Command
 
         $nombres_completos=trim($student->nombres).' '.trim($student->apellido_paterno).' '.trim($student->apellido_materno);
 
+        $nombres_completos=str_replace('Á','A',$nombres_completos);
+        $nombres_completos=str_replace('É','E',$nombres_completos);
+        $nombres_completos=str_replace('Í','I',$nombres_completos);
+        $nombres_completos=str_replace('Ó','O',$nombres_completos);
+        $nombres_completos=str_replace('Ú','U',$nombres_completos);
+        $nombres_completos=str_replace('Ñ','N',$nombres_completos);
+        $nombres_completos=str_replace('&','Y',$nombres_completos);
+        $nombres_completos=str_replace('À','A',$nombres_completos);
+        $nombres_completos=str_replace('È','E',$nombres_completos);
+        $nombres_completos=str_replace('Ì','I',$nombres_completos);
+        $nombres_completos=str_replace('Ò','O',$nombres_completos);
+        $nombres_completos=str_replace('Ù','U',$nombres_completos);
+        $nombres_completos=str_replace('Ä','A',$nombres_completos);
+        $nombres_completos=str_replace('Ë','E',$nombres_completos);
+        $nombres_completos=str_replace('Ï','I',$nombres_completos);
+        $nombres_completos=str_replace('Ö','O',$nombres_completos);
         $nombres_completos=str_replace('Ñ','n',$nombres_completos);
+        $nombres_completos=str_replace('Ü','u',$nombres_completos);
         $nombres_completos=strtolower($nombres_completos);
         $nombres_completos=str_replace(array('.',',',':','_','¿','?','-'),'',$nombres_completos);
         $nombres_completos=str_replace('á','a',$nombres_completos);
@@ -169,6 +186,9 @@ class GeneratePayments extends Command
         $nombres_completos=str_replace('ö','o',$nombres_completos);
         $nombres_completos=str_replace('ü','u',$nombres_completos);
         $nombres_completos=str_replace('Ñ','n',$nombres_completos);
+
+  
+       
         
         if (strlen($nombres_completos)>=30) {
          $nombres_completos=substr($nombres_completos, 0, 30);
