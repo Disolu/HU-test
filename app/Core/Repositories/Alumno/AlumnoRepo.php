@@ -104,6 +104,11 @@ class AlumnoRepo {
             $existingAlumno->nombres = $rawAlumno['alu_nonbres'];
             if($rawAlumno['alu_codigo'])
             {
+                $codealumno = DB::table('alumno')->where('codigo',$rawAlumno['alu_codigo'])->take(1)->get();
+                if($codealumno)
+                {
+                  return false;
+                }
                 $existingAlumno->codigo = $rawAlumno['alu_codigo'];
             }
             else
