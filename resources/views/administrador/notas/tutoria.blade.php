@@ -8,6 +8,7 @@
       <h2 class="panel-title">Tutoria: <strong>-</strong></h2>
     </header>
     <div class="panel-body">
+      @include('alertas.success')
       <div class="alert alert-info">
         <ul class="fa-ul">
           <li>

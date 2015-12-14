@@ -35,12 +35,15 @@ class TutoriaController extends Controller
 
       $nivel   = DB::table('seccion')->where('idseccion',$idseccion)->get();
       $tarjetas = DB::table('tarjeta')->where('idnivel',$nivel[0]->idnivel)->get();
-      return view('administrador.notas.tutoria', compact('alumnos','fechanota','tarjetas'));
+      return view('administrador.notas.tutoria', compact('alumnos','fechanota','tarjetas','idseccion'));
     }
 
     public function storeTutoria($id, Request $request)
     {
       $lastPeriodo = $this->NotasRepo->getLastPeriodoMatricula();
+      $datehow = Date('Ymd');
+      $fechanota = $this->NotasRepo->getFechaNota($lastPeriodo[0]->idperiodomatricula, $datehow);
+
       for($i=0; $i<count($request['bloque']); $i++)
       {
 
@@ -57,21 +60,24 @@ class TutoriaController extends Controller
             $notatarjeta->CS                 = ($value[1] == 'CS') ? 1 : 0;
             $notatarjeta->AV                 = ($value[1] == 'AV') ? 1 : 0;
             $notatarjeta->N                  = ($value[1] == 'N')  ? 1 : 0;
-            $notatarjeta->idtarjeta          = 1;
+            $notatarjeta->idtarjeta          = $request["tarjeta"];
             $notatarjeta->idbloque           = $request['bloque'][$i];
             $notatarjeta->idbloquecriterio   = $request["criterio_$bloque"][$j];
-            $notatarjeta->idbimestre         = 1;
-            $notatarjeta->idperiodomatricula = $lastPeriodo[0]->idperiodomatricula
+            $notatarjeta->idbimestre         = $fechanota[0]->idbimestre;
+            $notatarjeta->idperiodomatricula = $lastPeriodo[0]->idperiodomatricula;
             $notatarjeta->idtutor            = Auth::user()->id;
             $notatarjeta->idalumno           = $id;
             $notatarjeta->created_at         = date('Y-m-d H:i:s');
+            $notatarjeta->updated_at = '';
             $notatarjeta->save();
 
-            echo "BLOQUE: ".$request['bloque'][$i] . " CRITERIO: " .$request["criterio_$bloque"][$j]. " VALUE: " . $value[1] ."<br>";
+            //echo "BLOQUE: ".$request['bloque'][$i] . " CRITERIO: " .$request["criterio_$bloque"][$j]. " VALUE: " . $value[1] ."<br>";
           }
         }
-
       }
+      echo '<script type="text/javascript">'
+               , 'history.go(-2);'
+               , '</script>';
     }
 
 
@@ -137,8 +143,9 @@ class TutoriaController extends Controller
       ->where('tarjetabloque.idtarjeta',$tarjeta)
       ->get();
 
+      $tarjeta = DB::table('tarjeta')->where('idtarjeta',$tarjeta)->get();
       $alumno = DB::table('alumno')->where('idalumno',$id)->get();
-      return view('tutoria.optimist', compact('alumno','tarjetaBloque','id'));
+      return view('tutoria.optimist', compact('alumno','tarjetaBloque','id','tarjeta'));
     }
 
     public function registerProgrest($id)

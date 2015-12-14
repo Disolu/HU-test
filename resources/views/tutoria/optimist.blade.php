@@ -5,11 +5,12 @@
 
 	<section class="panel">
 		<header class="panel-heading">						
-			<h2 class="panel-title">Optimist: <strong>{{ $alumno[0]->fullname }}</strong></h2>
+			<h2 class="panel-title">{{ $tarjeta[0]->nombre }}: <strong>{{ $alumno[0]->fullname }}</strong></h2>
 		</header>
 		<div class="panel-body">
 		{!! Form::open(['route' => ['tutoriaregister',$id], 'method' => 'POST']) !!}
 			<div class="panel-group" id="accordion">
+			<input type="hidden" name="tarjeta" value="{{ $tarjeta[0]->idtarjeta }}">
 			@foreach($tarjetaBloque as $data)
 			<input type="hidden" name="bloque[]" value="{{ $data->idbloque }}">
 				<div class="panel panel-accordion">
