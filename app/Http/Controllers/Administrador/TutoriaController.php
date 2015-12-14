@@ -10,7 +10,7 @@ use Session;
 use DB;
 use Auth;
 use App\Core\Repositories\Administrador\NotasRepo;
-
+use App\Core\Entities\TarjetaBloque;
 class TutoriaController extends Controller
 {
     protected $NotasRepo;
@@ -31,7 +31,9 @@ class TutoriaController extends Controller
       ->where('idperiodomatricula', $lastPeriodo[0]->idperiodomatricula)
       ->get();
 
-      return view('administrador.notas.tutoria', compact('alumnos','fechanota'));
+      $nivel   = DB::table('seccion')->where('idseccion',$idseccion)->get();
+      $tarjetas = DB::table('tarjeta')->where('idnivel',$nivel[0]->idnivel)->get();
+      return view('administrador.notas.tutoria', compact('alumnos','fechanota','tarjetas'));
     }
 
     public function register($id)
@@ -84,14 +86,28 @@ class TutoriaController extends Controller
       return redirect()->back();
     }
     
-    public function registerOptimist($id)
+    public function typetarjeta($id, $tarjeta)
     {
+      //NECESITO TODOS LOS BLOQUES POR NIVEL
+        //NECESITO TODOS LOS CRITERIOS QUE ESTAN DENTRO DE LOS BLOQUES
+      //NECESITO A LOS ALUMNOS.
+      $tarjetas = TarjetaBloque::select('t.nombre as tarjeta','b.nombre as bloque','idtarjetabloque','tarjetabloque.idbloque')
+      ->leftJoin('tarjeta as t','t.idtarjeta','=','tarjetabloque.idtarjeta')
+      ->leftJoin('bloque as b','b.idbloque','=','tarjetabloque.idbloque')
+
+      ->where('tarjetabloque.idtarjeta',$tarjeta)
+      ->get();
+
       $alumno = DB::table('alumno')->where('idalumno',$id)->get();
-      return view('tutoria.optimist', compact('alumno'));
+      return view('tutoria.optimist', compact('alumno','tarjetas'));
     }
 
     public function registerProgrest($id)
     {
+      //$bloques = DB::table('')
+      //NECESITO TODOS LOS BLOQUES POR NIVEL
+        //NECESITO TODOS LOS CRITERIOS QUE ESTAN DENTRO DE LOS BLOQUES
+      //NECESITO A LOS ALUMNOS.
       $alumno = DB::table('alumno')->where('idalumno',$id)->get();
       return view('tutoria.progrest', compact('alumno'));
     }
