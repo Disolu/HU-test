@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RolUsuarioSeed::class);
         $this->call(UsersSeed::class);
         $this->call(SedeSeed::class);
+        $this->call(NivelSeed::class);
         $this->call(AlumnoEstadoSeed::class);      
         $this->call(DepartamentoSeed::class);
         $this->call(ProvinciaSeed::class);
