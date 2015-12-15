@@ -30,8 +30,8 @@ class GeneratePayments extends Command
       foreach ($sedes as $key => $sede){
         $file_contents_final="";
         $file_name  = "RC_{$numeration[$sede->idsede]}_{$today}.TXT"; // RC_000_YYYYMMDD.TXT
-        //$source_file = sys_get_temp_dir() . DIRECTORY_SEPARATOR . $file_name;
-        $source_file = config('app.urlupload').$file_name;       
+        $source_file = sys_get_temp_dir() . DIRECTORY_SEPARATOR . $file_name;
+        //$source_file = config('app.urlupload').$file_name;       
         //One for file      
         $students= $this->getStudentsbySede($sede->idsede);
         
@@ -99,7 +99,7 @@ class GeneratePayments extends Command
                   'monto_max'      => str_pad(number_format($student->monto * $decimal, 0, '', ''), 15, '0', STR_PAD_LEFT),
                   'monto_min'      => str_pad(number_format($student->monto * $decimal, 0, '', ''), 15, '0', STR_PAD_LEFT), 
                   'relleno'        => str_pad( "0", '160',"0", STR_PAD_RIGHT),
-                  'tail'           => str_pad( "0", '23',"0", STR_PAD_RIGHT),
+                  'tail'           => str_pad( "0", '20',"0", STR_PAD_RIGHT),
                   'tail_'          => str_pad( "L", '16',"0", STR_PAD_RIGHT),
                   'tail__'          => str_pad( " ", '33'," ", STR_PAD_LEFT),
                 );
