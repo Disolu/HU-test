@@ -139,13 +139,15 @@ class TutoriaController extends Controller
       $tarjetaBloque = TarjetaBloque::select('t.nombre as tarjeta','b.nombre as bloque','idtarjetabloque','tarjetabloque.idbloque')
       ->leftJoin('tarjeta as t','t.idtarjeta','=','tarjetabloque.idtarjeta')
       ->leftJoin('bloque as b','b.idbloque','=','tarjetabloque.idbloque')
-
       ->where('tarjetabloque.idtarjeta',$tarjeta)
       ->get();
 
       $tarjeta = DB::table('tarjeta')->where('idtarjeta',$tarjeta)->get();
-      $alumno = DB::table('alumno')->where('idalumno',$id)->get();
-      return view('tutoria.optimist', compact('alumno','tarjetaBloque','id','tarjeta'));
+      $alumno  = DB::table('alumno')->where('idalumno',$id)->get();
+      $periodomatricula = DB::table('periodomatricula')->orderBy('created_at','desc')->take(1)->get();
+
+      $notatarjeta = DB::table('notatarjeta')->where('idalumno',$id)->where('idperiodomatricula', $periodomatricula[0]->idperiodomatricula)->get();
+      return view('tutoria.optimist', compact('alumno','tarjetaBloque','id','tarjeta','notatarjeta'));
     }
 
     public function registerProgrest($id)
