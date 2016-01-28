@@ -204,7 +204,26 @@ Theme Version: 	1.4.0
 		});
 	})();
 
-
+	(function() {
+		var plot = $.plot('#flotPie2', flotPieData2, {
+			series: {
+				pie: {
+					show: true,
+					combine: {
+						color: '#999',
+						threshold: 0.1
+					}
+				}
+			},
+			legend: {
+				show: false
+			},
+			grid: {
+				hoverable: true,
+				clickable: true
+			}
+		});
+	})();
 	/*
 	Morris: Line
 	*/

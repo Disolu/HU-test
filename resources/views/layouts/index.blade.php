@@ -24,6 +24,8 @@
 	<link rel="stylesheet" href="{{ asset('assets/stylesheets/theme.css') }}" />
 	<!-- Theme Custom CSS -->
 	<link rel="stylesheet" href="{{ asset('assets/stylesheets/theme-custom.css') }}">
+
+	<link rel="stylesheet" href="{{ asset('assets/vendor/chartist/chartist.css') }}">		
 	<!-- Head Libs -->
 	<script src="{{ asset('assets/vendor/modernizr/modernizr.js') }}"></script>
 	
@@ -183,6 +185,11 @@
 												Reportes
 											</a>
 											<ul class="nav nav-children">
+												<li>
+													<a href="{!! route('Reportegraficos') !!}">
+														Gráficos
+													</a>
+												</li>
 												<li>
 													<a href="{!! route('reportes') !!}">
 														Alumno por sección

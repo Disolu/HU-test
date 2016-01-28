@@ -27,6 +27,55 @@ class ReportesController extends Controller
         $this->ReportesRepo = $ReportesRepo;
     }
 
+    public function getReportegraficos(){
+        $periodo = DB::table('periodomatricula')->orderBy('idperiodomatricula','desc')->take(1)->get();
+        //$periodo[0]->idperiodomatricula;
+        $sede = DB::table('alumnomatricula')
+        ->select(
+
+            DB::raw("(select count(*) from alumnomatricula where idsede = 1 and idperiodomatricula = {$periodo[0]->idperiodomatricula}) as sede1"),
+            DB::raw("(select count(*) from alumnomatricula where idsede = 2 and idperiodomatricula = {$periodo[0]->idperiodomatricula}) as sede2"),
+
+            DB::raw("(select count(*) from alumnomatricula where idsede = 1 and idnivel = 1 and idperiodomatricula = {$periodo[0]->idperiodomatricula}) as inicial1"),
+            DB::raw("(select count(*) from alumnomatricula where idsede = 1 and idnivel = 2 and idperiodomatricula = {$periodo[0]->idperiodomatricula}) as primaria1"),
+            DB::raw("(select count(*) from alumnomatricula where idsede = 1 and idnivel = 3 and idperiodomatricula = {$periodo[0]->idperiodomatricula}) as secundaria1"),
+
+            DB::raw("(select count(*) from alumnomatricula where idsede = 2 and idnivel = 4 and idperiodomatricula = {$periodo[0]->idperiodomatricula}) as inicial2"),
+            DB::raw("(select count(*) from alumnomatricula where idsede = 2 and idnivel = 5 and idperiodomatricula = {$periodo[0]->idperiodomatricula}) as primaria2"),
+            DB::raw("(select count(*) from alumnomatricula where idsede = 2 and idnivel = 6 and idperiodomatricula = {$periodo[0]->idperiodomatricula}) as secundaria2")
+
+            )
+        ->where('idperiodomatricula', $periodo[0]->idperiodomatricula)
+        ->take(1)
+        ->get();
+
+        $nivel1 = DB::table('nivel')->where('idsede', 1)->get();
+        $nivel2 = DB::table('nivel')->where('idsede', 2)->get();
+
+        $data = [
+            'data'   => $sede,
+            'nivel1' => $nivel1,
+            'nivel2' => $nivel2
+        ];
+        return view('matricula.reportes.graficos', $data);
+    }
+
+    public function getReportegraficosdetails($nivel){
+        $periodo = DB::table('periodomatricula')
+        ->orderBy('idperiodomatricula','desc')
+        ->take(1)
+        ->get();
+
+        $grados = DB::table('alumnomatricula')
+        ->where('idperiodomatricula', $periodo[0]->idperiodomatricula)
+        ->where('idnivel', $nivel)
+        ->groupBy('idgrado')
+        ->get();
+
+        return view('matricula.reportes.graficosDetail', compact('nivel'));
+
+    }
+
     public function getAlumnosNotas(Request $request)
     {
       $notas = DB::table('notacurso')

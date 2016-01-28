@@ -33,10 +33,14 @@ Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
 	Route::get('optimist/generar/{id}/{bimestre?}', ['as' => 'generateOptimist', 'uses' => 'GenerarLibretasController@generateOptimist'])->where('id', '[0-9]+');
 	Route::get('progrest/generar/{id}/{bimestre?}', ['as' => 'generateProgrest', 'uses' => 'GenerarLibretasController@generateProgrest'])->where('id', '[0-9]+');
 
-	Route::get('reportesPagosexcel', ['as' => 'excelpagos', 'uses' => 'Administrador\ReportesController@getAlumnosPagosExcel']);
-	Route::get('reportes', 		 ['as' => 'reportes',        'uses' => 'Administrador\ReportesController@getAlumnosxSeccion']);
+	Route::get('reportesPagosexcel',  ['as' => 'excelpagos', 	  'uses' => 'Administrador\ReportesController@getAlumnosPagosExcel']);
+	Route::get('reportes', 		      ['as' => 'reportes',        'uses' => 'Administrador\ReportesController@getAlumnosxSeccion']);
+
+	Route::get('reportes/graficos',      ['as' => 'Reportegraficos', 'uses' => 'Administrador\ReportesController@getReportegraficos']);
+	Route::get('reportes/graficos/{id}', ['as' => 'Reportegraficosdetails', 'uses' => 'Administrador\ReportesController@getReportegraficosdetails']);
+
 	Route::get('reportes/matriculas', ['as' => 'indexSecretaria', function () { return view('matricula.reportes.index'); }]);
-	Route::post('reportes/notas', ['as' => 'NotasAlumnoAjax', 'uses' => 'Administrador\ReportesController@getAlumnosNotas']);
+	Route::post('reportes/notas', 	  ['as' => 'NotasAlumnoAjax', 'uses' => 'Administrador\ReportesController@getAlumnosNotas']);
 
 	//OBSERVACION
 	Route::get('observacion/{id}', ['as' => 'observacion', 'uses' => 'Alumno\ObservacionController@show'])->where('id', '[0-9]+');
