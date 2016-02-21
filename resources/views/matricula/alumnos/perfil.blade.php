@@ -1,23 +1,23 @@
-<?php 
+<?php
 	if(Auth::user()->idrol==1)
 	{
 		$variable = "layouts.index";
-	} 
+	}
 	elseif(Auth::user()->idrol==2)
 	{
-		$variable = "layouts.responsable";	
+		$variable = "layouts.responsable";
 	}
 	elseif(Auth::user()->idrol==3)
 	{
-		$variable = "layouts.secretaria";	
+		$variable = "layouts.secretaria";
 	}
 	elseif(Auth::user()->idrol==4)
 	{
-		$variable = "layouts.profesor";	
+		$variable = "layouts.profesor";
 	}
 	elseif(Auth::user()->idrol==5)
 	{
-		$variable = "layouts.legal";	
+		$variable = "layouts.legal";
 	}
 ?>
 @extends("$variable")
@@ -48,7 +48,7 @@
 					<div class="ib">
 					@if($matricula[0]->sexo == 'M')
 						<img src="{!! asset('assets/img/man.jpg') !!}" style="width: 55px !important;" alt="{!! $matricula[0]->alu_nombres !!}">
-					@elseif($matricula[0]->sexo == 'F')	
+					@elseif($matricula[0]->sexo == 'F')
 						<img src="{!! asset('assets/img/woman.jpg') !!}" style="width: 55px !important;" alt="{!! $matricula[0]->alu_nombres !!}">
 					@endif
 					</div>
@@ -65,7 +65,7 @@
 							<br>
 							<strong>Escala:</strong> Nivel: {!! $matricula[0]->nivel_nombre !!} | Grado: {!! $matricula[0]->grado_nombre !!} | Sección: {!! $matricula[0]->seccion_nombre !!}
 							<br>
-							<strong>Estado:</strong> {!! $alumno[0]->nombreestado !!} 
+							<strong>Estado:</strong> {!! $alumno[0]->nombreestado !!}
 							<br>
 						</address>
 					</div>
@@ -83,7 +83,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="row">
 				<section class="panel panel-featured panel-featured-primary">
 					<header class="panel-heading">
@@ -110,11 +110,11 @@
 									  			<a href="#modalBasic" class="mb-xs mt-xs mr-xs modal-basic btnDetails" data-periodo="{{ $data->idperiodo }}" data-id="{{ $bimestre->idbimestre }}">
 									  				{{ $bimestre->nombre }}
 									  			</a>
-								  			</code> | 
+								  			</code> |
 								  		@endforeach
 								  	</td>
 							  	</tr>
-							  @endforeach	
+							  @endforeach
 							  </tbody>
 							</table>
 
@@ -191,44 +191,63 @@
 							<br>
 						</section>
 						<article>
-						{!! Form::open(['route' => array('saveArchivosDataUsers', $id), 'method' => 'POST', 'role' => 'form', 'enctype' => 'multipart/form-data']) !!}    
-
+						{!! Form::open(['route' => array('saveArchivosDataUsers', $id), 'method' => 'POST', 'role' => 'form', 'enctype' => 'multipart/form-data']) !!}
 						<div class="col-xs-12">
 							<div class="well bloquepadding">
 								<p>
-								
 								<strong>Compromiso de matricula</strong></p>
-								<div class="col-md-7">
+								<div class="col-xs-7">
 									<div class="form-group">
 										{!! Form::file('file1', ['id'=>'file1']) !!}
 									</div>
 								</div>
+								@if(isset($archivos[0]))
+									@if(!empty($archivos[0]->compromiso_url))
+										<div class="col-xs-5">
+											<a href="{{asset('uploads/'.$archivos[0]->compromiso_url)}}" target="_blank">Descargar</a>
+										</div>
+									@endif
+								@endif
 							</div>
 						</div>
 
 						<div class="col-xs-12">
 							<div class="well bloquepadding">
 								<p>
-								
+
 								<strong>Anexo</strong></p>
 								<div class="col-md-7">
 									<div class="form-group">
 										{!! Form::file('file2', ['id'=>'file2']) !!}
 									</div>
 								</div>
+								@if(isset($archivos[0]))
+									@if(!empty($archivos[0]->anexo_url))
+										<div class="col-xs-5">
+											<a href="{{asset('uploads/'.$archivos[0]->anexo_url)}}" target="_blank">Descargar</a>
+										</div>
+									@endif
+								@endif
 							</div>
 						</div>
 
 						<div class="col-xs-12">
 							<div class="well bloquepadding">
 								<p>
-								
+
 								<strong>Recibo de agua luz</strong></p>
 								<div class="col-md-7">
 									<div class="form-group">
 										{!! Form::file('file3', ['id'=>'file3']) !!}
 									</div>
 								</div>
+								@if(isset($archivos[0]))
+									@if(!empty($archivos[0]->reciboluz_url))
+										<div class="col-xs-5">
+											<a href="{{asset('uploads/'.$archivos[0]->reciboluz_url)}}" target="_blank">Descargar</a>
+										</div>
+									@endif
+								@endif
 							</div>
 						</div>
 
@@ -241,14 +260,21 @@
 										{!! Form::file('file4', ['id'=>'file4']) !!}
 									</div>
 								</div>
+								@if(isset($archivos[0]))
+									@if(!empty($archivos[0]->dni_apoderado))
+										<div class="col-xs-5">
+											<a href="{{asset('uploads/'.$archivos[0]->dni_apoderado)}}" target="_blank">Descargar</a>
+										</div>
+									@endif
+								@endif
 							</div>
 						</div>
 
 						<div class="col-md-12">
 							<input type="hidden" name="action" value="multiple" />
 							<button type="submit" class="btn btn-success">Subir archivos</button>
-						</div>     
-						{!! Form::close() !!} 
+						</div>
+						{!! Form::close() !!}
 					</article>
 					</div>
 

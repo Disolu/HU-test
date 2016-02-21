@@ -9,10 +9,10 @@ class Grado extends Model
     protected $table = 'grado';
     protected $dates = ['deleted_at'];
     protected $fillable = [
-    'idgrado', 
+    'idgrado',
     'nombre',
-    'idsede', 
-    'idnivel', 
+    'idsede',
+    'idnivel',
     'usercreate'
     ];
 
@@ -24,6 +24,11 @@ class Grado extends Model
     public function nivel()
     {
         return $this->belongsTo('App\Core\Entities\Nivel','idnivel','idnivel');
+    }
+
+    public function sede()
+    {
+        return $this->belongsTo('App\Core\Entities\Sede','idsede','idsede');
     }
 
     public function seccion()

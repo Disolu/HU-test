@@ -29,43 +29,53 @@ protected $PeriodoMatricula;
         $archivos = $this->AlumnoMatricula->getFilesAlumno($id, $idperiodomatricula[0]->idperiodomatricula);
 
         $files =[];
-        if ($request->file('file1')){
+        //THIS IS WRONG
+        /*if ($request->file('file1')){
           $files[] = $request->file('file1');
-        } 
+        }
         else{
           $files[] = null;
         }
         if ($request->file('file2')){
           $files[] = $request->file('file2');
-        } 
+        }
         else{
           $files[] = null;
         }
         if ($request->file('file3')){
           $files[] = $request->file('file3');
-        } 
+        }
         else{
           $files[] = null;
         }
         if ($request->file('file4')){
-          $files[] = $request->file('file4');    
-        } 
+          $files[] = $request->file('file4');
+        }
         else{
           $files[] = null;
-        }
+        }*/
 
-              foreach ($files as $file){
-                if(!empty($file) && $file != null)
-                {
-                  $filename=$file->getClientOriginalName();
-                  $file->move(base_path().'/public/uploads/', $filename);                        
-                }
-              }
+          for($i=1; $i < 5; $i++){
+            if($request->file('file'.$i)){
+              $file = $request->file('file'.$i);
+              $file->newname = md5(time().'_'.$i);
+              $files[] = $file;
+            }else{
+              //this is wrong too but to much work to do
+              $files[] = null;
+            }
+          }
 
-              $compromiso_url = (!empty($files[0]) ? $files[0]->getClientOriginalName() : "vacio");    
-              $anexo_url      = (!empty($files[1]) ? $files[1]->getClientOriginalName() : "vacio");    
-              $reciboluz_url  = (!empty($files[2]) ? $files[2]->getClientOriginalName() : "vacio");    
-              $dni_apoderado  = (!empty($files[3]) ? $files[3]->getClientOriginalName() : "vacio");
+
+
+          foreach ($files as $file){
+            if(!empty($file) && $file != null)
+            {
+              //THIS IS WRONGGGG
+              //$filename=$file->getClientOriginalName();
+              $file->move(base_path().'/public/uploads/', $file->newname);
+            }
+          }
 
           if($archivos->isEmpty())
           {
@@ -73,33 +83,33 @@ protected $PeriodoMatricula;
               $archivos->usercreate = $request->user()->id;
               $archivos->idalumno = $id;
               $archivos->idperiodomatricula = $idperiodomatricula[0]->idperiodomatricula;
-              $archivos->compromiso_url = empty($files[0])? 'vacio' : $files[0]->getClientOriginalName();
-              $archivos->anexo_url      = empty($files[1])? 'vacio' : $files[1]->getClientOriginalName();
-              $archivos->reciboluz_url  = empty($files[2])? 'vacio' : $files[2]->getClientOriginalName();
-              $archivos->dni_apoderado  = empty($files[3])? 'vacio' : $files[3]->getClientOriginalName(); 
+              $archivos->compromiso_url = empty($files[0])? '' : $files[0]->newname;
+              $archivos->anexo_url      = empty($files[1])? '' : $files[1]->newname;
+              $archivos->reciboluz_url  = empty($files[2])? '' : $files[2]->newname;
+              $archivos->dni_apoderado  = empty($files[3])? '' : $files[3]->newname;
               $archivos->save();
-            Session::flash('message-success', ' Archivos subidos con éxito'); 
-            return redirect()->route('alumnodetalle', $id); 
+            Session::flash('message-success', ' Archivos subidos con éxito');
+            return redirect()->route('alumnodetalle', $id);
           }
           else
           {
-            AlumnoArchivos::
-            where('idalumnoarchivos', $archivos[0]->idalumnoarchivos)
-            ->update
-            ([
-              'usercreate'        => $request->user()->id,
-              'idalumno'          => $id,
-              'idperiodomatricula'=> $idperiodomatricula[0]->idperiodomatricula,
-              'compromiso_url'    => $compromiso_url,
-              'anexo_url'         => $anexo_url,
-              'reciboluz_url'     => $reciboluz_url,
-              'dni_apoderado'     => $dni_apoderado
-            ]);
-            Session::flash('message-success', ' Nuevos archivos han sido subidos'); 
-            return redirect()->route('alumnodetalle', $id); 
+
+            $archivo = AlumnoArchivos::where('idalumnoarchivos',$archivos[0]->idalumnoarchivos)->first();
+            $filenames = array('compromiso_url','anexo_url','reciboluz_url','dni_apoderado');
+
+            for($i = 0; $i < 4; $i++){
+              if(!empty($files[$i])){
+                $archivo->$filenames[$i] = $files[$i]->newname;
+              }
+            }
+
+            $archivo->save();
+
+            Session::flash('message-success', ' Nuevos archivos han sido subidos');
+            return redirect()->route('alumnodetalle', $id);
           }
 
     }
 }
 
-          
+

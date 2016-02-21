@@ -11,7 +11,7 @@
 			@include('alertas.request')
 			@include('alertas.success')
 			{!! Form::open(['route' => 'asignaturas', 'method' => 'POST']) !!}
-			{!! Form::token() !!}	
+			{!! Form::token() !!}
 				<div class="form-group">
 					<label class="col-md-3 control-label" for="inputSuccess"></label>
 					<div class="col-md-6">
@@ -32,7 +32,7 @@
 							</div>
 						</fieldset>
 
-					</div>					
+					</div>
 				</div>
 
 				<p class="m-none">
@@ -51,30 +51,39 @@
 				<div class="col-md-12">
 					<section class="panel">
 						<div class="panel-body">
-							<div class="table-responsive">
-								<table class="table mb-none">
-									<thead>
-										<tr>
-											<th>Curso</th>
-											<th>Grado</th>
-											<th>Nivel</th>
-											<th>Acciones</th>
-										</tr>
-									</thead>
-									<tbody>
-									@foreach($cursos as $curso)
-										<tr>
-											<td>{!! $curso->nombre !!}</td>
-											<td>{!! $curso->grado->nombre !!}</td>
-											<td>{!! $curso->grado->nivel->nombre !!}</td>
-											<td>
-												<a href="{!! route('deleteasignatura', $curso->idcurso) !!}" class="delete-row" onclick="if (! confirm('¿Estás seguro que deseas eliminar el curso?, esto afectará a toda la institución.')) return false;"><i class="fa fa-trash-o"></i></a>
-											</td>
-										</tr>
-									@endforeach	
-									</tbody>
-								</table>
-							</div>
+              @foreach($order as $sede)
+                <h3>{{$sede['name']}}</h3>
+                @foreach($sede['niveles'] as $nivel)
+                  <h4>{{$nivel['name']}}</h4>
+                  @foreach($nivel['grados'] as $grado)
+                    <h5>{{$grado['name']}}</h5>
+      							  <div class="table-responsive">
+      							   	<table class="table mb-none">
+      									<thead>
+      										<tr>
+      											<th>Curso</th>
+      											<th>Grado</th>
+      											<th>Nivel</th>
+      											<th>Acciones</th>
+      										</tr>
+      									</thead>
+      									<tbody>
+      									@foreach($grado['cursos'] as $curso)
+      										<tr>
+      											<td>{!! $curso->nombre !!}</td>
+      											<td>{!! $curso->grado->nombre !!}</td>
+      											<td>{!! $curso->grado->nivel->nombre !!}</td>
+      											<td>
+      												<a href="{!! route('deleteasignatura', $curso->idcurso) !!}" class="delete-row" onclick="if (! confirm('¿Estás seguro que deseas eliminar el curso?, esto afectará a toda la institución.')) return false;"><i class="fa fa-trash-o"></i></a>
+      											</td>
+      										</tr>
+      									@endforeach
+      									</tbody>
+      								  </table>
+      							  </div>
+                  @endforeach
+                @endforeach
+              @endforeach
 						</div>
 					</section>
 				</div>
@@ -136,7 +145,7 @@
 			$.ajax({
 				type: "GET",
 				url: baseURL + "/api/v1/getSedes",
-				dataType: "json",               
+				dataType: "json",
 				contentType: "application/json; charset=utf-8",
 				success: function (e) {
 					var sedesRaw =  e.sedes;
@@ -315,12 +324,12 @@
 		}
 
 		fo.cargarperiodos();
-		fo.cargarsedes();       
-	}    
+		fo.cargarsedes();
+	}
 	var viewModel = new VacantesFormViewModel();
 
 	$(function(){
-		ko.applyBindings(viewModel, $("#page-wrapper")[0]); 
+		ko.applyBindings(viewModel, $("#page-wrapper")[0]);
 	});
 </script>
 @stop

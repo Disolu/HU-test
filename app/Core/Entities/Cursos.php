@@ -9,13 +9,13 @@ class Cursos extends Model
     protected $table = 'curso';
     protected $dates = ['deleted_at'];
     protected $fillable = [
-    'nombre', 
+    'nombre',
     'idgrado',
     ];
 
     public function grado()
     {
-    	return $this->belongsTo('App\Core\Entities\Grado','idgrado','idgrado');
+    	return $this->belongsTo('App\Core\Entities\Grado','idgrado','idgrado')->with('sede')->with('nivel');
     }
     public function secciones()
     {

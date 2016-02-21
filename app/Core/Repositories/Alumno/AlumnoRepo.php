@@ -13,7 +13,7 @@ use DB;
 class AlumnoRepo {
     public function getAlumnoJoins($alumno)
     {
-        return Alumno:: 
+        return Alumno::
         leftJoin('estadoalumno', 'alumno.idestadoalumno', '=', 'estadoalumno.idestadoalumno')
         ->select('estadoalumno.nombre as nombreestado')
         ->where('idalumno','=', $alumno)
@@ -22,19 +22,19 @@ class AlumnoRepo {
 
     public function getAlumnoByID($alumno)
     {
-         return Alumno::            
-         leftJoin('alumnomatricula', 'alumno.idalumno', '=', 'alumnomatricula.idalumno')         
+         return Alumno::
+         leftJoin('alumnomatricula', 'alumno.idalumno', '=', 'alumnomatricula.idalumno')
          ->select('nombres', 'apellido_paterno', 'apellido_materno', 'codigo','impedimento','idalumnomatricula','alumno.idalumno as alumnoid')
          ->where('nombres','LIKE','%'.$alumno.'%')
          ->orWhere('apellido_paterno','LIKE','%'.$alumno.'%')
          ->orWhere('apellido_materno','LIKE','%'.$alumno.'%')
          ->orWhere('dni', $alumno)
          ->get();
-    }    
+    }
 
     public function getAlumno($alumno)
     {
-         return Alumno::        	
+         return Alumno::
          leftJoin('alumnomatricula', 'alumno.idalumno', '=', 'alumnomatricula.idalumno')
          ->select('fullname','codigo','impedimento','idalumnomatricula','alumno.idalumno as alumnoid','idperiodomatricula',
              DB::raw('(select observacion from restringidos as rt where rt.dni = alumno.dni) observacion'))
@@ -47,6 +47,11 @@ class AlumnoRepo {
 
     public function getAlumnoRestricciones($alumno)
     {
+
+        //Ignored the view
+        //dd($alumno);
+        //$observaciones =  AlumnoObservacion::where('idtipoobservacion',4)->where()->get();
+
         if($alumno)
         {
             $restringidos = DB::table('restringidos')
@@ -54,6 +59,7 @@ class AlumnoRepo {
                 ->orWhere('dni', $alumno)
                 ->take(1)
                 ->get();
+
         }
         else{
             $restringidos = DB::table('restringidos')->get();
@@ -63,7 +69,7 @@ class AlumnoRepo {
 
     public function SaveDeudasAlumno($iduser, $alumno, $periodo)
     {
-        for ($i=4; $i <= 12 ; $i++) { 
+        for ($i=4; $i <= 12 ; $i++) {
             $deuda = new AlumnoDeudas;
             $deuda->mes                 = str_pad($i, 2, '0', STR_PAD_LEFT);
             $deuda->idalumno            = $alumno;
@@ -86,12 +92,12 @@ class AlumnoRepo {
             $mensualidades->idperiodomatricula  = $periodo;
             $mensualidades->save();
     }
-    
+
     public function SaveAlumno($idperiodomatricula,$iduser, $rawAlumno)
     {
        $codigoAlumno = Alumno::select('codigo')->orderBy('idalumno','=','desc')->take(1)->get();
         /*
-            Armar el nuevo codigo del alumno 
+            Armar el nuevo codigo del alumno
         */
         if($codigoAlumno->isEmpty())
         { $numero = 000; }
@@ -100,7 +106,7 @@ class AlumnoRepo {
         $anio = date('Y')."-";
         $newcode = $numero+1;
 
-            $existingAlumno = new Alumno;        
+            $existingAlumno = new Alumno;
             $existingAlumno->nombres = $rawAlumno['alu_nonbres'];
             if($rawAlumno['alu_codigo'])
             {
@@ -148,7 +154,7 @@ class AlumnoRepo {
                 $alumnoMatricula->usercreate = $iduser;
                 $alumnoMatricula->updated_at = '';
                 $alumnoMatricula->save();
-        //registro de la Vacante, 
+        //registro de la Vacante,
             $lastVacante = Vacante::
                 select('idvacante','qty_matriculados')
                 ->where('idseccion','=', $rawAlumno['alu_seccion'])
@@ -158,12 +164,12 @@ class AlumnoRepo {
                 ->where('idperiodomatricula','=',$idperiodomatricula)
                 ->orderBy('idvacante','desc')
                 ->take(1)
-                ->get();  
-            $newMatriculados = ($lastVacante[0]->qty_matriculados + 1);                            
+                ->get();
+            $newMatriculados = ($lastVacante[0]->qty_matriculados + 1);
             $alumnoVacante = Vacante::
                 where('idvacante',$lastVacante[0]->idvacante)
-                ->update(['qty_matriculados' => $newMatriculados]);                
-            return true;        
+                ->update(['qty_matriculados' => $newMatriculados]);
+            return true;
     }
 
     public function SaveApoderado($iduser, $rawApoderados)
@@ -232,7 +238,7 @@ class AlumnoRepo {
 
     public function LastAlumno()
     {
-        return Alumno::            
+        return Alumno::
          select('idalumno')
          ->take(1)
          ->orderBy('idalumno','desc')
@@ -242,7 +248,7 @@ class AlumnoRepo {
     public function getAllObservaciones($id)
     {
         return AlumnoObservacion::
-        leftJoin('tipoobservacion', 'alumnoobservacion.idtipoobservacion', '=', 'tipoobservacion.idtipoobservacion')         
+        leftJoin('tipoobservacion', 'alumnoobservacion.idtipoobservacion', '=', 'tipoobservacion.idtipoobservacion')
          ->select('titulo','observacion','alumnoobservacion.idtipoobservacion','alumnoobservacion.created_at','nombre as nombretipoobservacion')
          ->where('idalumno','=',$id)
          ->orderBy('alumnoobservacion.created_at','desc')

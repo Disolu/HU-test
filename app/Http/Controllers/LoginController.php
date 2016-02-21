@@ -9,6 +9,7 @@ use Redirect;
 use App\Http\Requests;
 use App\Http\Requests\LoginRequest;
 use App\Http\Controllers\Controller;
+use Hash;
 
 class LoginController extends Controller
 {
@@ -22,7 +23,7 @@ class LoginController extends Controller
     {
         return view('administrador.index');
     }
-    
+
     public function postLogin(LoginRequest $request)
     {
         if(Auth::attempt(['user' => $request['username'], 'password' => $request['password'] ],$request['remember']))

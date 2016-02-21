@@ -7,6 +7,7 @@ class AlumnoArchivos extends Model
 {
     use SoftDeletes;
     protected $table = 'alumnoarchivos';
+    protected $primaryKey = 'idalumnoarchivos';
     protected $dates = ['deleted_at'];
     protected $fillable = [
     'idalumno',
@@ -15,6 +16,6 @@ class AlumnoArchivos extends Model
     'reciboluz_url',
     'dni_apoderado',
     'idperiodomatricula',
-    'usercreate',    
+    'usercreate',
     ];
 }

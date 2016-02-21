@@ -1,23 +1,23 @@
-<?php 
+<?php
 	if(Auth::user()->idrol==1)
 	{
 		$variable = "layouts.index";
-	} 
+	}
 	elseif(Auth::user()->idrol==2)
 	{
-		$variable = "layouts.responsable";	
+		$variable = "layouts.responsable";
 	}
 	elseif(Auth::user()->idrol==3)
 	{
-		$variable = "layouts.secretaria";	
+		$variable = "layouts.secretaria";
 	}
 	elseif(Auth::user()->idrol==4)
 	{
-		$variable = "layouts.profesor";	
+		$variable = "layouts.profesor";
 	}
 	elseif(Auth::user()->idrol==5)
 	{
-		$variable = "layouts.legal";	
+		$variable = "layouts.legal";
 	}
 ?>
 @extends("$variable")
@@ -27,7 +27,7 @@
 	<link rel="stylesheet" href="{{ asset('assets/vendor/font-awesome/css/font-awesome.css') }}" />
 	<link rel="stylesheet" href="{{ asset('assets/vendor/magnific-popup/magnific-popup.css') }}" />
 	<link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-datepicker/css/datepicker3.css') }}" />
-	<!-- Specific Page Vendor CSS -->		
+	<!-- Specific Page Vendor CSS -->
 	<link rel="stylesheet" href="{{ asset('assets/vendor/pnotify/pnotify.custom.css') }}" />
 	<!-- Theme CSS -->
 	<link rel="stylesheet" href="{{ asset('assets/stylesheets/theme.css') }}" />
@@ -50,7 +50,7 @@
 
 			{!! Form::open(array('url' => 'alumno/buscar')) !!}
 			<div class="form-group">
-				<label class="col-md-3 control-label">Nombre / Dni</label>
+				<label class="col-md-3 control-label">Nombre / Dni / Codigo</label>
 				<div class="col-md-6">
 					<div class="input-group input-search">
                         <input type="text" class="form-control" name="alumno" id="alumno" placeholder="Buscar alumno...">
@@ -59,7 +59,7 @@
                         </span>
 					</div>
 					<span class="help-block">
-						Busque al alumno utilizando su nombre, apellidos o dni.
+						Busque al alumno utilizando su nombre, apellidos, dni o codigo.
 					</span>
 				</div>
 			</div>
@@ -73,12 +73,12 @@
 
 @section('scripts')
 	<!-- Vendor -->
-	{!! Html::script('assets/vendor/jquery/jquery.js') !!}		
+	{!! Html::script('assets/vendor/jquery/jquery.js') !!}
 	{!! Html::script('assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js') !!}
-	{!! Html::script('assets/vendor/bootstrap/js/bootstrap.js') !!}		
-	{!! Html::script('assets/vendor/nanoscroller/nanoscroller.js') !!}		
-	{!! Html::script('assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js') !!}		
-	{!! Html::script('assets/vendor/magnific-popup/magnific-popup.js') !!}		
+	{!! Html::script('assets/vendor/bootstrap/js/bootstrap.js') !!}
+	{!! Html::script('assets/vendor/nanoscroller/nanoscroller.js') !!}
+	{!! Html::script('assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js') !!}
+	{!! Html::script('assets/vendor/magnific-popup/magnific-popup.js') !!}
 	{!! Html::script('assets/vendor/jquery-placeholder/jquery.placeholder.js') !!}
 
 	<!-- Theme Base, Components and Settings -->

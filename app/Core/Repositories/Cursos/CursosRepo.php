@@ -15,7 +15,7 @@ class CursosRepo {
 
     public function getCursos()
     {
-		return $cursos = Cursos::orderBy('idcurso','desc')->get();
+		return $cursos = Cursos::with('grado')->orderBy('idcurso','desc')->get();
 	}
 
     public function deleteCurso($id)
