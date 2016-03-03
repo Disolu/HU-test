@@ -1,23 +1,23 @@
-<?php 
+<?php
 	if(Auth::user()->idrol==1)
 	{
 		$variable = "layouts.index";
-	} 
+	}
 	elseif(Auth::user()->idrol==2)
 	{
-		$variable = "layouts.responsable";	
+		$variable = "layouts.responsable";
 	}
 	elseif(Auth::user()->idrol==3)
 	{
-		$variable = "layouts.secretaria";	
+		$variable = "layouts.secretaria";
 	}
 	elseif(Auth::user()->idrol==4)
 	{
-		$variable = "layouts.profesor";	
+		$variable = "layouts.profesor";
 	}
 	elseif(Auth::user()->idrol==5)
 	{
-		$variable = "layouts.legal";	
+		$variable = "layouts.legal";
 	}
 ?>
 @extends("$variable")
@@ -26,8 +26,8 @@
 	<div class="panel-heading">
 		<h3 class="panel-title">Consula: Alumnos matriculados</h3>
 	</div>
-	<div class="panel-body">		
-	{!! Form::open(['route' => 'reportesAlumnos', 'method' => 'GET']) !!}
+	<div class="panel-body">
+	{!! Form::open(['route' => 'reportesAlumnosjson', 'method' => 'POST','id'=>'alumnos-matriculados-report']) !!}
 		<div class="row">
 		  <div class="col-md-3">
 		  	<fieldset>
@@ -70,12 +70,36 @@
 		  </div>
 		</div>
 	</div>
-	
+
 	<div class="panel-footer">
-		<button type="submit" id="consultar" class="btn btn-primary">Consultar</button>
+		<button type="submit" id="consulta" class="btn btn-primary">Consultar</button>
 	</div>
 	{!! Form::close() !!}
 </div>
+<section class="panel" id="alumnos-result" style="display:none;">
+  <header class="panel-heading">
+    <h2 class="panel-title">Alumnos</h2>
+    <p><strong>Cantidad de Alumnos: </strong><span class="number"></span></p>
+  </header>
+  <div class="panel-body">
+    <div class="table-responsive">
+
+      <table class="table table-condensed mb-none">
+        <thead>
+          <tr>
+            <th>Codigo</th>
+            <th>Nombres</th>
+            <th>Estado</th>
+            <th>Monto mensualidad</th>
+            <th>Personal</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
 @stop
 
 @section('scripts')
@@ -90,6 +114,42 @@
 {!! Html::script('assets/javascripts/jquery.cookie.js') !!}
 <script>
 	var baseURL = "{!! config('app.urlglobal') !!}";
+
+  $(document).on('ready',function(){
+    $('#alumnos-matriculados-report').on('submit',function(e){
+      e.preventDefault();
+      var $this = $(this);
+        url = $this.attr('action'),
+        data = $this.serialize();
+
+      $.ajax({
+        url:url,
+        data:data,
+        success:function(data){
+          $('#alumnos-result').show()
+          var total = data.length;
+          var states = ['','Activo','Retirado','Suspendido','Expulsado'];
+          $('#alumnos-result table tbody').html('');
+          $('#alumnos-result .number').html('');
+          if(total > 0){
+            $('#alumnos-result .number').html(total);
+            for(var i = 0; i < total; i++){
+              var tr = $('<tr></tr>');
+              tr.append($('<td></td>').html(data[i].codigo));
+              tr.append($('<td></td>').html(data[i].Nombres));
+              tr.append($('<td></td>').html(states[data[i].Estado]));
+              tr.append($('<td></td>').html(data[i].Pension));
+              tr.append($('<td></td>').html('<stron>'+data[i].Personal+'</strong>'))
+              $('#alumnos-result table tbody').append(tr);
+            }
+          }
+        }
+      });
+    });
+  });
+
+
+
 	function VacantesFormViewModel () {
 		var fo = this;
 
@@ -130,7 +190,7 @@
 			$.ajax({
 				type: "GET",
 				url: baseURL + "/api/v1/getSedes",
-				dataType: "json",               
+				dataType: "json",
 				contentType: "application/json; charset=utf-8",
 				success: function (e) {
 					var sedesRaw =  e.sedes;
@@ -242,12 +302,12 @@
 
 
 		fo.cargarperiodos();
-		fo.cargarsedes();       
-	}    
+		fo.cargarsedes();
+	}
 	var viewModel = new VacantesFormViewModel();
 
 	$(function(){
-		ko.applyBindings(viewModel, $("#page-wrapper")[0]); 
+		ko.applyBindings(viewModel, $("#page-wrapper")[0]);
 	});
 </script>
 @stop

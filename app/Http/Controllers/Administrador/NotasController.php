@@ -12,7 +12,10 @@ use Redirect;
 use Session;
 use App\Core\Repositories\Administrador\NotasRepo;
 use App\Core\Entities\Cursos;
+use App\Core\Entities\Alumno;
 use App\Core\Entities\NotaCurso;
+use App\Core\Entities\NotaTarjeta;
+use App\Core\Entities\Tarjeta;
 use DB;
 use Auth;
 
@@ -47,7 +50,7 @@ class NotasController extends Controller
               ->where('pt.idprofesor', Auth::user()->id)
               ->get();
           $datehow = Date('Ymd');
-          $fechanota = $this->NotasRepo->getFechaNota($lastPeriodo[0]->idperiodomatricula, $datehow); 
+          $fechanota = $this->NotasRepo->getFechaNota($lastPeriodo[0]->idperiodomatricula, $datehow);
           return view('administrador.notas.list', compact('tutorias','cursospe','fechanota'));
         }
         else
@@ -69,15 +72,15 @@ class NotasController extends Controller
         $fechanotas = $this->NotasRepo->SaveFechaNota($request->all(), $lastPeriodo[0]->idperiodomatricula);
 
         if($fechanotas){
-            Session::flash('message-success', 'Se registro correctamente las fechas para subir las notas');            
-            return Redirect::back();   
+            Session::flash('message-success', 'Se registro correctamente las fechas para subir las notas');
+            return Redirect::back();
         }
         else{
-            Session::flash('message-danger', 'Ocurrio un error al validar los campos');            
-            return Redirect::back()->withInput();   
+            Session::flash('message-danger', 'Ocurrio un error al validar los campos');
+            return Redirect::back()->withInput();
         }
     }
-    
+
     public function register($idcurso, $idseccion)
     {
         $datenow = Date('Ymd');
@@ -102,14 +105,14 @@ class NotasController extends Controller
             return view('administrador.notas.register', compact('tutoria','alumnos','fechanota','lastPeriodo', 'idcurso','idseccion','namecurso'));
         }
         else{
-            Session::flash('message-danger', ' aun no puedes subir las notas, te encuentras fuera de fecha.');            
-            return Redirect::back();   
+            Session::flash('message-danger', ' aun no puedes subir las notas, te encuentras fuera de fecha.');
+            return Redirect::back();
         }
     }
 
     public function registerNotas(RegistroNotasRequest $request)
     {
-        for ($i=0; $i < count($request['idalumno']); $i++) { 
+        for ($i=0; $i < count($request['idalumno']); $i++) {
             $notaNumber = 0;
             $notaChar = 0;
             if(is_numeric($request['bimestreINota'][$i])){
@@ -138,8 +141,8 @@ class NotasController extends Controller
             $notacurso->updated_at         = '';
             $notacurso->save();
         }
-        Session::flash('message-success', ' La notas se han registrado con éxito.');            
-        return Redirect::back();   
+        Session::flash('message-success', ' La notas se han registrado con éxito.');
+        return Redirect::back();
     }
 
     public function edit($id)
@@ -154,11 +157,11 @@ class NotasController extends Controller
         $periodonotas = $this->NotasRepo->updatePeriodoNota($request->all(), $id);
 
         if($periodonotas){
-            Session::flash('message-success', 'Se actualizo correctamente el periodo de notas');            
+            Session::flash('message-success', 'Se actualizo correctamente el periodo de notas');
             return redirect()->route('fechanotas');
         }
         else{
-            Session::flash('message-danger', 'Ocurrio un error al actualizar el periodo de notas');            
+            Session::flash('message-danger', 'Ocurrio un error al actualizar el periodo de notas');
             return redirect()->route('fechanotas');
         }
     }
@@ -168,16 +171,85 @@ class NotasController extends Controller
         $fechanotas = $this->NotasRepo->deleteFechanotas($id);
         if($fechanotas)
         {
-            Session::flash('message-success', 'La ha sido eliminado la fecha de nota');  
+            Session::flash('message-success', 'La ha sido eliminado la fecha de nota');
             return redirect()->route('fechanotas');
         }
         else{
-            return redirect()->back()->withInput(); 
+            return redirect()->back()->withInput();
         }
     }
 
     public function registerTarjetaNotas()
     {
-      return view('administraador.notas.newnotatarjeta');
+
+        $lastPeriodo = $this->NotasRepo->getLastPeriodoMatricula();
+        $datehow = Date('Ymd');
+        $fechanota = $this->NotasRepo->getFechaNota($lastPeriodo[0]->idperiodomatricula, $datehow);
+        //Forcing alumno 1
+        $alumno = 1;
+
+        $alumno = Alumno::with('matricula')->where('idalumno',$alumno)->first();
+        //Load Tarjeta
+        $tarjeta = Tarjeta::with('tarjetabloque')->where('idnivel',$alumno->matricula->idnivel)->first();
+
+        $qnotas = NotaTarjeta::where('idtarjeta',$tarjeta->idtarjeta)
+                            ->where('idalumno',$alumno->idalumno)
+                            ->where('idbimestre',$fechanota[0]->idbimestre)
+                            ->where('idperiodomatricula',$alumno->matricula->idperiodomatricula)
+                            ->get();
+        $notas = array();
+
+        foreach ($qnotas as $nota) {
+            $notas[$nota->idbloquecriterio] = $nota;
+        }
+
+        return view('administrador.notas.newnotatarjeta',compact('alumno','tarjeta','fechanota','notas'));
     }
+
+    public function tarjetanotas(Request $request){
+
+
+        $alumno = $request->input('alumno');
+        if($alumno){
+            $alumno = 1;
+            $datehow = Date('Ymd');
+            $alumno = Alumno::with('matricula')->where('idalumno',$alumno)->first();
+            $tarjeta = Tarjeta::with('tarjetabloque')->where('idnivel',$alumno->matricula->idnivel)->first();
+            $lastPeriodo = $this->NotasRepo->getLastPeriodoMatricula();
+            $fechanota = $this->NotasRepo->getFechaNota($lastPeriodo[0]->idperiodomatricula, $datehow);
+            foreach($request->input('nota') as $key => $nota){
+                $data = explode('-',$key);
+                if(isset($nota['id'])){
+
+                    $notaTarjeta = NotaTarjeta::find($nota['id']);
+                }else{
+                    $notaTarjeta = new NotaTarjeta();
+                }
+                $notaTarjeta->S = $nota['S'];
+                $notaTarjeta->CS = $nota['CS'];
+                $notaTarjeta->AV = $nota['AV'];
+                $notaTarjeta->N = $nota['N'];
+                $notaTarjeta->idtarjeta = $tarjeta->idtarjeta;
+                $notaTarjeta->idbloque = $data[0];
+                $notaTarjeta->idbloquecriterio = $data[1];
+                $notaTarjeta->idbimestre = $fechanota[0]->idbimestre;
+                $notaTarjeta->idperiodomatricula = $alumno->matricula->idperiodomatricula;
+                $notaTarjeta->idtutor = Auth::user()->id;
+                $notaTarjeta->idalumno = $alumno->idalumno;
+                $notaTarjeta->save();
+            }
+        }
+
+       return redirect()->route('tarjetanotas');
+
+    }
+
+
+
 }
+
+
+
+
+
+

@@ -3,25 +3,24 @@
 //RUTAS LIBRES, CON LOGIN
 Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
 	//LINEA
-	Route::get('pagos/importar',  ['as' => 'bancoPagos', 
+	Route::get('pagos/importar',  ['as' => 'bancoPagos',
 		'uses' => 'Administrador\PagosController@index']);
 
-	Route::post('pagos/importar', ['as' => 'bancoPagosUpload', 
+	Route::post('pagos/importar', ['as' => 'bancoPagosUpload',
 		'uses' => 'Administrador\PagosController@store']);
 
-	Route::get('pagos/generador',   ['as' => 'bancoPagosGenerate', 
+	Route::get('pagos/generador',   ['as' => 'bancoPagosGenerate',
 		'uses' => 'Administrador\ReportesController@generador']);
 
     Route::post('matricula/select/view', ['as' => 'viewselectmatricula',
         'uses' => 'Matricula\AlumnosController@viewselectmatricula']);
 
 	//REPORTES
-	Route::get('reportesAlumnos', 	 
-		['as' => 'reportesAlumnos', 
-		'uses' => 'Administrador\ReportesController@getAlumnos']);
+	Route::get('reportesAlumnos',['as' => 'reportesAlumnos', 'uses' => 'Administrador\ReportesController@getAlumnos']);
+	Route::get('reportesAlumnosjson',['as' => 'reportesAlumnosjson', 'uses' => 'Administrador\ReportesController@getAlumnosjson']);
 
-	Route::get('reportesexcel/{inputs?}', 
-		['as' => 'reportesexcel', 
+	Route::get('reportesexcel/{inputs?}',
+		['as' => 'reportesexcel',
 		'uses' => 'Administrador\ReportesController@getAlumnosExcel']);
 
     Route::get('generar/libretas',
@@ -45,7 +44,7 @@ Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
 	//OBSERVACION
 	Route::get('observacion/{id}', ['as' => 'observacion', 'uses' => 'Alumno\ObservacionController@show'])->where('id', '[0-9]+');
 	Route::post('observacion/{id}', ['as' => 'observacion', 'uses' => 'Alumno\ObservacionController@store'])->where('id', '[0-9]+');
-	
+
 	//Archivos Alumnos PDF
 	Route::get('pdfcompromiso/{id}/{periodo}', ['as' => 'compromisoPdf', 'uses' => 'PdfController@compromiso'])->where('id', '[0-9]+');
 	Route::get('pdfpreferencial/{id}/{periodo}', ['as' => 'preferencialPdf', 'uses' => 'PdfController@anexoPreferencial'])->where('id', '[0-9]+');
@@ -54,27 +53,27 @@ Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
 	//Ver detalles del alumno, step 2 matricula
 	Route::get('/{id}', ['as' => 'alumnodetalle', 'uses' => 'Matricula\AlumnosController@show'])->where('id', '[0-9]+');
 	Route::post('saveArchivosDataUsers/{id}', ['as' => 'saveArchivosDataUsers', 'uses' => 'Matricula\AlumnoUploadController@saveArchivosDataUsers'])->where('id', '[0-9]+');
-	
+
 	//Buscando al alumno
 	Route::get('buscar', ['as' => 'alumnobuscar', 'uses' => 'Matricula\AlumnosController@buscar']);
 	Route::post('buscar', ['as' => 'alumnobuscar', 'uses' => 'Matricula\AlumnosController@getAlumno']);
-	
+
 	Route::get('buscar/restringidos', ['as' => 'searchrestringidos', 'uses' => 'Matricula\AlumnosController@searchrestringidos']);
 
 	//Nombre del alumno
 	Route::get('name', ['as' => 'name', 'uses' => 'Matricula\AlumnosController@getNameAlumno']);
-	
+
 	//Editar Alumno
 	Route::get('edit/{id}', ['as' => 'alumno', 'uses' => 'Matricula\AlumnosController@edit'])->where('id', '[0-9]+');
 	Route::put('edit/{id}', ['as' => 'updatealumno', 'uses' => 'Matricula\AlumnosController@update'])->where('id', '[0-9]+');
 
 	Route::put('edit/academico/{id}', [
-		'as' => 'updatealumnoAcademico', 
+		'as' => 'updatealumnoAcademico',
 		'uses' => 'Matricula\AlumnosController@updatealumnoAcademico'])
 	->where('id', '[0-9]+');
-	
+
 	Route::get('edit/academico/{id}', [
-		'as' => 'alumnoAcademico', 
+		'as' => 'alumnoAcademico',
 		'uses' => 'Matricula\AlumnosController@editAcademico'])
 	->where('id', '[0-9]+');
 
@@ -84,7 +83,7 @@ Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
 
 	//Consultar Vacante para un alumno nuevo
 	Route::get('searchvacantes', ['as' => 'searchvacantes', 'uses' => 'Matricula\VacanteController@viewVacantes']);
-	
+
 	//CRUD alumno
 	Route::get('matricular/{id}', ['as' => 'matricular', 'uses' => 'Matricula\AlumnosController@showMatricula'])->where('id', '[0-9]+');
 	Route::post('matricular/{id}', ['as' => 'matricular', 'uses' => 'Matricula\AlumnosController@registerMatricula'])->where('id', '[0-9]+');
@@ -110,7 +109,7 @@ Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
 	Route::post('seguimiento/incidencia/{id}', ['as' => 'SeguimientoIncidencia',  'uses' => 'SeguimientoPagosController@SeguimientoIncidencia']);
 
 	//Matriculados
-	Route::get('matriculados', 
+	Route::get('matriculados',
 		['as' => 'alumnosMatriculados', function () { return view('matricula.reportes.index'); }]);
 
 	//Vista para la ruta inicial.
@@ -122,23 +121,23 @@ Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
 	    Route::get('getPeriodos','Matricula\VacanteController@getPeriodos');
 	    Route::get('getSedes', 'Matricula\VacanteController@getSedes');
 	    Route::get('getNivel', 'Matricula\VacanteController@getNivel');
-	    Route::get('getGrados', 'Matricula\VacanteController@getGrados');	    
-	    Route::get('getSecciones', 'Matricula\VacanteController@getSecciones');	 
+	    Route::get('getGrados', 'Matricula\VacanteController@getGrados');
+	    Route::get('getSecciones', 'Matricula\VacanteController@getSecciones');
 	    Route::get('getAulas', 'Matricula\VacanteController@getAulas');
-	    Route::get('getVacantes', 'Matricula\VacanteController@getVacantes');	
+	    Route::get('getVacantes', 'Matricula\VacanteController@getVacantes');
 
 	    // Respuesta para la consulta de alumnos
 	    Route::get('responsebuscar', ['as' => 'responsebuscar', 'uses' => 'Matricula\AlumnosController@getAlumno']);
-	    Route::get('getAlumnoByID', 	['as' => 'getOtherDataByID', 'uses' => 'Matricula\AlumnosController@getAlumnoByID']);    
-	    Route::get('getApoderadosByID', ['as' => 'getApoderadosByID','uses' => 'Matricula\AlumnosController@getApoderadosByID']); 
-	    Route::get('getOtherDataByID',  ['as' => 'getOtherDataByID', 'uses' => 'Matricula\AlumnosController@getOtherDataByID']);    
+	    Route::get('getAlumnoByID', 	['as' => 'getOtherDataByID', 'uses' => 'Matricula\AlumnosController@getAlumnoByID']);
+	    Route::get('getApoderadosByID', ['as' => 'getApoderadosByID','uses' => 'Matricula\AlumnosController@getApoderadosByID']);
+	    Route::get('getOtherDataByID',  ['as' => 'getOtherDataByID', 'uses' => 'Matricula\AlumnosController@getOtherDataByID']);
 
 	    //Registrar alumno
 	    Route::get('addAlumno', 'Matricula\AlumnosController@addAlumno');
 
 	    //Traer las pensiones con filtros
-		Route::get('getPensiones',  ['as' => 'getPensiones', 'uses' => 'Administrador\PensionController@getPensiones']);    	    
-		Route::get('getPensionesUpdateAlumno',  ['as' => 'getPensionesUpdateAlumno', 'uses' => 'Administrador\PensionController@getPensionesUpdateAlumno']);    	      
+		Route::get('getPensiones',  ['as' => 'getPensiones', 'uses' => 'Administrador\PensionController@getPensiones']);
+		Route::get('getPensionesUpdateAlumno',  ['as' => 'getPensionesUpdateAlumno', 'uses' => 'Administrador\PensionController@getPensionesUpdateAlumno']);
     });
 
 });
@@ -170,19 +169,19 @@ Route::group( ['middleware' => ['auth','administrador'], 'prefix'=>'admin'], fun
 		Route::get('seccion/new',  ['as' => 'seccionnew', 'uses' => 'Administrador\SeccionController@create']);
 		Route::post('seccion/new', ['as' => 'seccionnew', 'uses' => 'Administrador\SeccionController@store']);
 		Route::get('seccion/{id}', ['as' => 'deleteseccion', 'uses' => 'Administrador\SeccionController@destroy']);
-		
+
 		Route::get('vacante', ['as' => 'vacante', 'uses' => 'Administrador\VacanteController@index']);
 		Route::get('vacante/new',  ['as' => 'vacantenew', 'uses' => 'Administrador\VacanteController@create']);
 		Route::post('vacante/new', ['as' => 'vacantenew', 'uses' => 'Administrador\VacanteController@store']);
 		Route::get('vacante/{id}', ['as' => 'deletevacante', 'uses' => 'Administrador\VacanteController@destroy']);
-		
+
 		Route::get('pension', ['as' => 'pension', 'uses' => 'Administrador\PensionController@index']);
 		Route::post('pension', ['as' => 'pension', 'uses' => 'Administrador\PensionController@create']);
-		
+
 		Route::get('tipopension/new',  ['as' => 'tipopensionnew', 'uses' => 'Administrador\TipoPensionController@create']);
 		Route::post('tipopension/new', ['as' => 'tipopensionnew', 'uses' => 'Administrador\TipoPensionController@store']);
 	});
-	
+
 	//Registro de Periodos de matricula
 	Route::get('periodo', ['as' => 'periodo', 'uses' => 'Administrador\PeriodoMatriculaController@create']);
 	Route::post('periodo', ['as' => 'periodo', 'uses' => 'Administrador\PeriodoMatriculaController@store']);
@@ -191,8 +190,8 @@ Route::group( ['middleware' => ['auth','administrador'], 'prefix'=>'admin'], fun
 	Route::put('periodo/edit/{id}', ['as' => 'updateperiodo', 'uses' => 'Administrador\PeriodoMatriculaController@update']);
 
 	//Reportes
-	
-	
+
+
 	//Registro de Usuarios
 	Route::get('usuarios', ['as' => 'usuarios', 'uses' => 'Administrador\UsuariosController@create']);
 	Route::post('usuarios', ['as' => 'usuarios', 'uses' => 'Administrador\UsuariosController@store']);
@@ -208,14 +207,14 @@ Route::group( ['middleware' => ['auth','administrador'], 'prefix'=>'admin'], fun
 	Route::get('asignaturas', ['as' => 'asignaturas', 'uses' => 'Administrador\AsignaturaController@create']);
 	Route::post('asignaturas', ['as' => 'asignaturas', 'uses' => 'Administrador\AsignaturaController@store']);
 	Route::get('asignatura/{id}', ['as' => 'deleteasignatura', 'uses' => 'Administrador\AsignaturaController@destroy']);
-	
+
 	//Registro de Fechas de Notas
 	Route::get('fechanotas', ['as' => 'fechanotas', 'uses' => 'Administrador\NotasController@create']);
 	Route::post('fechanotas', ['as' => 'fechanotas', 'uses' => 'Administrador\NotasController@store']);
 	Route::get('fechanotas/{id}', ['as' => 'deletefechanotas', 'uses' => 'Administrador\NotasController@destroy']);
 	Route::get('fechanotas/edit/{id}', ['as' => 'editfechanotas', 'uses' => 'Administrador\NotasController@edit']);
 	Route::put('fechanotas/edit/{id}', ['as' => 'updatefechanotas', 'uses' => 'Administrador\NotasController@update']);
-	
+
 	//Profesor - Curso
 	Route::get('profesorasignatura', ['as' => 'showprofesor', 'uses' => 'Administrador\ProfesorController@show']);
 
@@ -269,7 +268,7 @@ Route::group( ['middleware' => ['auth','profesor'], 'prefix'=>'profesor'], funct
 	//Tutoria
 	Route::get('tutoria/{idseccion}', ['as' => 'tutorialist', 'uses' => 'Administrador\TutoriaController@tutoria']);
 	Route::post('tutoria/registrar/{idalumno}',  ['as' => 'tutoriaregister', 'uses' => 'Administrador\TutoriaController@storeTutoria']);
-	
+
 
 
 	Route::get('tutoria/registrar/{id}',  ['as' => 'tutoria', 'uses' => 'Administrador\TutoriaController@register'])->where('id', '[0-9]+');

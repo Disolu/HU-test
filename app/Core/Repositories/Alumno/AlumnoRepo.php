@@ -8,6 +8,7 @@ use App\Core\Entities\AlumnoObservacion;
 use App\Core\Entities\Vacante;
 use App\Core\Entities\AlumnoDeudas;
 use App\Core\Entities\Mensualidades;
+use App\Core\Repositories\PeriodoRepo;
 use DB;
 
 class AlumnoRepo {
@@ -47,23 +48,53 @@ class AlumnoRepo {
 
     public function getAlumnoRestricciones($alumno)
     {
-
+        DB::enableQueryLog();
         //Ignored the view
-        //dd($alumno);
-        //$observaciones =  AlumnoObservacion::where('idtipoobservacion',4)->where()->get();
+        $date = date('Y-m-d');
+        $current = $this->PeriodoRepo->getLastPeriodo();;
+        if($current){
+            $inicio = $current->inicio;
+            $fin = $current->fin;
+        }else{
+            $inicio = date('Y-m-d');
+            $fin = date('Y-m-d');
+        }
 
-        if($alumno)
-        {
-            $restringidos = DB::table('restringidos')
-                ->where('fullname','LIKE','%'.$alumno.'%')
+        $idAlumnos = array();
+        $observaciones =  AlumnoObservacion::where('idtipoobservacion',4)
+                            ->whereBetween('created_at',array($inicio,$fin))
+                            ->get();
+
+
+
+
+        $alumnoOb = array();
+        foreach($observaciones as $ob){
+            if(!in_array($ob->idalumno, $idAlumnos)){
+                $idAlumnos[] = $ob->idalumno;
+            }
+            $alumnoOb[$ob->idalumno] = $ob;
+        }
+
+        if($alumno){
+
+            $restringidos = Alumno::whereIn('idalumno',$idAlumnos)
+                ->where('nombres','LIKE','%'.$alumno.'%')
                 ->orWhere('dni', $alumno)
-                ->take(1)
+                ->orWhere('codigo', $alumno)
                 ->get();
 
+        }else{
+
+            $restringidos = Alumno::whereIn('idalumno',$idAlumnos)->get();
+
         }
-        else{
-            $restringidos = DB::table('restringidos')->get();
+
+        foreach($restringidos as &$r){
+            $r->observacion = $alumnoOb[$r->idalumno];
         }
+
+
         return $restringidos;
     }
 

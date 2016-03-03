@@ -23,7 +23,7 @@
     </header>
     <div style="width:670px; text-align:left">
         <label>Apellidos y Nombres:</label>
-        <label>{{ $alumno[0]->apellido_paterno}} {{ $alumno[0]->apellido_materno}}, {{ $alumno[0]->nombres}}</label>
+        <label>{{ $alumno->apellido_paterno}} {{ $alumno->apellido_materno}}, {{ $alumno->nombres}}</label>
     </div>
     <div style="width:670px; text-align:right">
         <label>Aquí la variable de Aula</label>
@@ -32,158 +32,25 @@
     <div class="content">
         <div>
             <table>
-                <tr class="tdgray">
-                    <td>TITULO DE BLOQUE</td>
-                    <td>S</td>
-                    <td>CS</td>
-                    <td>AV</td>
-                    <td>N</td>
-                </tr>
-                <tr>
-                    <td>CRITERIO1</td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                </tr>
-                <tr>
-                    <td>CRITERIO2</td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                </tr>
-                <tr>
-                    <td>CRITERIO3</td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                </tr>
-                <tr class="tdgray">
-                    <td>TITULO DE BLOQUE 2</td>
-                    <td>S</td>
-                    <td>CS</td>
-                    <td>AV</td>
-                    <td>N</td>
-                </tr>
-                <tr>
-                    <td>CRITERIO1</td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                </tr>
-                <tr>
-                    <td>CRITERIO2</td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                </tr>
-                <tr>
-                    <td>CRITERIO3</td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                </tr>
-                <tr class="tdgray">
-                    <td>TITULO DE BLOQUE 3</td>
-                    <td>S</td>
-                    <td>CS</td>
-                    <td>AV</td>
-                    <td>N</td>
-                </tr>
-                <tr>
-                    <td>CRITERIO1</td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                </tr>
-                <tr>
-                    <td>CRITERIO2</td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                </tr>
-                <tr>
-                    <td>CRITERIO3</td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                </tr>
-                <tr class="tdgray">
-                    <td>TITULO DE BLOQUE 4</td>
-                    <td>S</td>
-                    <td>CS</td>
-                    <td>AV</td>
-                    <td>N</td>
-                </tr>
-                <tr>
-                    <td>CRITERIO1</td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                </tr>
-                <tr>
-                    <td>CRITERIO2</td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                </tr>
-                <tr>
-                    <td>CRITERIO3</td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                </tr>
-                <tr class="tdgray">
-                    <td>TITULO DE BLOQUE 5</td>
-                    <td>S</td>
-                    <td>CS</td>
-                    <td>AV</td>
-                    <td>N</td>
-                </tr>
-                <tr>
-                    <td>CRITERIO1</td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                </tr>
-                <tr>
-                    <td>CRITERIO2</td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                </tr>
-                <tr>
-                    <td>CRITERIO3</td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                </tr>
-                <tr>
-                    <td colspan="5" class="tdgray">Apreciaciones del profesor</td>
-                </tr>
-                <tr>
-                    <td style="height:40px" colspan="5">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium
-
-                    </td>
-                </tr>
-            </table>
-
-
+                @foreach($tarjeta->tarjetabloque as $bloque)
+                    <tr class="tdgray">
+                        <th>{{$bloque->bloque->nombre}}</th>
+                        <th>S</th>
+                        <th>CS</th>
+                        <th>AV</th>
+                        <th>N</th>
+                    </tr>
+                    @foreach($bloque->criterios as $criterio)
+                        <tr>
+                            <td>{{$criterio->criterio}}</td>
+                            <td>@if(isset($notas[$criterio->idbloquecriterio])) {{$notas[$criterio->idbloquecriterio]->S}}@endif</td>
+                            <td>@if(isset($notas[$criterio->idbloquecriterio])) {{$notas[$criterio->idbloquecriterio]->CS}}@endif</td>
+                            <td>@if(isset($notas[$criterio->idbloquecriterio])) {{$notas[$criterio->idbloquecriterio]->AV}}@endif</td>
+                            <td>@if(isset($notas[$criterio->idbloquecriterio])) {{$notas[$criterio->idbloquecriterio]->N}}@endif</td>
+                        </tr>
+                    @endforeach
+                @endforeach
+            </table
 
         </div>
         <br />

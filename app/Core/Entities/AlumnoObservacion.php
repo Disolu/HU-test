@@ -17,4 +17,11 @@ class AlumnoObservacion extends Model
         'usercreate',
         'userupdate'
     ];
+
+    public function alumno()
+    {
+        return $this->belongsTo('App\Core\Entities\Alumno','idalumno','idalumno');
+    }
+
+
 }

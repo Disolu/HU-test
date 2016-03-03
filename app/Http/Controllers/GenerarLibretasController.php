@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Core\Entities\Cursos;
+use App\Core\Entities\Alumno;
+use App\Core\Entities\NotaCurso;
+use App\Core\Entities\NotaTarjeta;
+use App\Core\Entities\Tarjeta;
 use DB;
 use Auth;
 use Redirect;
@@ -44,7 +49,7 @@ class GenerarLibretasController extends Controller
       if ($dni) {
           $alumnos->where('alumno.dni','=',$dni);
       }
-      
+
       $alumnos->where('alumno.impedimento','<>','1');
       $alumnos->groupBy('alumno.idalumno');
       $alumnos->get();
@@ -62,8 +67,21 @@ class GenerarLibretasController extends Controller
   public function generateOptimist($idalumno, Request $request)
   {
     $nbimestre = !empty($request['bimestre']) ? $request['bimestre'] : 1;
-    $alumno = DB::table('alumno')->where('idalumno', $idalumno)->get();
-    return view('notas.generar.optimist', compact('alumno', 'nbimestre'));
+    $alumno = Alumno::with('matricula')->where('idalumno',$idalumno)->first();
+    $tarjeta = Tarjeta::with('tarjetabloque')->where('idnivel',$alumno->matricula->idnivel)->first();
+    $qnotas = NotaTarjeta::where('idtarjeta',$tarjeta->idtarjeta)
+                            ->where('idalumno',$alumno->idalumno)
+                            ->where('idbimestre',$request['bimestre'])
+                            ->where('idperiodomatricula',$alumno->matricula->idperiodomatricula)
+                            ->get();
+
+    $notas = array();
+
+    foreach ($qnotas as $nota) {
+        $notas[$nota->idbloquecriterio] = $nota;
+    }
+
+    return view('notas.generar.optimist', compact('alumno', 'tarjeta','notas'));
   }
 
   public function generateProgrest($idalumno, Request $request)

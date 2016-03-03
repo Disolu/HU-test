@@ -15,11 +15,11 @@
                     <div class="widget-summary-col">
                         <div class="summary">
                             <h4 class="title">
-                                {!! $alumno->fullname !!}
+                                {!! $alumno->nombres !!}
                             </h4>
 
                             <div class="info">
-                                <code>{!! $alumno->observacion !!}</code>
+                                <code>{!! $alumno->observacion->observacion !!}</code>
                             </div>
 
                         </div>

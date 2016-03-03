@@ -8,20 +8,21 @@ class NotaTarjeta extends Model
     use SoftDeletes;
     protected $table = 'notatarjeta';
     protected $dates = ['deleted_at'];
+    protected $primaryKey = 'idnotatarjeta';
     protected $fillable = [
         'idnotatarjeta',
-        'S',     
-        'CS',                 
-        'AV',                
-        'N',                  
+        'S',
+        'CS',
+        'AV',
+        'N',
         'idtarjeta',
-        'idbloque',         
+        'idbloque',
         'idbloquecriterio',
-        'idbimestre',  
+        'idbimestre',
         'idperiodomatricula',
         'idtutor',
-        'idalumno',           
+        'idalumno',
         'created_at',
-        'updated_at'     
+        'updated_at'
     ];
 }

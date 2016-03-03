@@ -87,14 +87,14 @@ class ReportesController extends Controller
         ->where('notacurso.idperiodomatricula',$request['idperiodo'])
         ->where('idbimestre',$request['idbimestre'])
         ->get();
-        
-      return response()->json($notas)->setCallback($request->input('callback'));  
+
+      return response()->json($notas)->setCallback($request->input('callback'));
     }
 
     public function generador()
     {
         Artisan::call('payments:generate-payments');
-        Session::flash('message-success', 'Se generaron los registros de pago con éxito');            
+        Session::flash('message-success', 'Se generaron los registros de pago con éxito');
         return redirect()->back();
     }
 
@@ -112,6 +112,28 @@ class ReportesController extends Controller
 
         if($alumnos){
             return view('matricula.reportes.alumnos', compact('alumnos'));
+        }
+        else{
+            return $redirect->back();
+        }
+    }
+
+    public function getAlumnosjson(Request $request)
+    {
+      $arrayGet = [
+        'filtro'    => $request->input('filtro'),
+        'idperiodo' => $request->input('periodo'),
+        'idsede'  => $request->input('sede'),
+        'idnivel' => $request->input('nivel'),
+        'idgrado' => $request->input('grado')
+        ];
+
+        $alumnos = $this->ReportesRepo->getAlumnos($arrayGet);
+
+
+
+        if($alumnos){
+            return response()->json($alumnos);
         }
         else{
             return $redirect->back();
@@ -141,13 +163,13 @@ class ReportesController extends Controller
         echo "Cantidad de alumnos matriculados en la sede (2do Sector): ". count($Sede01)."<br>";
         echo "Cantidad de alumnos matriculados en la sede (Las Brisas): ". count($Sede02)."<br>";
     }
-    
+
     public function getAlumnosxSeccion()
     {
         $alumnomatricula = $this->ReportesRepo->getAlumnosxSeccion();
-        return view('matricula.reportes.matriculados', compact('alumnomatricula'));        
+        return view('matricula.reportes.matriculados', compact('alumnomatricula'));
     }
-    
+
     public function getAlumnosxGrado(Request $request)
     {
         $Sede01 = $this->ReportesRepo->getAlumnosxSede(1,1);
@@ -162,7 +184,7 @@ class ReportesController extends Controller
         $Sede02 = $this->ReportesRepo->getAlumnosxSede(2,1);
         echo "Cantidad de alumnos matriculados en la sede (2do Sector): ". count($Sede01)."<br>";
         echo "Cantidad de alumnos matriculados en la sede (Las Brisas): ". count($Sede02)."<br>";
-    } 
+    }
 
     public function getAlumnosPagosExcel()
     {
@@ -180,12 +202,12 @@ class ReportesController extends Controller
             ->groupBy('alumno.idalumno')
             ->get();
 
-      Excel::create(date('Y-m-d'), function($excel) use($alumnos) 
+      Excel::create(date('Y-m-d'), function($excel) use($alumnos)
       {
           $excel->sheet('Pagos', function($sheet) use($alumnos)  {
               $sheet->fromArray($alumnos);
           });
       })->export('xls');
       return Redirect::back();
-    }  
+    }
 }

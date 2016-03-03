@@ -9,14 +9,14 @@ class Tarjeta extends Model
     protected $table = 'tarjeta';
     protected $dates = ['deleted_at'];
     protected $fillable = [
-    'nombre', 
-    'idnivel', 
+    'nombre',
+    'idnivel',
     'usercreate'
     ];
 
     public function tarjetabloque()
     {
-        return $this->hasMany('App\Core\Entities\TarjetaBloque','idtarjeta','idtarjeta');
+        return $this->hasMany('App\Core\Entities\TarjetaBloque','idtarjeta','idtarjeta')->with('criterios')->with('bloque');
     }
 
     public function nivel()
