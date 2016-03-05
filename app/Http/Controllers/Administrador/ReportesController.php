@@ -80,12 +80,11 @@ class ReportesController extends Controller
     {
       $notas = DB::table('notacurso')
         ->select('c.nombre','nota_number','notacurso.created_at as registro','p.nombre as periodo')
-
         ->leftJoin('curso as c','c.idcurso','=','notacurso.idcurso')
         ->leftJoin('periodomatricula as p','p.idperiodomatricula','=','notacurso.idperiodomatricula')
-
         ->where('notacurso.idperiodomatricula',$request['idperiodo'])
         ->where('idbimestre',$request['idbimestre'])
+        ->where('idalumno',$request['idalumno'])
         ->get();
 
       return response()->json($notas)->setCallback($request->input('callback'));

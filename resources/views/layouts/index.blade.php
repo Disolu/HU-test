@@ -309,19 +309,7 @@
 						
 						<hr class="separator" />
 						
-						<div class="sidebar-widget widget-tasks">
-							<div class="widget-header">
-								<h6>Modulos</h6>
-								<div class="widget-toggle">+</div>
-							</div>
-							<div class="widget-content">
-								<ul class="list-unstyled m-none">
-									<li><a href="#">Matriculas</a></li>
-									<li><a href="#">Pensiones</a></li>
-									<li><a href="#">Calificaciones</a></li>
-								</ul>
-							</div>
-						</div>
+
 					</div>				
 				</div>				
 			</aside>

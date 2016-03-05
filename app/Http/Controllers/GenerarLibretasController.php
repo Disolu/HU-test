@@ -71,15 +71,16 @@ class GenerarLibretasController extends Controller
     $tarjeta = Tarjeta::with('tarjetabloque')->where('idnivel',$alumno->matricula->idnivel)->first();
     $qnotas = NotaTarjeta::where('idtarjeta',$tarjeta->idtarjeta)
                             ->where('idalumno',$alumno->idalumno)
-                            ->where('idbimestre',$request['bimestre'])
+                            ->where('idbimestre',$nbimestre)
                             ->where('idperiodomatricula',$alumno->matricula->idperiodomatricula)
                             ->get();
 
     $notas = array();
 
     foreach ($qnotas as $nota) {
-        $notas[$nota->idbloquecriterio] = $nota;
+      $notas[$nota->idbloquecriterio] = $nota;
     }
+
 
     return view('notas.generar.optimist', compact('alumno', 'tarjeta','notas'));
   }

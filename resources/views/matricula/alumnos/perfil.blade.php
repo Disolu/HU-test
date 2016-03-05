@@ -107,7 +107,9 @@
 								  	<td>
 								  		@foreach($bimestres as $bimestre)
 								  			<code>
-									  			<a href="#modalBasic" class="mb-xs mt-xs mr-xs modal-basic btnDetails" data-periodo="{{ $data->idperiodo }}" data-id="{{ $bimestre->idbimestre }}">
+									  			<a class="mb-xs mt-xs mr-xs  btnDetails" data-periodo="{{ $data->idperiodo }}" data-id="{{ $bimestre->idbimestre }}"
+									  			data-alumno="{!! $matricula[0]->alumno_id !!}"
+									  			>
 									  				{{ $bimestre->nombre }}
 									  			</a>
 								  			</code> |
@@ -304,6 +306,7 @@
         {
           idperiodo: $(this).data('periodo'),
           idbimestre: $(this).data('id'),
+          idalumno: $(this).data('alumno'),
           _token: '{!! csrf_token() !!}'
         },
         success:  function (r)
@@ -325,6 +328,13 @@
 	            options += "</tr>";
             });
             $('#tableajax').html(options);
+
+		    $.magnificPopup.open({
+		        items: {
+		            src: $('#modalBasic')[0]
+		        },
+		        type: 'inline'
+		    });
           }
         },
         error: function()

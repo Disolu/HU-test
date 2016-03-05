@@ -12,6 +12,10 @@ use Auth;
 use App\Core\Repositories\Administrador\NotasRepo;
 use App\Core\Entities\TarjetaBloque;
 use App\Core\Entities\NotaTarjeta;
+use App\Core\Entities\Cursos;
+use App\Core\Entities\Alumno;
+use App\Core\Entities\NotaCurso;
+use App\Core\Entities\Tarjeta;
 
 class TutoriaController extends Controller
 {
@@ -133,25 +137,66 @@ class TutoriaController extends Controller
     
     public function typetarjeta($id, $tarjeta)
     {
-      //NECESITO TODOS LOS BLOQUES POR NIVEL
-        //NECESITO TODOS LOS CRITERIOS QUE ESTAN DENTRO DE LOS BLOQUES
-      //NECESITO A LOS ALUMNOS.
-      $tarjetaBloque = TarjetaBloque::select('t.nombre as tarjeta','b.nombre as bloque','idtarjetabloque','tarjetabloque.idbloque')
-      ->leftJoin('tarjeta as t','t.idtarjeta','=','tarjetabloque.idtarjeta')
-      ->leftJoin('bloque as b','b.idbloque','=','tarjetabloque.idbloque')
-      ->where('tarjetabloque.idtarjeta',$tarjeta)
-      ->get();
+      $lastPeriodo = $this->NotasRepo->getLastPeriodoMatricula();
+      $datehow = Date('Ymd');
+      $fechanota = $this->NotasRepo->getFechaNota($lastPeriodo[0]->idperiodomatricula, $datehow);
 
-      $tarjeta = DB::table('tarjeta')->where('idtarjeta',$tarjeta)->get();
-      $alumno  = DB::table('alumno')->where('idalumno',$id)->get();
-      $periodomatricula = DB::table('periodomatricula')->orderBy('created_at','desc')->take(1)->get();
+      $alumno = Alumno::with('matricula')->where('idalumno',$id)->first();
+      //Load Tarjeta
+      $tarjeta = Tarjeta::with('tarjetabloque')->where('idnivel',$alumno->matricula->idnivel)->first();
 
-      $notatarjeta = DB::table('notatarjeta')->where('idalumno',$id)->where('idperiodomatricula', $periodomatricula[0]->idperiodomatricula)->get();
-      return view('tutoria.optimist', compact('alumno','tarjetaBloque','id','tarjeta','notatarjeta'));
+      $qnotas = NotaTarjeta::where('idtarjeta',$tarjeta->idtarjeta)
+                          ->where('idalumno',$alumno->idalumno)
+                          ->where('idbimestre',$fechanota[0]->idbimestre)
+                          ->where('idperiodomatricula',$alumno->matricula->idperiodomatricula)
+                          ->get();
+      $notas = array();
+
+      foreach ($qnotas as $nota) {
+          $notas[$nota->idbloquecriterio] = $nota;
+      }
+
+
+      return view('tutoria.optimist', compact('alumno','tarjeta','fechanota','notas'));
     }
+
+    public function savetarjeta($id,$tarjeta,Request $request){
+        $alumno = $id;
+        $datehow = Date('Ymd');
+        $alumno = Alumno::with('matricula')->where('idalumno',$alumno)->first();
+        $tarjeta = Tarjeta::with('tarjetabloque')->where('idnivel',$alumno->matricula->idnivel)->first();
+        $lastPeriodo = $this->NotasRepo->getLastPeriodoMatricula();
+        $fechanota = $this->NotasRepo->getFechaNota($lastPeriodo[0]->idperiodomatricula, $datehow);
+        foreach($request->input('nota') as $key => $nota){
+            $data = explode('-',$key);
+            if(isset($nota['id'])){
+
+                $notaTarjeta = NotaTarjeta::find($nota['id']);
+            }else{
+                $notaTarjeta = new NotaTarjeta();
+            }
+            $notaTarjeta->S = ($nota['value'] == 'S')? 1 : 0;
+            $notaTarjeta->CS = ($nota['value'] == 'CS')? 1 : 0;
+            $notaTarjeta->AV = ($nota['value'] == 'AV')? 1 : 0;
+            $notaTarjeta->N = ($nota['value'] == 'N')? 1 : 0;
+            $notaTarjeta->idtarjeta = $tarjeta->idtarjeta;
+            $notaTarjeta->idbloque = $data[0];
+            $notaTarjeta->idbloquecriterio = $data[1];
+            $notaTarjeta->idbimestre = $fechanota[0]->idbimestre;
+            $notaTarjeta->idperiodomatricula = $alumno->matricula->idperiodomatricula;
+            $notaTarjeta->idtutor = Auth::user()->id;
+            $notaTarjeta->idalumno = $alumno->idalumno;
+            $notaTarjeta->save();
+        }
+
+      return redirect()->route('typetarjeta',[$id,$tarjeta->idtarjeta]);
+    }
+
 
     public function registerProgrest($id)
     {
+      dd($request->all());
+
       //$bloques = DB::table('')
       //NECESITO TODOS LOS BLOQUES POR NIVEL
         //NECESITO TODOS LOS CRITERIOS QUE ESTAN DENTRO DE LOS BLOQUES

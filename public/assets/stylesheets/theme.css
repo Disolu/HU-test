@@ -27,6 +27,10 @@ a {
 	color: #0e9a5a;
 }
 
+a.btnDetails{
+	cursor: pointer;
+}
+
 a:hover,
 a:focus,
 .btn-link:hover,

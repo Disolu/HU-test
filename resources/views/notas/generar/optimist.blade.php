@@ -43,10 +43,34 @@
                     @foreach($bloque->criterios as $criterio)
                         <tr>
                             <td>{{$criterio->criterio}}</td>
-                            <td>@if(isset($notas[$criterio->idbloquecriterio])) {{$notas[$criterio->idbloquecriterio]->S}}@endif</td>
-                            <td>@if(isset($notas[$criterio->idbloquecriterio])) {{$notas[$criterio->idbloquecriterio]->CS}}@endif</td>
-                            <td>@if(isset($notas[$criterio->idbloquecriterio])) {{$notas[$criterio->idbloquecriterio]->AV}}@endif</td>
-                            <td>@if(isset($notas[$criterio->idbloquecriterio])) {{$notas[$criterio->idbloquecriterio]->N}}@endif</td>
+                            <td>
+                                @if(isset($notas[$criterio->idbloquecriterio])) 
+                                    @if($notas[$criterio->idbloquecriterio]->S)
+                                        x
+                                    @endif
+                                @endif
+                            </td>
+                            <td>
+                                @if(isset($notas[$criterio->idbloquecriterio])) 
+                                    @if($notas[$criterio->idbloquecriterio]->CS)
+                                        x
+                                    @endif
+                                @endif
+                            </td>
+                            <td>
+                                @if(isset($notas[$criterio->idbloquecriterio])) 
+                                    @if($notas[$criterio->idbloquecriterio]->AV)
+                                        x
+                                    @endif
+                                @endif
+                            </td>
+                            <td>
+                                @if(isset($notas[$criterio->idbloquecriterio])) 
+                                    @if($notas[$criterio->idbloquecriterio]->N)
+                                        x
+                                    @endif
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                 @endforeach

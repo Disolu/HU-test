@@ -14,7 +14,8 @@ return [
     /*
     * URL'S GLOBALES
     */
-    'urlglobal' => 'http://micolegio.pe/alumno',
+    //'urlglobal' => 'http://micolegio.pe/alumno',
+    'urlglobal' => 'http://localhost/HU/public/alumno',
     'urlupload' => 'D:/',
 
     'providers' => [

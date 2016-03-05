@@ -273,7 +273,7 @@ Route::group( ['middleware' => ['auth','profesor'], 'prefix'=>'profesor'], funct
 
 	Route::get('tutoria/registrar/{id}',  ['as' => 'tutoria', 'uses' => 'Administrador\TutoriaController@register'])->where('id', '[0-9]+');
 	Route::get('optimist/registrar/{id}/{tarjeta}', ['as' => 'typetarjeta', 'uses' => 'Administrador\TutoriaController@typetarjeta']);
-	Route::post('optimist/registrar/{id}', ['as' => 'registerOptimist', 'uses' => 'Administrador\TutoriaController@storeOptimist']);
+	Route::post('optimist/registrar/{id}/{tarjeta}', ['as' => 'savetypetarjeta', 'uses' => 'Administrador\TutoriaController@savetarjeta']);
 
 	Route::get('progrest/registrar/{id}', ['as' => 'registerProgrest', 'uses' => 'Administrador\TutoriaController@registerProgrest']);
 	Route::post('progrest/registrar/{id}', ['as' => 'registerProgrest', 'uses' => 'Administrador\TutoriaController@storeProgrest']);
