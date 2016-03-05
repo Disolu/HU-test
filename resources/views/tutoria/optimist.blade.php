@@ -40,7 +40,7 @@
 													@if(isset($notas[$criterio->idbloquecriterio])) 
 														<input type="hidden" value="nota[{{$bloque->idbloque}}-{{$criterio->idbloquecriterio}}][id]" value="{{$notas[$criterio->idbloquecriterio]->id}}">
 													@endif
-													<input type="radio" @if(isset($notas[$criterio->idbloquecriterio])) @if($notas[$criterio->idbloquecriterio]->S == 1) checked @endif @else checked  @endif  name="nota[{{$bloque->idbloque}}-{{$criterio->idbloquecriterio}}][value]" value="S">
+													<input type="radio" @if(isset($notas[$criterio->idbloquecriterio])) @if($notas[$criterio->idbloquecriterio]->S == 1) checked @endif   @endif  name="nota[{{$bloque->idbloque}}-{{$criterio->idbloquecriterio}}][value]" value="S">
 												</div>
 
 												<div class="col-md-6 text-right">CS</div>

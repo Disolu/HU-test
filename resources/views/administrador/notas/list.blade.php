@@ -44,26 +44,29 @@
 			@include('alertas.error')
 			
 			@foreach($cursospe as $data)
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <section class="panel panel-featured-bottom panel-featured-primary">
-                        <div class="panel-body">
-                    <div class="widget-summary widget-summary-xs">
-                        <div class="widget-summary-col widget-summary-col-icon">
-                            <div class="summary-icon bg-primary">
-                                <i class="fa fa-life-ring"></i>
-                            </div>
-                        </div>
-                        <div class="widget-summary-col">
-                            <div class="summary">
-                                <h4 class="title">
-                                    <a href="{{ route('addnotas', [$data->idcurso, $data->idseccion]) }}">{!! $data->nombre !!}</a>
-                                </h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                    </section>
-                </div>
+				@if($data->idseccion)
+	                <div class="col-md-6 col-lg-6 col-xl-3">
+	                    <section class="panel panel-featured-bottom panel-featured-primary">
+	                        <div class="panel-body">
+	                    <div class="widget-summary widget-summary-xs">
+	                        <div class="widget-summary-col widget-summary-col-icon">
+	                            <div class="summary-icon bg-primary">
+	                                <i class="fa fa-life-ring"></i>
+	                            </div>
+	                        </div>
+	                        <div class="widget-summary-col">
+	                            <div class="summary">
+	                                <h4 class="title">
+	                                    <a href="{{ route('addnotas', [$data->idcurso, $data->idseccion]) }}">{!! $data->nombre !!}</a>
+	                                </h4>
+									<span style="font-size: 11px;">{{ $data->sede }} | {{ $data->nivel }} | {{ $data->grado }}</span>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	                    </section>
+	                </div>
+	            @endif
 			@endforeach
 		</div>
 	</section>

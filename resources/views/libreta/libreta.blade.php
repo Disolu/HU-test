@@ -34,7 +34,7 @@
 		<div class="row">
 			<div class="col-md-2">
 		  	<fieldset>
-	  			<select class="form-control mb-md" name="bimestre">
+	  			<select class="form-control mb-md" name="bimestre" required="">
 						<option value="1">Bimestre I</option>
 						<option value="2">Bimestre II</option>
 						<option value="3">Bimestre III</option>
@@ -46,7 +46,7 @@
 		  <div class="col-md-2">
 		  	<fieldset>
 				<div class="form-group">
-					<select name="sede"  id="cboSede" class="form-control mb-md" data-bind="options: sedes, optionsText: 'nombre', optionsValue: 'idsede',  optionsCaption: 'Sede', value: sedeSeleccionada"></select>
+					<select name="sede"  id="cboSede" class="form-control mb-md" data-bind="options: sedes, optionsText: 'nombre', optionsValue: 'idsede',  optionsCaption: 'Sede', value: sedeSeleccionada" required=""></select>
 				</div>
 				</fieldset>
 		  </div>
@@ -54,7 +54,7 @@
 		  <div class="col-md-2">
 		  	<fieldset>
 				<div class="form-group">
-					<select name="nivel"  id="cboNivel" class="form-control mb-md" data-bind="options: niveles, optionsText: 'nombre', optionsValue: 'idnivel',  optionsCaption: 'Nivel', value: nivelSeleccionado"></select>
+					<select name="nivel"  id="cboNivel" class="form-control mb-md" data-bind="options: niveles, optionsText: 'nombre', optionsValue: 'idnivel',  optionsCaption: 'Nivel', value: nivelSeleccionado" required=""></select>
 				</div>
 				</fieldset>
 		  </div>
@@ -62,7 +62,7 @@
 		  <div class="col-md-3">
 		  	<fieldset>
 				<div class="form-group">
-					<select name="grado"  id="cboGrado" class="form-control mb-md" data-bind="options: grados, optionsText: 'nombre', optionsValue: 'idgrado',  optionsCaption: 'Grado', value: gradoSeleccionado"></select>
+					<select name="grado"  id="cboGrado" class="form-control mb-md" data-bind="options: grados, optionsText: 'nombre', optionsValue: 'idgrado',  optionsCaption: 'Grado', value: gradoSeleccionado" required=""></select>
 				</div>
 				</fieldset>
 		  </div>
@@ -70,7 +70,7 @@
 		  <div class="col-md-3">
 		  	<fieldset>
 				<div class="form-group">
-					<select name="seccion"  id="cboSeccion" class="form-control mb-md" data-bind="options: secciones, optionsText: 'nombre', optionsValue: 'idseccion',  optionsCaption: 'Sección', value: seccionSeleccionado"></select>
+					<select name="seccion"  id="cboSeccion" class="form-control mb-md" data-bind="options: secciones, optionsText: 'nombre', optionsValue: 'idseccion',  optionsCaption: 'Sección', value: seccionSeleccionado" required=""></select>
 				</div>
 				</fieldset>
 		  </div>

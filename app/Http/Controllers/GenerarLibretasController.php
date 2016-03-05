@@ -26,36 +26,43 @@ class GenerarLibretasController extends Controller
     $idseccion = $request['seccion'];
     $dni       = $request['dni'];
 
-    $periodo = DB::table('periodomatricula')->take(1)->orderBy('idperiodomatricula','desc')->get();
-    $alumnos = DB::table('alumnomatricula')
-    ->select('alumno.idalumno','fullname','codigo','idestadoalumno','users.nombre as nameregister','telefono')
-     ->leftJoin('alumno', 'alumnomatricula.idalumno', '=', 'alumno.idalumno')
-     ->leftJoin('alumnodeudas','alumnodeudas.idalumno','=','alumno.idalumno')
-     ->leftJoin('users', 'alumnomatricula.usercreate', '=', 'users.id')
-     ->where('alumnodeudas.idperiodomatricula', $periodo[0]->idperiodomatricula);
+    $all = $request->all();
+    $dataAlumnos = array();
+    if(!empty($all)){
 
-      if ($idsede) {
-          $alumnos->where('alumnomatricula.idsede','=',$idsede);
-      }
-      if ($idnivel) {
-          $alumnos->where('alumnomatricula.idnivel','=',$idnivel);
-      }
-      if ($idgrado) {
-          $alumnos->where('alumnomatricula.idgrado','=',$idgrado);
-      }
-      if ($idseccion) {
-          $alumnos->where('alumnomatricula.idseccion','=',$idseccion);
-      }
-      if ($dni) {
-          $alumnos->where('alumno.dni','=',$dni);
-      }
+      $periodo = DB::table('periodomatricula')->take(1)->orderBy('idperiodomatricula','desc')->get();
+      $tarjeta = Tarjeta::with('tarjetabloque')->where('idnivel',$idnivel)->first();
+      $alumnos = DB::table('alumnomatricula')
+      ->select('alumno.idalumno','fullname','codigo','idestadoalumno','users.nombre as nameregister','telefono')
+       ->leftJoin('alumno', 'alumnomatricula.idalumno', '=', 'alumno.idalumno')
+       ->leftJoin('alumnodeudas','alumnodeudas.idalumno','=','alumno.idalumno')
+       ->leftJoin('users', 'alumnomatricula.usercreate', '=', 'users.id')
+       ->where('alumnodeudas.idperiodomatricula', $periodo[0]->idperiodomatricula);
 
-      $alumnos->where('alumno.impedimento','<>','1');
-      $alumnos->groupBy('alumno.idalumno');
-      $alumnos->get();
+        if ($idsede) {
+            $alumnos->where('alumnomatricula.idsede','=',$idsede);
+        }
+        if ($idnivel) {
+            $alumnos->where('alumnomatricula.idnivel','=',$idnivel);
+        }
+        if ($idgrado) {
+            $alumnos->where('alumnomatricula.idgrado','=',$idgrado);
+        }
+        if ($idseccion) {
+            $alumnos->where('alumnomatricula.idseccion','=',$idseccion);
+        }
+        if ($dni) {
+            $alumnos->where('alumno.dni','=',$dni);
+        }
 
-      $dataAlumnos = $alumnos->get();
-    return view('libreta.libreta', compact('dataAlumnos'));
+        $alumnos->where('alumno.impedimento','<>','1');
+        $alumnos->groupBy('alumno.idalumno');
+        $alumnos->get();
+
+        $dataAlumnos = $alumnos->get();
+        dd($tarjeta);
+    }
+    return view('libreta.libreta', compact('dataAlumnos','tarjeta'));
   }
 
   public function generateLibreta($idalumno)

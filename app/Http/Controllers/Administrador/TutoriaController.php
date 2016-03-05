@@ -44,44 +44,7 @@ class TutoriaController extends Controller
 
     public function storeTutoria($id, Request $request)
     {
-      $lastPeriodo = $this->NotasRepo->getLastPeriodoMatricula();
-      $datehow = Date('Ymd');
-      $fechanota = $this->NotasRepo->getFechaNota($lastPeriodo[0]->idperiodomatricula, $datehow);
-
-      for($i=0; $i<count($request['bloque']); $i++)
-      {
-
-        $bloque = $request['bloque'][$i];
-        for ($j=0; $j<count($request["criterio_$bloque"]) ; $j++) 
-        {
-          
-          $criterio = $request["criterio_$bloque"][$j];
-          for ($k=0; $k<count($request["value_$criterio"]); $k++) 
-          {
-            $value = explode("_", $request["value_$criterio"][$k]);
-            $notatarjeta = new NotaTarjeta;
-            $notatarjeta->S                  = ($value[1] == 'S')  ? 1 : 0;
-            $notatarjeta->CS                 = ($value[1] == 'CS') ? 1 : 0;
-            $notatarjeta->AV                 = ($value[1] == 'AV') ? 1 : 0;
-            $notatarjeta->N                  = ($value[1] == 'N')  ? 1 : 0;
-            $notatarjeta->idtarjeta          = $request["tarjeta"];
-            $notatarjeta->idbloque           = $request['bloque'][$i];
-            $notatarjeta->idbloquecriterio   = $request["criterio_$bloque"][$j];
-            $notatarjeta->idbimestre         = $fechanota[0]->idbimestre;
-            $notatarjeta->idperiodomatricula = $lastPeriodo[0]->idperiodomatricula;
-            $notatarjeta->idtutor            = Auth::user()->id;
-            $notatarjeta->idalumno           = $id;
-            $notatarjeta->created_at         = date('Y-m-d H:i:s');
-            $notatarjeta->updated_at = '';
-            $notatarjeta->save();
-
-            //echo "BLOQUE: ".$request['bloque'][$i] . " CRITERIO: " .$request["criterio_$bloque"][$j]. " VALUE: " . $value[1] ."<br>";
-          }
-        }
-      }
-      echo '<script type="text/javascript">'
-               , 'history.go(-2);'
-               , '</script>';
+      dd($request->all());
     }
 
 

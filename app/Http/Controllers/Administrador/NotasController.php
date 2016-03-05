@@ -33,13 +33,19 @@ class NotasController extends Controller
         if(count($lastPeriodo) > 0)
         {
           $cursospe = DB::table('profesorcurso as pc')
-            ->select('pc.idprofesorcurso','cu.idcurso','cu.nombre','ps.idseccion')
+            ->select('pc.idprofesorcurso','cu.idcurso','cu.nombre','ps.idseccion','s.nombre as seccion','g.nombre as grado','n.nombre as nivel','sd.nombre as sede')
             ->leftJoin('curso as cu','cu.idcurso','=','pc.idcurso')
             ->leftJoin('profesorseccion as ps','ps.idprofesorcurso','=','pc.idprofesorcurso')
+            ->Join('seccion as s','s.idseccion','=','ps.idseccion')
+            ->Join('grado as g','g.idgrado','=','s.idgrado')
+            ->Join('nivel as n','n.idnivel','=','s.idnivel')
+            ->Join('sede as sd','sd.idsede','=','s.idsede')
             ->where('pc.idperiodomatricula',$lastPeriodo[0]->idperiodomatricula)
             ->where('pc.iduser', Auth::user()->id)
             ->groupBy('pc.idprofesorcurso')
             ->get();
+
+
           $tutorias = DB::table('profesortutoria as pt')
             ->select('s.nombre as seccion','s.idseccion as idsection','g.nombre as grado','n.nombre as nivel','sd.nombre as sede')
               ->leftJoin('seccion as s','s.idseccion','=','pt.idseccion')

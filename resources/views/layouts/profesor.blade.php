@@ -140,11 +140,6 @@
 												Listar cursos
 											</a>
 										</li>
-										<li>
-											<a href="{!! route('tarjetanotas') !!}">
-												Notas de Tarjetas
-											</a>
-										</li>
 									</ul>
 								</li>
 							</ul>
