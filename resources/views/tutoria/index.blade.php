@@ -17,19 +17,19 @@
 			<div class="row">
 				<div class="col-md-6">
 				<p><strong>Bimestre #1:</strong></p>
-					<textarea class="form-control" name="apreciacion1" rows="3" id="textareaDefault">@if(!empty($notastutoria[0]->apreciacion)) {{ $notastutoria[0]->apreciacion }} @endif</textarea>
+					<textarea class="form-control" name="notas[1][apreciacion]" rows="3" id="textareaDefault">@if(isset($notas[1]->apreciacion)) {{ $notas[1]->apreciacion }} @endif</textarea>
 				</div>
 				<div class="col-md-6">
 				<p><strong>Bimestre #2:</strong></p>
-					<textarea class="form-control" name="apreciacion2" rows="3" id="textareaDefault">@if(!empty($notastutoria[1]->apreciacion)) {{ $notastutoria[1]->apreciacion }} @endif</textarea>
+					<textarea class="form-control" name="notas[2][apreciacion]" rows="3" id="textareaDefault">@if(isset($notas[2]->apreciacion)) {{ $notas[2]->apreciacion }} @endif</textarea>
 				</div>
 				<div class="col-md-6">
 				<p><strong>Bimestre #3:</strong></p>
-					<textarea class="form-control" name="apreciacion3" rows="3" id="textareaDefault">@if(!empty($notastutoria[2]->apreciacion)) {{ $notastutoria[2]->apreciacion }} @endif</textarea>
+					<textarea class="form-control" name="notas[3][apreciacion]" rows="3" id="textareaDefault">@if(isset($notas[3]->apreciacion)) {{ $notas[3]->apreciacion }} @endif</textarea>
 				</div>
 				<div class="col-md-6">
 				<p><strong>Bimestre #4:</strong></p>
-					<textarea class="form-control" name="apreciacion4" rows="3" id="textareaDefault">@if(!empty($notastutoria[3]->apreciacion)) {{ $notastutoria[3]->apreciacion }} @endif</textarea>
+					<textarea class="form-control" name="notas[4][apreciacion]" rows="3" id="textareaDefault">@if(isset($notas[4]->apreciacion)) {{ $notas[4]->apreciacion }} @endif</textarea>
 				</div>
 			</div>
 			<br><br>
@@ -61,64 +61,64 @@
 											<tr>
 												<td>Respeto al reglamento</td>
 												<td>
-													<input type="text"  maxlength="2" name="respeto1" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[0]->respeto)) {{ $notastutoria[0]->respeto }} @endif">
+													<input type="text"  maxlength="2" name="notas[1][respeto]" class="form-control" style="width:80px;" value="@if(isset($notas[1]->respeto)){{$notas[1]->respeto }} @endif">
 												</td>
 												<td>
-													<input type="text"  maxlength="2" name="respeto2" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[1]->respeto)) {{ $notastutoria[1]->respeto }} @endif">
+													<input type="text"  maxlength="2" name="notas[2][respeto]" class="form-control" style="width:80px;" value="@if(isset($notas[2]->respeto)){{$notas[2]->respeto }} @endif">
 												</td>
 												<td>
-													<input type="text"  maxlength="2" name="respeto3" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[2]->respeto)) {{ $notastutoria[2]->respeto }} @endif">
+													<input type="text"  maxlength="2" name="notas[3][respeto]" class="form-control" style="width:80px;" value="@if(isset($notas[3]->respeto)){{$notas[3]->respeto }} @endif">
 												</td>
 												<td>
-													<input type="text"  maxlength="2" name="respeto4" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[3]->respeto)) {{ $notastutoria[3]->respeto }} @endif">
+													<input type="text"  maxlength="2" name="notas[4][respeto]" class="form-control" style="width:80px;" value="@if(isset($notas[4]->respeto)){{$notas[4]->respeto }} @endif">
 												</td>
 											</tr>
 
 											<tr>
 												<td>Puntualidad</td>
 												<td>
-													<input type="text"  maxlength="2" name="puntualidad1" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[0]->puntualidad)) {{ $notastutoria[0]->puntualidad }} @endif">
+													<input type="text"  maxlength="2" name="notas[1][puntualidad]" class="form-control" style="width:80px;" value="@if(isset($notas[1]->puntualidad)){{$notas[1]->puntualidad}} @endif">
 												</td>
 												<td>
-													<input type="text"  maxlength="2" name="puntualidad2" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[1]->puntualidad)) {{ $notastutoria[1]->puntualidad }} @endif">
+													<input type="text"  maxlength="2" name="notas[2][puntualidad]" class="form-control" style="width:80px;" value="@if(isset($notas[2]->puntualidad)){{$notas[2]->puntualidad}} @endif">
 												</td>
 												<td>
-													<input type="text"  maxlength="2" name="puntualidad3" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[2]->puntualidad)) {{ $notastutoria[2]->puntualidad }} @endif">
+													<input type="text"  maxlength="2" name="notas[3][puntualidad]" class="form-control" style="width:80px;" value="@if(isset($notas[3]->puntualidad)){{$notas[3]->puntualidad}} @endif">
 												</td>
 												<td>
-													<input type="text"  maxlength="2" name="puntualidad4" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[3]->puntualidad)) {{ $notastutoria[3]->puntualidad }} @endif">
+													<input type="text"  maxlength="2" name="notas[4][puntualidad]" class="form-control" style="width:80px;" value="@if(isset($notas[4]->puntualidad)){{$notas[4]->puntualidad}} @endif">
 												</td>
 											</tr>
 
 											<tr>
 												<td>Responsabilidad</td>
 												<td>
-													<input type="text"  maxlength="2" name="responsabilidad1" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[0]->responsabilidad)) {{ $notastutoria[0]->responsabilidad }} @endif">
+													<input type="text"  maxlength="2" name="notas[1][responsabilidad]" class="form-control" style="width:80px;" value="@if(isset($notas[1]->responsabilidad)) {{$notas[1]->responsabilidad}} @endif">
 												</td>
 												<td>
-													<input type="text"  maxlength="2" name="responsabilidad2" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[1]->responsabilidad)) {{ $notastutoria[1]->responsabilidad }} @endif">
+													<input type="text"  maxlength="2" name="notas[2][responsabilidad]" class="form-control" style="width:80px;" value="@if(isset($notas[2]->responsabilidad)) {{$notas[2]->responsabilidad}} @endif">
 												</td>
 												<td>
-													<input type="text"  maxlength="2" name="responsabilidad3" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[2]->responsabilidad)) {{ $notastutoria[2]->responsabilidad }} @endif">
+													<input type="text"  maxlength="2" name="notas[3][responsabilidad]" class="form-control" style="width:80px;" value="@if(isset($notas[3]->responsabilidad)) {{$notas[3]->responsabilidad}} @endif">
 												</td>
 												<td>
-													<input type="text"  maxlength="2" name="responsabilidad4" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[3]->responsabilidad)) {{ $notastutoria[3]->responsabilidad }} @endif">
+													<input type="text"  maxlength="2" name="notas[4][responsabilidad]" class="form-control" style="width:80px;" value="@if(isset($notas[4]->responsabilidad)) {{$notas[4]->responsabilidad}} @endif">
 												</td>
 											</tr>
 
 											<tr>
 												<td>Presentación Personal</td>
 												<td>
-													<input type="text"  maxlength="2" name="presentacion1" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[0]->presentacion)) {{ $notastutoria[0]->presentacion }} @endif">
+													<input type="text"  maxlength="2" name="notas[1][presentacion]" class="form-control" style="width:80px;" value="@if(isset($notas[1]->presentacion)) {{ $notas[1]->presentacion}} @endif">
 												</td>
 												<td>
-													<input type="text"  maxlength="2" name="presentacion2" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[1]->presentacion)) {{ $notastutoria[1]->presentacion }} @endif">
+													<input type="text"  maxlength="2" name="notas[2][presentacion]" class="form-control" style="width:80px;" value="@if(isset($notas[2]->presentacion)) {{ $notas[2]->presentacion}} @endif">
 												</td>
 												<td>
-													<input type="text"  maxlength="2" name="presentacion3" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[2]->presentacion)) {{ $notastutoria[2]->presentacion }} @endif">
+													<input type="text"  maxlength="2" name="notas[3][presentacion]" class="form-control" style="width:80px;" value="@if(isset($notas[3]->presentacion)) {{ $notas[3]->presentacion}} @endif">
 												</td>
 												<td>
-													<input type="text"  maxlength="2" name="presentacion4" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[3]->presentacion)) {{ $notastutoria[3]->presentacion }} @endif">
+													<input type="text"  maxlength="2" name="notas[4][presentacion]" class="form-control" style="width:80px;" value="@if(isset($notas[4]->presentacion)) {{ $notas[4]->presentacion}} @endif">
 												</td>
 											</tr>
 										</tbody>
@@ -152,64 +152,64 @@
 													<tr>
 														<td>Tardanza Justificada</td>
 														<td>
-															<input type="text"  maxlength="2" name="tardanza_justificada1" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[0]->tardanza_justificada)) {{ $notastutoria[0]->tardanza_justificada }} @endif">
+															<input type="text"  maxlength="2" name="notas[1][tardanza_justificada]" class="form-control" style="width:80px;" value="@if(isset($notas[1]->tardanza_justificada)) {{$notas[1]->tardanza_justificada}} @endif">
 														</td>
 														<td>
-															<input type="text"  maxlength="2" name="tardanza_justificada2" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[1]->tardanza_justificada)) {{ $notastutoria[1]->tardanza_justificada }} @endif">
+															<input type="text"  maxlength="2" name="notas[2][tardanza_justificada]" class="form-control" style="width:80px;" value="@if(isset($notas[2]->tardanza_justificada)) {{$notas[2]->tardanza_justificada}} @endif">
 														</td>
 														<td>
-															<input type="text"  maxlength="2" name="tardanza_justificada3" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[2]->tardanza_justificada)) {{ $notastutoria[2]->tardanza_justificada }} @endif">
+															<input type="text"  maxlength="2" name="notas[3][tardanza_justificada]" class="form-control" style="width:80px;" value="@if(isset($notas[3]->tardanza_justificada)) {{$notas[3]->tardanza_justificada}} @endif">
 														</td>
 														<td>
-															<input type="text"  maxlength="2" name="tardanza_justificada4" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[3]->tardanza_justificada)) {{ $notastutoria[3]->tardanza_justificada }} @endif">
+															<input type="text"  maxlength="2" name="notas[4][tardanza_justificada]" class="form-control" style="width:80px;" value="@if(isset($notas[4]->tardanza_justificada)) {{$notas[4]->tardanza_justificada}} @endif">
 														</td>
 													</tr>
 
 													<tr>
 														<td>Tardanza Injustificada</td>
 														<td>
-															<input type="text"  maxlength="2" name="tardanza_injustificada1" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[0]->tardanza_injustificada)) {{ $notastutoria[0]->tardanza_injustificada }} @endif">
+															<input type="text"  maxlength="2" name="notas[1][tardanza_injustificada]" class="form-control" style="width:80px;" value="@if(isset($notas[1]->tardanza_injustificada)) {{$notas[1]->tardanza_injustificada}} @endif">
 														</td>
 														<td>
-															<input type="text"  maxlength="2" name="tardanza_injustificada2" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[1]->tardanza_injustificada)) {{ $notastutoria[1]->tardanza_injustificada }} @endif">
+															<input type="text"  maxlength="2" name="notas[2][tardanza_injustificada]" class="form-control" style="width:80px;" value="@if(isset($notas[2]->tardanza_injustificada)) {{$notas[2]->tardanza_injustificada}} @endif">
 														</td>
 														<td>
-															<input type="text"  maxlength="2" name="tardanza_injustificada3" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[2]->tardanza_injustificada)) {{ $notastutoria[2]->tardanza_injustificada }} @endif">
+															<input type="text"  maxlength="2" name="notas[3][tardanza_injustificada]" class="form-control" style="width:80px;" value="@if(isset($notas[3]->tardanza_injustificada)) {{$notas[3]->tardanza_injustificada}} @endif">
 														</td>
 														<td>
-															<input type="text"  maxlength="2" name="tardanza_injustificada4" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[3]->tardanza_injustificada)) {{ $notastutoria[3]->tardanza_injustificada }} @endif">
+															<input type="text"  maxlength="2" name="notas[4][tardanza_injustificada]" class="form-control" style="width:80px;" value="@if(isset($notas[4]->tardanza_injustificada)) {{$notas[4]->tardanza_injustificada}} @endif">
 														</td>
 													</tr>
 
 													<tr>
 														<td>Inasistencia Justificada</td>
 														<td>
-															<input type="text"  maxlength="2" name="inasistencia_just1" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[0]->inasistencia_just)) {{ $notastutoria[0]->inasistencia_just }} @endif">
+															<input type="text"  maxlength="2" name="notas[1][inasistencia_just]" class="form-control" style="width:80px;" value="@if(isset($notas[1]->inasistencia_just)) {{ $notas[1]->inasistencia_just }} @endif">
 														</td>
 														<td>
-															<input type="text"  maxlength="2" name="inasistencia_just2" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[1]->inasistencia_just)) {{ $notastutoria[1]->inasistencia_just }} @endif">
+															<input type="text"  maxlength="2" name="notas[2][inasistencia_just]" class="form-control" style="width:80px;" value="@if(isset($notas[2]->inasistencia_just)) {{ $notas[2]->inasistencia_just }} @endif">
 														</td>
 														<td>
-															<input type="text"  maxlength="2" name="inasistencia_just3" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[2]->inasistencia_just)) {{ $notastutoria[2]->inasistencia_just }} @endif">
+															<input type="text"  maxlength="2" name="notas[3][inasistencia_just]" class="form-control" style="width:80px;" value="@if(isset($notas[3]->inasistencia_just)) {{ $notas[3]->inasistencia_just }} @endif">
 														</td>
 														<td>
-															<input type="text"  maxlength="2" name="inasistencia_just4" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[3]->inasistencia_just)) {{ $notastutoria[3]->inasistencia_just }} @endif">
+															<input type="text"  maxlength="2" name="notas[4][inasistencia_just]" class="form-control" style="width:80px;" value="@if(isset($notas[4]->inasistencia_just)) {{ $notas[4]->inasistencia_just }} @endif">
 														</td>
 													</tr>
 
 													<tr>
 														<td>Inasistencia Injustificada</td>
 														<td>
-															<input type="text"  maxlength="2" name="inasistencia_injust1" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[0]->inasistencia_injust)) {{ $notastutoria[0]->inasistencia_injust }} @endif">
+															<input type="text"  maxlength="2" name="notas[1][inasistencia_injust]" class="form-control" style="width:80px;" value="@if(isset($notas[1]->inasistencia_injust)) {{$notas[1]->inasistencia_injust}} @endif">
 														</td>
 														<td>
-															<input type="text"  maxlength="2" name="inasistencia_injust2" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[1]->inasistencia_injust)) {{ $notastutoria[1]->inasistencia_injust }} @endif">
+															<input type="text"  maxlength="2" name="notas[2][inasistencia_injust]" class="form-control" style="width:80px;" value="@if(isset($notas[2]->inasistencia_injust)) {{$notas[2]->inasistencia_injust}} @endif">
 														</td>
 														<td>
-															<input type="text"  maxlength="2" name="inasistencia_injust3" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[2]->inasistencia_injust)) {{ $notastutoria[2]->inasistencia_injust }} @endif">
+															<input type="text"  maxlength="2" name="notas[3][inasistencia_injust]" class="form-control" style="width:80px;" value="@if(isset($notas[3]->inasistencia_injust)) {{$notas[3]->inasistencia_injust}} @endif">
 														</td>
 														<td>
-															<input type="text"  maxlength="2" name="inasistencia_injust4" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[3]->inasistencia_injust)) {{ $notastutoria[3]->inasistencia_injust }} @endif">
+															<input type="text"  maxlength="2" name="notas[4][inasistencia_injust]" class="form-control" style="width:80px;" value="@if(isset($notas[4]->inasistencia_injust)) {{$notas[4]->inasistencia_injust}} @endif">
 														</td>
 													</tr>
 
@@ -245,80 +245,80 @@
 													<tr>
 														<td>Se interesa por el avance de su hijo</td>
 														<td>
-															<input type="text" name="avance1" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[0]->avance)) {{ $notastutoria[0]->avance }} @endif">
+															<input type="text" name="notas[1][avance]" class="form-control" style="width:80px;" value="@if(isset($notas[1]->avance)) {{$notas[1]->avance}} @endif">
 														</td>
 														<td>
-															<input type="text" name="avance2" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[1]->avance)) {{ $notastutoria[1]->avance }} @endif">
+															<input type="text" name="notas[2][avance]" class="form-control" style="width:80px;" value="@if(isset($notas[2]->avance)) {{$notas[2]->avance}} @endif">
 														</td>
 														<td>
-															<input type="text" name="avance3" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[2]->avance)) {{ $notastutoria[2]->avance }} @endif">
+															<input type="text" name="notas[3][avance]" class="form-control" style="width:80px;" value="@if(isset($notas[3]->avance)) {{$notas[3]->avance}} @endif">
 														</td>
 														<td>
-															<input type="text" name="avance4" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[3]->avance)) {{ $notastutoria[3]->avance }} @endif">
+															<input type="text" name="notas[4][avance]" class="form-control" style="width:80px;" value="@if(isset($notas[4]->avance)) {{$notas[4]->avance}} @endif">
 														</td>
 													</tr>
 
 													<tr>
 														<td>Envia materiales requeridos</td>
 														<td>
-															<input type="text" name="materiales1" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[0]->materiales)) {{ $notastutoria[0]->materiales }} @endif">
+															<input type="text" name="notas[1][materiales]" class="form-control" style="width:80px;" value="@if(isset($notas[1]->materiales)) {{$notas[1]->materiales}} @endif">
 														</td>
 														<td>
-															<input type="text" name="materiales2" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[1]->materiales)) {{ $notastutoria[1]->materiales }} @endif">
+															<input type="text" name="notas[2][materiales]" class="form-control" style="width:80px;" value="@if(isset($notas[2]->materiales)) {{$notas[2]->materiales}} @endif">
 														</td>
 														<td>
-															<input type="text" name="materiales3" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[2]->materiales)) {{ $notastutoria[2]->materiales }} @endif">
+															<input type="text" name="notas[3][materiales]" class="form-control" style="width:80px;" value="@if(isset($notas[3]->materiales)) {{$notas[3]->materiales}} @endif">
 														</td>
 														<td>
-															<input type="text" name="materiales4" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[3]->materiales)) {{ $notastutoria[3]->materiales }} @endif">
+															<input type="text" name="notas[4][materiales]" class="form-control" style="width:80px;" value="@if(isset($notas[4]->materiales)) {{$notas[4]->materiales}} @endif">
 														</td>
 													</tr>
 
 													<tr>
 														<td>Asiste puntualmente a las reuniones</td>
 														<td>
-															<input type="text" name="reuniones1" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[0]->reuniones)) {{ $notastutoria[0]->reuniones }} @endif">
+															<input type="text" name="notas[1][reuniones]" class="form-control" style="width:80px;" value="@if(isset($notas[1]->reuniones)) {{$notas[1]->reuniones}} @endif">
 														</td>
 														<td>
-															<input type="text" name="reuniones2" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[1]->reuniones)) {{ $notastutoria[1]->reuniones }} @endif">
+															<input type="text" name="notas[2][reuniones]" class="form-control" style="width:80px;" value="@if(isset($notas[2]->reuniones)) {{$notas[2]->reuniones}} @endif">
 														</td>
 														<td>
-															<input type="text" name="reuniones3" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[2]->reuniones)) {{ $notastutoria[2]->reuniones }} @endif">
+															<input type="text" name="notas[3][reuniones]" class="form-control" style="width:80px;" value="@if(isset($notas[3]->reuniones)) {{$notas[3]->reuniones}} @endif">
 														</td>
 														<td>
-															<input type="text" name="reuniones4" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[3]->reuniones)) {{ $notastutoria[3]->reuniones }} @endif">
+															<input type="text" name="notas[4][reuniones]" class="form-control" style="width:80px;" value="@if(isset($notas[4]->reuniones)) {{$notas[4]->reuniones}} @endif">
 														</td>
 													</tr>
 
 													<tr>
 														<td>Se preocupa de la higene y presentación</td>
 														<td>
-															<input type="text" name="higene1" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[0]->higene)) {{ $notastutoria[0]->higene }} @endif">
+															<input type="text" name="notas[1][higene]" class="form-control" style="width:80px;" value="@if(isset($notas[1]->higene)) {{ $notas[1]->higene }} @endif">
 														</td>
 														<td>
-															<input type="text" name="higene2" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[1]->higene)) {{ $notastutoria[1]->higene }} @endif">
+															<input type="text" name="notas[2][higene]" class="form-control" style="width:80px;" value="@if(isset($notas[2]->higene)) {{ $notas[2]->higene }} @endif">
 														</td>
 														<td>
-															<input type="text" name="higene3" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[2]->higene)) {{ $notastutoria[2]->higene }} @endif">
+															<input type="text" name="notas[3][higene]" class="form-control" style="width:80px;" value="@if(isset($notas[3]->higene)) {{ $notas[3]->higene }} @endif">
 														</td>
 														<td>
-															<input type="text" name="higene4" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[3]->higene)) {{ $notastutoria[3]->higene }} @endif">
+															<input type="text" name="notas[4][higene]" class="form-control" style="width:80px;" value="@if(isset($notas[4]->higene)) {{ $notas[4]->higene }} @endif">
 														</td>
 													</tr>
 
 													<tr>
 														<td>Lee y firma la agenda diariamente</td>
 														<td>
-															<input type="text" name="agenda1" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[0]->agenda)) {{ $notastutoria[0]->agenda }} @endif">
+															<input type="text" name="notas[1][agenda]" class="form-control" style="width:80px;" value="@if(isset($notas[1]->agenda)) {{ $notas[1]->agenda }} @endif">
 														</td>
 														<td>
-															<input type="text" name="agenda2" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[1]->agenda)) {{ $notastutoria[1]->agenda }} @endif">
+															<input type="text" name="notas[2][agenda]" class="form-control" style="width:80px;" value="@if(isset($notas[2]->agenda)) {{ $notas[2]->agenda }} @endif">
 														</td>
 														<td>
-															<input type="text" name="agenda3" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[2]->agenda)) {{ $notastutoria[2]->agenda }} @endif">
+															<input type="text" name="notas[3][agenda]" class="form-control" style="width:80px;" value="@if(isset($notas[3]->agenda)) {{ $notas[3]->agenda }} @endif">
 														</td>
 														<td>
-															<input type="text" name="agenda4" class="form-control" style="width:80px;" value="@if(!empty($notastutoria[3]->agenda)) {{ $notastutoria[3]->agenda }} @endif">
+															<input type="text" name="notas[4][agenda]" class="form-control" style="width:80px;" value="@if(isset($notas[4]->agenda)) {{ $notas[4]->agenda }} @endif">
 														</td>
 													</tr>
 

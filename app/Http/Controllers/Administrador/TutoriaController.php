@@ -15,6 +15,7 @@ use App\Core\Entities\NotaTarjeta;
 use App\Core\Entities\Cursos;
 use App\Core\Entities\Alumno;
 use App\Core\Entities\NotaCurso;
+use App\Core\Entities\NotaTutoria;
 use App\Core\Entities\Tarjeta;
 
 class TutoriaController extends Controller
@@ -44,7 +45,40 @@ class TutoriaController extends Controller
 
     public function storeTutoria($id, Request $request)
     {
-      dd($request->all());
+      $notas = $request->input('notas');
+      $lastPeriodo = $this->NotasRepo->getLastPeriodoMatricula();
+      foreach($notas as $k =>  $nota){
+
+        if(isset($nota['id'])){
+          $tutoria = NotaTutoria::find($nota['id']);
+
+        }else{
+          $tutoria = new NotaTutoria();
+        }
+
+        $tutoria->apreciacion = $nota['apreciacion'];
+        $tutoria->respeto = $nota['respeto'];
+        $tutoria->puntualidad = $nota['puntualidad'];
+        $tutoria->responsabilidad = $nota['responsabilidad'];
+        $tutoria->presentacion = $nota['presentacion'];
+        $tutoria->tardanza_justificada = $nota['tardanza_justificada'];
+        $tutoria->tardanza_injustificada = $nota['tardanza_injustificada'];
+        $tutoria->inasistencia_just = $nota['inasistencia_just'];
+        $tutoria->inasistencia_injust = $nota['inasistencia_injust'];
+        $tutoria->avance = $nota['avance'];
+        $tutoria->materiales = $nota['materiales'];
+        $tutoria->reuniones = $nota['reuniones'];
+        $tutoria->higene = $nota['higene'];
+        $tutoria->agenda = $nota['agenda'];
+        $tutoria->idalumno = $id;
+        $tutoria->idperiodomatricula = $lastPeriodo[0]->idperiodomatricula;
+        $tutoria->idtutor = Auth::user()->id;
+        $tutoria->idbimestre = $k;  
+        $tutoria->save();
+      }
+
+
+      return redirect()->back();
     }
 
 
@@ -53,14 +87,20 @@ class TutoriaController extends Controller
       $lastPeriodo = $this->NotasRepo->getLastPeriodoMatricula();
       $alumno = DB::table('alumno')->where('idalumno',$id)->get();
 
-      $notastutoria = DB::table('notatutoria')
-        ->where('idalumno', $id)
+      $qnotas = NotaTutoria::where('idalumno', $id)
         ->where('idperiodomatricula',$lastPeriodo[0]->idperiodomatricula)
         ->orderBy('idbimestre','asc')
         ->get();
-      return view('tutoria.index', compact('alumno','notastutoria'));
-    }
 
+      $notas = array();
+
+      foreach ($qnotas as $nota) {
+        $notas[$nota->idbimestre] = $nota;
+      }
+
+
+      return view('tutoria.index', compact('alumno','notas'));
+    }
     public function store($id, Request $request)
     {
       $lastPeriodo = $this->NotasRepo->getLastPeriodoMatricula();
