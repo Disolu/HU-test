@@ -17,19 +17,19 @@
 			<div class="row">
 				<div class="col-md-6">
 				<p><strong>Bimestre #1:</strong></p>
-					<textarea class="form-control" name="notas[1][apreciacion]" rows="3" id="textareaDefault">@if(isset($notas[1]->apreciacion)) {{ $notas[1]->apreciacion }} @endif</textarea>
+					<textarea class="form-control" name="notas[1][apreciacion]" rows="3" id="textareaDefault">@if(isset($notas[1]->apreciacion)){{ $notas[1]->apreciacion }}@endif</textarea>
 				</div>
 				<div class="col-md-6">
 				<p><strong>Bimestre #2:</strong></p>
-					<textarea class="form-control" name="notas[2][apreciacion]" rows="3" id="textareaDefault">@if(isset($notas[2]->apreciacion)) {{ $notas[2]->apreciacion }} @endif</textarea>
+					<textarea class="form-control" name="notas[2][apreciacion]" rows="3" id="textareaDefault">@if(isset($notas[2]->apreciacion)){{ $notas[2]->apreciacion }}@endif</textarea>
 				</div>
 				<div class="col-md-6">
 				<p><strong>Bimestre #3:</strong></p>
-					<textarea class="form-control" name="notas[3][apreciacion]" rows="3" id="textareaDefault">@if(isset($notas[3]->apreciacion)) {{ $notas[3]->apreciacion }} @endif</textarea>
+					<textarea class="form-control" name="notas[3][apreciacion]" rows="3" id="textareaDefault">@if(isset($notas[3]->apreciacion)){{ $notas[3]->apreciacion }}@endif</textarea>
 				</div>
 				<div class="col-md-6">
 				<p><strong>Bimestre #4:</strong></p>
-					<textarea class="form-control" name="notas[4][apreciacion]" rows="3" id="textareaDefault">@if(isset($notas[4]->apreciacion)) {{ $notas[4]->apreciacion }} @endif</textarea>
+					<textarea class="form-control" name="notas[4][apreciacion]" rows="3" id="textareaDefault">@if(isset($notas[4]->apreciacion)){{ $notas[4]->apreciacion }}@endif</textarea>
 				</div>
 			</div>
 			<br><br>
