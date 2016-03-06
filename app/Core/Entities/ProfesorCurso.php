@@ -17,7 +17,7 @@ class ProfesorCurso extends Model
 
     public function curso()
     {
-    	return $this->hasMany('App\Core\Entities\Cursos','idcurso','idcurso');
+    	return $this->hasMany('App\Core\Entities\Cursos','idcurso','idcurso')->with('grado');
     }
 
     public function profesor()

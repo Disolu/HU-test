@@ -5,7 +5,8 @@
 
   <section class="panel">
     <header class="panel-heading">            
-      <h2 class="panel-title">Notas: <strong>{!! $namecurso[0]->nombre !!}</strong></h2>
+      <h2 class="panel-title">Notas: <strong>{!! $namecurso->nombre !!}</strong></h2>
+      <span style="font-size: 11px;">{{ $seccion->sede->nombre }} | {{ $seccion->nivel->nombre  }} | {{ $seccion->grado->nombre  }} | {{$seccion->nombre}}</span>
     </header>
     <div class="panel-body">
       <div class="alert alert-info">
@@ -75,13 +76,6 @@
                 <input type="text" class="form-control" {!! $bimestreIV !!} name="bimestreIVNota[]" maxlength="2" value="{{ $data->bimestre4 }}">
               </div>
             </td>
-            @if($tutoria)
-            <td>
-              <a href="{{ route('tutoria', $data->alumno->idalumno) }}" target="_black">Tutoria</a> | 
-              <a href="{{ route('registerOptimist', $data->alumno->idalumno) }}" target="_black">Progreso</a> | 
-              <a href="{{ route('registerProgrest', $data->alumno->idalumno) }}" target="_black">Optimist</a> 
-            </td>
-            @endif
           </tr>
         @endforeach 
         </tbody>

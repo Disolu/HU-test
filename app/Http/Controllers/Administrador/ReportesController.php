@@ -87,6 +87,7 @@ class ReportesController extends Controller
         ->where('idalumno',$request['idalumno'])
         ->get();
 
+
       return response()->json($notas)->setCallback($request->input('callback'));
     }
 

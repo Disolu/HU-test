@@ -108,7 +108,7 @@
 								  		@foreach($bimestres as $bimestre)
 								  			<code>
 									  			<a class="mb-xs mt-xs mr-xs  btnDetails" data-periodo="{{ $data->idperiodo }}" data-id="{{ $bimestre->idbimestre }}"
-									  			data-alumno="{!! $matricula[0]->alumno_id !!}"
+									  			data-alumno="{!! $matricula[0]->idalumno !!}"
 									  			>
 									  				{{ $bimestre->nombre }}
 									  			</a>
@@ -198,18 +198,20 @@
 							<div class="well bloquepadding">
 								<p>
 								<strong>Compromiso de matricula</strong></p>
-								<div class="col-xs-7">
-									<div class="form-group">
-										{!! Form::file('file1', ['id'=>'file1']) !!}
-									</div>
-								</div>
-								@if(isset($archivos[0]))
-									@if(!empty($archivos[0]->compromiso_url))
-										<div class="col-xs-5">
-											<a href="{{asset('uploads/'.$archivos[0]->compromiso_url)}}" target="_blank">Descargar</a>
+								<div class="row">
+									<div class="col-xs-7">
+										<div class="form-group">
+											{!! Form::file('file1', ['id'=>'file1']) !!}
 										</div>
+									</div>
+									@if(isset($archivos[0]))
+										@if(!empty($archivos[0]->compromiso_url))
+											<div class="col-xs-5">
+												<a href="{{asset('uploads/'.$archivos[0]->compromiso_url)}}" target="_blank">Descargar</a>
+											</div>
+										@endif
 									@endif
-								@endif
+								</div>
 							</div>
 						</div>
 
@@ -218,18 +220,20 @@
 								<p>
 
 								<strong>Anexo</strong></p>
-								<div class="col-md-7">
-									<div class="form-group">
-										{!! Form::file('file2', ['id'=>'file2']) !!}
-									</div>
-								</div>
-								@if(isset($archivos[0]))
-									@if(!empty($archivos[0]->anexo_url))
-										<div class="col-xs-5">
-											<a href="{{asset('uploads/'.$archivos[0]->anexo_url)}}" target="_blank">Descargar</a>
+								<div class="row">
+									<div class="col-xs-7">
+										<div class="form-group">
+											{!! Form::file('file2', ['id'=>'file2']) !!}
 										</div>
+									</div>
+									@if(isset($archivos[0]))
+										@if(!empty($archivos[0]->anexo_url))
+											<div class="col-xs-5">
+												<a href="{{asset('uploads/'.$archivos[0]->anexo_url)}}" target="_blank">Descargar</a>
+											</div>
+										@endif
 									@endif
-								@endif
+								</div>
 							</div>
 						</div>
 
@@ -238,18 +242,20 @@
 								<p>
 
 								<strong>Recibo de agua luz</strong></p>
-								<div class="col-md-7">
-									<div class="form-group">
-										{!! Form::file('file3', ['id'=>'file3']) !!}
-									</div>
-								</div>
-								@if(isset($archivos[0]))
-									@if(!empty($archivos[0]->reciboluz_url))
-										<div class="col-xs-5">
-											<a href="{{asset('uploads/'.$archivos[0]->reciboluz_url)}}" target="_blank">Descargar</a>
+								<div class="row">
+									<div class="col-xs-7">
+										<div class="form-group">
+											{!! Form::file('file3', ['id'=>'file3']) !!}
 										</div>
+									</div>
+									@if(isset($archivos[0]))
+										@if(!empty($archivos[0]->reciboluz_url))
+											<div class="col-xs-5">
+												<a href="{{asset('uploads/'.$archivos[0]->reciboluz_url)}}" target="_blank">Descargar</a>
+											</div>
+										@endif
 									@endif
-								@endif
+								</div>
 							</div>
 						</div>
 
@@ -257,18 +263,20 @@
 							<div class="well bloquepadding">
 								<p>
 								<strong>Dni de padre o madre</strong></p>
-								<div class="col-md-7">
-									<div class="form-group">
-										{!! Form::file('file4', ['id'=>'file4']) !!}
-									</div>
-								</div>
-								@if(isset($archivos[0]))
-									@if(!empty($archivos[0]->dni_apoderado))
-										<div class="col-xs-5">
-											<a href="{{asset('uploads/'.$archivos[0]->dni_apoderado)}}" target="_blank">Descargar</a>
+								<div class="row">
+									<div class="col-xs-7">
+										<div class="form-group">
+											{!! Form::file('file4', ['id'=>'file4']) !!}
 										</div>
+									</div>
+									@if(isset($archivos[0]))
+										@if(!empty($archivos[0]->dni_apoderado))
+											<div class="col-xs-5">
+												<a href="{{asset('uploads/'.$archivos[0]->dni_apoderado)}}" target="_blank">Descargar</a>
+											</div>
+										@endif
 									@endif
-								@endif
+								</div>
 							</div>
 						</div>
 

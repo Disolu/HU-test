@@ -96,7 +96,6 @@ class ProfesorController extends Controller
         $periodomatricula = $this->PeriodoMatriculaRepo->getLastPeriodoMatricula();
 
         $uniqueProfesores = $this->ProfesorRepo->getUniqueProfesores($periodomatricula[0]->idperiodomatricula);
-        //dd($uniqueProfesores);
 
         $profesores = $this->ProfesorRepo->getProfesorAsignaturas($periodomatricula[0]->idperiodomatricula);
         return view('administrador.profesores.list', compact('uniqueProfesores','profesores'));

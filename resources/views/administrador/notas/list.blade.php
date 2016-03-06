@@ -59,7 +59,7 @@
 	                                <h4 class="title">
 	                                    <a href="{{ route('addnotas', [$data->idcurso, $data->idseccion]) }}">{!! $data->nombre !!}</a>
 	                                </h4>
-									<span style="font-size: 11px;">{{ $data->sede }} | {{ $data->nivel }} | {{ $data->grado }}</span>
+									<span style="font-size: 11px;">{{ $data->sede }} | {{ $data->nivel }} | {{ $data->grado }} | {{ $data->seccion }}</span>
 	                            </div>
 	                        </div>
 	                    </div>

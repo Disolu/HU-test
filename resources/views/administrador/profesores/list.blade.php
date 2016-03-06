@@ -15,56 +15,43 @@
 			@include('alertas.success')
 			<div class="col-md-12">
 				<div class="toggle" data-plugin-toggle="" data-plugin-options="{ &quot;isAccordion&quot;: true }">
-					@foreach($profesores as $profesor)
-					<section class="toggle">
-						<label>
-							{!! $profesor->profesor->nombre !!}
-						</label>
-                        @foreach($profesor->profesorcursos as $cursos)
-                            <div class="toggle-content" style="display: none;">
+						@foreach($profesores as $profesor)
+						<section class="profesor">
+							<h4>{!! $profesor->profesor->nombre !!}</h4>
 							<div class="table-responsive">
 								<table class="table mb-none">
 									<thead>
 										<tr>
 											<th>Curso</th>
-											<th>Grado</th>
+											<th>Sede</th>
 											<th>Nivel</th>
-											<th>Acción</th>
+											<th>Grado</th>
+											<th>Secciones</th>
 										</tr>
 									</thead>
 									<tbody>
-									@foreach($cursos->curso as $curso)
-										<tr>
-											<td class="success"><strong>{!! $curso->nombre !!}</strong></td>
-											<td class="dark">{!! $curso->grado->nombre !!}</td>
-											<td class="dark">{!! $curso->grado->nivel->nombre !!}</td>
-											<td class="actions">
-												<a href="{!! route('deleteprofesorasignatura', $cursos->idprofesorcurso) !!}" class="delete-row" onclick="if (! confirm('¿Estás seguro que deseas eliminar la relación?, esto afectará a toda la institución.')) return false;"><i class="fa fa-trash-o"></i></a>
-											</td>
-										</tr>
-										@if($cursos->secciones)
-											<table class="table table-bordered mb-none">
-												<tr class="info">
-													<th>Secciones</th>
-													<th></th>
-												</tr>
-												@foreach($cursos->secciones as $seccion)
+										@foreach($profesor->profesorcursos as $cursos)
+											@foreach($cursos->curso as $curso)
 												<tr>
-													<td>{!! $seccion->seccion->nombre !!}</td>
-													<td class="actions">
-														<a href="{!! route('deleteprofesorseccion', $seccion->idprofesorseccion) !!}" class="delete-row" onclick="if (! confirm('¿Estás seguro que deseas eliminar la relación?, esto afectará a toda la institución.')) return false;"><i class="fa fa-trash-o"></i></a>
+													<td>{!! $curso->nombre !!}</td>
+													<td>{!! $curso->grado->sede->nombre !!}</td>
+													<td>{!! $curso->grado->nivel->nombre !!}</td>
+													<td>{!! $curso->grado->nombre !!}</td>
+													<td>
+														@if($cursos->secciones)
+															@foreach($cursos->secciones as $seccion)
+																<a href="{!! route('deleteprofesorseccion', $seccion->idprofesorseccion) !!}" class="delete-row" onclick="if (! confirm('¿Estás seguro que deseas eliminar la relación?, esto afectará a toda la institución.')) return false;">
+																{!! $seccion->seccion->nombre !!} <i class="fa fa-trash-o"></i></a>
+															@endforeach	
+														@endif
 													</td>
 												</tr>
-												@endforeach
-											</table>
-										@endif	
-									@endforeach	
+											@endforeach
+										@endforeach
 									</tbody>
 								</table>
 							</div>
-						</div>
-                        @endforeach
-					</section>
+						</section>
 					@endforeach
 				</div>
 			</div>

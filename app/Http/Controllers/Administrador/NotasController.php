@@ -13,6 +13,7 @@ use Session;
 use App\Core\Repositories\Administrador\NotasRepo;
 use App\Core\Entities\Cursos;
 use App\Core\Entities\Alumno;
+use App\Core\Entities\Seccion;
 use App\Core\Entities\NotaCurso;
 use App\Core\Entities\NotaTarjeta;
 use App\Core\Entities\Tarjeta;
@@ -96,19 +97,23 @@ class NotasController extends Controller
           ->where('idperiodomatricula', $lastPeriodo[0]->idperiodomatricula)
           ->where('idprofesor', Auth::user()->id)
           ->get();
+
         $datape = DB::table('curso')
-            ->leftJoin('grado','grado.idgrado','=','curso.idgrado')
+            ->select('curso.*')
+            ->leftJoin('grado as g','g.idgrado','=','curso.idgrado')
             ->where('idcurso', $idcurso)
             ->take(1)
             ->get();
+                        
 
         $alumnos = $this->NotasRepo->getAlumnos($idcurso, $datape[0]->idgrado, $idseccion, $lastPeriodo[0]->idperiodomatricula);
         $fechanota = $this->NotasRepo->getFechaNota($lastPeriodo[0]->idperiodomatricula, $datenow);
-        $namecurso = Cursos::where('idcurso', $idcurso)->get();
+        $namecurso = Cursos::where('idcurso', $idcurso)->first();
+        $seccion = Seccion::with('grado')->with('nivel')->with('sede')->where('idseccion',$idseccion)->first();
 
         if(count($fechanota)>0)
         {
-            return view('administrador.notas.register', compact('tutoria','alumnos','fechanota','lastPeriodo', 'idcurso','idseccion','namecurso'));
+            return view('administrador.notas.register', compact('tutoria','alumnos','fechanota','lastPeriodo', 'idcurso','idseccion','namecurso','seccion'));
         }
         else{
             Session::flash('message-danger', ' aun no puedes subir las notas, te encuentras fuera de fecha.');
