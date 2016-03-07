@@ -36,28 +36,28 @@ elseif(Auth::user()->idrol==5)
 		  <div class="col-md-3">
 		  	<fieldset>
 				<div class="form-group">
-					<select name="periodo" id="cboPeriodo" class="form-control mb-md" data-bind="options: periodos, optionsText: 'nombre', optionsValue: 'idperiodomatricula', value: pediodoSeleccionado" required=""></select>
+					<select name="periodo" id="cboPeriodo" class="form-control mb-md" data-bind="options: periodos, optionsText: 'nombre', optionsValue: 'idperiodomatricula', value: pediodoSeleccionado"></select>
 				</div>
 			</fieldset>
 		  </div>
 		  <div class="col-md-3">
 		  	<fieldset>
 				<div class="form-group">
-					<select name="sede"  id="cboSede" class="form-control mb-md" data-bind="options: sedes, optionsText: 'nombre', optionsValue: 'idsede',  optionsCaption: 'Seleccione una Sede', value: sedeSeleccionada" required=""></select>
+					<select name="sede"  id="cboSede" class="form-control mb-md" data-bind="options: sedes, optionsText: 'nombre', optionsValue: 'idsede',  optionsCaption: 'Seleccione una Sede', value: sedeSeleccionada"></select>
 				</div>
 			</fieldset>
 		  </div>
 		  <div class="col-md-3">
 		  	<fieldset>
 				<div class="form-group">
-					<select name="nivel"  id="cboNivel" class="form-control mb-md" data-bind="options: niveles, optionsText: 'nombre', optionsValue: 'idnivel',  optionsCaption: 'Seleccione un Nivel', value: nivelSeleccionado" required=""></select>
+					<select name="nivel"  id="cboNivel" class="form-control mb-md" data-bind="options: niveles, optionsText: 'nombre', optionsValue: 'idnivel',  optionsCaption: 'Seleccione un Nivel', value: nivelSeleccionado"></select>
 				</div>
 			</fieldset>
 		  </div>
 		  <div class="col-md-3">
 		  	<fieldset>
 				<div class="form-group">
-					<select name="grado"  id="cboGrado" class="form-control mb-md" data-bind="options: grados, optionsText: 'nombre', optionsValue: 'idgrado',  optionsCaption: 'Seleccione un Grado', value: gradoSeleccionado" required=""></select>
+					<select name="grado"  id="cboGrado" class="form-control mb-md" data-bind="options: grados, optionsText: 'nombre', optionsValue: 'idgrado',  optionsCaption: 'Seleccione un Grado', value: gradoSeleccionado"></select>
 				</div>
 			</fieldset>
 			</div>
@@ -72,11 +72,9 @@ elseif(Auth::user()->idrol==5)
 	</div>
 	
 	<div class="panel-footer">
-		@if(isset($grado))
-			<a href='{!! route("excelpagos",$request) !!}' class="mb-xs mt-xs mr-xs btn btn-info text-left">
-					<i class="fa fa-thumbs-up"></i> Descargar
-			</a>
-		@endif
+		<a href='{!! route("excelpagos",$request) !!}' class="mb-xs mt-xs mr-xs btn btn-info text-left">
+				<i class="fa fa-thumbs-up"></i> Descargar
+		</a>
 		<button type="submit" id="consultar" class="btn btn-primary col-md-offset-9 text-right">Consultar</button>
 	</div>
 {!! Form::close() !!}
@@ -87,11 +85,6 @@ elseif(Auth::user()->idrol==5)
 				<div class="col-md-12">
 					<section class="panel">
 						<div class="panel-body">
-							@if(isset($grado))
-								<div>
-									<h3>{{$periodo[0]->nombre}} {{$grado->sede->nombre}} {{$grado->nivel->nombre}} {{$grado->nombre}}</h3>
-								</div>
-							@endif
 							<div class="table-responsive">
 								<table class="table mb-none">
 									<thead>
