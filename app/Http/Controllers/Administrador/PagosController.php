@@ -34,16 +34,21 @@ class PagosController extends Controller
                 $payments[] = $f;
             }
         }
-        
-        foreach ($payments as &$p) {
+
+        foreach ($payments as $key => &$p) {
+
             $name = explode('_',$p);
-            $date = explode('.',$name[2]);
-            $date = date('d-m-Y',strtotime($date[0]));
-            $pay = new \stdClass();
-            $pay->name = $p;
-            $pay->date = $date;
-            $pay->sede = Sede::where('idsede',$numeration[$name[1]])->first();
-            $p = $pay;
+            if(count($name) > 2){
+                $date = explode('.',$name[2]);
+                $date = date('d-m-Y',strtotime($date[0]));
+                $pay = new \stdClass();
+                $pay->name = $p;
+                $pay->date = $date;
+                $pay->sede = Sede::where('idsede',$numeration[$name[1]])->first();
+                $p = $pay;
+            }else{
+                unset($payments[$key]);
+            }
         }
 
 
@@ -70,11 +75,11 @@ class PagosController extends Controller
         $name = $request->file('files')->getClientOriginalName();
         $complete = $name;
 
-        if($complete == $namevalidate)
+        if(strpos($complete,'.txt') !== FALSE OR  strpos($complete,'.TXT') !== FALSE )
         {
             $request->file('files')->move($destinationPath, $complete);
-            
-            Artisan::call('payments:collect-payments');
+
+            Artisan::call('payments:collect-payments',['name'=>$complete]);
             Session::flash('message-success', 'tu archivo ha sido subido y procesado con éxito');
             return redirect()->route('bancoPagos');
         }
@@ -82,6 +87,6 @@ class PagosController extends Controller
         {
             Session::flash('message-danger', 'tu archivo no tiene el formato esperado');
             return redirect()->route('bancoPagos');
-        } 
+        }
     }
 }

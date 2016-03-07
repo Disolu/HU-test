@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 class PaymentsCollector extends Command
 {
 
-    protected $signature = 'payments:collect-payments';
+    protected $signature = 'payments:collect-payments {name}';
     protected $description = 'Command description.';
 
     public function __construct()
@@ -19,7 +19,8 @@ class PaymentsCollector extends Command
     {
       $numeration='000';
       $today=date('Ymd');
-      $file_name  = config('app.urlupload')."RC_{$numeration}_{$today}.txt";
+      $name = $this->argument('name');
+      $file_name  = config('app.urlupload').$name;
       $local_file_path = $file_name;
       $handle = fopen($local_file_path, "r") or die("Error al abrir archivo");
       $error_lines = array();
@@ -63,11 +64,11 @@ class PaymentsCollector extends Command
             }
 
             if ($current_line!=1) {
-                $line_array = $this->__splitString($line, $lengths_detail);   
-                $line_array= $data_lineone+$line_array;        
+                $line_array = $this->__splitString($line, $lengths_detail);
+                $line_array= $data_lineone+$line_array;
                 $this->info(json_encode($line_array));
                 $this->__insertLine($line_array);
-                
+
                   if ($current_line == 0) {
                     $this->empty_file = TRUE;
                   }
@@ -84,7 +85,8 @@ EOT;
         }
 
       }
-      fclose($handle);             
+      fclose($handle);
+      unlink($file_name);
     }
 
     protected function __insertLine($line_array)
@@ -173,7 +175,7 @@ EOT;
           break;
         case 'OCTUBRE':
           $number = '10';
-          break; 
+          break;
         case 'NOVIEMBRE':
           $number = '11';
           break;
@@ -181,7 +183,7 @@ EOT;
           $number = '12';
           break;
       }
-       return $number;  
+       return $number;
     }
 
     protected function __splitString($string, $lengths)
