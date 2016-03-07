@@ -285,7 +285,10 @@ Route::group( ['middleware' => ['auth','profesor'], 'prefix'=>'profesor'], funct
 
 //AREA SECRETARIA
 Route::group( ['middleware' => ['auth','secretaria'], 'prefix'=>'secretaria'], function() {
-	Route::get('/', ['as' => 'indexSecretaria', function () { return view('matricula.reportes.index'); }]);
+	Route::get('/', ['as' => 'indexSecretaria', function () {
+		
+	 	return redirect()->to('/alumno/buscar');
+	}]);
 });
 
 //AREA LEGAL
