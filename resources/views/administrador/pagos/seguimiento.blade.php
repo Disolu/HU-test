@@ -36,28 +36,28 @@ elseif(Auth::user()->idrol==5)
 		  <div class="col-md-3">
 		  	<fieldset>
 				<div class="form-group">
-					<select name="periodo" id="cboPeriodo" class="form-control mb-md" data-bind="options: periodos, optionsText: 'nombre', optionsValue: 'idperiodomatricula', value: pediodoSeleccionado"></select>
+					<select name="periodo" id="cboPeriodo" class="form-control mb-md" data-bind="options: periodos, optionsText: 'nombre', optionsValue: 'idperiodomatricula', value: pediodoSeleccionado" required=""></select>
 				</div>
 			</fieldset>
 		  </div>
 		  <div class="col-md-3">
 		  	<fieldset>
 				<div class="form-group">
-					<select name="sede"  id="cboSede" class="form-control mb-md" data-bind="options: sedes, optionsText: 'nombre', optionsValue: 'idsede',  optionsCaption: 'Seleccione una Sede', value: sedeSeleccionada"></select>
+					<select name="sede"  id="cboSede" class="form-control mb-md" data-bind="options: sedes, optionsText: 'nombre', optionsValue: 'idsede',  optionsCaption: 'Seleccione una Sede', value: sedeSeleccionada" required=""></select>
 				</div>
 			</fieldset>
 		  </div>
 		  <div class="col-md-3">
 		  	<fieldset>
 				<div class="form-group">
-					<select name="nivel"  id="cboNivel" class="form-control mb-md" data-bind="options: niveles, optionsText: 'nombre', optionsValue: 'idnivel',  optionsCaption: 'Seleccione un Nivel', value: nivelSeleccionado"></select>
+					<select name="nivel"  id="cboNivel" class="form-control mb-md" data-bind="options: niveles, optionsText: 'nombre', optionsValue: 'idnivel',  optionsCaption: 'Seleccione un Nivel', value: nivelSeleccionado" required=""></select>
 				</div>
 			</fieldset>
 		  </div>
 		  <div class="col-md-3">
 		  	<fieldset>
 				<div class="form-group">
-					<select name="grado"  id="cboGrado" class="form-control mb-md" data-bind="options: grados, optionsText: 'nombre', optionsValue: 'idgrado',  optionsCaption: 'Seleccione un Grado', value: gradoSeleccionado"></select>
+					<select name="grado"  id="cboGrado" class="form-control mb-md" data-bind="options: grados, optionsText: 'nombre', optionsValue: 'idgrado',  optionsCaption: 'Seleccione un Grado', value: gradoSeleccionado" required=""></select>
 				</div>
 			</fieldset>
 			</div>
@@ -66,98 +66,107 @@ elseif(Auth::user()->idrol==5)
             <div class="col-md-12">
                 {!! Form::label('Dni', 'Dni') !!}
                 {!! Form::text('dni', $value = null, $attributes = array('class' => 'form-control')) !!}
+
             </div>
         </div>
 	</div>
 	
 	<div class="panel-footer">
-		<a href='{!! route("excelpagos") !!}' class="mb-xs mt-xs mr-xs btn btn-info text-left">
-				<i class="fa fa-thumbs-up"></i> Descargar
-		</a>
-
+		@if($grado)
+			<a href='{!! route("excelpagos",$request) !!}' class="mb-xs mt-xs mr-xs btn btn-info text-left">
+					<i class="fa fa-thumbs-up"></i> Descargar
+			</a>
+		@endif
 		<button type="submit" id="consultar" class="btn btn-primary col-md-offset-9 text-right">Consultar</button>
-		
 	</div>
 {!! Form::close() !!}
 
-	<section class="panel">
-		<div class="row">
-			<div class="col-md-12">
-				<section class="panel">
-					<div class="panel-body">
-						
-						<div class="table-responsive">
-							<table class="table mb-none">
-								<thead>
-									<tr>
-										<th>Nombres</th>
-										<th>Codigo</th>
-										<th>Teléfono</th>
-										<th>Mensualidad</th>
-										<th></th>
-									</tr>
-								</thead>
-								<tbody>
-								@foreach($pagos as $data)
+	@if($pagos)
+		<section class="panel">
+			<div class="row">
+				<div class="col-md-12">
+					<section class="panel">
+						<div class="panel-body">
+							@if($grado)
+								<div>
+									<h3>{{$periodo[0]->nombre}} {{$grado->sede->nombre}} {{$grado->nivel->nombre}} {{$grado->nombre}}</h3>
+								</div>
+							@endif
+							<div class="table-responsive">
+								<table class="table mb-none">
+									<thead>
+										<tr>
+											<th>Nombres</th>
+											<th>Codigo</th>
+											<th>Teléfono</th>
+											<th>Mensualidad</th>
+											<th>Mes</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+									@foreach($pagos as $data)
 
-									<tr>
-										<td>{!! $data->fullname !!}</td>
-										<td>{!! $data->codigo !!}</td>
-										<td>{!! $data->telefono !!}</td>
-										<td>{!! $data->monto !!}</td>
-										<td>
-											<!-- Modal Basic -->
-											<a class="mb-xs mt-xs mr-xs modal-basic btnDetails" href="#modalBasic" data-id="{!! $data->idalumno !!}">
-												Ver estado
-											</a> | 
-											<a href="{!! route('pagosObservacion', $data->idalumno) !!}">
-												Crear Inicidencia
-											</a>
-										</td>
-									</tr>
+										<tr>
+											<td>{!! $data->fullname !!}</td>
+											<td>{!! $data->codigo !!}</td>
+											<td>{!! $data->telefono !!}</td>
+											<td>{!! $data->monto !!}</td>
+											<td>{!! $meses[$data->mes] !!}</td>
+											<td>
+												<!-- Modal Basic -->
+												<a class="mb-xs mt-xs mr-xs modal-basic btnDetails" href="#modalBasic" data-id="{!! $data->idalumno !!}">
+													Ver estado
+												</a> | 
+												<a href="{!! route('pagosObservacion', $data->idalumno) !!}">
+													Crear Inicidencia
+												</a>
+											</td>
+										</tr>
 
-								@endforeach	
-								</tbody>
-							</table>
-							<div id="modalBasic" class="modal-block mfp-hide">
-												<section class="panel">
-													<header class="panel-heading">
-														<h2 class="panel-title">Estado de pagos</h2>
-													</header>
-													<div class="panel-body">
-														<div class="modal-wrapper">
-															<div class="modal-text">
-																PERIODO: <strong>ACTUAL</strong>
-																<table class="table table-hover mb-none">
-																	<thead>
-																		<tr>
-																			<th>Mes</th>
-																			<th>Mensualidad</th>
-																			<th>Estado</th>
-																		</tr>
-																	</thead>
-																	<tbody id="tableajax">
-																	</tbody>
-																</table>
-															</div>
-														</div>
-													</div>
-													<footer class="panel-footer">
-														<div class="row">
-															<div class="col-md-12 text-right">
-																<button class="btn btn-default modal-dismiss">Cerrar</button>
-															</div>
-														</div>
-													</footer>
-												</section>
+									@endforeach	
+									</tbody>
+								</table>
+								<div id="modalBasic" class="modal-block mfp-hide">
+									<section class="panel">
+										<header class="panel-heading">
+											<h2 class="panel-title">Estado de pagos</h2>
+										</header>
+										<div class="panel-body">
+											<div class="modal-wrapper">
+												<div class="modal-text">
+													PERIODO: <strong>ACTUAL</strong>
+													<table class="table table-hover mb-none">
+														<thead>
+															<tr>
+																<th>Mes</th>
+																<th>Mensualidad</th>
+																<th>Estado</th>
+															</tr>
+														</thead>
+														<tbody id="tableajax">
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+										<footer class="panel-footer">
+											<div class="row">
+												<div class="col-md-12 text-right">
+													<button class="btn btn-default modal-dismiss">Cerrar</button>
+												</div>
+											</div>
+										</footer>
+									</section>
+								</div>
 							</div>
+
 						</div>
-					
-					</div>
-				</section>
+					</section>
+				</div>
 			</div>
-		</div>
-	</section>
+		</section>
+	@endif
 </div>
 
 @endsection
@@ -273,7 +282,7 @@ elseif(Auth::user()->idrol==5)
 		fo.periodos = ko.observableArray([]);
 		fo.pediodoSeleccionado = ko.observable(null);
 		fo.sedes    = ko.observableArray([]);
-		fo.sedeSeleccionada    = ko.observable(null);
+		fo.sedeSeleccionada    = ko.observable({{$request['sede']}});
 		fo.niveles  = ko.observableArray([]);
 		fo.nivelSeleccionado   = ko.observable(null);
 		fo.grados   = ko.observableArray([]);

@@ -72,7 +72,7 @@
 							<a href="#popular4" data-toggle="tab"> Pagos importados</a>
 						</li>
 						<li>
-							<a href="{{ route('seguimientoPagos') }}" data-toggle="tab"> Pagos generados</a>
+							<a href="#recent4" data-toggle="tab"> Pagos generados</a>
 						</li>
 					</ul>
 
@@ -102,7 +102,26 @@
 
 						</div>
 						<div id="recent4" class="tab-pane">
-							<p>Recent</p>
+							<div class="table-responsive">
+								<table class="table mb-none">
+									<thead>
+										<tr>
+											<th>Descargar Archivo</th>
+											<th>Sede</th>
+											<th>Fecha de generacion</th>
+										</tr>
+									</thead>
+									<tbody>
+									@foreach($payments as $data) 
+										<tr>
+											<td><a href="{{route('descargarDocumento',array('name'=>$data->name))}}" target="_blank">Descargar</a></td>
+											<td>{!! $data->sede->nombre !!}</td>
+											<td>{!! $data->date !!}</td>
+										</tr>
+									@endforeach	
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>

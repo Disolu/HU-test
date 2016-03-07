@@ -186,28 +186,73 @@ class ReportesController extends Controller
         echo "Cantidad de alumnos matriculados en la sede (Las Brisas): ". count($Sede02)."<br>";
     }
 
-    public function getAlumnosPagosExcel()
+    public function getAlumnosPagosExcel(Request $request)
     {
-      $periodo = DB::table('periodomatricula')->take(1)->orderBy('idperiodomatricula','desc')->get();
-      $alumnos = Alumno::
-            select('codigo','fullname as Alumno','Dni','Direccion','p.monto','apo.p_nombres as Padre','apo.a_nombres as Madre','direccion','Telefono')
+        $idperiodo = $request['periodo'];
+        $idsede    = $request['sede'];
+        $idnivel   = $request['nivel'];
+        $idgrado   = $request['grado'];
+        $dni       = $request['dni'];
+        $periodo = DB::table('periodomatricula')->take(1)->orderBy('idperiodomatricula','desc')->get();
+        $alumnos = Alumno::
+            select('codigo','fullname as Alumno','Dni','Direccion','alumnodeudas.mes as Mes','p.monto','apo.p_nombres as Padre','apo.a_nombres as Madre','Telefono',
+                'apo.p_telefonofijo as p1','apo.p_telefonotrabajo as p2','apo.p_celular as p3',
+                'apo.m_telefonofijo as p4','apo.m_telefonotrabajo as p5','m_celular as p6')
             ->leftJoin('alumnodeudas','alumnodeudas.idalumno','=','alumno.idalumno')
             ->leftJoin('mensualidades as m', 'alumno.idalumno', '=', 'm.idalumno')
             ->leftJoin('pension as p', 'm.idpension', '=', 'p.idpension')
             ->leftJoin('alumnomatricula as am','am.idalumno','=','alumno.idalumno')
             ->leftJoin('alumnoapoderado as apo','apo.idalumno','=','alumno.idalumno')
-
             ->where('alumnodeudas.idperiodomatricula', $periodo[0]->idperiodomatricula)
-            ->where('alumno.impedimento','<>','1')
-            ->groupBy('alumno.idalumno')
-            ->get();
+            ->where('alumno.impedimento','<>','1');
+            if($idperiodo) {
+              $alumnos->where('am.idperiodomatricula','=',$idperiodo);
+            }
+            if ($idsede) {
+              $alumnos->where('am.idsede','=',$idsede);
+            }
+            if ($idnivel) {
+              $alumnos->where('am.idnivel','=',$idnivel);
+            }
+            if ($idgrado) {
+              $alumnos->where('am.idgrado','=',$idgrado);
+            }
+            if ($dni) {
+              $alumnos->where('alumno.dni','=',$dni);
+            }
+      
+        $alumnos = $alumnos->groupBy('alumno.idalumno')->get();
 
-      Excel::create(date('Y-m-d'), function($excel) use($alumnos)
-      {
-          $excel->sheet('Pagos', function($sheet) use($alumnos)  {
-              $sheet->fromArray($alumnos);
+        $meses = array( '01'=> 'Enero', '02' => 'Febrero', '03' => 'Marzo', '04' => 'Abril', '05' => 'Mayo',
+            '06' => 'Junio', '07' => 'Julio', '08' => 'Agosto', '09' => 'Setiembre', '10' => 'Octubre',
+            '11' => 'Noviembre', '12' => 'Diciembre'
+        );
+
+        $newalumnos = array();
+
+        foreach ($alumnos as $alumno) {
+            $alumno = $alumno['attributes'];
+            $alumno['Mes'] = $meses[$alumno['Mes']];
+            $alumno['Otros numeros'] = array();
+            for($i = 1; $i < 6; $i++){
+                if(!empty($alumno['p'.$i])){
+                    $alumno['Otros numeros'][] = $alumno['p'.$i];
+                }
+                unset($alumno['p'.$i]);
+            }
+            $alumno['Otros numeros'] = implode(', ', $alumno['Otros numeros']);
+            $newalumnos[] = $alumno;
+        }
+
+        //dd($alumnos);
+
+
+        Excel::create(date('Y-m-d'), function($excel) use($newalumnos)
+        {
+          $excel->sheet('Pagos', function($sheet) use($newalumnos)  {
+              $sheet->fromArray($newalumnos);
           });
-      })->export('xls');
-      return Redirect::back();
+        })->export('xls');
+        return Redirect::back();
     }
 }

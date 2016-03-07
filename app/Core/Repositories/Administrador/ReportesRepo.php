@@ -87,7 +87,7 @@ class ReportesRepo {
     $periodo = PeriodoMatricula::take(1)->orderBy('idperiodomatricula','desc')->get();
     
     $pagos = AlumnoMatricula::
-    select('alumno.idalumno','fullname','codigo','idestadoalumno','monto','users.nombre as nameregister','telefono')
+    select('alumno.idalumno','fullname','codigo','idestadoalumno','monto','users.nombre as nameregister','telefono','alumnodeudas.mes')
      
      ->leftJoin('alumno', 'alumnomatricula.idalumno', '=', 'alumno.idalumno')
      ->leftJoin('alumnodeudas','alumnodeudas.idalumno','=','alumno.idalumno')

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Core\Repositories\Administrador\ReportesRepo;
+use App\Core\Entities\Grado;
 use DB;
 use Auth;
 use Redirect;
@@ -22,15 +23,11 @@ class SeguimientoPagosController extends Controller
   public function showSeguimientoPagos()
   {
     $periodo = DB::table('periodomatricula')->take(1)->orderBy('idperiodomatricula','desc')->get();
-    $pagos = DB::table('alumno')
-        ->leftJoin('alumnodeudas','alumnodeudas.idalumno','=','alumno.idalumno')
-        ->leftJoin('mensualidades as m', 'alumno.idalumno', '=', 'm.idalumno')
-        ->leftJoin('pension as p', 'm.idpension', '=', 'p.idpension')
-        ->where('alumnodeudas.idperiodomatricula', $periodo[0]->idperiodomatricula)
-        ->where('alumno.impedimento','<>','1')
-        ->groupBy('alumno.idalumno')
-        ->get();
-    return view('administrador.pagos.seguimiento', compact('pagos'));
+    $pagos = array();
+
+    $request = array('sede'=>'','grado'=>'','nivel'=>'');
+
+    return view('administrador.pagos.seguimiento', compact('pagos','request'));
   }
 
   public function SeguimientoPagosAjax(Request $request)
@@ -52,9 +49,17 @@ class SeguimientoPagosController extends Controller
 
   public function searchSeguimientoPagos(Request $request)
   {
-    $pagos = $this->reporteRepo->SeguimientoPagos($request->all());
+    $request = $request->all();
+    $pagos = $this->reporteRepo->SeguimientoPagos($request);
     $periodo = DB::table('periodomatricula')->take(1)->orderBy('idperiodomatricula','desc')->get();
-    return view('administrador.pagos.seguimiento', compact('pagos'));
+    $grado = Grado::with('sede')->with('nivel')->where('idgrado',$request['grado'])->first();
+
+    $meses = array( '01'=> 'Enero', '02' => 'Febrero', '03' => 'Marzo', '04' => 'Abril', '05' => 'Mayo',
+              '06' => 'Junio', '07' => 'Julio', '08' => 'Agosto', '09' => 'Setiembre', '10' => 'Octubre',
+              '11' => 'Noviembre', '12' => 'Diciembre'
+            );
+
+    return view('administrador.pagos.seguimiento', compact('pagos','request','grado','periodo','meses'));
   }
 
   public function pagosObservacion($id)
