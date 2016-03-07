@@ -38,7 +38,7 @@ class PagosController extends Controller
         foreach ($payments as $key => &$p) {
 
             $name = explode('_',$p);
-            if(count($name) > 2){
+            if(count($name) > 2 && isset($numeration[$name[1]])){
                 $date = explode('.',$name[2]);
                 $date = date('d-m-Y',strtotime($date[0]));
                 $pay = new \stdClass();
