@@ -1,23 +1,23 @@
-<?php 
+<?php
     if(Auth::user()->idrol==1)
     {
         $variable = "layouts.index";
-    } 
+    }
     elseif(Auth::user()->idrol==2)
     {
-        $variable = "layouts.responsable";  
+        $variable = "layouts.responsable";
     }
     elseif(Auth::user()->idrol==3)
     {
-        $variable = "layouts.secretaria";   
+        $variable = "layouts.secretaria";
     }
     elseif(Auth::user()->idrol==4)
     {
-        $variable = "layouts.profesor"; 
+        $variable = "layouts.profesor";
     }
     elseif(Auth::user()->idrol==5)
     {
-        $variable = "layouts.legal";    
+        $variable = "layouts.legal";
     }
 ?>
 @extends("$variable")
@@ -41,7 +41,7 @@
                           <label class="col-md-3 control-label" for="inputSuccess"></label>
                           <div class="col-md-6">
                               <input name="nombres" class="form-control input-sm mb-md" type="text" placeholder="Nombres completos">
-                              <input name="dni" class="form-control input-sm mb-md" type="text" placeholder="DNI">
+                              <input name="dni" class="form-control input-sm mb-md" type="text" placeholder="DNI" maxlength="7">
                               <input name="colegio" class="form-control input-sm mb-md" type="text" placeholder="Nombre del colegio">
                              <select class="form-control mb-md" name="distrito">
                                 <option> Seleccione distrito </option>

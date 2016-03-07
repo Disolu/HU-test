@@ -40,11 +40,11 @@ class VacanteController extends Controller
         $periodomatricula = $this->PeriodoRepo->getLastPeriodo();
         $seccion = $this->VacanteRepo->SaveVacantes($request->all(), $periodomatricula[0]->idperiodomatricula);
         if($seccion){
-            Session::flash('message-success', 'Se registro correctamente los vacantes');            
+            Session::flash('message-success', 'Se registro correctamente los vacantes');
             return redirect()->route('vacante');
         }
         else{
-            Session::flash('message-danger', 'Ocurrio un error al validar el registro');            
+            Session::flash('message-danger', 'Ocurrio un error al validar el registro');
             return redirect()->back();
         }
     }
@@ -54,11 +54,11 @@ class VacanteController extends Controller
         $vacante = $this->VacanteRepo->deleteVacante($id);
         if($vacante)
         {
-            Session::flash('message-success', 'Los vacantes ha sido eliminados');  
+            Session::flash('message-success', 'Los vacantes ha sido eliminados');
             return redirect()->route('vacante');
         }
         else{
-            return redirect()->back(); 
-        } 
+            return redirect()->back();
+        }
     }
 }

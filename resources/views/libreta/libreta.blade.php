@@ -34,7 +34,7 @@
 		<div class="row">
 			<div class="col-md-2">
 		  	<fieldset>
-	  			<select class="form-control mb-md" name="bimestre" required="">
+	  			<select class="form-control mb-md" name="bimestre" >
 						<option value="1">Bimestre I</option>
 						<option value="2">Bimestre II</option>
 						<option value="3">Bimestre III</option>
@@ -46,7 +46,7 @@
 		  <div class="col-md-2">
 		  	<fieldset>
 				<div class="form-group">
-					<select name="sede"  id="cboSede" class="form-control mb-md" data-bind="options: sedes, optionsText: 'nombre', optionsValue: 'idsede',  optionsCaption: 'Sede', value: sedeSeleccionada" required=""></select>
+					<select name="sede"  id="cboSede" class="form-control mb-md" data-bind="options: sedes, optionsText: 'nombre', optionsValue: 'idsede',  optionsCaption: 'Sede', value: sedeSeleccionada"></select>
 				</div>
 				</fieldset>
 		  </div>
@@ -54,7 +54,7 @@
 		  <div class="col-md-2">
 		  	<fieldset>
 				<div class="form-group">
-					<select name="nivel"  id="cboNivel" class="form-control mb-md" data-bind="options: niveles, optionsText: 'nombre', optionsValue: 'idnivel',  optionsCaption: 'Nivel', value: nivelSeleccionado" required=""></select>
+					<select name="nivel"  id="cboNivel" class="form-control mb-md" data-bind="options: niveles, optionsText: 'nombre', optionsValue: 'idnivel',  optionsCaption: 'Nivel', value: nivelSeleccionado"></select>
 				</div>
 				</fieldset>
 		  </div>
@@ -62,7 +62,7 @@
 		  <div class="col-md-3">
 		  	<fieldset>
 				<div class="form-group">
-					<select name="grado"  id="cboGrado" class="form-control mb-md" data-bind="options: grados, optionsText: 'nombre', optionsValue: 'idgrado',  optionsCaption: 'Grado', value: gradoSeleccionado" required=""></select>
+					<select name="grado"  id="cboGrado" class="form-control mb-md" data-bind="options: grados, optionsText: 'nombre', optionsValue: 'idgrado',  optionsCaption: 'Grado', value: gradoSeleccionado"></select>
 				</div>
 				</fieldset>
 		  </div>
@@ -70,7 +70,7 @@
 		  <div class="col-md-3">
 		  	<fieldset>
 				<div class="form-group">
-					<select name="seccion"  id="cboSeccion" class="form-control mb-md" data-bind="options: secciones, optionsText: 'nombre', optionsValue: 'idseccion',  optionsCaption: 'Sección', value: seccionSeleccionado" required=""></select>
+					<select name="seccion"  id="cboSeccion" class="form-control mb-md" data-bind="options: secciones, optionsText: 'nombre', optionsValue: 'idseccion',  optionsCaption: 'Sección', value: seccionSeleccionado"></select>
 				</div>
 				</fieldset>
 		  </div>
@@ -83,10 +83,10 @@
         </div>
     </div>
 	</div>
-	
+
 	<div class="panel-footer">
 		<button type="submit" id="consultar" class="btn btn-primary ">Consultar</button>
-		
+
 	</div>
 {!! Form::close() !!}
 
@@ -95,7 +95,7 @@
 			<div class="col-md-12">
 				<section class="panel">
 					<div class="panel-body">
-						
+
 						<div class="table-responsive">
 							<table class="table mb-none">
 								<thead>
@@ -112,23 +112,23 @@
 										<td>{{ $data->codigo }}</td>
 										<td>
 											@if($nivel == 1)
-												<a href="{{ route('generateOptimist', [$data->idalumno, Input::get('bimestre')])}}">Optimist</a> | 
+												<a href="{{ route('generateOptimist', [$data->idalumno, Input::get('bimestre')])}}">Optimist</a> |
 												<a href="{{ route('generateProgrest', [$data->idalumno, Input::get('bimestre')])}}">Progreso</a>
 											@elseif($nivel == 2)
-												<a href="{{ route('generateOptimist', [$data->idalumno, Input::get('bimestre')])}}">Tajerta Snipe</a> | 
-												<a href="{{ route('generatelibreta',  $data->idalumno)}}">Libreta</a> 
+												<a href="{{ route('generateOptimist', [$data->idalumno, Input::get('bimestre')])}}">Tajerta Snipe</a> |
+												<a href="{{ route('generatelibreta',  $data->idalumno)}}">Libreta</a>
 											@else
 												<a href="{{ route('generateOptimist', [$data->idalumno, Input::get('bimestre')])}}">Tajerta de Valores</a> |
-												<a href="{{ route('generatelibreta',  $data->idalumno)}}">Libreta</a> 
+												<a href="{{ route('generatelibreta',  $data->idalumno)}}">Libreta</a>
 											@endif
 
-										</td>	
+										</td>
 									</tr>
 								@endforeach
 								</tbody>
 							</table>
 						</div>
-					
+
 					</div>
 				</section>
 			</div>
@@ -184,7 +184,7 @@
 			$.ajax({
 				type: "GET",
 				url: baseURL + "/api/v1/getSedes",
-				dataType: "json",               
+				dataType: "json",
 				contentType: "application/json; charset=utf-8",
 				success: function (e) {
 					var sedesRaw =  e.sedes;
@@ -294,12 +294,12 @@
 		});
 
 		fo.cargarperiodos();
-		fo.cargarsedes();       
-	}    
+		fo.cargarsedes();
+	}
 	var viewModel = new VacantesFormViewModel();
 
 	$(function(){
-		ko.applyBindings(viewModel, $("#page-wrapper")[0]); 
+		ko.applyBindings(viewModel, $("#page-wrapper")[0]);
 	});
 </script>
 @endsection

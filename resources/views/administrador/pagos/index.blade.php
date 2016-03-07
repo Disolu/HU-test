@@ -13,24 +13,24 @@
 				</header>
 				<div class="panel-body">
 						{!! Form::open(array('route' => 'bancoPagosUpload', 'files' => true)) !!}
-						{!! Form::token() !!}	
+						{!! Form::token() !!}
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="inputSuccess"></label>
 								<div class="alert alert-info">
 									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-									Ten en cuenta el que formado debe ser 
-									<strong>RC_000_{{ date('Ymd') }}.txt</strong>
+									Ten en cuenta el que formado debe ser
+									<strong>*.txt</strong>
 								</div>
 
-								<div class="col-md-6">		
-									
+								<div class="col-md-6">
+
 
 									<fieldset>
 										<div class="form-group">
-											{!! Form::file('files', $attributes = array()) !!}
+											{!! Form::file('files', $attributes = array('required'=>'')) !!}
 										</div>
 									</fieldset>
-								</div>					
+								</div>
 							</div>
 
 							<p class="m-none">
@@ -39,7 +39,7 @@
 						{!! Form::close() !!}
 				</div>
 			</section>
-		</div>	
+		</div>
 
 		<div class="col-md-6">
 			<section class="panel">
@@ -54,8 +54,8 @@
 				<a href="{!! route('bancoPagosGenerate') !!}" class="mb-xs mt-xs mr-xs btn btn-primary btn-lg btn-block">Generar Pagos</a>
 				</div>
 			</section>
-		</div>	
-	</div>	
+		</div>
+	</div>
 
 <section class="panel">
 	<header class="panel-heading">
@@ -78,7 +78,7 @@
 
 					<div class="tab-content">
 						<div id="popular4" class="tab-pane active">
-							
+
 							<div class="table-responsive">
 								<table class="table mb-none">
 									<thead>
@@ -95,7 +95,7 @@
 											<td>{!! $data->nomcliente !!}</td>
 											<td>{!! $data->fecpago !!}</td>
 										</tr>
-									@endforeach	
+									@endforeach
 									</tbody>
 								</table>
 							</div>
@@ -112,13 +112,13 @@
 										</tr>
 									</thead>
 									<tbody>
-									@foreach($payments as $data) 
+									@foreach($payments as $data)
 										<tr>
 											<td><a href="{{route('descargarDocumento',array('name'=>$data->name))}}" target="_blank">Descargar</a></td>
 											<td>{!! $data->sede->nombre !!}</td>
 											<td>{!! $data->date !!}</td>
 										</tr>
-									@endforeach	
+									@endforeach
 									</tbody>
 								</table>
 							</div>
@@ -127,7 +127,7 @@
 				</div>
 					<div class="center">
 						{!! $pagos->render() !!}
-					</div>	
+					</div>
 				</div>
 			</section>
 		</div>

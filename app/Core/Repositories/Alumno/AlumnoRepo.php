@@ -12,6 +12,11 @@ use App\Core\Repositories\PeriodoRepo;
 use DB;
 
 class AlumnoRepo {
+    public function __construct(PeriodoRepo $PeriodoRepo)
+    {
+        $this->PeriodoRepo = $PeriodoRepo;
+    }
+
     public function getAlumnoJoins($alumno)
     {
         return Alumno::
@@ -53,8 +58,8 @@ class AlumnoRepo {
         $date = date('Y-m-d');
         $current = $this->PeriodoRepo->getLastPeriodo();;
         if($current){
-            $inicio = $current->inicio;
-            $fin = $current->fin;
+            $inicio = $current[0]->inicio;
+            $fin = $current[0]->fin;
         }else{
             $inicio = date('Y-m-d');
             $fin = date('Y-m-d');

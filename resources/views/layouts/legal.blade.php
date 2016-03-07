@@ -125,11 +125,6 @@
 										</a>
 										<ul class="nav nav-children">
 											<li>
-												<a href="{!! route('reportes') !!}">
-													Alumno por sección
-												</a>
-											</li>
-											<li>
 												<a href="{!! route('seguimientoPagos') !!}">
 													Seguimiento de pagos
 												</a>

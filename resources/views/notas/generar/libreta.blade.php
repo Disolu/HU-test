@@ -51,11 +51,10 @@
                             <td class="gray">PA</td>
                         </tr>
 
-                        <tr>
-                            <td rowspan="5" class="gray">MATEMÁTICA</td>
-                            <td>ARITMÉTICA</td>
-                            <td>14</td>
-                            <td>&nbsp;</td>
+                        <tr                            <td n="5" class="gray">MATEMÁTICA</td>
+                            <td>TICA</td>
+                            <td>>
+                            <td></td>
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
@@ -63,38 +62,38 @@
 
                         <tr>
                             <td>ÁLGEBRA</td>
-                            <td>17</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
 
                         <tr>
                             <td>GEOMETRÍA</td>
-                            <td>16</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
 
                         <tr>
                             <td>TRIGONOMETRÍA</td>
-                            <td>13</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
 
                         <tr>
                             <td>RAZONAMINETO MATEMÁTICO</td>
-                            <td>14</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     </table>
 
@@ -103,47 +102,47 @@
                         <tr>
                             <td rowspan="5">COMUNICACIÓN</td>
                             <td>RAZONAMIENTO VERBAL</td>
-                            <td>14</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td>@if(isset($notas[1]['Razonamiento Verbal'])) {{$notas[1]['Razonamiento Verbal']->nota_number}} @endif</td>
+                            <td>@if(isset($notas[2]['Razonamiento Verbal'])) {{$notas[1]['Razonamiento Verbal']->nota_number}} @endif</td>
+                            <td>@if(isset($notas[3]['Razonamiento Verbal'])) {{$notas[1]['Razonamiento Verbal']->nota_number}} @endif</td>
+                            <td>@if(isset($notas[4]['Razonamiento Verbal'])) {{$notas[1]['Razonamiento Verbal']->nota_number}} @endif</td>
+                            <td></td>
                         </tr>
 
                         <tr>
                             <td>LENGUAJE</td>
-                            <td>18</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td>@if(isset($notas[1]['Lenguaje'])) {{$notas[1]['Lenguaje']->nota_number}} @endif</td>
+                            <td>@if(isset($notas[2]['Lenguaje'])) {{$notas[1]['Lenguaje']->nota_number}} @endif</td>
+                            <td>@if(isset($notas[3]['Lenguaje'])) {{$notas[1]['Lenguaje']->nota_number}} @endif</td>
+                            <td>@if(isset($notas[4]['Lenguaje'])) {{$notas[1]['Lenguaje']->nota_number}} @endif</td>
+                            <td></td>
                         </tr>
 
                         <tr>
                             <td>LITERATURA</td>
-                            <td>13</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td>@if(isset($notas[1]['Literatura'])) {{$notas[1]['Literatura']->nota_number}} @endif</td>
+                            <td>@if(isset($notas[2]['Literatura'])) {{$notas[1]['Literatura']->nota_number}} @endif</td>
+                            <td>@if(isset($notas[3]['Literatura'])) {{$notas[1]['Literatura']->nota_number}} @endif</td>
+                            <td>@if(isset($notas[4]['Literatura'])) {{$notas[1]['Literatura']->nota_number}} @endif</td>
+                            <td></td>
                         </tr>
 
                         <tr>
                             <td>REDACCIÓN</td>
-                            <td>16</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td>@if(isset($notas[1]['Redacción'])) {{$notas[1]['Redacción']->nota_number}} @endif</td>
+                            <td>@if(isset($notas[2]['Redacción'])) {{$notas[1]['Redacción']->nota_number}} @endif</td>
+                            <td>@if(isset($notas[3]['Redacción'])) {{$notas[1]['Redacción']->nota_number}} @endif</td>
+                            <td>@if(isset($notas[4]['Redacción'])) {{$notas[1]['Redacción']->nota_number}} @endif</td>
+                            <td></td>
                         </tr>
 
                         <tr>
                             <td>PLAN LECTOR</td>
-                            <td>16</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td>@if(isset($notas[1]['Plan Lector'])) {{$notas[1]['Plan Lector']->nota_number}} @endif</td>
+                            <td>@if(isset($notas[2]['Plan Lector'])) {{$notas[1]['Plan Lector']->nota_number}} @endif</td>
+                            <td>@if(isset($notas[3]['Plan Lector'])) {{$notas[1]['Plan Lector']->nota_number}} @endif</td>
+                            <td>@if(isset($notas[4]['Plan Lector'])) {{$notas[1]['Plan Lector']->nota_number}} @endif</td>
+                            <td></td>
                         </tr>
                     </table>
                     <br />
@@ -151,11 +150,11 @@
 
                         <tr>
                             <td rowspan="5">INGLES</td>
-                            <td>14</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
 
                     </table>
@@ -164,11 +163,11 @@
 
                         <tr>
                             <td rowspan="5">ARTE&nbsp;</td>
-                            <td>14</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
 
                     </table>
@@ -179,27 +178,27 @@
                         <tr>
                             <td rowspan="5">HISTORIA, GEOGRAFÍA Y ECONOMÍA</td>
                             <td>HISTORIA DEL PERÚ</td>
-                            <td>14</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td>HISTORIA UNIVERSAL</td>
-                            <td>18</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td>GEOGRAFÍA</td>
-                            <td>13</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
 
                     </table>
@@ -209,20 +208,20 @@
                         <tr>
                             <td rowspan="5">FORMACIÓN CÍVICA Y CIUDADANA</td>
                             <td>CÍVICA</td>
-                            <td>14</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
 
                         <tr>
                             <td>PLAN DE FORMACIÓN</td>
-                            <td>18</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
 
                     </table>
@@ -231,11 +230,11 @@
                         <tr>
                             <td rowspan="5">PERSONA, FAMILIA Y RELACIONES HUMANA</td>
                             <td>CRECEMOS EN VALORES</td>
-                            <td>14</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
 
                     </table>
@@ -243,11 +242,11 @@
                     <table>
                         <tr>
                             <td rowspan="5">EDUCACIÓN FÍSICA</td>
-                            <td>14</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
 
                     </table>
@@ -255,11 +254,11 @@
                     <table>
                         <tr>
                             <td rowspan="5">EDUCACIÓN RELIGIOSA</td>
-                            <td>14</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
 
                     </table>
@@ -268,27 +267,27 @@
                         <tr>
                             <td rowspan="5">C.T.A.</td>
                             <td>FÍSICA</td>
-                            <td>14</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td>QUÍMICA</td>
-                            <td>18</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td>BIOLOGÍA</td>
-                            <td>13</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
 
                     </table>
@@ -296,11 +295,11 @@
                     <table>
                         <tr>
                             <td rowspan="5">EDUCACIÓN PARA EL TRABAJO</td>
-                            <td>14</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
 
                     </table>

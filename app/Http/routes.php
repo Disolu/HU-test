@@ -148,7 +148,9 @@ Route::group( ['middleware' => ['auth'], 'prefix'=>'alumno'], function() {
 //ADMINISTRADOR
 Route::group( ['middleware' => ['auth','administrador'], 'prefix'=>'admin'], function() {
 
-	Route::get('/', ['as' => 'home', 'uses' => 'InformesController@home']);
+	Route::get('/', ['as' => 'home', 'uses' => function(){
+		return redirect()->to('/alumno/reportes/graficos');
+	}]);
 	Route::post('/informes/graph', ['as' => 'searchInformesGraph', 'uses' => 'InformesController@searchInformesGraph']);
 
 	//Área de Institución
@@ -286,7 +288,7 @@ Route::group( ['middleware' => ['auth','profesor'], 'prefix'=>'profesor'], funct
 //AREA SECRETARIA
 Route::group( ['middleware' => ['auth','secretaria'], 'prefix'=>'secretaria'], function() {
 	Route::get('/', ['as' => 'indexSecretaria', function () {
-		
+
 	 	return redirect()->to('/alumno/buscar');
 	}]);
 });

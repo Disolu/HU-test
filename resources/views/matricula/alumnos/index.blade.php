@@ -1,23 +1,23 @@
-<?php 
+<?php
 if(Auth::user()->idrol==1)
 {
 	$variable = "layouts.index";
-} 
+}
 elseif(Auth::user()->idrol==2)
 {
-	$variable = "layouts.responsable";	
+	$variable = "layouts.responsable";
 }
 elseif(Auth::user()->idrol==3)
 {
-	$variable = "layouts.secretaria";	
+	$variable = "layouts.secretaria";
 }
 elseif(Auth::user()->idrol==4)
 {
-	$variable = "layouts.profesor";	
+	$variable = "layouts.profesor";
 }
 elseif(Auth::user()->idrol==5)
 {
-	$variable = "layouts.legal";	
+	$variable = "layouts.legal";
 }
 ?>
 @extends("$variable")
@@ -32,10 +32,10 @@ elseif(Auth::user()->idrol==5)
 				</li>
 				<li class="">
 						<a href="#otros" data-toggle="tab" aria-expanded="true"> Otros datos</a>
-				</li>				
+				</li>
 				<li class="">
 						<a href="#archivos" data-toggle="tab" aria-expanded="true"> Archivos</a>
-				</li>				
+				</li>
 				<li class="">
 						<a href="#notas" data-toggle="tab" aria-expanded="true"> Notas</a>
 				</li>
@@ -52,10 +52,10 @@ elseif(Auth::user()->idrol==5)
 					<h2>Alumno</h2>
 					@include('alertas.request')
 					@include('alertas.success')
-					
+
 					{!! Form::open(['url' => 'admin/alumno', 'method' => 'post']) !!}
 					{!! csrf_field() !!}
-					<div class="col-xs-6">                                
+					<div class="col-xs-6">
 		                <div class="form-group">
 		                    <label>Nombre</label>
 		                    <input type="text" name="nombres" class="form-control" placeholder="Ingrese un nombre" data-bind="value: anombre">
@@ -125,7 +125,7 @@ elseif(Auth::user()->idrol==5)
 		                </div>
                 	</div>
 
-                	<p class="m-none">					
+                	<p class="m-none">
 						<button type="submit" class="mb-xs mt-xs mr-xs btn btn-primary">Registrar</button>
 					</p>
 
@@ -146,7 +146,7 @@ elseif(Auth::user()->idrol==5)
 	                        </div>
 	                        <div class="form-group">
 	                            <label>Dni</label>
-	                            <input type="text" class="form-control" placeholder="DNI" name="p_dni" data-bind="value: p_dni">
+	                            <input type="text" class="form-control" placeholder="DNI" name="p_dni" data-bind="value: p_dni"  maxlength="7">
 	                        </div>
 	                        <div class="form-group">
 	                            <label>Estado Civil</label>
@@ -172,9 +172,9 @@ elseif(Auth::user()->idrol==5)
 	                            <label>email</label>
 	                            <input type="email" class="form-control" placeholder="Email" name="p_email" data-bind="value: p_email">
 	                        </div>
-	                </div>  
+	                </div>
 
-	                <div class="col-xs-4">  
+	                <div class="col-xs-4">
 	                    <h4>Datos de la Madre</h4>
 	                        <div class="form-group">
 	                            <label>Nombres</label>
@@ -186,7 +186,7 @@ elseif(Auth::user()->idrol==5)
 	                        </div>
 	                        <div class="form-group">
 	                            <label>Dni</label>
-	                            <input type="text" class="form-control" placeholder="DNI" name="m_dni" data-bind="value: m_dni">
+	                            <input type="text" class="form-control" placeholder="DNI" name="m_dni" data-bind="value: m_dni"  maxlength="7">
 	                        </div>
 	                        <div class="form-group">
 	                            <label>Estado Civil</label>
@@ -212,11 +212,11 @@ elseif(Auth::user()->idrol==5)
 	                            <label>email</label>
 	                            <input type="email" class="form-control" placeholder="Email" name="m_email" data-bind="value: m_email">
 	                        </div>
-	                </div>  
+	                </div>
 
 	                <div class="col-xs-4">
 	                	<h4>Datos del Apoderado</h4>
-	                    
+
 	                        <div class="form-group">
 	                            <label>Nombres</label>
 	                            <input type="text" class="form-control" placeholder="Nombres" name="a_nombre" data-bind="value: a_nombres">
@@ -252,10 +252,10 @@ elseif(Auth::user()->idrol==5)
 	                        <div class="form-group">
 	                            <label>email</label>
 	                            <input type="email" class="form-control" placeholder="Email" name="a_email" data-bind="value: a_email">
-	                        </div>	                
-	                </div>	                
+	                        </div>
+	                </div>
                 	<div style="clear:both"></div>
-                </div> 
+                </div>
 
                 <div id="otros" class="tab-pane">
                 	<h2>Otros datos</h2>
@@ -297,7 +297,7 @@ elseif(Auth::user()->idrol==5)
 	                </div>
 	                <div style="clear:both"></div>
                 </div>
-                                            
+
             	<div id="pensiones" class="tab-pane">
             		<div class="col-xs-12">
 	                    <div class="col-md-10"><h2>Pensiones</h2></div>
@@ -306,8 +306,8 @@ elseif(Auth::user()->idrol==5)
 	                          <option>2015</option>
 	                          <option>2014</option>
 	                          <option>2013</option>
-	                        </select>      
-	                    </div>                    
+	                        </select>
+	                    </div>
 	                </div>
 
 	                <div class="col-xs-4">
@@ -315,7 +315,7 @@ elseif(Auth::user()->idrol==5)
 	                      <option>Seleccione pensión</option>
 	                      <option>Pensión completa</option>
 	                      <option>Pensión especial</option>
-	                    </select>  
+	                    </select>
 	                </div>
 
 	                <div class="col-xs-4">
@@ -323,7 +323,7 @@ elseif(Auth::user()->idrol==5)
 	                      <option>Seleccione pensión</option>
 	                      <option>Pensión completa</option>
 	                      <option>Pensión especial</option>
-	                    </select>  
+	                    </select>
 	                </div>
 
 	                <div class="col-xs-4">
@@ -331,7 +331,7 @@ elseif(Auth::user()->idrol==5)
 	                      <option>Seleccione pensión</option>
 	                      <option>Pensión completa</option>
 	                      <option>Pensión especial</option>
-	                    </select>  
+	                    </select>
 	                </div>
 	                <div style="clear:both"></div>
             	</div>
@@ -345,10 +345,10 @@ elseif(Auth::user()->idrol==5)
 	                          <option>2015</option>
 	                          <option>2014</option>
 	                          <option>2013</option>
-	                        </select>      
-	                    </div>                    
+	                        </select>
+	                    </div>
 	                </div>
-	                
+
 	                <div class="col-xs-8">
 	                        <div class="well bloquepadding">
 	                            <p><strong>Compromiso de matricula</strong></p>
@@ -357,7 +357,7 @@ elseif(Auth::user()->idrol==5)
 	                                  <input type="file" size="32" name="my_field[]" value="">
 	                                </div>
 	                            </div>
-	                            
+
 	                        </div>
 	                </div>
 
@@ -369,7 +369,7 @@ elseif(Auth::user()->idrol==5)
 	                                  <input type="file" size="32" name="my_field[]" value="">
 	                                </div>
 	                            </div>
-	                            
+
 	                        </div>
 	                </div>
 
@@ -381,7 +381,7 @@ elseif(Auth::user()->idrol==5)
 	                                  <input type="file" size="32" name="my_field[]" value="">
 	                                </div>
 	                            </div>
-	                            
+
 	                        </div>
 	                </div>
 
@@ -393,14 +393,14 @@ elseif(Auth::user()->idrol==5)
 	                                  <input type="file" size="32" name="my_field[]" value="">
 	                                </div>
 	                            </div>
-	                            
+
 	                        </div>
 	                </div>
 
 	                <div class="col-md-12">
 	                        <input type="hidden" name="action" value="multiple">
 	                        <button type="submit" class="btn btn-success">Subir archivos</button>
-	                </div>     	                	                  
+	                </div>
 					<div style="clear:both"></div>
             	</div>
 
@@ -412,8 +412,8 @@ elseif(Auth::user()->idrol==5)
 	                          <option>2015</option>
 	                          <option>2014</option>
 	                          <option>2013</option>
-	                        </select>      
-	                    </div>                    
+	                        </select>
+	                    </div>
 	                </div>
 
 	                <div class="panel-body">
@@ -443,7 +443,7 @@ elseif(Auth::user()->idrol==5)
 	                        </tbody>
 	                      </table>
 	                    </div>
-	                </div>   
+	                </div>
 
             	</div>
 

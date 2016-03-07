@@ -1,23 +1,23 @@
-<?php 
+<?php
 	if(Auth::user()->idrol==1)
 	{
 		$variable = "layouts.index";
-	} 
+	}
 	elseif(Auth::user()->idrol==2)
 	{
-		$variable = "layouts.responsable";	
+		$variable = "layouts.responsable";
 	}
 	elseif(Auth::user()->idrol==3)
 	{
-		$variable = "layouts.secretaria";	
+		$variable = "layouts.secretaria";
 	}
 	elseif(Auth::user()->idrol==4)
 	{
-		$variable = "layouts.profesor";	
+		$variable = "layouts.profesor";
 	}
 	elseif(Auth::user()->idrol==5)
 	{
-		$variable = "layouts.legal";	
+		$variable = "layouts.legal";
 	}
 ?>
 @extends("$variable")
@@ -34,18 +34,18 @@
 		</li>
 		<li class="">
 			<a href="#otros" data-toggle="tab" aria-expanded="true"> Otros datos</a>
-		</li>	
+		</li>
 		<li class="">
 			<a href="#academica" data-toggle="tab" aria-expanded="true"> Matricula Académica</a>
-		</li>		
+		</li>
 	</ul>
 	<div class="tab-content">
 		<div id="alumno" class="tab-pane active">
 			<h2>Alumno</h2>
 			@include('alertas.request')
 			@include('alertas.success')
-			
-			<div class="col-xs-6">                                
+
+			<div class="col-xs-6">
 				<div class="form-group">
 					<label>Nombre</label>
 					<input type="text" name="nombres" class="form-control" id="validate" placeholder="Ingrese un nombre" value="{!! $alumno->nombres !!}" data-bind="value: anombre">
@@ -79,20 +79,20 @@
 				<div class="form-group">
 					<label>Departamento</label>
 					<select class="form-control" name="departamento" data-bind="value: adepartamento">
-						<option value="1">Lima</option>						
+						<option value="1">Lima</option>
 					</select>
 				</div>
 				<div class="form-group">
 					<label>Provincia</label>
 					<select class="form-control" name="provincia" data-bind="value: aprovincia">
-						<option value="1">Lima</option>						
-					</select>					
+						<option value="1">Lima</option>
+					</select>
 				</div>
 				<div class="form-group">
 					<label>Distrito</label>
 					<select class="form-control" name="distrito" data-bind="value: adistrito">
-						<option value="1">Villa El Salvador</option>						
-					</select>					
+						<option value="1">Villa El Salvador</option>
+					</select>
 				</div>
 				<div class="form-group">
 					<label>Dirección</label>
@@ -103,7 +103,7 @@
 					<input class="form-control" name="telefono" type="text" value="{!! $alumno->telefono !!}" placeholder="Ingrese un telefono" data-bind="value: atelefono">
 				</div>
 			</div>
-			
+
 			<div style="clear:both"></div>
 		</div>
 
@@ -120,7 +120,7 @@
 				</div>
 				<div class="form-group">
 					<label>Dni</label>
-					<input type="text" class="form-control" placeholder="DNI" name="p_dni" value="{!! $apoderado->p_dni !!}" data-bind="value: p_dni">
+					<input type="text" class="form-control" placeholder="DNI" name="p_dni" maxlength="7" value="{!! $apoderado->p_dni !!}" data-bind="value: p_dni">
 				</div>
 				<div class="form-group">
 					<label>Estado Civil</label>
@@ -130,7 +130,7 @@
 						<option value="3" <?php echo($apoderado->p_estadocivil == 3 ? "selected='selected'" : ''); ?>>Separado</option>
 						<option value="4" <?php echo($apoderado->p_estadocivil == 4 ? "selected='selected'" : ''); ?>>Viudo</option>
 						<option value="5" <?php echo($apoderado->p_estadocivil == 5 ? "selected='selected'" : ''); ?>>Otro</option>
-					</select>					
+					</select>
 				</div>
 				<div class="form-group">
 					<label>Lugar de residencia</label>
@@ -152,9 +152,9 @@
 					<label>email</label>
 					<input type="email" class="form-control" placeholder="Email" name="p_email" value="{!! $apoderado->p_email !!}" data-bind="value: p_email">
 				</div>
-			</div>  
+			</div>
 
-			<div class="col-xs-4">  
+			<div class="col-xs-4">
 				<h4>Datos de la Madre</h4>
 				<div class="form-group">
 					<label>Nombres</label>
@@ -166,7 +166,7 @@
 				</div>
 				<div class="form-group">
 					<label>Dni</label>
-					<input type="text" class="form-control" placeholder="DNI" name="m_dni" value="{!! $apoderado->m_dni !!}" data-bind="value: m_dni">
+					<input type="text" class="form-control" placeholder="DNI"  maxlength="7" name="m_dni" value="{!! $apoderado->m_dni !!}" data-bind="value: m_dni">
 				</div>
 				<div class="form-group">
 					<label>Estado Civil</label>
@@ -198,7 +198,7 @@
 					<label>email</label>
 					<input type="email" class="form-control" placeholder="Email" name="m_email" value="{!! $apoderado->m_email !!}" data-bind="value: m_email">
 				</div>
-			</div>  
+			</div>
 
 			<div class="col-xs-4">
 				<h4>Datos del Apoderado</h4>
@@ -213,7 +213,7 @@
 				</div>
 				<div class="form-group">
 					<label>Dni</label>
-					<input type="text" class="form-control" placeholder="DNI" name="a_dni" value="{!! $apoderado->a_dni !!}" data-bind="value: a_dni">
+					<input type="text" class="form-control" placeholder="DNI" name="a_dni" value="{!! $apoderado->a_dni !!}" data-bind="value: a_dni"  maxlength="7">
 				</div>
 				<div class="form-group">
 					<label>Estado Civil</label>
@@ -223,7 +223,7 @@
 						<option value="3" <?php echo($apoderado->a_estadocivil == 3 ? "selected='selected'" : ''); ?>>Separado</option>
 						<option value="4" <?php echo($apoderado->a_estadocivil == 4 ? "selected='selected'" : ''); ?>>Viudo</option>
 						<option value="5" <?php echo($apoderado->a_estadocivil == 5 ? "selected='selected'" : ''); ?>>Otro</option>
-					</select>					
+					</select>
 				</div>
 				<div class="form-group">
 					<label>Lugar de residencia</label>
@@ -244,10 +244,10 @@
 				<div class="form-group">
 					<label>email</label>
 					<input type="email" class="form-control" placeholder="Email" name="a_email" value="{!! $apoderado->a_email !!}" data-bind="value: a_email">
-				</div>	                
-			</div>	                
+				</div>
+			</div>
 			<div style="clear:both"></div>
-		</div> 
+		</div>
 
 		<div id="otros" class="tab-pane">
 			<h2>Otros datos</h2>
@@ -258,7 +258,7 @@
 				</div>
 				<div class="form-group">
 					<label>Religión</label>
-					<select class="form-control" data-bind="value: religion" name="religion">						
+					<select class="form-control" data-bind="value: religion" name="religion">
 						<option value="10">Ninguna</option>
 						<option value="1" <?php echo($otherdata->idreligion == 1 ? "selected='selected'" : ''); ?>> Catolica</option>
 						<option value="2" <?php echo($otherdata->idreligion == 2 ? "selected='selected'" : ''); ?>> Cristiana</option>
@@ -268,7 +268,7 @@
 						<option value="6" <?php echo($otherdata->idreligion == 6 ? "selected='selected'" : ''); ?>> Adventista</option>
 						<option value="7" <?php echo($otherdata->idreligion == 7 ? "selected='selected'" : ''); ?>> Insrealita</option>
 						<option value="8" <?php echo($otherdata->idreligion == 8 ? "selected='selected'" : ''); ?>> Judio</option>
-						<option value="9" <?php echo($otherdata->idreligion == 9 ? "selected='selected'" : ''); ?>> Otro</option>			
+						<option value="9" <?php echo($otherdata->idreligion == 9 ? "selected='selected'" : ''); ?>> Otro</option>
 					</select>
 
 				</div>
@@ -324,15 +324,15 @@
 						</tbody>
 					</table>
 				</div>
-				
+
 				<hr>
 				<div class="col-md-12">
 					<label><strong>Tipo de Pension</strong></label> <br>
 					<div class="btn-group" data-toggle="buttons">
 						@foreach($TipoPension as $pension )
 						<label class="btn btn-default  btn-sm tipopension" id="{!! $pension->idtipopension !!}">
-							<input type="radio" name="alu_tipopension" autocomplete="off" value="{!! $pension->idtipopension !!} "> 
-							{!! $pension->nombre !!} 
+							<input type="radio" name="alu_tipopension" autocomplete="off" value="{!! $pension->idtipopension !!} ">
+							{!! $pension->nombre !!}
 						</label>
 						@endforeach
 						<div class="selectPension" style="display:none">
@@ -351,22 +351,22 @@
 						<div class="btn-group" data-toggle="buttons">
 						@foreach($EstadoMatricula as $estado )
 							<label class="btn btn-default  btn-sm <?php echo($matricula->idestadomatricula == $estado->idestadomatricula ? 'active' :''); ?>">
-								<input type="radio" id="validate" name="alu_estado" autocomplete="off" value="{!! $estado->idestadomatricula !!}" <?php echo($matricula->idestadomatricula == $estado->idestadomatricula ? 'checked="checked"' :''); ?>> 
+								<input type="radio" id="validate" name="alu_estado" autocomplete="off" value="{!! $estado->idestadomatricula !!}" <?php echo($matricula->idestadomatricula == $estado->idestadomatricula ? 'checked="checked"' :''); ?>>
 								{!! $estado->nombre !!}
 							</label>
-						@endforeach	
+						@endforeach
 						</div>
 					</div>
 
 					<div class="col-xs-5">
 						<label>Estado del Alumno</label> <br>
 						<div class="btn-group" data-toggle="buttons">
-						@foreach($EstadoAlumno as $estadoAlumno )					
+						@foreach($EstadoAlumno as $estadoAlumno )
 							<label class="btn btn-default  btn-sm <?php echo($estadoAlumno->idestadoalumno == $alumno->idestadoalumno ? 'active' :''); ?> ">
-								<input type="radio" id="validate" name="estadoalumno" autocomplete="off" value="{!! $estadoAlumno->idestadoalumno !!}" <?php echo($estadoAlumno->idestadoalumno == $alumno->idestadoalumno ? 'checked="checked"' :''); ?> > 
+								<input type="radio" id="validate" name="estadoalumno" autocomplete="off" value="{!! $estadoAlumno->idestadoalumno !!}" <?php echo($estadoAlumno->idestadoalumno == $alumno->idestadoalumno ? 'checked="checked"' :''); ?> >
 								{!! $estadoAlumno->nombre !!}
 							</label>
-						@endforeach	
+						@endforeach
 						</div>
 					</div>
 
@@ -389,14 +389,14 @@
 			</div>
 
 			<div style="clear:both"></div>
-	
+
 		</div>
 		<div class="panel-footer">
 			<button class="btn btn-primary" type="submit">Actualizar Alumno</button>
 			<a href="{!! route('alumnobuscar') !!}" class="btn btn-default ml-sm">Cancelar</a>
 		</div>
 	</div>
-	{!!Form::close()!!}		
+	{!!Form::close()!!}
 </div>
 @stop
 
@@ -404,9 +404,9 @@
 @parent
 <script type="text/javascript">
 	$(document).ready(function(){
-		var baseURL = "{!! config('app.urlglobal') !!}";	
+		var baseURL = "{!! config('app.urlglobal') !!}";
 	    var sede  = $.cookie("idsede");
-	    var nivel = $.cookie("idnivel");		
+	    var nivel = $.cookie("idnivel");
 	    $(".tipopension").click(function(){
 	    	var tipopension =  $(this).attr('id');
 	    	var nivelpe = {!! $dataMatricula[0]->idnivel !!};
@@ -416,7 +416,7 @@
 		    	data: { tipo : tipopension, nivel: 1 },
 		    	dataType: "json",
 		    	contentType: "application/json; charset=utf-8",
-		    	success: function (data) {		    		
+		    	success: function (data) {
 		    		$(".selectPension").show();
 		    		var $selectPension = $("#pension");
             		$selectPension.empty();
@@ -424,14 +424,14 @@
 
 		    		$.each(data.pensiones, function(i, item) {
 		                $selectPension.append($("<option></option>").attr("value", item.idpension).text(item.monto));
-		            }); 
+		            });
 
 		    	},
 		    	error: function (data) {
 		    		console.log(data);
 		    		$(".selectPension").hide();
 		    	}
-		    });	    
+		    });
 	    });
     });
 	</script>

@@ -43,7 +43,7 @@
 												<a href="{!! route('deletevacante', $vacante->idvacante) !!}" class="delete-row"  onclick="if (! confirm('¿Estás seguro que deseas eliminar las vacantes?, esto afectará a toda la institución.')) return false;"><i class="fa fa-trash-o"></i></a>
 											</td>
 										</tr>
-									@endforeach	
+									@endforeach
 									</tbody>
 								</table>
 							</div>

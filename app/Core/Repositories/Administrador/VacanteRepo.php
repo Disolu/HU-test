@@ -4,10 +4,11 @@ use App\Core\Entities\Vacante;
 use Auth;
 
 class VacanteRepo {
-   
+
 	public function getVacantes()
 	{
-	  $vacantes = Vacante::all();
+	  $vacantes = Vacante::with('seccion')->with('grado')->with('nivel')->with('sede')->with('periodo')->get();
+
 	  return $vacantes;
 	}
 

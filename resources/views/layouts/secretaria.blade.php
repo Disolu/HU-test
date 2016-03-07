@@ -22,9 +22,9 @@
 	<link rel="stylesheet" href="{{ asset('assets/vendor/magnific-popup/magnific-popup.css') }}" />
 	<link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-datepicker/css/datepicker3.css') }}" />
 
-	<!-- Specific Page Vendor CSS -->		
-	<link rel="stylesheet" href="{{ asset('assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css') }}" />		
-	<link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css') }}" />		
+	<!-- Specific Page Vendor CSS -->
+	<link rel="stylesheet" href="{{ asset('assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css') }}" />
+	<link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css') }}" />
 	<link rel="stylesheet" href="{{ asset('assets/vendor/morris/morris.css') }}" />
 
 	<!-- Theme CSS -->
@@ -50,10 +50,10 @@
 					<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
 				</div>
 			</div>
-			
+
 			<!-- start: search & user box -->
 			<div class="header-right">
-				
+
 				<form action="#" class="search nav-form">
 					<div class="input-group input-search">
 						<input type="text" class="form-control" name="q" id="q" placeholder="Search...">
@@ -61,10 +61,10 @@
 							<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
 						</span>
 					</div>
-				</form>			
-				
+				</form>
+
 				<span class="separator"></span>
-				
+
 				<div id="userbox" class="userbox">
 					<a href="#" data-toggle="dropdown">
 						<figure class="profile-picture">
@@ -74,10 +74,10 @@
 							<span class="name">{!! Auth::user()->name !!}</span>
 							<span class="role">Secretaria</span>
 						</div>
-						
+
 						<i class="fa custom-caret"></i>
 					</a>
-					
+
 					<div class="dropdown-menu">
 						<ul class="list-unstyled">
 							<li class="divider"></li>
@@ -95,9 +95,9 @@
 
 		<div class="inner-wrapper">
 			<!-- start: sidebar -->
-			
+
 			<aside id="sidebar-left" class="sidebar-left">
-				
+
 				<div class="sidebar-header">
 					<div class="sidebar-title">
 						Navegación
@@ -106,7 +106,7 @@
 						<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
 					</div>
 				</div>
-				
+
 				<div class="nano">
 					<div class="nano-content">
 						<nav id="menu" class="nav-main" role="navigation">
@@ -181,26 +181,31 @@
 												Consulta vacante
 											</a>
 										</li>
+										<li>
+											<a href="{!! route('searchrestringidos') !!}">
+												Consulta restringidos
+											</a>
+										</li>
 									</ul>
 								</li>
 								</li>
 							</ul>
 							@show
 						</nav>
-						
-						<hr class="separator" />
-						
 
-					</div>				
-				</div>				
+						<hr class="separator" />
+
+
+					</div>
+				</div>
 			</aside>
-			
+
 			<!-- end: sidebar -->
 
 			<section role="main" class="content-body">
 				<header class="page-header">
 					<h2>HIPOLITO UNANUE</h2>
-					
+
 					<div class="right-wrapper pull-right">
 						<ol class="breadcrumbs">
 							<li>
@@ -210,7 +215,7 @@
 							</li>
 							<li><span>Home</span></li>
 						</ol>
-						
+
 						<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
 					</div>
 				</header>
@@ -219,7 +224,7 @@
 				<div class="row">
 					@section('cuerpo')
 
-					@show	
+					@show
 				</div>
 
 
@@ -233,13 +238,13 @@
 						<a href="#" class="mobile-close visible-xs">
 							Collapse <i class="fa fa-chevron-right"></i>
 						</a>
-						
+
 						<div class="sidebar-right-wrapper">
-							
+
 							<div class="sidebar-widget widget-calendar">
 								<h6>Upcoming Tasks</h6>
 								<div data-plugin-datepicker data-plugin-skin="dark" ></div>
-								
+
 								<ul>
 									<li>
 										<time datetime="2014-04-19T00:00+00:00">04/19/2014</time>
@@ -247,7 +252,7 @@
 									</li>
 								</ul>
 							</div>
-							
+
 							<div class="sidebar-widget widget-friends">
 								<h6>Friends</h6>
 								<ul>
@@ -289,63 +294,63 @@
 									</li>
 								</ul>
 							</div>
-							
+
 						</div>
 					</div>
 				</div>
 			</aside>
 		</section>
 		@section('scripts')
-		
+
 		<!-- Vendor -->
-		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>		
-		<script src="{{ asset('assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js') }}"></script>		
-		<script src="{{ asset('assets/vendor/jquery-cookie/jquery.cookie.js') }}"></script>		
-		<script src="{{ asset('assets/vendor/style-switcher/style-switcher.js') }}"></script>		
-		<script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.js') }}"></script>		
-		<script src="{{ asset('assets/vendor/nanoscroller/nanoscroller.js') }}"></script>		
-		<script src="{{ asset('assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>		
-		<script src="{{ asset('assets/vendor/magnific-popup/magnific-popup.js') }}"></script>		
+		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script src="{{ asset('assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js') }}"></script>
+		<script src="{{ asset('assets/vendor/jquery-cookie/jquery.cookie.js') }}"></script>
+		<script src="{{ asset('assets/vendor/style-switcher/style-switcher.js') }}"></script>
+		<script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.js') }}"></script>
+		<script src="{{ asset('assets/vendor/nanoscroller/nanoscroller.js') }}"></script>
+		<script src="{{ asset('assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
+		<script src="{{ asset('assets/vendor/magnific-popup/magnific-popup.js') }}"></script>
 		<script src="{{ asset('assets/vendor/jquery-placeholder/jquery.placeholder.js') }}"></script>
-		
-		<!-- Specific Page Vendor -->		
-		<script src="{{ asset('assets/vendor/jquery-ui/js/jquery-ui-1.10.4.custom.js') }}"></script>		
-		<script src="{{ asset('assets/vendor/jquery-ui-touch-punch/jquery.ui.touch-punch.js') }}"></script>		
-		<script src="{{ asset('assets/vendor/jquery-appear/jquery.appear.js') }}"></script>		
-		<script src="{{ asset('assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js') }}"></script>		
-		<script src="{{ asset('assets/vendor/jquery-easypiechart/jquery.easypiechart.js') }}"></script>		
-		<script src="{{ asset('assets/vendor/flot/jquery.flot.js') }}"></script>		
-		<script src="{{ asset('assets/vendor/flot-tooltip/jquery.flot.tooltip.js') }}"></script>		
-		<script src="{{ asset('assets/vendor/flot/jquery.flot.pie.js') }}"></script>		
-		<script src="{{ asset('assets/vendor/flot/jquery.flot.categories.js') }}"></script>		
-		<script src="{{ asset('assets/vendor/flot/jquery.flot.resize.js') }}"></script>		
-		<script src="{{ asset('assets/vendor/jquery-sparkline/jquery.sparkline.js') }}"></script>		
-		<script src="{{ asset('assets/vendor/raphael/raphael.js') }}"></script>		
-		<script src="{{ asset('assets/vendor/morris/morris.js') }}"></script>		
-		<script src="{{ asset('assets/vendor/gauge/gauge.js') }}"></script>		
-		<script src="{{ asset('assets/vendor/snap-svg/snap.svg.js') }}"></script>		
-		<script src="{{ asset('assets/vendor/liquid-meter/liquid.meter.js') }}"></script>		
-		<script src="{{ asset('assets/vendor/jqvmap/jquery.vmap.js') }}"></script>		
-		<script src="{{ asset('assets/vendor/jqvmap/data/jquery.vmap.sampledata.js') }}"></script>		
-		<script src="{{ asset('assets/vendor/jqvmap/maps/jquery.vmap.world.js') }}"></script>		
-		<script src="{{ asset('assets/vendor/jqvmap/maps/continents/jquery.vmap.africa.js') }}"></script>		
-		<script src="{{ asset('assets/vendor/jqvmap/maps/continents/jquery.vmap.asia.js') }}"></script>		
-		<script src="{{ asset('assets/vendor/jqvmap/maps/continents/jquery.vmap.australia.js') }}"></script>		
-		<script src="{{ asset('assets/vendor/jqvmap/maps/continents/jquery.vmap.europe.js') }}"></script>		
-		<script src="{{ asset('assets/vendor/jqvmap/maps/continents/jquery.vmap.north-america.js') }}"></script>		
+
+		<!-- Specific Page Vendor -->
+		<script src="{{ asset('assets/vendor/jquery-ui/js/jquery-ui-1.10.4.custom.js') }}"></script>
+		<script src="{{ asset('assets/vendor/jquery-ui-touch-punch/jquery.ui.touch-punch.js') }}"></script>
+		<script src="{{ asset('assets/vendor/jquery-appear/jquery.appear.js') }}"></script>
+		<script src="{{ asset('assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js') }}"></script>
+		<script src="{{ asset('assets/vendor/jquery-easypiechart/jquery.easypiechart.js') }}"></script>
+		<script src="{{ asset('assets/vendor/flot/jquery.flot.js') }}"></script>
+		<script src="{{ asset('assets/vendor/flot-tooltip/jquery.flot.tooltip.js') }}"></script>
+		<script src="{{ asset('assets/vendor/flot/jquery.flot.pie.js') }}"></script>
+		<script src="{{ asset('assets/vendor/flot/jquery.flot.categories.js') }}"></script>
+		<script src="{{ asset('assets/vendor/flot/jquery.flot.resize.js') }}"></script>
+		<script src="{{ asset('assets/vendor/jquery-sparkline/jquery.sparkline.js') }}"></script>
+		<script src="{{ asset('assets/vendor/raphael/raphael.js') }}"></script>
+		<script src="{{ asset('assets/vendor/morris/morris.js') }}"></script>
+		<script src="{{ asset('assets/vendor/gauge/gauge.js') }}"></script>
+		<script src="{{ asset('assets/vendor/snap-svg/snap.svg.js') }}"></script>
+		<script src="{{ asset('assets/vendor/liquid-meter/liquid.meter.js') }}"></script>
+		<script src="{{ asset('assets/vendor/jqvmap/jquery.vmap.js') }}"></script>
+		<script src="{{ asset('assets/vendor/jqvmap/data/jquery.vmap.sampledata.js') }}"></script>
+		<script src="{{ asset('assets/vendor/jqvmap/maps/jquery.vmap.world.js') }}"></script>
+		<script src="{{ asset('assets/vendor/jqvmap/maps/continents/jquery.vmap.africa.js') }}"></script>
+		<script src="{{ asset('assets/vendor/jqvmap/maps/continents/jquery.vmap.asia.js') }}"></script>
+		<script src="{{ asset('assets/vendor/jqvmap/maps/continents/jquery.vmap.australia.js') }}"></script>
+		<script src="{{ asset('assets/vendor/jqvmap/maps/continents/jquery.vmap.europe.js') }}"></script>
+		<script src="{{ asset('assets/vendor/jqvmap/maps/continents/jquery.vmap.north-america.js') }}"></script>
 		<script src="{{ asset('assets/vendor/jqvmap/maps/continents/jquery.vmap.south-america.js') }}"></script>
-		
+
 		<!-- Theme Base, Components and Settings -->
 		<script src="{{ asset('assets/javascripts/theme.js') }}"></script>
-		
+
 		<!-- Theme Custom -->
 		<script src="{{ asset('assets/javascripts/theme.custom.js') }}"></script>
-		
+
 		<!-- Theme Initialization Files -->
 		<script src="{{ asset('assets/javascripts/theme.init.js') }}"></script>
-		
+
 		<!-- Examples -->
 		<script src="{{ asset('assets/javascripts/dashboard/examples.dashboard.js') }}"></script>
-		@show		
+		@show
 	</body>
 	</html>
