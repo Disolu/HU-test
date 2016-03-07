@@ -251,7 +251,7 @@ Route::group( ['middleware' => ['auth','responsable'], 'prefix'=>'responsable'],
 //AREA PROFESOR
 Route::group( ['middleware' => ['auth','profesor'], 'prefix'=>'profesor'], function() {
 	Route::get('/', function () {
-	    return view('profesor.index');
+	    return redirect()->to('/profesor/listacursos');
 	});
 
 	//Registro de Usuarios

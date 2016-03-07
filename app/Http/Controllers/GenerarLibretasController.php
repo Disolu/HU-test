@@ -21,7 +21,7 @@ class GenerarLibretasController extends Controller
   public function generarLibretas(Request $request)
   {
     $idsede    = $request['sede'];
-    $idnivel   = $request['nivel'];
+    $nivel = $idnivel   = $request['nivel'];
     $idgrado   = $request['grado'];
     $idseccion = $request['seccion'];
     $dni       = $request['dni'];
@@ -60,15 +60,36 @@ class GenerarLibretasController extends Controller
         $alumnos->get();
 
         $dataAlumnos = $alumnos->get();
-        dd($tarjeta);
+        //dd($tarjeta);
     }
-    return view('libreta.libreta', compact('dataAlumnos','tarjeta'));
+    return view('libreta.libreta', compact('dataAlumnos','tarjeta','nivel'));
   }
 
   public function generateLibreta($idalumno)
   {
     $alumno = DB::table('alumno')->where('idalumno', $idalumno)->get();
-    return view('notas.generar.libreta', compact('alumno'));
+    $periodo = DB::table('periodomatricula')->take(1)->orderBy('idperiodomatricula','desc')->first();
+    $notatutoria = DB::table('notatutoria')->where('idalumno', $idalumno)
+                  ->where('idperiodomatricula', $periodo->idperiodomatricula)->get();
+
+    $notacurso = DB::table('notacurso')
+                  ->Join('curso','curso.idcurso','=','notacurso.idcurso')
+                  ->where('idalumno', $idalumno)
+                  ->where('idperiodomatricula', $periodo->idperiodomatricula)->get();
+
+    $tutoria = array();
+    $notas = array();
+    foreach($notatutoria as $nota){
+      $tutoria[$nota->idbimestre] = $nota;
+    }
+
+    foreach($notacurso as $nota){
+      if(!isset($notas[$nota->idbimestre]))  $notas[$nota->idbimestre] = array();
+      $notas[$nota->idbimestre][$nota->nombre] = $nota;
+    }
+
+
+    return view('notas.generar.libreta', compact('alumno','tutoria','notas'));
   }
 
   public function generateOptimist($idalumno, Request $request)

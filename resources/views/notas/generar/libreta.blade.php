@@ -321,34 +321,34 @@
 
                     <tr>
                         <td>RESPETO AL REGLAMENTO</td>
-                        <td>14</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td>@if(isset($tutoria[1])) {{$tutoria[1]->respeto}} @endif</td>
+                        <td>@if(isset($tutoria[2])) {{$tutoria[2]->respeto}} @endif</td>
+                        <td>@if(isset($tutoria[3])) {{$tutoria[3]->respeto}} @endif</td>
+                        <td>@if(isset($tutoria[4])) {{$tutoria[4]->respeto}} @endif</td>
                     </tr>
 
                     <tr>
                         <td>PUNTUALIDAD</td>
-                        <td>17</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td>@if(isset($tutoria[1])) {{$tutoria[1]->puntualidad}} @endif</td>
+                        <td>@if(isset($tutoria[2])) {{$tutoria[2]->puntualidad}} @endif</td>
+                        <td>@if(isset($tutoria[3])) {{$tutoria[3]->puntualidad}} @endif</td>
+                        <td>@if(isset($tutoria[4])) {{$tutoria[4]->puntualidad}} @endif</td>
                     </tr>
 
                     <tr>
                         <td>RESPONSABILIDAD</td>
-                        <td>16</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td>@if(isset($tutoria[1])) {{$tutoria[1]->responsabilidad}} @endif</td>
+                        <td>@if(isset($tutoria[2])) {{$tutoria[2]->responsabilidad}} @endif</td>
+                        <td>@if(isset($tutoria[3])) {{$tutoria[3]->responsabilidad}} @endif</td>
+                        <td>@if(isset($tutoria[4])) {{$tutoria[4]->responsabilidad}} @endif</td>
                     </tr>
 
                     <tr>
                         <td>PRESENTACIÓN PERSONAL</td>
-                        <td>13</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td>@if(isset($tutoria[1])) {{$tutoria[1]->presentacion}} @endif</td>
+                        <td>@if(isset($tutoria[2])) {{$tutoria[2]->presentacion}} @endif</td>
+                        <td>@if(isset($tutoria[3])) {{$tutoria[3]->presentacion}} @endif</td>
+                        <td>@if(isset($tutoria[4])) {{$tutoria[4]->presentacion}} @endif</td>
                     </tr>
 
                 </table>
@@ -366,34 +366,34 @@
 
                     <tr>
                         <td>TARDANZA JUSTIFICADA</td>
-                        <td>14</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td>@if(isset($tutoria[1])) {{$tutoria[1]->tardanza_justificada}} @endif</td>
+                        <td>@if(isset($tutoria[2])) {{$tutoria[2]->tardanza_justificada}} @endif</td>
+                        <td>@if(isset($tutoria[3])) {{$tutoria[3]->tardanza_justificada}} @endif</td>
+                        <td>@if(isset($tutoria[4])) {{$tutoria[4]->tardanza_justificada}} @endif</td>
                     </tr>
 
                     <tr>
                         <td>TARDANZA INJUSTIFICADA</td>
-                        <td>17</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td>@if(isset($tutoria[1])) {{$tutoria[1]->tardanza_injustificada}} @endif</td>
+                        <td>@if(isset($tutoria[2])) {{$tutoria[2]->tardanza_injustificada}} @endif</td>
+                        <td>@if(isset($tutoria[3])) {{$tutoria[3]->tardanza_injustificada}} @endif</td>
+                        <td>@if(isset($tutoria[4])) {{$tutoria[4]->tardanza_injustificada}} @endif</td>
                     </tr>
 
                     <tr>
                         <td>INASISTENCIA JUSTIFICADA</td>
-                        <td>16</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td>@if(isset($tutoria[1])) {{$tutoria[1]->inasistencia_just}} @endif</td>
+                        <td>@if(isset($tutoria[2])) {{$tutoria[2]->inasistencia_just}} @endif</td>
+                        <td>@if(isset($tutoria[3])) {{$tutoria[3]->inasistencia_just}} @endif</td>
+                        <td>@if(isset($tutoria[4])) {{$tutoria[4]->inasistencia_just}} @endif</td>
                     </tr>
 
                     <tr>
                         <td>INASISTENCIA JUSTIFICADA</td>
-                        <td>13</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td>@if(isset($tutoria[1])) {{$tutoria[1]->inasistencia_injust}} @endif</td>
+                        <td>@if(isset($tutoria[2])) {{$tutoria[2]->inasistencia_injust}} @endif</td>
+                        <td>@if(isset($tutoria[3])) {{$tutoria[3]->inasistencia_injust}} @endif</td>
+                        <td>@if(isset($tutoria[4])) {{$tutoria[4]->inasistencia_injust}} @endif</td>
                     </tr>
 
                 </table>
@@ -411,41 +411,41 @@
 
                     <tr>
                         <td>SE INTERESA POR EL AVANCE DE SU HIJO</td>
-                        <td>SI</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td>@if(isset($tutoria[1])) {{$tutoria[1]->avance}} @endif</td>
+                        <td>@if(isset($tutoria[2])) {{$tutoria[2]->avance}} @endif</td>
+                        <td>@if(isset($tutoria[3])) {{$tutoria[3]->avance}} @endif</td>
+                        <td>@if(isset($tutoria[4])) {{$tutoria[4]->avance}} @endif</td>
                     </tr>
 
                     <tr>
                         <td>ENVIA MATERIALES REQUERIDOS</td>
-                        <td>SI</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td>@if(isset($tutoria[1])) {{$tutoria[1]->materiales}} @endif</td>
+                        <td>@if(isset($tutoria[2])) {{$tutoria[2]->materiales}} @endif</td>
+                        <td>@if(isset($tutoria[3])) {{$tutoria[3]->materiales}} @endif</td>
+                        <td>@if(isset($tutoria[4])) {{$tutoria[4]->materiales}} @endif</td>
                     </tr>
 
                     <tr>
                         <td>ASISTE PUNTUALMENTE A LAS REUNIONES</td>
-                        <td>SI</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td>@if(isset($tutoria[1])) {{$tutoria[1]->reuniones}} @endif</td>
+                        <td>@if(isset($tutoria[2])) {{$tutoria[2]->reuniones}} @endif</td>
+                        <td>@if(isset($tutoria[3])) {{$tutoria[3]->reuniones}} @endif</td>
+                        <td>@if(isset($tutoria[4])) {{$tutoria[4]->reuniones}} @endif</td>
                     </tr>
 
                     <tr>
                         <td>SE PREOCUPA DE LA HIGIENE Y PRESENTACION</td>
-                        <td>SI</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td>@if(isset($tutoria[1])) {{$tutoria[1]->higene}} @endif</td>
+                        <td>@if(isset($tutoria[2])) {{$tutoria[2]->higene}} @endif</td>
+                        <td>@if(isset($tutoria[3])) {{$tutoria[3]->higene}} @endif</td>
+                        <td>@if(isset($tutoria[4])) {{$tutoria[4]->higene}} @endif</td>
                     </tr>
                     <tr>
                         <td>LEE Y FIRMA LA AGENDA DIARIAMENTE</td>
-                        <td>SI</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td>@if(isset($tutoria[1])) {{$tutoria[1]->agenda}} @endif</td>
+                        <td>@if(isset($tutoria[2])) {{$tutoria[2]->agenda}} @endif</td>
+                        <td>@if(isset($tutoria[3])) {{$tutoria[3]->agenda}} @endif</td>
+                        <td>@if(isset($tutoria[4])) {{$tutoria[4]->agenda}} @endif</td>
                     </tr>
 
                 </table>
@@ -456,17 +456,17 @@
         <table class="footer">
             <tr>
                 <td class="FooterStylecol1">I</td>
-                <td class="FooterStylecol2"></td>
+                <td class="FooterStylecol2">@if(isset($tutoria[1])) {{$tutoria[1]->apreciacion}} @endif</td>
                 <td class="FooterStylecol1">III</td>
-                <td class="FooterStylecol2"></td>
+                <td class="FooterStylecol2">@if(isset($tutoria[1])) {{$tutoria[3]->apreciacion}} @endif</td>
 
 
             </tr>
             <tr>
                 <td class="FooterStylecol1">II</td>
-                <td class="FooterStylecol2">&nbsp;</td>
+                <td class="FooterStylecol2">@if(isset($tutoria[1])) {{$tutoria[2]->apreciacion}} @endif</td>
                 <td class="FooterStylecol1">IV</td>
-                <td class="FooterStylecol2">&nbsp;</td>
+                <td class="FooterStylecol2">@if(isset($tutoria[1])) {{$tutoria[4]->apreciacion}} @endif</td>
 
 
             </tr>
