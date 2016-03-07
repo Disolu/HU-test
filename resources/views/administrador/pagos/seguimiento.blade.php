@@ -72,7 +72,7 @@ elseif(Auth::user()->idrol==5)
 	</div>
 	
 	<div class="panel-footer">
-		@if($grado)
+		@if(isset($grado))
 			<a href='{!! route("excelpagos",$request) !!}' class="mb-xs mt-xs mr-xs btn btn-info text-left">
 					<i class="fa fa-thumbs-up"></i> Descargar
 			</a>
@@ -87,7 +87,7 @@ elseif(Auth::user()->idrol==5)
 				<div class="col-md-12">
 					<section class="panel">
 						<div class="panel-body">
-							@if($grado)
+							@if(isset($grado))
 								<div>
 									<h3>{{$periodo[0]->nombre}} {{$grado->sede->nombre}} {{$grado->nivel->nombre}} {{$grado->nombre}}</h3>
 								</div>

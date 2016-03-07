@@ -111,9 +111,17 @@
 										<td>{{ $data->fullname }}</td>
 										<td>{{ $data->codigo }}</td>
 										<td>
-											<a href="{{ route('generatelibreta',  $data->idalumno)}}">Libreta</a> | 
-											<a href="{{ route('generateOptimist', [$data->idalumno, Input::get('bimestre')])}}">Optimist</a> | 
-											<a href="{{ route('generateProgrest', [$data->idalumno, Input::get('bimestre')])}}">Progreso</a>
+											@if($nivel == 1)
+												<a href="{{ route('generateOptimist', [$data->idalumno, Input::get('bimestre')])}}">Optimist</a> | 
+												<a href="{{ route('generateProgrest', [$data->idalumno, Input::get('bimestre')])}}">Progreso</a>
+											@elseif($nivel == 2)
+												<a href="{{ route('generateOptimist', [$data->idalumno, Input::get('bimestre')])}}">Tajerta Snipe</a> | 
+												<a href="{{ route('generatelibreta',  $data->idalumno)}}">Libreta</a> 
+											@else
+												<a href="{{ route('generateOptimist', [$data->idalumno, Input::get('bimestre')])}}">Tajerta de Valores</a> |
+												<a href="{{ route('generatelibreta',  $data->idalumno)}}">Libreta</a> 
+											@endif
+
 										</td>	
 									</tr>
 								@endforeach
