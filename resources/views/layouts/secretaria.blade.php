@@ -351,6 +351,7 @@
 
 		<!-- Examples -->
 		<script src="{{ asset('assets/javascripts/dashboard/examples.dashboard.js') }}"></script>
+		{!! Html::script('assets/javascripts/ui-elements/examples.modals.js') !!}
 		@show
 	</body>
 	</html>

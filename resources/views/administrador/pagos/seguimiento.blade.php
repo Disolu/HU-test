@@ -30,7 +30,7 @@ elseif(Auth::user()->idrol==5)
 				<h2 class="panel-title">Pagos</h2>
 			</header>
 {!! Form::open(['route' => 'searchSeguimientoPagos', 'method' => 'post']) !!}
-{!! csrf_field() !!}			
+{!! csrf_field() !!}
 	<div class="panel-body">
 		<div class="row">
 		  <div class="col-md-3">
@@ -70,7 +70,7 @@ elseif(Auth::user()->idrol==5)
             </div>
         </div>
 	</div>
-	
+
 	<div class="panel-footer">
 		<a href='{!! route("excelpagos",$request) !!}' class="mb-xs mt-xs mr-xs btn btn-info text-left">
 				<i class="fa fa-thumbs-up"></i> Descargar
@@ -108,16 +108,16 @@ elseif(Auth::user()->idrol==5)
 											<td>{!! $meses[$data->mes] !!}</td>
 											<td>
 												<!-- Modal Basic -->
-												<a class="mb-xs mt-xs mr-xs modal-basic btnDetails" href="#modalBasic" data-id="{!! $data->idalumno !!}">
+												<a class="mb-xs mt-xs mr-xs btnDetails"data-id="{!! $data->idalumno !!}">
 													Ver estado
-												</a> | 
+												</a> |
 												<a href="{!! route('pagosObservacion', $data->idalumno) !!}">
 													Crear Inicidencia
 												</a>
 											</td>
 										</tr>
 
-									@endforeach	
+									@endforeach
 									</tbody>
 								</table>
 								<div id="modalBasic" class="modal-block mfp-hide">
@@ -213,11 +213,11 @@ elseif(Auth::user()->idrol==5)
 		        break;
 		    case '12':
 		        date = "Diciembre";
-		        break;    
-		        
+		        break;
+
 		    default:
 		    	  date = "No found";
-		    	  break;    
+		    	  break;
   		}
   		return "Pagos: "+date;
   	}
@@ -254,6 +254,12 @@ elseif(Auth::user()->idrol==5)
 	            options += "</tr>";
             });
             $('#tableajax').html(options);
+            $.magnificPopup.open({
+                items: {
+                    src: $('#modalBasic')[0]
+                },
+                type: 'inline'
+            });
           }
         },
         error: function()
@@ -309,7 +315,7 @@ elseif(Auth::user()->idrol==5)
 			$.ajax({
 				type: "GET",
 				url: baseURL + "/api/v1/getSedes",
-				dataType: "json",               
+				dataType: "json",
 				contentType: "application/json; charset=utf-8",
 				success: function (e) {
 					var sedesRaw =  e.sedes;
@@ -419,12 +425,12 @@ elseif(Auth::user()->idrol==5)
 		});
 
 		fo.cargarperiodos();
-		fo.cargarsedes();       
-	}    
+		fo.cargarsedes();
+	}
 	var viewModel = new VacantesFormViewModel();
 
 	$(function(){
-		ko.applyBindings(viewModel, $("#page-wrapper")[0]); 
+		ko.applyBindings(viewModel, $("#page-wrapper")[0]);
 	});
 </script>
 @endsection
