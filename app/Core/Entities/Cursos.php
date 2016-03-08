@@ -7,6 +7,7 @@ class Cursos extends Model
 {
 	use SoftDeletes;
     protected $table = 'curso';
+    protected $primaryKey = 'idcurso';
     protected $dates = ['deleted_at'];
     protected $fillable = [
     'nombre',

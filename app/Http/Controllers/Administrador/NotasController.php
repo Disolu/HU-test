@@ -43,6 +43,7 @@ class NotasController extends Controller
             ->Join('sede as sd','sd.idsede','=','s.idsede')
             ->where('pc.idperiodomatricula',$lastPeriodo[0]->idperiodomatricula)
             ->where('pc.iduser', Auth::user()->id)
+            ->where('cu.deleted_at', null)
             ->groupBy('pc.idprofesorcurso')
             ->get();
 
@@ -104,12 +105,14 @@ class NotasController extends Controller
             ->where('idcurso', $idcurso)
             ->take(1)
             ->get();
-                        
+
+
 
         $alumnos = $this->NotasRepo->getAlumnos($idcurso, $datape[0]->idgrado, $idseccion, $lastPeriodo[0]->idperiodomatricula);
         $fechanota = $this->NotasRepo->getFechaNota($lastPeriodo[0]->idperiodomatricula, $datenow);
-        $namecurso = Cursos::where('idcurso', $idcurso)->first();
+        $namecurso = Cursos::find($idcurso);
         $seccion = Seccion::with('grado')->with('nivel')->with('sede')->where('idseccion',$idseccion)->first();
+
 
         if(count($fechanota)>0)
         {

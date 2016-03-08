@@ -4,7 +4,7 @@
 <div class="col-lg-12">
 
   <section class="panel">
-    <header class="panel-heading">            
+    <header class="panel-heading">
       <h2 class="panel-title">Notas: <strong>{!! $namecurso->nombre !!}</strong></h2>
       <span style="font-size: 11px;">{{ $seccion->sede->nombre }} | {{ $seccion->nivel->nombre  }} | {{ $seccion->grado->nombre  }} | {{$seccion->nombre}}</span>
     </header>
@@ -35,8 +35,8 @@
           </tr>
         </thead>
         <tbody>
-      
-        <?php 
+
+        <?php
         $fechanota[0]->bimestre->idbimestre == 1 ? $bimestre    = "style='width: 80px'"  : $bimestre  = "style='display: none' disabled='disabled'";
         $fechanota[0]->bimestre->idbimestre == 2 ? $bimestreII  = "style='width: 80px'"  : $bimestreII  = "style='display: none' disabled='disabled'";
         $fechanota[0]->bimestre->idbimestre == 3 ? $bimestreIII = "style='width: 80px'"  : $bimestreIII = "style='display: none' disabled='disabled'";
@@ -46,38 +46,38 @@
         <input type="hidden" name="idperiodo" value="{!! $lastPeriodo[0]->idperiodomatricula !!}">
         <input type="hidden" name="idcurso" value="{!! $idcurso !!}">
         <input type="hidden" name="idseccion" value="{!! $idseccion !!}">
-          
+
         @foreach($alumnos as $data)
           <tr>
-            <input type="hidden" name="idalumno[]" value="{!! $data->alumno->idalumno !!}">           
+            <input type="hidden" name="idalumno[]" value="{!! $data->alumno->idalumno !!}">
             <td data-title="Code">{!! $data->alumno->codigo !!}</td>
             <td class="hidden-xs hidden-sm">{!! $data->alumno->fullname !!}</td>
-            
+
             <td class="text-right">
               <div class="col-md-6 form-group">
-                <input type="text" style="width: 80px;" class="form-control" {!! $bimestre !!} name="bimestreINota[]" maxlength="2" value="{{ $data->bimestre1 }}">
+                <input type="number" min="0" max="20" style="width: 80px;" class="form-control" {!! $bimestre !!} name="bimestreINota[]" maxlength="2" value="{{ $data->bimestre1 }}">
               </div>
             </td>
 
             <td class="text-right">
               <div class="col-md-6 form-group">
-                <input type="text" class="form-control" {!! $bimestreII !!} name="bimestreIINota[]" maxlength="2" value="{{ $data->bimestre2 }}">
+                <input type="number" min="0" max="20" class="form-control" {!! $bimestreII !!} name="bimestreIINota[]" maxlength="2" value="{{ $data->bimestre2 }}">
               </div>
             </td>
 
             <td class="text-right">
               <div class="col-md-6 form-group">
-                <input type="text" class="form-control" {!! $bimestreIII !!} name="bimestreIIINota[]" maxlength="2" value="{{ $data->bimestre3 }}">
+                <input type="number" min="0" max="20" class="form-control" {!! $bimestreIII !!} name="bimestreIIINota[]" maxlength="2" value="{{ $data->bimestre3 }}">
               </div>
             </td>
 
             <td lass="text-right">
               <div class="col-md-6 form-group">
-                <input type="text" class="form-control" {!! $bimestreIV !!} name="bimestreIVNota[]" maxlength="2" value="{{ $data->bimestre4 }}">
+                <input type="number" min="0" max="20" class="form-control" {!! $bimestreIV !!} name="bimestreIVNota[]" maxlength="2" value="{{ $data->bimestre4 }}">
               </div>
             </td>
           </tr>
-        @endforeach 
+        @endforeach
         </tbody>
       </table>
       <hr>
@@ -86,7 +86,7 @@
         <a class="mb-xs mt-xs mr-xs btn btn-default" href="javascript:history.back(1)">Cancelar</a>
       </p>
       {!! Form::close() !!}
-    
+
     </div>
 
   </section>

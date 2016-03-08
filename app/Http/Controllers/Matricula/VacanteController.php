@@ -36,7 +36,7 @@ class VacanteController extends Controller
         $day = $fecha->format('Y-m-d');
 
         $lastPeriodo = $this->PeriodoRepo->getActivePeriodo($day);
-        
+
         if(count($lastPeriodo) > 0)
         {
             return view('matricula.vacante.search');
@@ -45,28 +45,28 @@ class VacanteController extends Controller
         {
             return view('matricula.periodo.not');
         }
-        
+
     }
-    
+
     public function getPeriodos(Request $request)
-    {   
+    {
         $data = $this->VacanteRepo->getLastPeriodo();
         return response()->json([
             'periodos' =>  $data
             ], 200)
         ->setCallback($request->input('callback'));
     }
-    
+
     public function getSedes(Request $request)
-    {        
+    {
         $rawSedes = $this->VacanteRepo->getAllSedes();
         return response()->json([
             'sedes' =>  $rawSedes
             ],
             200)
         ->setCallback($request->input('callback'));
-    }  
-    
+    }
+
     public function getNivel(Request $request)
     {
         $sede_id = $_GET['sede'];
@@ -87,7 +87,7 @@ class VacanteController extends Controller
             ], 200)
         ->setCallback($request->input('callback'));
     }
-    
+
     public function getSecciones(Request $request)
     {
         $idsede = $_GET['sede'];
@@ -99,7 +99,7 @@ class VacanteController extends Controller
             ], 200)
         ->setCallback($request->input('callback'));
     }
-    
+
     public function getAulas(Request $request)
     {
         $idsede = $_GET['sede'];
@@ -120,7 +120,8 @@ class VacanteController extends Controller
         $idnivel   = $_GET['nivel'];
         $idgrado   = $_GET['grado'];
         $idseccion = $_GET['seccion'];
-        
+
+
         //Recoge el ultimo periodo disponible
         $periodo = $this->VacanteRepo->getLastPeriodo();
 
