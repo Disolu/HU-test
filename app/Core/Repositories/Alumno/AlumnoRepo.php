@@ -43,7 +43,7 @@ class AlumnoRepo {
          return Alumno::
          leftJoin('alumnomatricula', 'alumno.idalumno', '=', 'alumnomatricula.idalumno')
          ->select('fullname','codigo','impedimento','idalumnomatricula','alumno.idalumno as alumnoid','idperiodomatricula',
-             DB::raw('(select observacion from restringidos as rt where rt.dni = alumno.dni) observacion'))
+             DB::raw('(select observacion from restringidos as rt where rt.dni = alumno.dni LIMIT 0,1) observacion '))
          ->where('fullname','LIKE','%'.$alumno.'%')
          ->orWhere('dni', $alumno)
          ->orWhere('codigo', $alumno)
