@@ -1,5 +1,5 @@
 @if(Session::has('message-search-alumno'))
-
+@if(isset($getAlumno))
 	@if(count($getAlumno) > 0)
 
 		@foreach($getAlumno as $alumno)
@@ -25,35 +25,6 @@
 									@if($alumno->impedimento == 1)
 									<span class="text-warning"><a href="{!! route('alumno', $alumno->alumnoid) !!}">(Editar)</a></span>
 									<a href="{!! route('observacion',$alumno->alumnoid) !!}" class="mb-xs mt-xs mr-xs btn btn-xs btn-danger">Impedimento</a>
-									<!--
-									<a class="mb-xs mt-xs mr-xs modal-basic btn btn-xs btn-danger" href="#modalFullColorDanger{!! $alumno->alumnoid !!}">Impedimento</a>
-									<div id="modalFullColorDanger{!! $alumno->alumnoid !!}" class="modal-block modal-full-color modal-block-danger mfp-hide">
-										<section class="panel">
-											<header class="panel-heading">
-												<h2 class="panel-title">Restringido</h2>
-											</header>
-											<div class="panel-body">
-												<div class="modal-wrapper">
-													<div class="modal-icon">
-														<i class="fa fa-times-circle"></i>
-													</div>
-													<div class="modal-text">
-														<h4>{!! $alumno->fullname !!}:</h4>
-														<p></p>
-													</div>
-												</div>
-											</div>
-											<footer class="panel-footer">
-												<div class="row">
-													<div class="col-md-12 text-right">
-														<button class="btn btn-default modal-dismiss">Cerrar</button>
-														<a href="{!! route('observacion',$alumno->alumnoid) !!}" class="mb-xs mt-xs mr-xs btn btn-warning">Ver todos...</a>
-													</div>
-												</div>
-											</footer>
-										</section>
-									</div>
-									-->
 									@else
 									<span class="text-warning"><a href="{!! route('alumno', $alumno->alumnoid) !!}">(Editar)</a></span>
 									@if( count($getPeriodoMatricula)>0 )
@@ -81,5 +52,5 @@
 		@endforeach
 
 	@endif
-
+@endif
 @endif
