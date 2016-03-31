@@ -49,13 +49,27 @@ class GeneratePayments extends Command
               if($sede->idsede == 1)
               {
                 //ESTRUCTURA TXT
-                  $header=str_pad($sede->idsede, 2, '0', STR_PAD_LEFT) .'20547453035' .'100' .'PEN' .str_pad($today, 8, ' ', STR_PAD_LEFT) .'000' .str_pad(' ', 330, ' ', STR_PAD_LEFT) .PHP_EOL;  
+                  $header=str_pad($sede->idsede, 2, '0', STR_PAD_LEFT)
+                  .'20547453035'
+                  .'100'
+                  .'PEN'
+                  .str_pad($today, 8, ' ', STR_PAD_LEFT)
+                  .'000'
+                  .str_pad(' ', 330, ' ', STR_PAD_LEFT)
+                  .PHP_EOL;
               
               }
               else
               {
                 //ESTRUCTURA TXT
-                  $header=str_pad($sede->idsede, 2, '0', STR_PAD_LEFT) .'20547453035' .'300' .'PEN' .str_pad($today, 8, ' ', STR_PAD_LEFT) .'000' .str_pad("T", 8, " ", STR_PAD_LEFT) .str_pad(' ', 322, ' ', STR_PAD_LEFT) .PHP_EOL;
+                  $header=str_pad($sede->idsede, 2, '0', STR_PAD_LEFT)
+                  .'20547453035'
+                  .'300'
+                  .'PEN'
+                  .str_pad($today, 8, ' ', STR_PAD_LEFT) .'000'
+                  .str_pad("T", 8, " ", STR_PAD_LEFT)
+                  .str_pad(' ', 322, ' ', STR_PAD_LEFT)
+                  .PHP_EOL;
 
               }
 
@@ -79,12 +93,14 @@ class GeneratePayments extends Command
                     $especificacion = strtoupper($codigo).$this->getNameMonth($student->mesdeuda);
                     $countreg++;
                     $year= date('Y');
+
                     $fec_ref= $year.'-'.$student->mesdeuda.'-01';
                     $fec_ven = new DateTime( $fec_ref );
                     $last_day = $fec_ven->format( 'Ymt' );
 
                     $fec=$fec_ven->format('Y-m-d');
-                    $fec_foo= new DateTime($fec_ref.'+1 year +1 months');
+                    $fec_foo= new DateTime($fec_ref.'+1 year +1 months +2 day');
+
                     $fec_bloqueo=$fec_foo->format('Ymt');
 
                     $sum_max +=$student->monto;
