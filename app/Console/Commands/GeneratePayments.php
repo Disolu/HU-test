@@ -23,115 +23,152 @@ class GeneratePayments extends Command
     {
       $numeration = array('1' =>'001503' , '2'=>'004893' );
       $today=date('Ymd');
-       
+      
+      //TRAEMOS TODAS LAS SEDES 
       $sedes= DB::table('sede')->get();
-
        
-      foreach ($sedes as $key => $sede){
-        $file_contents_final="";
-        $file_name  = "RC_{$numeration[$sede->idsede]}_{$today}.TXT"; // RC_000_YYYYMMDD.TXT
-        //$source_file = sys_get_temp_dir() . DIRECTORY_SEPARATOR . $file_name;
-        $source_file = config('app.urlupload').$file_name;       
-        //One for file      
-        $students= $this->getStudentsbySede($sede->idsede);
-        
-        if (!empty($students)){
-          $file_contents ="";
-          $header ="";
+        //RECORREMOS POR LAS SEDES
+        foreach ($sedes as $key => $sede)
+        {
+            //VARIABLERS PARA CONDIGURACIONES
+            $file_contents_final="";
+            $file_name  = "RC_{$numeration[$sede->idsede]}_{$today}.TXT"; // RC_000_YYYYMMDD.TXT
+            $source_file = config('app.urlupload').$file_name;       
+            
+            //TRAEMOS TODOS LOS ESTUDIANTES
+            $students= $this->getStudentsbySede($sede->idsede);        
+            
+            //dd($students);
 
-          if($sede->idsede == 1){
-              $header=str_pad($sede->idsede, 2, '0', STR_PAD_LEFT) .
-              '20547453035' .
-              '100' .
-              'PEN' .
-              str_pad($today, 8, ' ', STR_PAD_LEFT) .
-              '000' .
-              str_pad(' ', 330, ' ', STR_PAD_LEFT) .
-              PHP_EOL;  
-          }else{
-              $header=str_pad($sede->idsede, 2, '0', STR_PAD_LEFT) .
-              '20547453035' .
-              '300' .
-              'PEN' .
-              str_pad($today, 8, ' ', STR_PAD_LEFT) .
-              '000' .
-              str_pad("T", 8, " ", STR_PAD_LEFT) .
-              str_pad(' ', 322, ' ', STR_PAD_LEFT) .
-              PHP_EOL;
-          }
+            //SI ESTUDIANTES NO ESTA VACIO
+            if (!empty($students))
+            {
+              $file_contents ="";
+              $header ="";
 
-          $countreg=0;
-          $sum_max=0;
-          $sum_min=0;
+              if($sede->idsede == 1)
+              {
+                //ESTRUCTURA TXT
+                  $header=str_pad($sede->idsede, 2, '0', STR_PAD_LEFT) .'20547453035' .'100' .'PEN' .str_pad($today, 8, ' ', STR_PAD_LEFT) .'000' .str_pad(' ', 330, ' ', STR_PAD_LEFT) .PHP_EOL;  
+              
+              }
+              else
+              {
+                //ESTRUCTURA TXT
+                  $header=str_pad($sede->idsede, 2, '0', STR_PAD_LEFT) .'20547453035' .'300' .'PEN' .str_pad($today, 8, ' ', STR_PAD_LEFT) .'000' .str_pad("T", 8, " ", STR_PAD_LEFT) .str_pad(' ', 322, ' ', STR_PAD_LEFT) .PHP_EOL;
 
-          foreach ($students as $key => $student){
-          //For student and pension
-             $ref_month= ($student->mes)+1;
-             $months_pending= $this->getPendingMonths($ref_month);
-            //Obtener nombre parseado
-             $nombres__completos=$this->processNames($student);
+              }
 
-             $decimal=100;
+              $countreg=0;
+              $sum_max=0;
+              $sum_min=0;
 
-             foreach ($months_pending as $period => $nameMonth){
-                $codigo=str_pad($student->codigo, "10"," ",STR_PAD_LEFT);
-                $especificacion = strtoupper($codigo).$nameMonth;
-                $countreg++;
-                $year= date('Y');
-                $fec_ref= $year.'-'.$period.'-01';
-                $fec_ven = new DateTime( $fec_ref );
-                $last_day = $fec_ven->format( 'Ymt' );
+              foreach ($students as $key => $student){
+                
+                //Transformar el mes en string
+                $months_pending= $this->getPendingMonths($student->mesdeuda);
 
-                $fec=$fec_ven->format('Y-m-d');
-                $fec_foo= new DateTime($fec_ref.'+1 year +1 months');
-                $fec_bloqueo=$fec_foo->format('Ymt');
+                //Obtener nombre parseado
+                $nombres__completos=$this->processNames($student); 
+                $decimal=100;
 
-                $sum_max +=$student->monto;
-                $sum_min +=$student->monto;
+                 //AQUI ESTA EL PROBLEMA PEEE
+                 //foreach ($months_pending as $period => $nameMonth){
 
-                $line = array(
-                  'sede'           => str_pad('2', "2","0",STR_PAD_LEFT), //2
-                  'nombre'         => str_pad($nombres__completos,'30'," ", STR_PAD_RIGHT), //30
-                  'especificacion' => str_pad($especificacion, '48'," ", STR_PAD_RIGHT), //48
-                  'fec_ven'        => str_pad($last_day, '8'," ", STR_PAD_RIGHT),
-                  'fec_bloqueo'    => str_pad($fec_bloqueo, '8'," ", STR_PAD_RIGHT),
-                  'periodo'        => str_pad("0", '2',"0", STR_PAD_LEFT),
-                  'monto_max'      => str_pad(number_format($student->monto * $decimal, 0, '', ''), 15, '0', STR_PAD_LEFT),
-                  'monto_min'      => str_pad(number_format($student->monto * $decimal, 0, '', ''), 15, '0', STR_PAD_LEFT), 
-                  'relleno'        => str_pad( "0", '160',"0", STR_PAD_RIGHT),
-                  'tail'           => str_pad( "0", '20',"0", STR_PAD_RIGHT),
-                  'tail_'          => str_pad( "L", '16',"0", STR_PAD_RIGHT),
-                  'tail__'          => str_pad( " ", '33'," ", STR_PAD_LEFT),
-                );
-                $file_contents .= implode($line) . PHP_EOL;
-             }
-          }
+                    $codigo=str_pad($student->codigo, "10"," ",STR_PAD_LEFT);
+                    $especificacion = strtoupper($codigo).$this->getNameMonth($student->mesdeuda);
+                    $countreg++;
+                    $year= date('Y');
+                    $fec_ref= $year.'-'.$student->mesdeuda.'-01';
+                    $fec_ven = new DateTime( $fec_ref );
+                    $last_day = $fec_ven->format( 'Ymt' );
 
-          $footer="03".str_pad($countreg, 9,"0",STR_PAD_LEFT).
-          str_pad(number_format($sum_max * $decimal, 0, '', ''), 18, '0', STR_PAD_LEFT).
-          str_pad(number_format($sum_min * $decimal, 0, '', ''), 18, '0', STR_PAD_LEFT).
-          str_pad( "0", 18,"0", STR_PAD_LEFT).
-          str_pad( " ", 295," ", STR_PAD_LEFT). PHP_EOL;
+                    $fec=$fec_ven->format('Y-m-d');
+                    $fec_foo= new DateTime($fec_ref.'+1 year +1 months');
+                    $fec_bloqueo=$fec_foo->format('Ymt');
 
-        }else{
-          return false;
-          exit();
+                    $sum_max +=$student->monto;
+                    $sum_min +=$student->monto;
+
+                    $line = array(
+                      'sede'           => str_pad('2', "2","0",STR_PAD_LEFT), //2
+                      'nombre'         => str_pad($nombres__completos,'30'," ", STR_PAD_RIGHT), //30
+                      'especificacion' => str_pad($especificacion, '48'," ", STR_PAD_RIGHT), //48
+                      'fec_ven'        => str_pad($last_day, '8'," ", STR_PAD_RIGHT),
+                      'fec_bloqueo'    => str_pad($fec_bloqueo, '8'," ", STR_PAD_RIGHT),
+                      'periodo'        => str_pad("0", '2',"0", STR_PAD_LEFT),
+                      'monto_max'      => str_pad(number_format($student->monto * $decimal, 0, '', ''), 15, '0', STR_PAD_LEFT),
+                      'monto_min'      => str_pad(number_format($student->monto * $decimal, 0, '', ''), 15, '0', STR_PAD_LEFT), 
+                      'relleno'        => str_pad( "0", '160',"0", STR_PAD_RIGHT),
+                      'tail'           => str_pad( "0", '20',"0", STR_PAD_RIGHT),
+                      'tail_'          => str_pad( "L", '16',"0", STR_PAD_RIGHT),
+                      'tail__'          => str_pad( " ", '33'," ", STR_PAD_LEFT),
+                    );
+                    $file_contents .= implode($line) . PHP_EOL;
+
+                 //}
+
+              }
+
+              $footer="03".str_pad($countreg, 9,"0",STR_PAD_LEFT).
+              str_pad(number_format($sum_max * $decimal, 0, '', ''), 18, '0', STR_PAD_LEFT).
+              str_pad(number_format($sum_min * $decimal, 0, '', ''), 18, '0', STR_PAD_LEFT).
+              str_pad( "0", 18,"0", STR_PAD_LEFT).
+              str_pad( " ", 295," ", STR_PAD_LEFT). PHP_EOL;
+            }
+            //ESTUDIANTES VACIOS
+            else
+            {
+
+                return false;
+                exit();
+            }
+
+                //GENERAMOS EL TXT.
+                $file_contents_final.= $header.$file_contents.$footer. PHP_EOL;
+                File::put($source_file, $file_contents_final);
         }
-
-          $file_contents_final.= $header.$file_contents.$footer. PHP_EOL;
-          File::put($source_file, $file_contents_final);
-
-      }
     }
 
     private function getStudentsbySede($sede){
+      /*
       $query = DB::table('alumno')
        ->select('alumno.*',DB::raw('alumnomatricula.*,pension.idpension,pension.monto,mensualidades.*'))
        ->leftjoin('mensualidades', 'mensualidades.idalumno', '=', 'alumno.idalumno')
        ->leftjoin('alumnomatricula', 'alumnomatricula.idalumno', '=', 'alumno.idalumno')
        ->leftjoin('pension', 'pension.idpension', '=', 'mensualidades.idpension')
        ->where('alumnomatricula.idsede', $sede);
+      */
+
+       /*
+      $query = DB::table('alumnodeudas')
+      ->select('*','alumnodeudas.mes as mesdeuda')
+      ->leftJoin('alumno','alumnodeudas.idalumno','=', 'alumno.idalumno')
+      ->leftjoin('mensualidades', 'mensualidades.idalumno', '=', 'alumnodeudas.idalumno')
+      ->leftjoin('pension', 'pension.idpension', '=', 'mensualidades.idpension')
+      ->leftjoin('alumnomatricula', 'alumnomatricula.idalumno', '=', 'alumno.idalumno')
+
+      ->where('alumnodeudas.idperiodomatricula',  1)
+      ->where('mensualidades.idperiodomatricula', 1)
+      ->where('alumnomatricula.idperiodomatricula',  1)
+      ->where('alumnomatricula.idsede', $sede)
+      ->where('alumnodeudas.status', 0);
       return $query->get();
+        */
+
+      $query = DB::table('alumnodeudas')
+      ->select('*','alumnodeudas.mes as mesdeuda')
+      ->leftjoin('alumnomatricula', 'alumnomatricula.idalumno', '=', 'alumnodeudas.idalumno')
+      ->leftjoin('pension', 'pension.idpension', '=', 'alumnomatricula.idpension')
+      ->leftJoin('alumno','alumnodeudas.idalumno','=', 'alumno.idalumno')
+
+      //->where('alumnodeudas.idalumno', 1)
+      ->where('alumnodeudas.status',   0)
+      ->where('alumnomatricula.idsede', $sede)
+
+      ->where('alumnodeudas.idperiodomatricula', 1)
+      ->where('alumnomatricula.idperiodomatricula', 1);
+      return $query->get();      
     }
 
     private function getPendingMonths($month){
