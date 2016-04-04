@@ -111,12 +111,24 @@ EOT;
         $mes = substr($refpago,18);
         //ALUMNO
         $codigoAlumno = substr($refpago,0, 10);
+
         $a = DB::table('alumno')->where('codigo',$codigoAlumno)->take(1)->get();
+
+
         if(!empty($a[0]->idalumno))
         {
-          $idalumno = $a[0]->idalumno;
+            $idalumno = $a[0]->idalumno;
+
+          $b=DB::table('alumnodeudas')->where('idalumno',$idalumno)->take(1)->get(); 
+          
+          $mes=$b[0]->mes;
+
+
+        
+
           //NUMERO DEL MES
           $numberMes = $this->numberMes($mes);
+          //dd($numberMes);
           DB::table('alumnodeudas')
               ->where('idalumno', $idalumno)
               ->where('mes', $numberMes)
@@ -147,43 +159,43 @@ EOT;
     {
       switch ($mes) {
         case 'ENERO':
-          $number = '01';
+          $mes = '01';
           break;
         case 'FEBRERO':
-          $number = '02';
+          $mes = '02';
           break;
         case 'MARZO':
-          $number = '03';
+          $mes = '03';
           break;
         case 'ABRIL':
-          $number = '04';
+          $mes = '04';
           break;
         case 'MAYO':
-          $number = '05';
+          $mes = '05';
           break;
         case 'JUNIO':
-          $number = '06';
+          $mes = '06';
           break;
         case 'JULIO':
-          $number = '07';
+          $mes = '07';
           break;
         case 'AGOSTO':
-          $number = '08';
+          $mes = '08';
           break;
         case 'SEPTIEMBRE':
-          $number = '09';
+          $mes = '09';
           break;
         case 'OCTUBRE':
-          $number = '10';
+          $mes = '10';
           break;
         case 'NOVIEMBRE':
-          $number = '11';
+          $mes = '11';
           break;
         case 'DICIEMBRE':
-          $number = '12';
+          $mes = '12';
           break;
       }
-       return $number;
+       return $mes;
     }
 
     protected function __splitString($string, $lengths)

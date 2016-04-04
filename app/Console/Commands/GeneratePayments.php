@@ -23,6 +23,7 @@ class GeneratePayments extends Command
     {
       $numeration = array('1' =>'001503' , '2'=>'004893' );
       $today=date('Ymd');
+
       
       //TRAEMOS TODAS LAS SEDES 
       $sedes= DB::table('sede')->get();
@@ -36,9 +37,10 @@ class GeneratePayments extends Command
             $source_file = config('app.urlupload').$file_name;       
             
             //TRAEMOS TODOS LOS ESTUDIANTES
-            $students= $this->getStudentsbySede($sede->idsede);        
-            
-            //dd($students);
+            $students= $this->getStudentsbySede($sede->idsede);   
+           //dd($students);
+              
+          
 
             //SI ESTUDIANTES NO ESTA VACIO
             if (!empty($students))
@@ -49,27 +51,13 @@ class GeneratePayments extends Command
               if($sede->idsede == 1)
               {
                 //ESTRUCTURA TXT
-                  $header=str_pad($sede->idsede, 2, '0', STR_PAD_LEFT)
-                  .'20547453035'
-                  .'100'
-                  .'PEN'
-                  .str_pad($today, 8, ' ', STR_PAD_LEFT)
-                  .'000'
-                  .str_pad(' ', 330, ' ', STR_PAD_LEFT)
-                  .PHP_EOL;
+                  $header=str_pad($sede->idsede, 2, '0', STR_PAD_LEFT) .'20547453035' .'100' .'PEN' .str_pad($today, 8, ' ', STR_PAD_LEFT) .'000' .str_pad(' ', 330, ' ', STR_PAD_LEFT) .PHP_EOL;  
               
               }
               else
               {
                 //ESTRUCTURA TXT
-                  $header=str_pad($sede->idsede, 2, '0', STR_PAD_LEFT)
-                  .'20547453035'
-                  .'300'
-                  .'PEN'
-                  .str_pad($today, 8, ' ', STR_PAD_LEFT) .'000'
-                  .str_pad("T", 8, " ", STR_PAD_LEFT)
-                  .str_pad(' ', 322, ' ', STR_PAD_LEFT)
-                  .PHP_EOL;
+                  $header=str_pad($sede->idsede, 2, '0', STR_PAD_LEFT) .'20547453035' .'300' .'PEN' .str_pad($today, 8, ' ', STR_PAD_LEFT) .'000' .str_pad("T", 8, " ", STR_PAD_LEFT) .str_pad(' ', 322, ' ', STR_PAD_LEFT) .PHP_EOL;
 
               }
 
@@ -94,17 +82,98 @@ class GeneratePayments extends Command
                     $countreg++;
                     $year= date('Y');
 
-                    $fec_ref= $year.'-'.$student->mesdeuda.'-01';
-                    $fec_ven = new DateTime( $fec_ref );
-                    $last_day = $fec_ven->format( 'Ymt' );
+                    //$fec_ref= $fec_ref=$year.'-'.$student->mesdeuda.'-03';
 
+
+                    
+
+                    $fec_ref= "";
+                    $counter=$student->mesdeuda+1;
+                    $counterformat=number_format($counter);
+                    $fecspec=$student->a_estadocivil;
+                   
+                    
+
+
+
+
+                    switch(true)
+                      {
+                        //Caso Mensualidad+1 entre los valores del 1 al 9 y diferente de 8, es decir Julio y Fechaespecial=1=no
+                        case (strlen($counter)==1 && $counter!=8 && $fecspec=='1'):
+                          $fec_ref=$year.'-'."0".$counterformat.'-03';
+                          break;
+                        //Caso mensualidad+1 entre valores 1 al 9 y que no sea julio pero si tiene fecha especial.
+                        case (strlen($counter)==1 && $counter!=8 && $fecspec=='4'):
+                          $fec_ref=$year.'-'."0".$counterformat.'-05';
+                          break;
+                          //Caso mensualidad entre 10,11 y menor igual a 12 y sin fecha especial (venc=03 del siguiente mes)
+                        case (strlen($counter) == 2 && $counter<=12 && $fecspec=='1'):
+                          $fec_ref=$year.'-'.$counterformat.'-03';
+                          break;
+                          //Caso mensualidad entre 10,11 y menor a 12 y con fecha especial(vence 05 del siguiente mes)
+                        case (strlen($counter)==2 && $counter<=12 && $fecspec=='4'):
+                           $fec_ref=$year.'-'.$counterformat.'-05';
+                          break;
+                          //Caso mensualidad mayor 12 (exp)
+                        case ($counter>12):
+                           $fec_ref=$year.'-'.number_format($student->mesdeuda).'-15';
+                          break;  
+                     case ($counter==8):
+                           $fec_ref=$year.'-'."0".number_format($student->mesdeuda).'-15';
+                          break;  
+
+                        default:
+                          echo 'nothing';
+                          break;
+                      }
+
+
+
+                //CONDICIONALES DE VENCIMIENTO
+                 //   if(strlen($counter)==2 && $counter<=12 && $fecspec==1){
+                 //     $fec_ref=$year.'-'.$counterformat.'-03';
+                 //   }
+                 //   elseif(strlen($counter)==1 && $counter!=8 && $fecspec==1)
+                 //   {
+                 //      $fec_ref=$year.'-'."0".$counterformat.'-03';
+                 //   }
+                 //    elseif(strlen($counter)==1 && $counter!=8 && $fecspec==2)
+                 //   {
+                 //      $fec_ref=$year.'-'."0".$counterformat.'-05';
+                 //   }
+                 //   elseif(strlen($counter)==2 && $counter<=12 && $fecspec==2){
+                 //     $fec_ref=$year.'-'.$counterformat.'-05';
+                 //   }
+                 //   elseif($counter>12)
+                 //   {
+                 //      $fec_ref=$year.'-'.number_format($student->mesdeuda).'-15';
+                 //   }
+                 //
+                 //    elseif($counter==8)
+                 //   {
+                 //      $fec_ref=$year.'-'.number_format($student->mesdeuda).'-15';
+                 //   }
+
+
+
+
+
+
+                  //CONDICIONALES DE VENCIMIENTO
+          
+
+
+                    
+                    $fec_serv=new DateTime($today.'+1 year');
+                    $comparative=$fec_serv->format('Ymd');
+                    $fec_ven = new DateTime( $fec_ref.'+1 year' );
+                    $last_day = $fec_ven->format( 'Ymd' ); 
                     $fec=$fec_ven->format('Y-m-d');
-                    $fec_foo= new DateTime($fec_ref.'+1 year +1 months +2 day');
-
+                    $fec_foo= new DateTime($fec_ref.'+1 year +1 months');
                     $fec_bloqueo=$fec_foo->format('Ymt');
 
-                    $sum_max +=$student->monto;
-                    $sum_min +=$student->monto;
+                    
 
                     $line = array(
                       'sede'           => str_pad('2', "2","0",STR_PAD_LEFT), //2
@@ -113,13 +182,45 @@ class GeneratePayments extends Command
                       'fec_ven'        => str_pad($last_day, '8'," ", STR_PAD_RIGHT),
                       'fec_bloqueo'    => str_pad($fec_bloqueo, '8'," ", STR_PAD_RIGHT),
                       'periodo'        => str_pad("0", '2',"0", STR_PAD_LEFT),
-                      'monto_max'      => str_pad(number_format($student->monto * $decimal, 0, '', ''), 15, '0', STR_PAD_LEFT),
+
+                      //CONTROLADO POR 3 CONDICIONES, NIVEL, FECHA VENCIMIENTO Y MES
+                      'monto_max'      =>str_pad(number_format($student->monto * $decimal, 0, '', ''), 15, '0', STR_PAD_LEFT),
                       'monto_min'      => str_pad(number_format($student->monto * $decimal, 0, '', ''), 15, '0', STR_PAD_LEFT), 
                       'relleno'        => str_pad( "0", '160',"0", STR_PAD_RIGHT),
                       'tail'           => str_pad( "0", '20',"0", STR_PAD_RIGHT),
                       'tail_'          => str_pad( "L", '16',"0", STR_PAD_RIGHT),
-                      'tail__'          => str_pad( " ", '33'," ", STR_PAD_LEFT),
+                      'tail__'          => str_pad( " ", '36'," ", STR_PAD_LEFT),
                     );
+
+                   
+
+//CONTROLANDO VENCIMIENTOS AL TERCER DÍA
+                if($comparative>=$last_day && $student->idnivel==1 or $student->mesdeuda==07 && $student->idnivel==1 or $student->mesdeuda==12 && $student->idnivel==1){
+
+                    $line['monto_max'] =str_pad(number_format(350.0 * $decimal, 0, '', ''), 15, '0', STR_PAD_LEFT);
+                    $line['monto_min'] =str_pad(number_format(350.0 * $decimal, 0, '', ''), 15, '0', STR_PAD_LEFT);
+
+                  }
+                  elseif($comparative>=$last_day && $student->idnivel==2 or $student->mesdeuda==07 && $student->idnivel==2 or $student->mesdeuda==12 && $student->idnivel==2){
+
+                    $line['monto_max'] =str_pad(number_format(380.0 * $decimal, 0, '', ''), 15, '0', STR_PAD_LEFT);
+                     $line['monto_min'] =str_pad(number_format(380.0 * $decimal, 0, '', ''), 15, '0', STR_PAD_LEFT);
+
+                  }
+                   elseif($comparative>=$last_day && $student->idnivel==3 or $student->mesdeuda==07 && $student->idnivel==3 or $student->mesdeuda==12 && $student->idnivel==3){
+
+                    $line['monto_max'] =str_pad(number_format(400.0 * $decimal, 0, '', ''), 15, '0', STR_PAD_LEFT);
+                    $line['monto_min'] =str_pad(number_format(400.0 * $decimal, 0, '', ''), 15, '0', STR_PAD_LEFT);
+
+                  }
+
+                 $sum_max +=$line['monto_min'];
+                 $sum_min += $line['monto_max'];
+//CONTROLANDO VENCIMIENTOS AL TERCER DÍA
+
+
+
+  
                     $file_contents .= implode($line) . PHP_EOL;
 
                  //}
@@ -127,9 +228,9 @@ class GeneratePayments extends Command
               }
 
               $footer="03".str_pad($countreg, 9,"0",STR_PAD_LEFT).
-              str_pad(number_format($sum_max * $decimal, 0, '', ''), 18, '0', STR_PAD_LEFT).
+              str_pad(number_format($sum_max * $decimal, 0, '', ''), 20, '0', STR_PAD_LEFT).
               str_pad(number_format($sum_min * $decimal, 0, '', ''), 18, '0', STR_PAD_LEFT).
-              str_pad( "0", 18,"0", STR_PAD_LEFT).
+              str_pad( "0", 16,"0", STR_PAD_LEFT).
               str_pad( " ", 295," ", STR_PAD_LEFT). PHP_EOL;
             }
             //ESTUDIANTES VACIOS
@@ -177,6 +278,7 @@ class GeneratePayments extends Command
       ->leftjoin('alumnomatricula', 'alumnomatricula.idalumno', '=', 'alumnodeudas.idalumno')
       ->leftjoin('pension', 'pension.idpension', '=', 'alumnomatricula.idpension')
       ->leftJoin('alumno','alumnodeudas.idalumno','=', 'alumno.idalumno')
+      ->leftJoin('alumnoapoderado','alumnodeudas.idalumno','=','alumnoapoderado.idalumno')
 
       //->where('alumnodeudas.idalumno', 1)
       ->where('alumnodeudas.status',   0)
@@ -196,6 +298,9 @@ class GeneratePayments extends Command
       }
       return $months_array;
     }
+
+
+ 
 
     private function processNames($student){
 
