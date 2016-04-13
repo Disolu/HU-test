@@ -43,7 +43,7 @@
 
                         <tr>
                             <td class="area">AREA</td>
-                            <td class="gray">CURSO </td>
+                            <td class="gray">CURSO</td>
                             <td class="gray">IB</td>
                             <td class="gray">IIB</td>
                             <td class="gray">IIIB</td>
@@ -51,13 +51,14 @@
                             <td class="gray">PA</td>
                         </tr>
 
-                        <tr                            <td n="5" class="gray">MATEMÁTICA</td>
-                            <td>TICA</td>
-                            <td>>
+                        <tr>
+                        <td rowspan="5" class="gray">MATEMÁTICA</td>
+                            <td>ARITMÉTICA</td>
+                            <td>
                             <td></td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
 
                         <tr>

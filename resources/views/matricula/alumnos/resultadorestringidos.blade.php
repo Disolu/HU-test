@@ -15,11 +15,14 @@
                     <div class="widget-summary-col">
                         <div class="summary">
                             <h4 class="title">
-                                {!! $alumno->nombres !!}
+                                {!! $alumno->fullname!!}   
                             </h4>
+                            <h5>
+                                Dni: {!! $alumno->dni!!}
+                            </h5>
 
                             <div class="info">
-                                <code>{!! $alumno->observacion->observacion !!}</code>
+                                <code>{!! $alumno->observacion!!}</code>
                             </div>
 
                         </div>
@@ -31,5 +34,11 @@
         </section>
     </div>
     @endforeach
+  
+@elseif(count($getAlumno) == 0)
+    <div class="info">
+                 <div class="alert alert-info" role="alert">No existen restricciones para el alumno</div>
+     </div>
+
 
 @endif

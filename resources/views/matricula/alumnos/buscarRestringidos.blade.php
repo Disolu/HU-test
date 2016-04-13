@@ -41,7 +41,7 @@
 <div class="col-lg-12">
 	<section class="panel">
 		<header class="panel-heading">
-			<h2 class="panel-title">Buscar Alumnos Restrigidos</h2>
+			<h2 class="panel-title">Buscar Alumnos Restringidos</h2>
 		</header>
 		<div class="panel-body">
 			@include('alertas.request')
@@ -51,7 +51,7 @@
 			{!! Form::open(array('route' => 'searchrestringidos', 'method' => 'GET')) !!}
 			<div class="form-group">
 				<label class="col-md-3 control-label">Nombre / Dni</label>
-				<div class="col-md-6">
+				<div class="col-md-6"> 
 					<div class="input-group input-search">
                         <input type="text" class="form-control" name="alumno" id="alumno" placeholder="Buscar alumno...">
                         <span class="input-group-btn">

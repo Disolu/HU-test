@@ -195,19 +195,19 @@ class GeneratePayments extends Command
                    
 
 //CONTROLANDO VENCIMIENTOS AL TERCER DÍA
-                if($comparative>=$last_day && $student->idnivel==1 or $student->mesdeuda==07 && $student->idnivel==1 or $student->mesdeuda==12 && $student->idnivel==1){
+                if($comparative>$last_day && $student->idnivel==1 or $student->mesdeuda==07 && $student->idnivel==1 or $student->mesdeuda==12 && $student->idnivel==1){
 
                     $line['monto_max'] =str_pad(number_format(350.0 * $decimal, 0, '', ''), 15, '0', STR_PAD_LEFT);
                     $line['monto_min'] =str_pad(number_format(350.0 * $decimal, 0, '', ''), 15, '0', STR_PAD_LEFT);
 
                   }
-                  elseif($comparative>=$last_day && $student->idnivel==2 or $student->mesdeuda==07 && $student->idnivel==2 or $student->mesdeuda==12 && $student->idnivel==2){
+                  elseif($comparative>$last_day && $student->idnivel==2 or $student->mesdeuda==07 && $student->idnivel==2 or $student->mesdeuda==12 && $student->idnivel==2){
 
                     $line['monto_max'] =str_pad(number_format(380.0 * $decimal, 0, '', ''), 15, '0', STR_PAD_LEFT);
                      $line['monto_min'] =str_pad(number_format(380.0 * $decimal, 0, '', ''), 15, '0', STR_PAD_LEFT);
 
                   }
-                   elseif($comparative>=$last_day && $student->idnivel==3 or $student->mesdeuda==07 && $student->idnivel==3 or $student->mesdeuda==12 && $student->idnivel==3){
+                   elseif($comparative>$last_day && $student->idnivel==3 or $student->mesdeuda==07 && $student->idnivel==3 or $student->mesdeuda==12 && $student->idnivel==3){
 
                     $line['monto_max'] =str_pad(number_format(400.0 * $decimal, 0, '', ''), 15, '0', STR_PAD_LEFT);
                     $line['monto_min'] =str_pad(number_format(400.0 * $decimal, 0, '', ''), 15, '0', STR_PAD_LEFT);
@@ -287,6 +287,7 @@ class GeneratePayments extends Command
       ->where('alumnodeudas.idperiodomatricula', 1)
       ->where('alumnomatricula.idperiodomatricula', 1);
       return $query->get();      
+     
     }
 
     private function getPendingMonths($month){

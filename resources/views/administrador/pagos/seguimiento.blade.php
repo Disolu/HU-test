@@ -61,6 +61,27 @@ elseif(Auth::user()->idrol==5)
 				</div>
 			</fieldset>
 			</div>
+
+			  <div class="col-md-3">
+		  	<fieldset>
+				<div class="form-group">
+					<select name="mensualidad"  id="cboMensualidad" class="form-control mb-md"   optionsCaption: 'Seleccione Mes'>
+						<option selected value="03">Seleccione Mes</option>
+							<option value="03">Marzo</option>
+							<option value="04">Abril</option>
+							<option value="05">Mayo</option>
+							<option value="06">Junio</option>
+							<option value="07">Julio</option>	
+							<option value="08">Agosto</option>
+							<option value="09">Setiembre</option>
+							<option value="10">Octubre</option>
+							<option value="11">Noviembre</option>
+							<option value="12">Diciembre</option>
+											
+						</select>
+				</div>
+			</fieldset>
+			</div>
 		</div>
         <div class="row">
             <div class="col-md-12">

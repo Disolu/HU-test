@@ -193,6 +193,7 @@ class ReportesController extends Controller
         $idnivel   = $request['nivel'];
         $idgrado   = $request['grado'];
         $dni       = $request['dni'];
+        $mensualidades=$request['mensualidad'];
         $periodo = DB::table('periodomatricula')->take(1)->orderBy('idperiodomatricula','desc')->get();
         $alumnos = Alumno::
             select('codigo','fullname as Alumno','Dni','Direccion','alumnodeudas.mes as Mes','p.monto','apo.p_nombres as Padre','apo.a_nombres as Madre','Telefono',
@@ -220,6 +221,10 @@ class ReportesController extends Controller
             if ($dni) {
               $alumnos->where('alumno.dni','=',$dni);
             }
+            if ($mensualidades) {
+         $alumnos->where('alumnodeudas.mes','=',$mensualidades);
+          $alumnos->where('alumnodeudas.status','=','0');
+      }
       
         $alumnos = $alumnos->groupBy('alumno.idalumno')->get();
 

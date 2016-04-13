@@ -83,6 +83,7 @@ class ReportesRepo {
     $idnivel   = $request['nivel'];
     $idgrado   = $request['grado'];
     $dni       = $request['dni'];
+    $mensualidades=$request['mensualidad'];
 
     $periodo = PeriodoMatricula::take(1)->orderBy('idperiodomatricula','desc')->get();
     
@@ -111,10 +112,16 @@ class ReportesRepo {
       if ($dni) {
           $pagos->where('alumno.dni','=',$dni);
       }
+       if ($mensualidades) {
+         $pagos->where('alumnodeudas.mes','=',$mensualidades);
+          $pagos->where('alumnodeudas.status','=','0');
+      }
+
       
       $pagos->where('alumno.impedimento','<>','1');
       $pagos->groupBy('alumno.idalumno');
 
       return $pagos->get();
+      
   }
 }

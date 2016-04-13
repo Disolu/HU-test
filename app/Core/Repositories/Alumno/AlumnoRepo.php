@@ -1,6 +1,8 @@
 <?php
 namespace App\Core\Repositories\Alumno;
 use App\Core\Entities\Alumno;
+use App\Core\Entities\Restringidos;
+
 use App\Core\Entities\AlumnoApoderado;
 use App\Core\Entities\AlumnoDatos;
 use App\Core\Entities\AlumnoMatricula;
@@ -51,12 +53,24 @@ class AlumnoRepo {
          ->get();
     }
 
-    public function getAlumnoRestricciones($alumno)
+
+
+public function getAlumnoRestricciones($alumno){
+ return Restringidos::where('fullname','LIKE',$alumno.'%')
+                ->orWhere('dni', $alumno)
+                ->get();
+
+
+}
+
+
+    public function getAlumnoRestricciones2($alumno)
     {
         DB::enableQueryLog();
         //Ignored the view
         $date = date('Y-m-d');
         $current = $this->PeriodoRepo->getLastPeriodo();;
+        //current = 2016 o último periodo
         if($current){
             $inicio = $current[0]->inicio;
             $fin = $current[0]->fin;
@@ -102,6 +116,22 @@ class AlumnoRepo {
 
         return $restringidos;
     }
+
+
+
+
+
+public function getAllObservaciones($id)
+    {
+        return AlumnoObservacion::
+        leftJoin('tipoobservacion', 'alumnoobservacion.idtipoobservacion', '=', 'tipoobservacion.idtipoobservacion')
+         ->select('titulo','observacion','alumnoobservacion.idtipoobservacion','alumnoobservacion.created_at','nombre as nombretipoobservacion')
+         ->where('idalumno','=',$id)
+         ->orderBy('alumnoobservacion.created_at','desc')
+         ->get();
+    }
+
+
 
     public function SaveDeudasAlumno($iduser, $alumno, $periodo)
     {
@@ -281,15 +311,7 @@ class AlumnoRepo {
          ->get();
     }
 
-    public function getAllObservaciones($id)
-    {
-        return AlumnoObservacion::
-        leftJoin('tipoobservacion', 'alumnoobservacion.idtipoobservacion', '=', 'tipoobservacion.idtipoobservacion')
-         ->select('titulo','observacion','alumnoobservacion.idtipoobservacion','alumnoobservacion.created_at','nombre as nombretipoobservacion')
-         ->where('idalumno','=',$id)
-         ->orderBy('alumnoobservacion.created_at','desc')
-         ->get();
-    }
+    
 
     public function getObservacionImpedimento($id)
     {
