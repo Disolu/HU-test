@@ -413,7 +413,7 @@
 		    $.ajax({
 		    	type: "GET",
 		    	url: baseURL + "/api/v1/getPensionesUpdateAlumno",
-		    	data: { tipo : tipopension, nivel: 2 },
+		    	data: { tipo : tipopension, nivel: nivelpe },
 		    	dataType: "json",
 		    	contentType: "application/json; charset=utf-8",
 		    	success: function (data) {
